@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rehome form page3</title>
+
+    <style>
+        .back_button{
+            display: inline-block;
+            padding: 1px 2%;
+            background-color: gainsboro;
+            color: black;
+            text-decoration: none;
+            border:1px thin black;
+            border-radius: 4px;
+        }
+        .back_button:hover{
+            background-color: rgb(172, 171, 171);
+        }
+
+    </style>
+
+    <script src="https://kit.fontawesome.com/feb2276715.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <img src="" alt="Logo">
+        <i class="fa-solid fa-bars"></i>
+    </header>
+    <main>
+        <h1>Let's together find a new home for your pet.</h1>
+        <h2>You need to fill in the details to create your pet listing on Pawfect Match.</h2>
+        <nav>
+            <ul>
+                <li>Lorem, ipsum.</li>
+                <li>Saepe, nisi.</li>
+                <li>Nostrum, delectus?</li>
+            </ul>
+        </nav>
+
+        <form action="">
+        
+            <div class="form_pet_1">
+                <h2>Pet description</h2>
+            <label for="pname">Pet name
+                <input type="text" placeholder="Enter Your Pet Name" required>
+            </label>
+            <label for="breed">Breed
+                <select name="" id="#">
+                    <option value="0" hidden >Select an option</option>
+                    <option value="1">Quibusdam, deserunt.</option>
+                    <option value="2">Esse, itaque!</option>
+                    <option value="3">Voluptatem, ipsam.</option>
+                </select>
+            </label>
+            <label for="gender">Gender
+                <select name="" id="#">
+                    <option value="0" hidden >Select an option</option>
+                    <option value="1">Male</option>
+                    <option value="2">Female</option>
+                    
+                </select>
+            </label>
+            <label for="age">Age
+                <input type="number" min="0" max="20" value=" years">
+            </label>
+            <label for="size">
+                <select name="#" id="#">
+                    <option value="0" hidden>Select an option</option>
+                    <option value="1">Extra small</option>
+                    <option value="2">Small</option>
+                    <option value="3">Large</option>
+                    <option value="4">Extra large</option>
+                </select>
+            </label>
+            <label for="color">Color
+                <input type="text" placeholder="Enter color">
+            </label>  
+            <label for="description">Short Description       
+                <textarea name="#" id="#" cols="30" rows="10">
+                </textarea>
+            </label>
+            </div>
+
+
+            <div class="form_pet_images">
+                <h2>Pet images</h2>
+                    <label for="imageUpload">Select an image:</label>
+                    <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+
+                    <button type="button" onclick="document.getElementById('imageUpload').click()">Add Image <i class="fa-regular fa-plus"></i></button>
+
+                    <button type="button" onclick="document.getElementById('imageUpload').click()">Add Image <i class="fa-regular fa-plus"></i></button>
+
+                    <button type="button" onclick="document.getElementById('imageUpload').click()">Add Image <i class="fa-regular fa-plus"></i></button>
+            </div>
+           
+        
+
+            <div class="form_other_info">
+                <label class="switch">Good with children
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+                <label class="switch">House trained
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+                <label class="switch">Special needs
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+    
+                <input type="text" placeholder="If yes, Share with us" id="form_other_info_text">
+            </div>
+            
+            <a href="../Rehome_pages.html/rehome_form_page2.html" class="back_button">Back</a>
+            <input type="submit" value="Submit">
+
+        </form>
+    </main>    
+    
+    <footer>
+        <h2>Pawtch Match</h2>
+        <h3>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio vitae officia, corporis nesciunt nisi animi.</h3>
+        <nav class="bottom_nav_social">
+            <ul>
+                <li>
+                    <a href="https://www.facebook.com" aria-label="facebook">
+                        <i class="fa-brands fa-facebook-f" aria-hidden="true" title="facebook"></i>
+                        <span class="sr-only">facebook</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.linkedin.com" aria-label="linkedin">
+                        <i class="fa-brands fa-linkedin-in" aria-hidden="true" title="linkedin"></i>
+                        <span class="sr-only">linkedin</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.twitter.com" aria-label="twitter">
+                        <i class="fa-brands fa-twitter" aria-hidden="true" title="twitter"></i>
+                        <span class="sr-only">twitter</span>
+                      </a>
+                </li>
+            </ul>
+        </nav>
+        <nav class="bottom_nav_1">
+            <ul>
+                <h2>Quick Link</h2>
+                <li><a href="">Adopt</a></li>
+                <li><a href="">Rehome</a></li>
+                <li><a href="">Resources</a></li>
+            </ul>
+            <ul>
+                <h2>Company</h2>
+                <li><a href="">About us</a></li>
+                <li><a href="">Term & conditions</a></li>
+                <li><a href="">Privacy policy</a></li>
+            </ul>
+        </nav>
+
+        <form action="" method="get" class="bottom_form_mail">
+            <h2>Let's get connected</h2>
+            <p>Enter your email so you get updates on pets adoption resuorces</p>
+            <label for="email">
+                <input type="email" placeholder="Enter Email" required>
+            </label>
+            <input type="submit" value="Submit">
+        </form>
+
+        <div class="footer_end">
+            <p>Copyrigth &copy; 2023 Pawfect Match</p>
+            <p>Design and develop by Code Crafters</p>
+        </div>  
+    </footer>
+</body>
+</html>
