@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+      <title>Firebase 9</title>
+  </head>
+  <body>
+    <table class="table is-striped is-narrow is-hoverable is-fullwidth">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Size</th>
+            <th>Gender</th>
+            <th>Type</th>
+            <th>Breed</th>
+            <th>Good with children?</th>
+            <th>Description</th>
+            <th>Owner</th>
+            <th>Owner Email</th>
+            <th>Owner Number</th>
+        </tr>
+        </thead>
+        <tbody id="myTable">
+        </tbody>
+    </table>
+
+    <div class="animal-selector">
+      <label for="type">
+        WHICH PET?
+        <select name="type" id="pet-type">
+          <option disabled selected value> -- select an option -- </option>
+          <option value="Dog">Dog</option>
+          <option value="Cat">Cat</option>
+          <option value="Rabbit">Rabbit</option>
+          <option value="Bird">Bird</option>
+          <option value="Horse">Horse</option>
+          <option value="Scales, Fins & Other">Scales, Fins & Other</option>
+          <option value="Barnyard">Barnyard</option>
+        </select>
+      </label>
+    </div>
+    <div class="adopt-from-selector">
+      <label>
+        WHERE TO ADOPT FROM
+        <select id="source">
+          <option disabled selected value> -- select an option -- </option>
+          <option value="shelter">Shelter</option>
+          <option value="owner">Pet Owner</option>
+        </select>
+      </label>
+    </div>
+    
+    <br>
+    <form action="" onsubmit="return false" class="search">
+      <label for="breed">BREED</label>
+      <select name="breed" id="breed">
+        <option value>Any</option>
+        <!-- <option value="any">Any</option> -->
+      </select>
+
+      <fieldset>
+        <legend>AGE</legend>
+          <div>
+            <input type="radio" name="age" checked value="Baby,Young,Adult,Senior">
+            <label for="age">Any</label>
+          </div>
+
+          <div>
+            <input type="radio" name="age" value="Baby">
+            <label for="age">Baby</label>
+          </div>
+          <div>
+            <input type="radio" name="age" value="Young">
+            <label for="age">Young</label>
+          </div>
+          <div>
+            <input type="radio" name="age" value="Adult">
+            <label for="age">Adult</label>
+          </div>
+          <div>
+            <input type="radio" name="age" value="Senior">
+            <label for="age">Senior</label>
+          </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Gender</legend>
+          <div>
+            <input type="radio" name="gender" checked value="Female,Male">
+            <label for="gender">Any</label>
+          </div>
+          <div>
+            <input type="radio" name="gender" value="Female">
+            <label for="gender">Female</label>
+          </div>
+          <div>
+            <input type="radio" name="gender" value="Male">
+            <label for="gender">Male</label>
+          </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>SIZE</legend>
+          <div>
+            <input type="radio" name="size" checked value="Small,Medium,Large">
+            <label for="size">Any</label>
+          </div>
+          <div>
+            <input type="radio" name="size" value="Small">
+            <label for="size">Small</label>
+          </div>
+          <div>
+            <input type="radio" name="size" value="Medium">
+            <label for="size">Medium</label>
+          </div>
+          <div>
+            <input type="radio" name="size" value="Large">
+            <label for="size">Large</label>
+          </div>
+          <div>
+            <input type="radio" name="size" value="Xlarge">
+            <label for="size">Extra Large</label>
+          </div>
+      </fieldset>
+
+      <label for="color">COLOR</label>
+      <select name="color" id="color">
+        <option value>Any</option>
+      </select>
+
+      <fieldset>
+        <legend>Good with children</legend>
+          <div>
+            <input type="radio" name="children" checked id="gcyes" value="1">
+            <label for="children">Yes</label>
+          </div>
+          <div>
+            <input type="radio" name="children" id="gcno" value="0">
+            <label for="children">No</label>
+          </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>House Trained</legend>
+          <div>
+            <input type="radio" name="trained" checked id="trainedyes" value="1">
+            <label for="trained">Yes</label>
+          </div>
+          <div>
+            <input type="radio" name="trained" id="trainedno" value="0">
+            <label for="trained">No</label>
+          </div>
+      </fieldset>
+      
+      <br />
+      <button type="submit" >Submit</button>
+      <!-- <input value="Reset" type="reset"> -->
+    </form>
+
+    <table class="table is-striped is-narrow is-hoverable is-fullwidth">
+      <thead>
+      <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Size</th>
+          <th>Gender</th>
+          <th>Type</th>
+          <th>Breed</th>
+          <th>Description</th>
+          <th>Owner Email</th>
+          <th>Owner Number</th>
+      </tr>
+      </thead>
+      <tbody id="result">
+      </tbody>
+    </table>
+
+    <div id="myData"></div>
+    <div id="filtered-pets"></div>
+
+    <script type="module" src="./../assets/js/color-breed-dropdown.js" defer></script>
+    <script type="module" src="./../assets/js/animal-search.js" defer></script>
+  </body>
+</html>
