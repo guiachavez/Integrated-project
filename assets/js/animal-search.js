@@ -34,10 +34,7 @@ getDocs(aniRef)
                             <td>${data.type}</td>
                             <td>${data.breed}</td>
                             <td>${gc}</td>
-                            <td>${data.description}</td>
                             <td>${data.owner_id}</td>
-                            <td>${data.contact.email}</td>
-                            <td>${data.contact.phone}</td>
                         </tr>`;
             let table = document.getElementById('myTable')
             table.innerHTML += row
@@ -60,57 +57,95 @@ searchAnimals.addEventListener('submit', ()=> {
     let size = document.querySelector('input[name="size"]:checked').value;
     let color = document.getElementById("color").value;
     let goodWithChildren = JSON.parse(document.querySelector('input[name="children"]:checked').value);
-    let houseTrained = document.querySelector('input[name="trained"]:checked').value;
+    let houseTrained = JSON.parse(document.querySelector('input[name="trained"]:checked').value);
     
     //convert values to array
     let ageArr = age.split(",");
     let sizeArr = size.split(",");
     let genderArr = gender.split(",");
-    let typeArr = type.split(",");
-    let breedArr = breed.split(",");  
 
     $('#filtered-pets').empty();
     if (source == 'owner') {
-        searchOwner(ageArr, sizeArr, genderArr, typeArr, breedArr, goodWithChildren)
+        searchOwner(color, breed, type, ageArr, sizeArr, genderArr, goodWithChildren, houseTrained)
     } else {
         searchPetFinder(type, breed, age, gender, size, color, goodWithChildren, houseTrained)
     }
 })
 
-var searchOwner = (ageArr, sizeArr, genderArr, typeArr, breedArr, goodWithChildren) => {
+async function searchOwner(color, breed, type, ageArr, sizeArr, genderArr, goodWithChildren, houseTrained) {
+    let breedArr = []; 
+    
+    if (breed == '') {
+        const typeRef = doc(db, "types", type)
 
-    const q = query(aniRef, 
+        try {
+            const docSnap = await getDoc(typeRef);
+            if (docSnap.exists()) {
+                breedArr = docSnap.data().breeds;
+            }
+        } catch (e) {
+            console.log(e);
+        }
+
+    } else {
+        breedArr = color.split(",");
+    };
+        
+    let colorArr = []; 
+        
+    if (color == '') {
+        const typeRef = doc(db, "types", type)
+
+        try {
+            const docSnap = await getDoc(typeRef);
+            if (docSnap.exists()) {
+                colorArr = docSnap.data().colors;
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    } else {
+        colorArr = color.split(",");
+    };
+
+    const q = query(aniRef,
+        where("type", "==", type), 
         where("age", "in", ageArr), 
         where("size", "in", sizeArr), 
-        where("gender", "in", genderArr), 
-        where("type", "in", typeArr),
-        where("breed", "in", breedArr),
-        where("attributes.good_with_children", "==", goodWithChildren));
+        where("attributes.good_with_children", "==", goodWithChildren),
+        where("attributes.house_trained", "==", houseTrained));
 
-    getDocs(q)
-        .then(querySnapshot => {
+        try {
+            const querySnapshot = await getDocs(q);
             querySnapshot.forEach((doc) => {
+
                 let results = []
 
                 results.push(doc.id, " => ", doc.data())
                 let data = doc.data();
-                let row  = `<tr>
-                                <td>${data.name}</td>
-                                <td>${data.age}</td>
-                                <td>${data.size}</td>
-                                <td>${data.gender}</td>
-                                <td>${data.type}</td>
-                                <td>${data.breed}</td>
-                                <td>${data.description}</td>
-                                <td>${data.contact.email}</td>
-                                <td>${data.contact.phone}</td>
-                            </tr>`;
-                let table = document.getElementById('result')
-                table.innerHTML += row
-            
-            });
-        })
-}
+                if (genderArr.indexOf(data.gender) > -1) {                  
+                    if (breedArr.indexOf(data.breed) > -1) {
+                        if (colorArr.indexOf(data.color) > -1) {
+                        
+                            let row  = `<tr>
+                                    <td>${data.name}</td>
+                                    <td>${data.age}</td>
+                                    <td>${data.size}</td>
+                                    <td>${data.gender}</td>
+                                    <td>${data.type}</td>
+                                    <td>${data.breed}</td>
+                                    <td>${data.color}</td>
+                                </tr>`;
+                                let table = document.getElementById('result')
+                                table.innerHTML += row
+                        }
+                    }
+                } 
+            })
+        } catch (e) {
+            console.log(e);
+        }          
+    }
 
 // renewing token for petfinder API
 var searchPetFinder = (type, breed, age, gender, size, color, goodWithChildren, houseTrained) => {
