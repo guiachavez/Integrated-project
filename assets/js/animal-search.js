@@ -178,7 +178,7 @@ var searchPetFinder = (type, breed, age, gender, size, color, goodWithChildren, 
                     $('#filtered-pets').append([
                         $('<div />', {'class': `pet-${i}`}).append([
                             $('<div />', {'class': 'pet-details'}).append([
-                              $('<p />', {text: `${petObj[i].species}, ${petObj[i].name}, ${petObj[i].gender}` })
+                              $('<p />', {text: `${petObj[i].species}, ${petObj[i].breeds.primary}, ${petObj[i].name}, ${petObj[i].gender}` })
                             ])
                         ])
                     ])
