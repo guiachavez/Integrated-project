@@ -23,7 +23,7 @@ source.addEventListener('change', (e) => {
     console.log(e.target.value)
     if (e.target.value == 'shelter') {
         changeAttr()
-    } else {
+    } else if (e.target.value == 'owner') {
         ownerDropdown()
     }
 })
@@ -31,9 +31,11 @@ source.addEventListener('change', (e) => {
 petType.addEventListener('change', (e) => {
     removeOpt(colorList)
     removeOpt(breedList)
-    
-    changeAttr();
-    ownerDropdown();
+    if ($('#source').val() == 'shelter') {
+        changeAttr();
+    } else if ($('#source').val() == 'owner') {
+        ownerDropdown();
+    }
 })
 
 function removeOpt(selectOption) {
