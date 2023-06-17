@@ -11,39 +11,39 @@ const storage = getStorage(app);
 // collection refererence
 const aniRef = collection(db, 'animals')
 
-// get collection data
-getDocs(aniRef)
-    .then((snapshot) => {
-        let animals = []
+// get collection data -- FOR DISPLAYING PETS FROM THE BACKEND
+// getDocs(aniRef)
+//     .then((snapshot) => {
+//         let animals = []
 
-        snapshot.docs.forEach( (doc) => {
-            animals.push({...doc.data(), id: doc.id })
-            let data = doc.data();
-            console.log(data)
-            if (data.attributes.good_with_children == 1) {
-                var gc = 'Yes'
-            } else {
-                var gc = 'No'
-            }    
+//         snapshot.docs.forEach( (doc) => {
+//             animals.push({...doc.data(), id: doc.id })
+//             let data = doc.data();
+//             console.log(data)
+//             if (data.attributes.good_with_children == 1) {
+//                 var gc = 'Yes'
+//             } else {
+//                 var gc = 'No'
+//             }    
 
-            let row  = `<tr>
-                            <td>${data.name}</td>
-                            <td>${data.age}</td>
-                            <td>${data.size}</td>
-                            <td>${data.gender}</td>
-                            <td>${data.type}</td>
-                            <td>${data.breed}</td>
-                            <td>${gc}</td>
-                            <td>${data.owner_id}</td>
-                        </tr>`;
-            let table = document.getElementById('myTable')
-            table.innerHTML += row
-        })
+//             let row  = `<tr>
+//                             <td>${data.name}</td>
+//                             <td>${data.age}</td>
+//                             <td>${data.size}</td>
+//                             <td>${data.gender}</td>
+//                             <td>${data.type}</td>
+//                             <td>${data.breed}</td>
+//                             <td>${gc}</td>
+//                             <td>${data.owner_id}</td>
+//                         </tr>`;
+//             let table = document.getElementById('myTable')
+//             table.innerHTML += row
+//         })
 
-    })
-    .catch(err => {
-        console.log(err.message)
-    })
+//     })
+//     .catch(err => {
+//         console.log(err.message)
+//     })
 
 // filter function    
 const searchAnimals = document.querySelector('.search')
@@ -73,7 +73,6 @@ searchAnimals.addEventListener('submit', ()=> {
 })
 
 async function searchOwner(color, breed, type, ageArr, sizeArr, genderArr, goodWithChildren, houseTrained) {
-    console.log(breed)
     let breedArr = []; 
     
     if (breed == '') {
@@ -124,25 +123,27 @@ async function searchOwner(color, breed, type, ageArr, sizeArr, genderArr, goodW
 
                 results.push(doc.id, " => ", doc.data())
                 let data = doc.data();
+                let docId = doc.id;
+
                 if (genderArr.indexOf(data.gender) > -1) {                  
                     if (breedArr.indexOf(data.breed) > -1) {
                         if (colorArr.indexOf(data.color) > -1) {
-                        
-                            let row  = `<tr>
-                                    <td>${data.name}</td>
-                                    <td>${data.age}</td>
-                                    <td>${data.size}</td>
-                                    <td>${data.gender}</td>
-                                    <td>${data.type}</td>
-                                    <td>${data.breed}</td>
-                                    <td>${data.color}</td>
-                                    <td>${data.photo}</td>
-                                </tr>`;
-                                let table = document.getElementById('result')
-                                table.innerHTML += row
+                            // displaying result pets
+                            $('#filtered-pets').append([
+                                $('<div />', {'class': `pet`}).append([
+                                    $('<div />', {'class': 'pet-details'}).append([
+                                      $('<p />', {text: `${data.type}, ${data.breed}, ${data.name}, ${data.gender}` }).append([
+                                        $('<a />', {'href': `https://firestore.googleapis.com/v1/projects/fir-projects-37dfd/databases/(default)/documents/animals/${doc.id}`}).append([
+                                            $('<img>', {'src': `${data.photo}`})
+                                            ])
+                                        ])
+                                    ])        
+                                ])
+                            ])
                         }
                     }
-                } 
+                }
+                //return docId;
             })
         } catch (e) {
             console.log(e);
