@@ -5,6 +5,12 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+
+      <!-- Add the slick-theme.css if you want default styling -->
+      <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+      <!-- Add the slick-theme.css if you want default styling -->
+      <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+
       <title>Firebase 9</title>
   </head>
   <body>
@@ -51,133 +57,156 @@
         </select>
       </label>
     </div>
-    
-    <br>
-    <form action="" onsubmit="return false" class="search">
-      <label for="breed">BREED</label>
-      <select name="breed" id="breed">
-        <option value>Any</option>
-      </select>
 
-      <fieldset>
-        <legend>AGE</legend>
-          <div>
-            <input type="radio" name="age" checked value="Baby,Young,Adult,Senior">
-            <label for="age">Any</label>
-          </div>
-
-          <div>
-            <input type="radio" name="age" value="Baby">
-            <label for="age">Baby</label>
-          </div>
-          <div>
-            <input type="radio" name="age" value="Young">
-            <label for="age">Young</label>
-          </div>
-          <div>
-            <input type="radio" name="age" value="Adult">
-            <label for="age">Adult</label>
-          </div>
-          <div>
-            <input type="radio" name="age" value="Senior">
-            <label for="age">Senior</label>
-          </div>
-      </fieldset>
-
-      <fieldset>
-        <legend>Gender</legend>
-          <div>
-            <input type="radio" name="gender" checked value="Female,Male">
-            <label for="gender">Any</label>
-          </div>
-          <div>
-            <input type="radio" name="gender" value="Female">
-            <label for="gender">Female</label>
-          </div>
-          <div>
-            <input type="radio" name="gender" value="Male">
-            <label for="gender">Male</label>
-          </div>
-      </fieldset>
-
-      <fieldset>
-        <legend>SIZE</legend>
-          <div>
-            <input type="radio" name="size" checked value="Small,Medium,Large,Xlarge">
-            <label for="size">Any</label>
-          </div>
-          <div>
-            <input type="radio" name="size" value="Small">
-            <label for="size">Small</label>
-          </div>
-          <div>
-            <input type="radio" name="size" value="Medium">
-            <label for="size">Medium</label>
-          </div>
-          <div>
-            <input type="radio" name="size" value="Large">
-            <label for="size">Large</label>
-          </div>
-          <div>
-            <input type="radio" name="size" value="Xlarge">
-            <label for="size">Extra Large</label>
-          </div>
-      </fieldset>
-
-      <label for="color">COLOR</label>
-      <select name="color" id="color">
-        <option value>Any</option>
-      </select>
-
-      <fieldset>
-        <legend>Good with children</legend>
-          <div>
-            <input type="radio" name="children" checked id="gcyes" value="1">
-            <label for="children">Yes</label>
-          </div>
-          <div>
-            <input type="radio" name="children" id="gcno" value="0">
-            <label for="children">No</label>
-          </div>
-      </fieldset>
-
-      <fieldset>
-        <legend>House Trained</legend>
-          <div>
-            <input type="radio" name="trained" checked id="trainedyes" value="1">
-            <label for="trained">Yes</label>
-          </div>
-          <div>
-            <input type="radio" name="trained" id="trainedno" value="0">
-            <label for="trained">No</label>
-          </div>
-      </fieldset>
+    <div class="content-container">
+      <form action="" onsubmit="return false" class="search">
+        <label for="breed">BREED</label>
+        <select name="breed" id="breed">
+          <option value>Any</option>
+        </select>
+  
+        <fieldset>
+          <legend>AGE</legend>
+            <div>
+              <input type="radio" name="age" checked value="Baby,Young,Adult,Senior">
+              <label for="age">Any</label>
+            </div>
+  
+            <div>
+              <input type="radio" name="age" value="Baby">
+              <label for="age">Baby</label>
+            </div>
+            <div>
+              <input type="radio" name="age" value="Young">
+              <label for="age">Young</label>
+            </div>
+            <div>
+              <input type="radio" name="age" value="Adult">
+              <label for="age">Adult</label>
+            </div>
+            <div>
+              <input type="radio" name="age" value="Senior">
+              <label for="age">Senior</label>
+            </div>
+        </fieldset>
+  
+        <fieldset>
+          <legend>Gender</legend>
+            <div>
+              <input type="radio" name="gender" checked value="Female,Male">
+              <label for="gender">Any</label>
+            </div>
+            <div>
+              <input type="radio" name="gender" value="Female">
+              <label for="gender">Female</label>
+            </div>
+            <div>
+              <input type="radio" name="gender" value="Male">
+              <label for="gender">Male</label>
+            </div>
+        </fieldset>
+  
+        <fieldset>
+          <legend>SIZE</legend>
+            <div>
+              <input type="radio" name="size" checked value="Small,Medium,Large,Xlarge">
+              <label for="size">Any</label>
+            </div>
+            <div>
+              <input type="radio" name="size" value="Small">
+              <label for="size">Small</label>
+            </div>
+            <div>
+              <input type="radio" name="size" value="Medium">
+              <label for="size">Medium</label>
+            </div>
+            <div>
+              <input type="radio" name="size" value="Large">
+              <label for="size">Large</label>
+            </div>
+            <div>
+              <input type="radio" name="size" value="Xlarge">
+              <label for="size">Extra Large</label>
+            </div>
+        </fieldset>
+  
+        <label for="color">COLOR</label>
+        <select name="color" id="color">
+          <option value>Any</option>
+        </select>
+  
+        <fieldset>
+          <legend>Good with children</legend>
+            <div>
+              <input type="radio" name="children" checked id="gcyes" value="1">
+              <label for="children">Yes</label>
+            </div>
+            <div>
+              <input type="radio" name="children" id="gcno" value="0">
+              <label for="children">No</label>
+            </div>
+        </fieldset>
+  
+        <fieldset>
+          <legend>House Trained</legend>
+            <div>
+              <input type="radio" name="trained" checked id="trainedyes" value="1">
+              <label for="trained">Yes</label>
+            </div>
+            <div>
+              <input type="radio" name="trained" id="trainedno" value="0">
+              <label for="trained">No</label>
+            </div>
+        </fieldset>
+        
+        <br />
+        <button type="submit" >Submit</button>
+        <!-- <input value="Reset" type="reset"> -->
+      </form>
       
-      <br />
-      <button type="submit" >Submit</button>
-      <!-- <input value="Reset" type="reset"> -->
-    </form>
-
-    <table class="table is-striped is-narrow is-hoverable is-fullwidth">
-      <thead>
-      <tr>
-          <th>Name</th>
-          <th>Age</th>
-          <th>Size</th>
-          <th>Gender</th>
-          <th>Type</th>
-          <th>Breed</th>
-          <th>Color</th>
-      </tr>
-      </thead>
-      <tbody id="result">
-      </tbody>
-    </table>
-
-    <div id="myData"></div>
-    <div id="filtered-pets"></div>
+      <div>
+        <table class="table">
+          <thead>
+          <tr>
+              <th>Name</th>
+              <th>Age</th>
+              <th>Size</th>
+              <th>Gender</th>
+              <th>Type</th>
+              <th>Breed</th>
+              <th>Color</th>
+              <th>Image</th>
+          </tr>
+          </thead>
+          <tbody id="result">
+          </tbody>        
+        </table>
+    
+        <div id="myData"></div>
+        <div id="filtered-pets"></div>
+      </div>
+    </div>
+    
 
     <script type="module" src="./../assets/js/color-breed-dropdown.js" defer></script>
     <script type="module" src="./../assets/js/animal-search.js" defer></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   </body>
 </html>
+
+<style>
+.content-container {
+  display: flex;
+  gap: 2rem;
+}
+
+#filtered-pets {
+  display: grid;
+  /* grid-template-columns: minmax(100px, min-content) calc(100vw - 463px); */
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.pet {
+  overflow: hidden;
+}
+</style>
