@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Post for rehome</title>
+</head>
+<body>
+    <section>
+      <h2>User Details</h2>
+      <form action="" class="rehome-user">
+        
+        <label for="fname">First Name</label>
+        <input type="text" name="fname" id="user-first-name">
+
+        <label for="lname">Last Name</label>
+        <input type="text" name="lname" id="user-last-name">
+
+        <label for="email">E-mail</label>
+        <input type="email" name="email" id="user-email">
+
+        <label for="ownerphone">Phone Number</label>
+        <input type="tel" name="ownerphone" id="userphone">
+
+        <label for="country">Country</label>
+        <input type="text" name="country" id="usercountry">
+
+        <label for="city">City</label>
+        <input type="text" name="city" id="usercity">
+
+        <label for="state">State</label>
+        <input type="text" name="state" id="userstate">
+
+        <label for="pcode">Postal Code</label>
+        <input type="text" name="pcode" id="userpcode">
+
+        <label for="street">Street</label>
+        <input type="text" name="street" id="userstreet">
+
+        <button type="submit" id="post-owner">Submit</button>
+      </form>
+    </section>
+
+    <section>
+      <h2>Pet Details</h2>
+
+      <form action="" class="rehome-pet">
+      
+        <div class="animal-selector">
+          <label for="type">
+            TYPE OF PET
+            <select name="ptype" id="ptype">
+              <option disabled selected value> -- select an option -- </option>
+              <option value="Dog">Dog</option>
+              <option value="Cat">Cat</option>
+              <option value="Rabbit">Rabbit</option>
+              <option value="Bird">Bird</option>
+              <option value="Horse">Horse</option>
+              <option value="Scales, Fins & Other">Scales, Fins & Other</option>
+              <option value="Barnyard">Barnyard</option>
+            </select>
+          </label>
+        </div>
+
+        <label for="pname">Name</label>
+        <input type="text" name="pname" id="pname">
+        
+        <label for="breed">Breed</label>
+        <input type="text" name="pbreed" id="pbreed">
+
+        <label for="color">Color</label>
+        <input type="text" name="pcolor" id="pcolor">
+    
+        <fieldset>
+          <legend>Age</legend>
+            <div>
+              <input type="radio" name="age" checked value="Baby">
+              <label for="age">Baby</label>
+            </div>
+            <div>
+              <input type="radio" name="age" value="Young">
+              <label for="age">Young</label>
+            </div>
+            <div>
+              <input type="radio" name="age" value="Adult">
+              <label for="age">Adult</label>
+            </div>
+            <div>
+              <input type="radio" name="age" value="Senior">
+              <label for="age">Senior</label>
+            </div>
+        </fieldset>
+    
+        <fieldset>
+          <legend>Gender</legend>
+            <div>
+              <input type="radio" name="gender" checked value="Female">
+              <label for="gender">Female</label>
+            </div>
+            <div>
+              <input type="radio" name="gender" value="Male">
+              <label for="gender">Male</label>
+            </div>
+        </fieldset>
+  
+        <fieldset>
+          <legend>Size</legend>
+            <div>
+              <input type="radio" name="size" checked value="Small">
+              <label for="size">Small</label>
+            </div>
+            <div>
+              <input type="radio" name="size" value="Medium">
+              <label for="size">Medium</label>
+            </div>
+            <div>
+              <input type="radio" name="size" value="Large">
+              <label for="size">Large</label>
+            </div>
+            <div>
+              <input type="radio" name="size" value="Xlarge">
+              <label for="size">Extra Large</label>
+            </div>
+        </fieldset>
+
+        <label for="pdesc">Short Description</label>
+        <input type="text" name="pdesc" id="pdesc">
+
+        <fieldset>
+          <legend>Good with children</legend>
+            <div>
+              <input type="radio" name="children" checked id="gcyes" value="1">
+              <label for="children">Yes</label>
+            </div>
+            <div>
+              <input type="radio" name="children" id="gcno" value="0">
+              <label for="children">No</label>
+            </div>
+        </fieldset>
+    
+        <fieldset>
+          <legend>House Trained</legend>
+            <div>
+              <input type="radio" name="trained" checked id="trainedyes" value="1">
+              <label for="trained">Yes</label>
+            </div>
+            <div>
+              <input type="radio" name="trained" id="trainedno" value="0">
+              <label for="trained">No</label>
+            </div>
+        </fieldset>
+          
+        <br />
+        
+        <label for="filename">Photos</label>
+        <input type="file" id="myFile" name="filename" multiple>
+        <output class="displayImages"></output>
+
+        <!-- <input value="Reset" type="reset"> -->
+        <button type="submit" id="post-now">Submit</button>
+      </form>
+    </section>
+    
+
+    <script type="module" src="./../assets/js/rehome.js"></script>
+
+</body>
+</html>
