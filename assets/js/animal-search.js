@@ -73,6 +73,7 @@ searchAnimals.addEventListener('submit', ()=> {
 })
 
 async function searchOwner(color, breed, type, ageArr, sizeArr, genderArr, goodWithChildren, houseTrained) {
+    console.log(breed)
     let breedArr = []; 
     
     if (breed == '') {
@@ -88,7 +89,7 @@ async function searchOwner(color, breed, type, ageArr, sizeArr, genderArr, goodW
         }
 
     } else {
-        breedArr = color.split(",");
+        breedArr = breed.split(",");
     };
         
     let colorArr = []; 
@@ -135,6 +136,7 @@ async function searchOwner(color, breed, type, ageArr, sizeArr, genderArr, goodW
                                     <td>${data.type}</td>
                                     <td>${data.breed}</td>
                                     <td>${data.color}</td>
+                                    <td>${data.photo}</td>
                                 </tr>`;
                                 let table = document.getElementById('result')
                                 table.innerHTML += row
@@ -176,24 +178,33 @@ var searchPetFinder = (type, breed, age, gender, size, color, goodWithChildren, 
 
                 for(const i in petObj) {
                     $('#filtered-pets').append([
-                        $('<div />', {'class': `pet-${i}`}).append([
+                        $('<div />', {'class': `pet pet-${i}`}).append([
+                            $('<div />', {'class': 'pet-photos slider'})
+                        ]).append([
                             $('<div />', {'class': 'pet-details'}).append([
-                              $('<p />', {text: `${petObj[i].species}, ${petObj[i].breeds.primary}, ${petObj[i].name}, ${petObj[i].gender}` })
+                                $('<p />', {text: `${petObj[i].species}, ${petObj[i].breeds.primary}, ${petObj[i].name}, ${petObj[i].gender}` })
                             ])
                         ])
                     ])
 
                     for(const photo in petObj[i].photos) {
-                        $(`.pet-${i}`).append([
-                            $('<div />', {'class': 'pet-photos'}).append([
+                        $(`.pet-${i} .pet-photos`).append([
+                            $('<div />', {'class': `pet-img`}).append([
                                 $('<img>', {'src': petObj[i].photos[photo].small})
                             ])
                         ])
                     }
                 }
+
+                $('.slider').slick({
+                    infinite: true,
+                    dots: true,
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                });
             }
         }
     }).catch((err) => {
         console.log(err)
     })
-}
+}    

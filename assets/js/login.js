@@ -26,7 +26,7 @@ loginButton.addEventListener('submit', (e) => {
     signInWithEmailAndPassword(auth, email, pw)
         .then((cred) => {
             console.log('user logged in: ', cred.user)
-            window.location.href ="./../main/ownerpost.html"
+            //window.location.href ="./../main/ownerpost.html"
         })
         .catch((err) => {
             console.log(err.message)
