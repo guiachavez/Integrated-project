@@ -19,7 +19,7 @@ const aniRef = collection(db, 'animals')
 //         snapshot.docs.forEach( (doc) => {
 //             animals.push({...doc.data(), id: doc.id })
 //             let data = doc.data();
-//             console.log(data)
+
 //             if (data.attributes.good_with_children == 1) {
 //                 var gc = 'Yes'
 //             } else {
@@ -117,38 +117,62 @@ async function searchOwner(color, breed, type, ageArr, sizeArr, genderArr, goodW
 
         try {
             const querySnapshot = await getDocs(q);
+            const results = []
+
             querySnapshot.forEach((doc) => {
+                results.push([doc.id,doc.data()])
+            })
 
-                let results = []
+            for(const i in results) {
+                console.log(results[i])
+                if (genderArr.indexOf(results[i][1].gender) > -1) {                  
+                    if (breedArr.indexOf(results[i][1].breed) > -1) {
+                        if (colorArr.indexOf(results[i][1].color) > -1) {
+                            let petPhoto = results[i][1].photo
+                            let isArr = Array.isArray(petPhoto)
 
-                results.push(doc.id, " => ", doc.data())
-                let data = doc.data();
-                let docId = doc.id;
-
-                if (genderArr.indexOf(data.gender) > -1) {                  
-                    if (breedArr.indexOf(data.breed) > -1) {
-                        if (colorArr.indexOf(data.color) > -1) {
-                            // displaying result pets
                             $('#filtered-pets').append([
-                                $('<div />', {'class': `pet`}).append([
+                                $('<div />', {'class': `pet pet-${i}`, 'data-id': `${results[i][0]}`}).append([
+                                    $('<div />', {'class': 'pet-photos slider'})
+                                ]).append([
                                     $('<div />', {'class': 'pet-details'}).append([
-                                      $('<p />', {text: `${data.type}, ${data.breed}, ${data.name}, ${data.gender}` }).append([
-                                        $('<a />', {'href': `https://firestore.googleapis.com/v1/projects/fir-projects-37dfd/databases/(default)/documents/animals/${doc.id}`}).append([
-                                            $('<img>', {'src': `${data.photo}`})
-                                            ])
-                                        ])
-                                    ])        
-                                ])
+                                        $('<p />', {text: `${results[i][1].type}, ${results[i][1].breed}, ${results[i][1].name}, ${results[i][1].gender}` })
+                                    ])
+                                ])        
                             ])
+
+                            if(!isArr) {
+                                $(`.pet-${i} .pet-photos`).append([
+                                    $('<div />', {'class': 'pet-img'}).append([
+                                        $('<a />', {'href': `https://firestore.googleapis.com/v1/projects/fir-projects-37dfd/databases/(default)/documents/animals/${results[i][0]}`}).append([
+                                            $('<img>', {'src': `${results[i][1].photo}`})
+                                        ])
+                                    ])
+                                ])
+                            } else {
+                                for(const key in petPhoto) {
+                                    $(`.pet-${i} .pet-photos`).append([
+                                        $('<div />', {'class': `pet-img`}).append([
+                                            $('<img>', {'src': petPhoto[key]})
+                                        ])
+                                    ])
+                                }
+                            }
                         }
                     }
                 }
-                //return docId;
-            })
+            }
+            $('.slider').slick({
+                infinite: true,
+                dots: true,
+                slidesToShow: 1,
+                slidesToScroll: 1
+            });
         } catch (e) {
             console.log(e);
-        }          
+        }        
     }
+
 
 // renewing token for petfinder API
 var searchPetFinder = (type, breed, age, gender, size, color, goodWithChildren, houseTrained) => {
