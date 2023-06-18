@@ -144,7 +144,7 @@ async function searchOwner(color, breed, type, ageArr, sizeArr, genderArr, goodW
                             if(!isArr) {
                                 $(`.pet-${i} .pet-photos`).append([
                                     $('<div />', {'class': 'pet-img'}).append([
-                                        $('<a />', {'href': `https://firestore.googleapis.com/v1/projects/fir-projects-37dfd/databases/(default)/documents/animals/${results[i][0]}`}).append([
+                                        $('<a />', {'href': `./../main/pet-profile.html?id=${results[i][0]}`}).append([
                                             $('<img>', {'src': `${results[i][1].photo}`})
                                         ])
                                     ])
@@ -153,7 +153,9 @@ async function searchOwner(color, breed, type, ageArr, sizeArr, genderArr, goodW
                                 for(const key in petPhoto) {
                                     $(`.pet-${i} .pet-photos`).append([
                                         $('<div />', {'class': `pet-img`}).append([
-                                            $('<img>', {'src': petPhoto[key]})
+                                            $('<a />', {'href': `./../main/pet-profile.html?id=${results[i][0]}`}).append([
+                                                $('<img>', {'src': petPhoto[key]})
+                                            ])
                                         ])
                                     ])
                                 }
