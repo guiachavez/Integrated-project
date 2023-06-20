@@ -64,6 +64,8 @@ searchAnimals.addEventListener('submit', ()=> {
     let sizeArr = size.split(",");
     let genderArr = gender.split(",");
 
+    localStorage.setItem('source', source);
+
     $('#filtered-pets').empty();
     if (source == 'owner') {
         searchOwner(color, breed, type, ageArr, sizeArr, genderArr, goodWithChildren, houseTrained)
@@ -175,8 +177,8 @@ async function searchOwner(color, breed, type, ageArr, sizeArr, genderArr, goodW
         }        
     }
 
-
 // renewing token for petfinder API
+var petObj;
 var searchPetFinder = (type, breed, age, gender, size, color, goodWithChildren, houseTrained) => {
     fetch('https://api.petfinder.com/v2/oauth2/token', {
         method: 'POST',
@@ -201,8 +203,8 @@ var searchPetFinder = (type, breed, age, gender, size, color, goodWithChildren, 
         // APPEND PET RESULTS TO FRONT END
         for(const pet in data) {
             if(pet == 'animals') {
-                const petObj = data[pet];
-
+                petObj = data[pet];
+                console.log(petObj)
                 for(const i in petObj) {
                     $('#filtered-pets').append([
                         $('<div />', {'class': `pet pet-${i}`}).append([
@@ -217,7 +219,9 @@ var searchPetFinder = (type, breed, age, gender, size, color, goodWithChildren, 
                     for(const photo in petObj[i].photos) {
                         $(`.pet-${i} .pet-photos`).append([
                             $('<div />', {'class': `pet-img`}).append([
-                                $('<img>', {'src': petObj[i].photos[photo].small})
+                                $('<a />', {'href': `./../main/pet-profile.html?id=${petObj[i].id}`}).append([
+                                    $('<img>', {'src': petObj[i].photos[photo].small})
+                                ])
                             ])
                         ])
                     }
@@ -231,6 +235,8 @@ var searchPetFinder = (type, breed, age, gender, size, color, goodWithChildren, 
                 });
             }
         }
+        // save the pet search result to local storage to access to pet-profile.html
+        localStorage.setItem('outputObj', JSON.stringify(petObj));
     }).catch((err) => {
         console.log(err)
     })
