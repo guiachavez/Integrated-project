@@ -51,6 +51,10 @@ if(localStorage.getItem('source') == 'owner') {
                     </tr>`;
                     
             table.innerHTML += row
+
+            $('body').append([
+                $('<button />', {'text': 'Inquire now', 'onclick': `window.location.href='inquiries.html?pet_id=${id}&own_id=${owndata.uid}'`})
+            ])
         })
     })
 } else if (localStorage.getItem('source') == 'shelter') {
@@ -75,6 +79,10 @@ if(localStorage.getItem('source') == 'owner') {
                     </tr>`;
                     
             table.innerHTML += row
+
+            $('body').append([
+                $('<button />', {'text': 'Inquire now', 'onclick': `window.location.href='inquiries.html?pet_id=${id}&own_id=${el.organization_id}'`})
+            ])
         }
     }
 }
