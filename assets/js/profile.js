@@ -1,4 +1,4 @@
-import { getFirestore, getDoc, getDocs, doc, query, where, collection } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js'
+import { getFirestore, getDoc, getDocs, doc, query, where, collection, getCountFromServer } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js'
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-storage.js";
 import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js';
 import { app } from './config.js'
@@ -13,6 +13,7 @@ const auth = getAuth(app)
 
 //references, animals table
 const aniRef = collection(db, 'animals')
+const inqRef = collection(db, 'inquiries')
 
 onAuthStateChanged(auth, (user) => {
     if (user) {
@@ -40,6 +41,16 @@ onAuthStateChanged(auth, (user) => {
                   
             table.innerHTML += row
 
+        })
+
+        const inq = query(inqRef, where("petowner.petownerId", "==", user.uid));
+
+        getCountFromServer(inq).then(inq_count => {
+            console.log(inq_count.data().count)
+
+            $('#profile-pic').append([
+                $('<p />', {'text': `You have ${inq_count.data().count} inquiries waiting for you!`})
+            ])
         })
 
         // query for matching user uid on animals table to get pets posted by the user
