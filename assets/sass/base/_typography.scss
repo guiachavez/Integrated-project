@@ -1,0 +1,42 @@
+@use '../abstracts/variables/typography' as typo;
+@use '../abstracts/mixins/mixins' as mx;
+
+.hero-section-title-web{
+    @include mx.baloo-typography(55);
+}
+
+.titles-web{
+    @include mx.baloo-typography(32);
+}
+
+.card-heading-web{
+    @include mx.raleway-typography(22);
+}
+
+.sub-heading-web{
+    @include mx.raleway-typography(20);
+}
+
+.paragraph-web{
+    @include mx.raleway-typography(16);
+}
+
+.hero-section-title-mob{
+    @include mx.baloo-typography(30);
+}
+
+.titles-mob{
+    @include mx.baloo-typography(26);
+}
+
+.card-heading-mob{
+    @include mx.raleway-typography(20);
+}
+
+.sub-heading-mob{
+    @include mx.raleway-typography(18);
+}
+
+.paragraph-mob{
+    @include mx.raleway-typography(15);
+}

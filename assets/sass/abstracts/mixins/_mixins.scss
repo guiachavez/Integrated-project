@@ -1,0 +1,29 @@
+@use '../variables/colors' as colors;
+@use '../variables/typography' as typo;
+// rounded
+// @mixin cornered($r: 4px) {
+//     border-radius: $r;
+// }
+
+// @mixin border($w: 4px, $s: solid, $c: colors.$primary-color-main) {
+//     border: $w $s $c;
+// }
+
+@mixin button-style($bc, $tc, $c, $h: 48) {
+    background-color: $bc;
+    color: $tc;
+    border: 2px solid $c;
+    width: 172px;
+    height: $h * 1px;
+    border-radius: 3rem;
+}
+
+@mixin baloo-typography($f) {
+    font-family: typo.$font-baloo2;
+    font-size: $f * 1px;
+}
+
+@mixin raleway-typography($f){
+    font-family: typo.$font-raleway;
+    font-size: $f * 1px;
+}
