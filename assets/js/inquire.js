@@ -38,22 +38,64 @@ class appDetails {
     }
 }
 
+const submit = document.getElementById('inquire-now');
+const inquirePet = document.querySelector('.inquire-pet');
+
+//inputs
+let afname = document.getElementById('app-first-name');
+let alname = document.getElementById('app-last-name');
+let email = document.getElementById('app-email');
+let phone = document.getElementById('app-phone');
+let country = document.getElementById('app-country');
+let city = document.getElementById('app-city');
+let state = document.getElementById('app-state');
+let pcode = document.getElementById('app-pcode');
+let street = document.getElementById('app-street');
+
+const getUserDetails = (petownerId, pofname, polname, petId, petname) => {
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            const appRef = doc(db, "accounts", user.uid); 
+            getDoc(appRef).then(docSnap => {
+                let data = docSnap.data();
+    
+                afname.value = data.firstName;
+                alname.value = data.lastName;
+                email.value = data.email;
+                phone.value = data.phone;
+                country.value = data.address.country;
+                city.value = data.address.city;
+                state.value = data.address.state;
+                pcode.value = data.address.postcode;
+                street.value = data.address.street;
+            })
+
+            let appId = user.uid;
+            let inquired_at = new serverTimestamp();
+            console.log(inquired_at)
+
+            submit.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                if(localStorage.getItem('source') == 'owner') {
+                    const appdetails = new appDetails(appId, afname.value, alname.value, petownerId, pofname, polname, petId, petname, inquired_at)
+                    console.log(appdetails)
+        
+                    addDoc(inqRef, Object.assign({}, appdetails))
+                        .then(() => {
+                            inquirePet.reset();
+                        })
+                } else {
+                    let outputObj = JSON.parse(localStorage.getItem('outputObj'));
+                    console.log(outputObj)
+                }
+                
+            })
+        }
+    })
+}
+
 if(localStorage.getItem('source') == 'owner') {
-    const submit = document.getElementById('inquire-now');
-
-    const inquirePet = document.querySelector('.inquire-pet');
-    //inputs
-    let afname = document.getElementById('app-first-name');
-    let alname = document.getElementById('app-last-name');
-    let email = document.getElementById('app-email');
-    let phone = document.getElementById('app-phone');
-    let country = document.getElementById('app-country');
-    let city = document.getElementById('app-city');
-    let state = document.getElementById('app-state');
-    let pcode = document.getElementById('app-pcode');
-    let street = document.getElementById('app-street');
-
-
     getDoc(accRef).then(ownSnap => {
 
         let owndata = ownSnap.data();
@@ -70,46 +112,10 @@ if(localStorage.getItem('source') == 'owner') {
             let petId = petSnap.id;
             let petname = petdata.name;
 
-
-
-
-            onAuthStateChanged(auth, (user) => {
-                if (user) {
-                    const appRef = doc(db, "accounts", user.uid); 
-                    getDoc(appRef).then(docSnap => {
-                        let data = docSnap.data();
-
-                        afname.value = data.firstName;
-                        alname.value = data.lastName;
-                        email.value = data.email;
-                        phone.value = data.phone;
-                        country.value = data.address.country;
-                        city.value = data.address.city;
-                        state.value = data.address.state;
-                        pcode.value = data.address.postcode;
-                        street.value = data.address.street;
-                    })
-
-                
-                    let appId = user.uid;
-                    let inquired_at = new serverTimestamp();
-                    console.log(inquired_at)
-
-                    submit.addEventListener('click', (e) => {
-                        e.preventDefault();
-
-                        const appdetails = new appDetails(appId, afname.value, alname.value, petownerId, pofname, polname, petId, petname, inquired_at)
-                        console.log(appdetails)
-
-                        addDoc(inqRef, Object.assign({}, appdetails))
-                            .then(() => {
-                                inquirePet.reset();
-                            })
-                    })
-                }
-            })
+            getUserDetails(petownerId, pofname, polname, petId, petname)
         })
     })
 } else if (localStorage.getItem('source') == 'shelter') {
-    
+    getUserDetails();
 }
+
