@@ -1,0 +1,64 @@
+@use '../abstracts/variables/colors' as colors;
+/*Input Text----------*/
+#input-text,
+#focus-text,
+#error-text{
+    width: 360px;
+    height: 44px;
+    border-radius: 0.5rem;
+    border-style: solid;
+}
+
+#input-text::placeholder{
+    color: colors.$neutral-color-grey;
+}
+
+#focus-text{
+    border-color: colors.$primary-color-main;
+}
+
+#error-text{
+    border-color: colors.$semantic-red-error;
+}
+
+// checkbox and radio button
+#checked-checkbox,
+#selected-radio{
+    accent-color: colors.$primary-color-main;
+}
+
+// toggle
+.toggle-switch{
+    position : relative ;
+    display : flex;
+    width : 32px;
+    height : 16px;
+    border-radius: 10px;
+    border: 2px solid colors.$neutral-color-grey;
+}
+
+.toggle-switch::after{
+    content: '';
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: colors.$neutral-color-grey;
+    top: 1px;
+    left: 1px;
+    transition:  all 0.5s;
+}
+
+#toggle-off{
+    display: none;
+}
+
+#toggle-off:checked + .toggle-switch{
+    background-color: colors.$primary-color-main;
+    border-color: colors.$primary-color-main;
+}
+
+#toggle-off:checked + .toggle-switch::after{
+    left: 17px;
+    background-color: colors.$neutral-color-white;
+}
