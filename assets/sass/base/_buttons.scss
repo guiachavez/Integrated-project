@@ -11,26 +11,31 @@ button.filled-default-next{
 }
 
 // Web-Hover-Filled
-button.filled-hover,
-button.filled-hover-next{
+button.filled-default:hover,
+button.filled-default-next:hover{
     @include mx.button-style(colors.$primary-color-100, colors.$neutral-color-white, colors.$primary-color-100);
 }
 
 // Web & Mobile-Active
-button.filled-active, 
-button.outline-active, 
-button.filled-active-mob, 
-button.outline-active-mob,
-button.filled-active-next, 
-button.outline-active-next, 
-button.filled-active-next-mob, 
-button.outline-active-next-mob{
+button.filled-default:active,
+button.filled-default-next:active,
+button.outline-default:active
+// button.outline-active, 
+// button.filled-active-mob, 
+// button.outline-active-mob, 
+// button.outline-active-next, 
+// button.filled-active-next-mob, 
+// button.outline-active-next-mob
+{
     @include mx.button-style(colors.$primary-color-25, colors.$primary-color-100, colors.$primary-color-100);
 }
 
 // Web-Disabled-Filled
-button.filled-disabled,
-button.filled-disabled-next{
+button.filled-default:disabled,
+button.filled-default-next:disabled
+// button.filled-disabled,
+// button.filled-disabled-next
+{
     @include mx.button-style(colors.$neutral-color-grey-l, colors.$neutral-color-grey, colors.$neutral-color-grey-l);
 }
 
