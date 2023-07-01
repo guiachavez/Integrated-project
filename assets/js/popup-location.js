@@ -9,12 +9,12 @@ var map;
 // API Strings
 var tomtomAPIKey = "4NGblFt1cWFjRxqAPtg7qW4jUfUYjzS1";
 
-function locationSearch() {
+async function locationSearch() {
   var setLocation = document.getElementById("search-city").value;
   console.log(setLocation);
   userLocation = [];
   const fuzzySearch = `https://api.tomtom.com/search/2/search/${setLocation}.json?key=${tomtomAPIKey}`;
-  fetch(fuzzySearch)
+  await fetch(fuzzySearch)
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
