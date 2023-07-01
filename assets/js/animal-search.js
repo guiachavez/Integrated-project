@@ -248,6 +248,7 @@ var userLocationString;
 
 export function storeUserLocation(location) {
     userLocation = [location.coords.longitude, location.coords.latitude];
+    userLocationString = userLocation[1].toString() + ", " + userLocation[0].toString();
 }
 export function loadUserLocation() {
     if (navigator.geolocation) {
@@ -267,9 +268,4 @@ $(document).ready(function() {
     })
 
     loadUserLocation();
-
-    setTimeout( () => {
-        userLocationString = userLocation[1].toString() + ", " + userLocation[0].toString();
-    }, 3000)
-    
 })
