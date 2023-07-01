@@ -50,14 +50,15 @@ const searchAnimals = document.querySelector('.search')
 
 searchAnimals.addEventListener('submit', ()=> {
     let type = document.getElementById('pet-type').value;
-    let source = document.getElementById("source").value;
-    let breed = document.getElementById("breed").value;
+    let source = document.getElementById('source').value;
+    let breed = document.getElementById('breed').value;
     let age = document.querySelector('input[name="age"]:checked').value;
     let gender = document.querySelector('input[name="gender"]:checked').value;
     let size = document.querySelector('input[name="size"]:checked').value;
-    let color = document.getElementById("color").value;
+    let color = document.getElementById('color').value;
     let goodWithChildren = JSON.parse(document.querySelector('input[name="children"]:checked').value);
     let houseTrained = JSON.parse(document.querySelector('input[name="trained"]:checked').value);
+    let orgId = document.getElementById('orgId').value;
     
     //convert values to array
     let ageArr = age.split(",");
@@ -70,7 +71,8 @@ searchAnimals.addEventListener('submit', ()=> {
     if (source == 'owner') {
         searchOwner(color, breed, type, ageArr, sizeArr, genderArr, goodWithChildren, houseTrained)
     } else {
-        searchPetFinder(type, breed, age, gender, size, color, goodWithChildren, houseTrained)
+        loadUserLocation()
+        searchPetFinder(type, breed, age, gender, size, color, goodWithChildren, houseTrained, orgId, userLocationString)
     }
 })
 
@@ -126,7 +128,6 @@ async function searchOwner(color, breed, type, ageArr, sizeArr, genderArr, goodW
             })
 
             for(const i in results) {
-                console.log(results[i])
                 if (genderArr.indexOf(results[i][1].gender) > -1) {                  
                     if (breedArr.indexOf(results[i][1].breed) > -1) {
                         if (colorArr.indexOf(results[i][1].color) > -1) {
@@ -179,7 +180,7 @@ async function searchOwner(color, breed, type, ageArr, sizeArr, genderArr, goodW
 
 // renewing token for petfinder API
 var petObj;
-var searchPetFinder = (type, breed, age, gender, size, color, goodWithChildren, houseTrained) => {
+var searchPetFinder = (type, breed, age, gender, size, color, goodWithChildren, houseTrained, orgId, userLocationString) => {
     fetch('https://api.petfinder.com/v2/oauth2/token', {
         method: 'POST',
         body: 'grant_type=client_credentials&client_id=' + petfinderAPI + '&client_secret=' + token,
@@ -189,7 +190,7 @@ var searchPetFinder = (type, breed, age, gender, size, color, goodWithChildren, 
     }).then((response) => {
         return response.json();
     }).then((data) => {
-        return fetch(`https://api.petfinder.com/v2/animals?type=${type}&breed=${breed}&age=${age}&gender=${gender}&size=${size}&color=${color}&good_with_children=${goodWithChildren}&house_trained=${houseTrained}&location=Vancouver, BC&distance=9`, {
+        return fetch(`https://api.petfinder.com/v2/animals?type=${type}&breed=${breed}&age=${age}&gender=${gender}&size=${size}&color=${color}&good_with_children=${goodWithChildren}&house_trained=${houseTrained}&organization=${orgId}&location=${userLocationString}&distance=10`, {
             headers: {
                 'Authorization': data.token_type + ' ' + data.access_token,
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -199,19 +200,19 @@ var searchPetFinder = (type, breed, age, gender, size, color, goodWithChildren, 
         // Return the API response as JSON
         return resp.json();
     }).then(function (data) {
-        console.log('pets', data);
+        //console.log('pets', data);
         // APPEND PET RESULTS TO FRONT END
         for(const pet in data) {
             if(pet == 'animals') {
                 petObj = data[pet];
-                console.log(petObj)
+                //console.log(petObj)
                 for(const i in petObj) {
                     $('#filtered-pets').append([
                         $('<div />', {'class': `pet pet-${i}`}).append([
                             $('<div />', {'class': 'pet-photos slider'})
                         ]).append([
                             $('<div />', {'class': 'pet-details'}).append([
-                                $('<p />', {text: `${petObj[i].species}, ${petObj[i].breeds.primary}, ${petObj[i].name}, ${petObj[i].gender}` })
+                                $('<p />', {text: `${petObj[i].species}, ${petObj[i].breeds.primary}, ${petObj[i].name}, ${petObj[i].gender}, ${petObj[i].organization_id}` })
                             ])
                         ])
                     ])
@@ -240,4 +241,35 @@ var searchPetFinder = (type, breed, age, gender, size, color, goodWithChildren, 
     }).catch((err) => {
         console.log(err)
     })
-}    
+}
+
+var userLocation;
+var userLocationString;
+
+export function storeUserLocation(location) {
+    userLocation = [location.coords.longitude, location.coords.latitude];
+}
+export function loadUserLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(storeUserLocation);
+    }
+}
+
+export {userLocationString, userLocation}
+
+$(document).ready(function() {
+    $('#source').on('change', function() {
+        if($(this).val() == 'shelter') {
+            $('.organization').css('display', 'block')
+        } else {
+            $('.organization').css('display', 'none')
+        }
+    })
+
+    loadUserLocation();
+
+    setTimeout( () => {
+        userLocationString = userLocation[1].toString() + ", " + userLocation[0].toString();
+    }, 3000)
+    
+})
