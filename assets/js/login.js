@@ -1,5 +1,6 @@
 import { getAuth, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js';
 import { app } from './config.js'
+import { GoogleAuthProvider, signInWithRedirect, getRedirectResult } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
 
 // Initialize Authentication
 const auth = getAuth(app)
@@ -34,29 +35,9 @@ loginButton.addEventListener('submit', (e) => {
 })
 
 
-
-
-const firebaseConfig = {
-    apiKey: "AIzaSyAdLOXJVUxHlv8GCi6G_0j-12e_cCmzGkw",
-     authDomain: "fir-projects-37dfd.firebaseapp.com",
-     projectId: "fir-projects-37dfd",
-     storageBucket: "fir-projects-37dfd.appspot.com",
-     messagingSenderId: "552149961611",
-     appId: "1:552149961611:web:c54ea11939e6da05d57d8e",
-     measurementId: "G-FKNKXH7SJW"
- };
  
- 
- 
- 
- import {initializeApp} from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js'
- import { GoogleAuthProvider, signInWithRedirect, getRedirectResult } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
- 
- 
-//  const app = initializeApp(firebaseConfig);
  const provider = new GoogleAuthProvider(app);
-//  auth = getAuth(app);
- 
+
  const googleButton = document.querySelector('.google-sign-in')
  
  googleButton.addEventListener('click', (e) =>{
