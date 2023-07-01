@@ -12,9 +12,9 @@ var animalCenterMarker = [];
 var map;
 
 // API Strings
-var petfinderAPIKey = "7NJvkG519gKR29OuC2pPJT8B3lcK3hYLeTlgpsMMSj31b3dS29";
-var petfinderSecret = "xyCskdF4PT4wSsvBXXlMdsqrAe3HWuLayJpXmfSn";
-var tomtomAPIKey = "4NGblFt1cWFjRxqAPtg7qW4jUfUYjzS1";
+import { petfinderAPI, token } from './config.js'
+import { tomtomAPI } from './config.js'
+
 
 // MARK: - TomTom (Map View) functions ==========================================================================
 
@@ -35,7 +35,7 @@ function loadUserLocation() {
 // Initialize the TomTom map in the element with an id set to 'map'
 function setupMap() {
   map = tt.map({
-    key: tomtomAPIKey,
+    key: tomtomAPI,
     container: "map",
     center: [userLocation[0], userLocation[1]],
     zoom: 15,
@@ -67,7 +67,7 @@ function setZoomToFit() {
 function showAddressOnMap(address) {
   const geocodingAPIUrl = `https://api.tomtom.com/search/2/geocode/${encodeURIComponent(
     address
-  )}.json?key=${tomtomAPIKey}`;
+  )}.json?key=${tomtomAPI}`;
 
   fetch(geocodingAPIUrl)
     .then((response) => response.json())
@@ -101,8 +101,8 @@ function getAddressStringFor(organization) {
   let postcode = organizationAddress.postcode;
   let state = organizationAddress.state;
   let seperator = ", ";
-  let searchAddress =
-    city + seperator + country + seperator + postcode + seperator + state;
+  let searchAddress = city + seperator + country + seperator + postcode + seperator + state;
+  
   return searchAddress;
 }
 
@@ -115,13 +115,13 @@ function sleep(ms) {
 // This functions will sleep after loading each location to avoid server limitation errors.
 function loadLocationOfCenter() {
   var petfinderClient = new petfinder.Client({
-    apiKey: petfinderAPIKey,
-    secret: petfinderSecret,
+    apiKey: petfinderAPI,
+    secret: token,
   });
 
-  let userLocationString =
-    userLocation[1].toString() + ", " + userLocation[0].toString();
-  petfinderClient.organization
+  let userLocationString = userLocation[1].toString() + ", " + userLocation[0].toString();
+
+    petfinderClient.organization
     .search({
       location: userLocationString,
       distance: 10,
