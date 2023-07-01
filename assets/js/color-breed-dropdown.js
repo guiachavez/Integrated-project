@@ -1,7 +1,7 @@
 import { app } from './config.js' 
 import { petfinderAPI, token } from './config.js'
 import { getFirestore, collection, getDoc, getDocs, setDoc, addDoc, deleteDoc, doc, query, where } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js'
-
+import { userLocationString, userLocation, storeUserLocation, loadUserLocation } from "./../js/animal-search.js";
 // init the firestore and storage
 const db = getFirestore(app)
 
@@ -9,7 +9,8 @@ let newOption = new Option('Option Text','Option Value');
 
 const colorList = document.getElementById('color');
 const breedList = document.getElementById('breed');
-const petType = document.getElementById('pet-type')
+const petType = document.getElementById('pet-type');
+const orgList = document.getElementById('orgId');
 
 var tokenType;
 var tokenAccess;
@@ -20,6 +21,7 @@ const source = document.getElementById('source');
 source.addEventListener('change', (e) => {
     removeOpt(colorList)
     removeOpt(breedList)
+    removeOpt(orgList)
     console.log(e.target.value)
     if (e.target.value == 'shelter') {
         changeAttr()
@@ -31,6 +33,7 @@ source.addEventListener('change', (e) => {
 petType.addEventListener('change', (e) => {
     removeOpt(colorList)
     removeOpt(breedList)
+    removeOpt(orgList)
     if ($('#source').val() == 'shelter') {
         changeAttr();
     } else if ($('#source').val() == 'owner') {
@@ -71,7 +74,7 @@ function changeAttr() {
         return resp.json();
 
     }).then(function (data) {
-
+        console.log(data)
         for(const type in data.types) {
             const petObj = data.types[type]
             // console.log(petObj)
@@ -94,6 +97,7 @@ function changeAttr() {
     }).then(function (resp) {
         return resp.json();
     }).then(function (data) {
+        console.log(data)
         for(const name in data.breeds) {
             // console.log(data.breeds[name])
             const breedObj = data.breeds[name]
@@ -104,6 +108,36 @@ function changeAttr() {
                 // console.log(el)
                 newOption = new Option(el, el);
                 breedList.add(newOption,undefined);
+            }
+        }
+
+        console.log(userLocationString)
+
+        return fetch(`https://api.petfinder.com/v2/organizations?distance=10&location=${userLocationString}&page=2`, {
+            headers: {
+                'Authorization': tokenType + ' ' + tokenAccess,
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        });
+        
+    }).then(function (resp) {
+        return resp.json();
+    }).then(function (data) {
+        console.log(data)
+
+        for(const org in data.organizations) {
+            const organization = data.organizations[org]
+            let orgObj = {name: organization.name, id: organization.id}
+            let orgArr = []
+
+            orgArr.push(orgObj)
+
+            console.log(orgArr)
+            for(const el of orgArr) {
+                // console.log(el)
+                newOption = new Option(el.name, el.id);
+
+                orgList.add(newOption,undefined);
             }
         }
     }).catch((err) => {
@@ -142,3 +176,7 @@ function ownerDropdown() {
         }
     });
 }
+
+$(document).ready(function() {
+    loadUserLocation()
+})

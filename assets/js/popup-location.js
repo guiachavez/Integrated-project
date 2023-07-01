@@ -7,29 +7,25 @@ var setLocation;
 var map;
 
 // API Strings
-var tomtomAPIKey = "4NGblFt1cWFjRxqAPtg7qW4jUfUYjzS1";
+import { tomtomAPI } from './config.js'
 
 function locationSearch() {
   var setLocation = document.getElementById("search-city").value;
   console.log(setLocation);
-  userLocation = [];
-  const fuzzySearch = `https://api.tomtom.com/search/2/search/${setLocation}.json?key=${tomtomAPIKey}`;
-  fetch(fuzzySearch)
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-      console.log(data.results[0].position);
-      const results = data.results;
-      if (results && results.length > 0) {
-        const position = results[0].position;
-        const latitude = position.lat;
-        const longitude = position.lon;
-        userLocation = [longitude, latitude];
-      } else {
-        console.log("No results found");
-      }
-    });
-  setupMap();
+
+  tt.services.fuzzySearch({
+    key: tomtomAPI,
+    query: setLocation
+  })
+  .then(function(response) {
+    console.log(response)
+    map = tt.map({
+      key: tomtomAPI,
+      container: 'map',
+      center: response.results[0].position,
+      zoom: 12
+    })
+  })
 }
 
 // Stores the users location in the variable atop
@@ -48,7 +44,7 @@ function loadUserLocation() {
 // Initialize the TomTom map in the element with an id set to 'map'
 function setupMap() {
   map = tt.map({
-    key: tomtomAPIKey,
+    key: tomtomAPI,
     container: "map",
     center: [userLocation[0], userLocation[1]],
     zoom: 15,

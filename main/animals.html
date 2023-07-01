@@ -57,6 +57,14 @@
         </select>
       </label>
     </div>
+    <div class="organization">
+      <label for="orgId">
+        ORGANIZATION
+        <select name="organization" id="orgId">
+          <option value="">Any</option>
+        </select>
+      </label>
+    </div>
 
     <div class="content-container">
       <form action="" onsubmit="return false" class="search">
@@ -168,9 +176,9 @@
       <div id="filtered-pets"></div>
     </div>
     
-
-    <script type="module" src="./../assets/js/color-breed-dropdown.js" defer></script>
     <script type="module" src="./../assets/js/animal-search.js" defer></script>
+    <script type="module" src="./../assets/js/color-breed-dropdown.js" defer></script>
+    
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   </body>
 </html>
@@ -190,5 +198,9 @@
 
 .pet {
   overflow: hidden;
+}
+
+.organization {
+  display: none;
 }
 </style>
