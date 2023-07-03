@@ -1,7 +1,7 @@
 import { app } from './config.js' 
 import { petfinderAPI, token } from './config.js'
 import { getFirestore, collection, getDoc, getDocs, setDoc, addDoc, deleteDoc, doc, query, where } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js'
-import { userLocationString, userLocation, storeUserLocation, loadUserLocation } from "./../js/animal-search.js";
+
 // init the firestore and storage
 const db = getFirestore(app)
 
@@ -18,29 +18,28 @@ var tokenAccess;
 // for dropdown handler COLOR and BREED
 const source = document.getElementById('source'); 
 
+// access set location
+let position = JSON.parse(localStorage.getItem('position'))
+let latlong = `${position.lat},${position.lng}`
+
 source.addEventListener('change', (e) => {
-    removeOpt(colorList)
-    removeOpt(breedList)
-    removeOpt(orgList)
     console.log(e.target.value)
     if (e.target.value == 'shelter') {
-        changeAttr()
+        changeAttr(latlong)
     } else if (e.target.value == 'owner') {
         ownerDropdown()
     }
 })
 
 petType.addEventListener('change', (e) => {
-    removeOpt(colorList)
-    removeOpt(breedList)
-    removeOpt(orgList)
     if ($('#source').val() == 'shelter') {
-        changeAttr();
+        changeAttr(latlong);
     } else if ($('#source').val() == 'owner') {
         ownerDropdown();
     }
 })
 
+// for changing the options on dropdown
 function removeOpt(selectOption) {
     let opt = selectOption.options.length - 1;
 
@@ -49,8 +48,12 @@ function removeOpt(selectOption) {
     }
 }
 
-function changeAttr() {
-    const typeSelected = petType.value
+export function changeAttr(latlong) {
+    removeOpt(colorList)
+    removeOpt(breedList)
+    removeOpt(orgList)
+
+    const typeSelected = document.getElementById('pet-type').value
 
     fetch('https://api.petfinder.com/v2/oauth2/token', {
         method: 'POST',
@@ -88,38 +91,12 @@ function changeAttr() {
             }
         }
 
-        return fetch('https://api.petfinder.com/v2/types/' + typeSelected + '/breeds', {
+        return fetch(`https://api.petfinder.com/v2/organizations?distance=10&location=${latlong}&page=1`, {
             headers: {
                 'Authorization': tokenType + ' ' + tokenAccess,
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
         });
-    }).then(function (resp) {
-        return resp.json();
-    }).then(function (data) {
-        console.log(data)
-        for(const name in data.breeds) {
-            // console.log(data.breeds[name])
-            const breedObj = data.breeds[name]
-            let breedArr = []
-            breedArr.push(breedObj.name)
-            // console.log(breedArr)
-            for(const el of breedArr) {
-                // console.log(el)
-                newOption = new Option(el, el);
-                breedList.add(newOption,undefined);
-            }
-        }
-
-        console.log(userLocationString)
-
-        return fetch(`https://api.petfinder.com/v2/organizations?distance=10&location=${userLocationString}&page=2`, {
-            headers: {
-                'Authorization': tokenType + ' ' + tokenAccess,
-                'Content-Type': 'application/x-www-form-urlencoded'
-            }
-        });
-        
     }).then(function (resp) {
         return resp.json();
     }).then(function (data) {
@@ -140,17 +117,45 @@ function changeAttr() {
                 orgList.add(newOption,undefined);
             }
         }
+
+        return fetch('https://api.petfinder.com/v2/types/' + typeSelected + '/breeds', {
+            headers: {
+                'Authorization': tokenType + ' ' + tokenAccess,
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        });
+        
+    }).then(function (resp) {
+        return resp.json();
+    }).then(function (data) {
+        console.log(data)
+
+        for(const name in data.breeds) {
+            // console.log(data.breeds[name])
+            const breedObj = data.breeds[name]
+            let breedArr = []
+            breedArr.push(breedObj.name)
+            // console.log(breedArr)
+            for(const el of breedArr) {
+                // console.log(el)
+                newOption = new Option(el, el);
+                breedList.add(newOption,undefined);
+            }
+        }
     }).catch((err) => {
         console.log(err)
     })
 }
 
-function ownerDropdown() {
+export function ownerDropdown() {
+    removeOpt(colorList)
+    removeOpt(breedList)
+
     const typeRef = doc(db, "types", petType.value)
 
     getDoc(typeRef).then(docSnap => { 
         let data = docSnap.data();
-
+        
         for(const br in data.breeds) {
             const breedObj = data.breeds[br]
             let breedArr = []
@@ -161,6 +166,7 @@ function ownerDropdown() {
                 newOption = new Option(el, el);
                 breedList.add(newOption,undefined); 
             }
+            console.log(breedList)
         }
 
         for(const cl in data.colors) {
@@ -176,7 +182,3 @@ function ownerDropdown() {
         }
     });
 }
-
-$(document).ready(function() {
-    loadUserLocation()
-})
