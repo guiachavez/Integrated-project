@@ -9,7 +9,7 @@ var map;
 // API Strings
 import { tomtomAPI } from './config.js'
 
-function locationSearch() {
+async function locationSearch() {
   var setLocation = document.getElementById("search-city").value;
   console.log(setLocation);
 

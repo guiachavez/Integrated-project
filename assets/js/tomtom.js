@@ -18,7 +18,7 @@ import { tomtomAPI } from './config.js'
 
 // MARK: - TomTom (Map View) functions ==========================================================================
 
-// Stores the users location in the variable atop
+// Stores the users location in the variable at top
 function storeUserLocation(location) {
   userLocation = [location.coords.longitude, location.coords.latitude];
   setupMap();
@@ -64,23 +64,61 @@ function setZoomToFit() {
 }
 
 // Converts a given address as String to coordinates and presents a marker on the map at this position
-function showAddressOnMap(address) {
+function showAddressOnMap(address, organization) {
   const geocodingAPIUrl = `https://api.tomtom.com/search/2/geocode/${encodeURIComponent(
     address
   )}.json?key=${tomtomAPI}`;
+
+  //Popup & List information
+  const orgList = document.getElementById("orgList");
+  orgList.innerHTML = "";
+
+  const popupInfo = document.createElement("div");
+  popupInfo.className = "popupInfo";
+
+  const orgName = document.createElement("p");
+  orgName.className = "orgName";
+  orgName.textContent = organization.name;
+  popupInfo.appendChild(orgName);
+
+  const orgPhone = document.createElement("p");
+  orgPhone.textContent = `Phone ${organization.phone}`;
+  popupInfo.appendChild(orgPhone);
+
+  const orgEmail = document.createElement("p");
+  orgEmail.textContent = `Email: ${organization.email}`;
+  popupInfo.appendChild(orgEmail);
+
+  const orgWebsite = document.createElement("p");
+  orgWebsite.textContent = `Website: ${organization.website}`;
+  popupInfo.appendChild(orgWebsite);
+
+  const orgAddress = document.createElement("p");
+  orgAddress.textContent = `Address: ${address}`;
+  popupInfo.appendChild(orgAddress);
+
+  orgList.appendChild(popupInfo);
 
   fetch(geocodingAPIUrl)
     .then((response) => response.json())
     .then((data) => {
       const results = data.results;
+
       if (results && results.length > 0) {
         const position = results[0].position;
         const latitude = position.lat;
         const longitude = position.lon;
         locationOfAnimalCenter.push([longitude, latitude]);
+        //Pop up tag to display the info.
+        const popup = new tt.Popup({ closeButton: false }).setDOMContent(
+          popupInfo
+        );
+        //Sets up marker with the pop up
         const newMarker = new tt.Marker()
           .setLngLat([longitude, latitude])
-          .addTo(map);
+          .setPopup(popup);
+        //Adds marker and popup to map
+        newMarker.addTo(map);
         animalCenterMarker.push(newMarker);
       } else {
         console.log("No results found");
@@ -131,9 +169,9 @@ function loadLocationOfCenter() {
       for (let i = 0; i < organizations.length; i++) {
         let organization = organizations[i];
         let searchAddress = getAddressStringFor(organization);
-        console.log(i, searchAddress);
-        showAddressOnMap(searchAddress);
-        await sleep(500);
+        //console.log(i, searchAddress);
+        showAddressOnMap(searchAddress, organization);
+        await sleep(400);
       }
       setZoomToFit();
     })

@@ -24,15 +24,44 @@
       body {
         margin: 0;
         padding: 0;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
       }
+
+      h3 {
+        grid-column: span 2;
+      }
+
       #map {
-        width: 100vw;
-        height: 50vh;
+        width: 80vw;
+        height: 80vh;
+      }
+
+      .orgName {
+        font-weight: bold;
+        font-size: 17px;
+      }
+
+      .popupInfo {
+        margin: 0;
+        padding: 0;
+        font-size: 15px;
+        width: auto;
+      }
+
+      .popupInfo p {
+        margin: 0;
+        padding: 2px;
+      }
+
+      .popupInfo p span {
+        font-weight: bold;
       }
     </style>
   </head>
   <body>
     <h3>Display map with TomTom API</h3>
+    <div id="orgList"></div>
     <div id="map" class="map"></div>
   </body>
 </html>
