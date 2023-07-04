@@ -9,7 +9,8 @@ let newOption = new Option('Option Text','Option Value');
 
 const colorList = document.getElementById('color');
 const breedList = document.getElementById('breed');
-const petType = document.getElementById('pet-type')
+const petType = document.getElementById('pet-type');
+const orgList = document.getElementById('orgId');
 
 var tokenType;
 var tokenAccess;
@@ -17,27 +18,28 @@ var tokenAccess;
 // for dropdown handler COLOR and BREED
 const source = document.getElementById('source'); 
 
+// access set location
+let position = JSON.parse(localStorage.getItem('position'))
+let latlong = `${position.lat},${position.lng}`
+
 source.addEventListener('change', (e) => {
-    removeOpt(colorList)
-    removeOpt(breedList)
     console.log(e.target.value)
     if (e.target.value == 'shelter') {
-        changeAttr()
+        changeAttr(latlong)
     } else if (e.target.value == 'owner') {
         ownerDropdown()
     }
 })
 
 petType.addEventListener('change', (e) => {
-    removeOpt(colorList)
-    removeOpt(breedList)
     if ($('#source').val() == 'shelter') {
-        changeAttr();
+        changeAttr(latlong);
     } else if ($('#source').val() == 'owner') {
         ownerDropdown();
     }
 })
 
+// for changing the options on dropdown
 function removeOpt(selectOption) {
     let opt = selectOption.options.length - 1;
 
@@ -46,8 +48,12 @@ function removeOpt(selectOption) {
     }
 }
 
-function changeAttr() {
-    const typeSelected = petType.value
+export function changeAttr(latlong) {
+    removeOpt(colorList)
+    removeOpt(breedList)
+    removeOpt(orgList)
+
+    const typeSelected = document.getElementById('pet-type').value
 
     fetch('https://api.petfinder.com/v2/oauth2/token', {
         method: 'POST',
@@ -71,7 +77,7 @@ function changeAttr() {
         return resp.json();
 
     }).then(function (data) {
-
+        console.log(data)
         for(const type in data.types) {
             const petObj = data.types[type]
             // console.log(petObj)
@@ -85,7 +91,7 @@ function changeAttr() {
             }
         }
 
-        return fetch('https://api.petfinder.com/v2/types/' + typeSelected + '/breeds', {
+        return fetch(`https://api.petfinder.com/v2/organizations?distance=10&location=${latlong}&page=1`, {
             headers: {
                 'Authorization': tokenType + ' ' + tokenAccess,
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -94,6 +100,36 @@ function changeAttr() {
     }).then(function (resp) {
         return resp.json();
     }).then(function (data) {
+        console.log(data)
+
+        for(const org in data.organizations) {
+            const organization = data.organizations[org]
+            let orgObj = {name: organization.name, id: organization.id}
+            let orgArr = []
+
+            orgArr.push(orgObj)
+
+            console.log(orgArr)
+            for(const el of orgArr) {
+                // console.log(el)
+                newOption = new Option(el.name, el.id);
+
+                orgList.add(newOption,undefined);
+            }
+        }
+
+        return fetch('https://api.petfinder.com/v2/types/' + typeSelected + '/breeds', {
+            headers: {
+                'Authorization': tokenType + ' ' + tokenAccess,
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        });
+        
+    }).then(function (resp) {
+        return resp.json();
+    }).then(function (data) {
+        console.log(data)
+
         for(const name in data.breeds) {
             // console.log(data.breeds[name])
             const breedObj = data.breeds[name]
@@ -111,12 +147,15 @@ function changeAttr() {
     })
 }
 
-function ownerDropdown() {
+export function ownerDropdown() {
+    removeOpt(colorList)
+    removeOpt(breedList)
+
     const typeRef = doc(db, "types", petType.value)
 
     getDoc(typeRef).then(docSnap => { 
         let data = docSnap.data();
-
+        
         for(const br in data.breeds) {
             const breedObj = data.breeds[br]
             let breedArr = []
@@ -127,6 +166,7 @@ function ownerDropdown() {
                 newOption = new Option(el, el);
                 breedList.add(newOption,undefined); 
             }
+            console.log(breedList)
         }
 
         for(const cl in data.colors) {

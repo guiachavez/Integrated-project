@@ -22,8 +22,11 @@ export { app };
 const petfinderAPI = "7NJvkG519gKR29OuC2pPJT8B3lcK3hYLeTlgpsMMSj31b3dS29";
 const token = "xyCskdF4PT4wSsvBXXlMdsqrAe3HWuLayJpXmfSn";
 
-export { petfinderAPI, token };
-// Tomtom API
-const tomtomAPI = "4NGblFt1cWFjRxqAPtg7qW4jUfUYjzS1";
 
-export { tomtomAPI };
+export { petfinderAPI, token }
+
+// Tomtom API
+const tomtomAPI = "4NGblFt1cWFjRxqAPtg7qW4jUfUYjzS1"
+
+export { tomtomAPI }
+
