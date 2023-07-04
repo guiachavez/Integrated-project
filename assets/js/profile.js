@@ -48,8 +48,6 @@ onAuthStateChanged(auth, (user) => {
         const inq = query(inqRef, where("petowner.petownerId", "==", user.uid));
 
         getCountFromServer(inq).then(inq_count => {
-            // console.log(inq_count.data().count)
-
             $('#profile-pic').append([
                 $('<p />', {'text': `You have ${inq_count.data().count} inquiries waiting for you!`})
             ])
@@ -102,7 +100,6 @@ onAuthStateChanged(auth, (user) => {
             setTimeout(() => {
                 addButtons(inquiries)
 
-                console.log(inquiries)
                 if($('.accept').length > 0) {
                     $('button.accept').each(function() {
                         $(this).on('click', () => {
@@ -212,11 +209,9 @@ const addButtons = (inquiries) => {
     $('#result tr').each(function(){
         $(this).find('td[data-count]').each(function(){
             if($(this)[0].attributes[0].value != 0) {
-                console.log($(this))
                 for(let el in inquiries) {
                     if(inquiries[el].isAccepted == 'init') {
                         if($(this).closest('tr').find('td[data-id]')[0].attributes[0].value == inquiries[el].petId) {
-                            // console.log(inquiries[el])
                             $(this).closest('tr').find('.response-buttons').append([
                                 $('<p />', {'text': `Applicant: ${inquiries[el].applicant.app_firstName} ${inquiries[el].applicant.app_lastName}`}),
                                 $('<button />', {'text': 'Accept', 'class': 'accept', 'data-accept': `${inquiries[el].inquiryId}`}),
@@ -247,7 +242,6 @@ const addButtons = (inquiries) => {
                         }
                     } else if(inquiries[el].isAccepted == false) {
                         if($(this).closest('tr').find('td[data-id]')[0].attributes[0].value == inquiries[el].petId) {
-                            // console.log(inquiries[el])
                             $(this).closest('tr').find('.response-buttons').append([
                                 $('<p />', {'text': `Applicant: ${inquiries[el].applicant.app_firstName} ${inquiries[el].applicant.app_lastName}`}),
                                 $('<button />', {'text': 'Rejected', 'id': `Reject-${inquiries[el].inquiryId}`, 'class': 'reject', 'data-reject': `${inquiries[el].inquiryId}`, 'disabled': 'disabled'})
@@ -268,7 +262,6 @@ function passId(id) {
 
 
 function acceptInquiry(id) {
-    console.log('accept')
     const updateinqRef = doc(db, "inquiries", id);
 
     updateDoc(updateinqRef, {
@@ -277,10 +270,9 @@ function acceptInquiry(id) {
     });
 
     changingAcceptToClose(id)
-
-    
 }
 
+// changing button from accept to close
 function changingAcceptToClose(id) {
     $('button.accept').each(function() {
         if($(this).data('accept') == id) {
@@ -296,6 +288,7 @@ function changingAcceptToClose(id) {
     closeButton()
 }
 
+// call function when close button is clicked
 function closeButton() {
     $('button.close').each(function() {
         $(this).on('click', () => {
@@ -308,11 +301,8 @@ function closeButton() {
     })
 }
 
-
-
+// declining the inquiry
 function declineInquiry(id) {
-    console.log(id)
-    passId(id)
     const updateinqRef = doc(db, "inquiries", id);
 
     $('button.decline').each(function() {
@@ -327,8 +317,8 @@ function declineInquiry(id) {
     })
 }
 
+// When close button is clicked show prompt if the adoption was a success or not
 function closeInquiry(inqId, petId) {
-    console.log('close')
     let adoptAsk = confirm('Is the adoption successful?');
     const updateinqRef = doc(db, "inquiries", inqId);
     const updateaniRef = doc(db, "animals", petId);
@@ -342,18 +332,19 @@ function closeInquiry(inqId, petId) {
             adoptionSuccess: true
         });
 
-        changingToReject(adoptAsk, inqId)
+        changingToStatus(adoptAsk, inqId)
 
     } else {
         updateDoc(updateinqRef, {
             adoptionSuccess: false
         });
 
-        changingToReject(adoptAsk, inqId)
+        changingToStatus(adoptAsk, inqId)
     }
 }
 
-function changingToReject(adoptAsk, inqId) {
+// Updating buttons text to successful or rejected adoption
+function changingToStatus(adoptAsk, inqId) {
     $('button.close').each(function() {
         if($(this).data('close') == inqId) {
             if (adoptAsk == true) {
