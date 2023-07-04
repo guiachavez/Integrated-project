@@ -42,7 +42,6 @@ onAuthStateChanged(auth, (user) => {
                     </tr>`;
                   
             table.innerHTML += row
-
         })
 
         // query to count inquiries under user who is logged in
@@ -61,57 +60,84 @@ onAuthStateChanged(auth, (user) => {
         const iq = query(inqRef, where ("applicant.applicantId", "==", user.uid));
 
         getDocs(q)
-            .then((snapshot) => {
-                let animals = []
-        
-                snapshot.docs.forEach( (doc) => {
-                    animals.push({...doc.data(), id: doc.id })
+        .then((snapshot) => {
+            let animals = []
+    
+            snapshot.docs.forEach( (doc) => {
+                animals.push({...doc.data(), id: doc.id })
 
-                    let table = document.getElementById('result');
-                    let data = doc.data();
-                    
-                    // query to count inquiries for each pet under user logged in
-                    const q2 = query(inqRef, where("petId", "==", doc.id), 
-                                             where("petowner.petownerId", "==", user.uid));
+                let table = document.getElementById('result');
+                let data = doc.data();
+                
+                // query to count inquiries for each pet under user logged in
+                const q2 = query(inqRef, where("petId", "==", doc.id), 
+                                            where("petowner.petownerId", "==", user.uid));
 
-                    getCountFromServer(q2).then(pet_inq_cnt => {
-                        let row  = `<tr>
-                                <td data-id="${doc.id}">${data.name}</td>
-                                <td>${data.age}</td>
-                                <td>${data.size}</td>
-                                <td>${data.gender}</td>
-                                <td>${data.type}</td>
-                                <td>${data.breed}</td>
-                                <td>${data.color}</td>
-                                <td>${data.desc}</td>
-                                <td data-count="${pet_inq_cnt.data().count}">No. of Inquiries: ${pet_inq_cnt.data().count}</td>
-                                <td class="response-buttons"></td>
-                            </tr>`;
-                                        
-                        table.innerHTML += row
-                    })
-                    
-                    // push the inquiries into array
-                    getDocs(q2).then((snapshot) => {
-                        snapshot.docs.forEach((doc) => {
-                            let data = doc.data()
-                            inquiries.push(data)
-                        })
+                getCountFromServer(q2).then(pet_inq_cnt => {
+                    let row  = `<tr>
+                            <td data-id="${doc.id}">${data.name}</td>
+                            <td>${data.age}</td>
+                            <td>${data.size}</td>
+                            <td>${data.gender}</td>
+                            <td>${data.type}</td>
+                            <td>${data.breed}</td>
+                            <td>${data.color}</td>
+                            <td>${data.desc}</td>
+                            <td data-count="${pet_inq_cnt.data().count}">No. of Inquiries: ${pet_inq_cnt.data().count}</td>
+                            <td class="response-buttons"></td>
+                        </tr>`;
+                                    
+                    table.innerHTML += row
+                })
+                
+                // push the inquiries into array
+                getDocs(q2).then((snapshot) => {
+                    snapshot.docs.forEach((doc) => {
+                        let data = doc.data()
+                        inquiries.push(data)
                     })
                 })
-            }).then(() => {
-                setTimeout(() => {
-                    addButtons(inquiries)
-                }, 1000)
-            }).catch(err => {
-                console.log(err.message)
-            }) 
+            })
+        }).then(() => {
+            setTimeout(() => {
+                addButtons(inquiries)
+
+                console.log(inquiries)
+                if($('.accept').length > 0) {
+                    $('button.accept').each(function() {
+                        $(this).on('click', () => {
+                            for(let el in inquiries) {
+                                if($(this).data('accept') == inquiries[el].inquiryId) {
+                                    acceptInquiry(inquiries[el].inquiryId)
+                                }
+                            }
+                        })
+                    })
+                }
+
+                if($('.decline').length > 0) {
+                    $('button.decline').each(function() {
+                        $(this).on('click', () => {
+                            for(let el in inquiries) {
+                                if($(this).data('decline') == inquiries[el].inquiryId) {
+                                    declineInquiry(inquiries[el].inquiryId)
+                                }
+                            }
+                        })
+                    })
+                }
+
+                closeButton()
+                
+            }, 1000)
+        }).catch(err => {
+            console.log(err.message)
+        }) 
 
         getDocs(iq)
         .then((snapshot) => {
             let animalsinq = []
-            
-
+                
             snapshot.docs.forEach( (doc) => {
                 animalsinq.push({...doc.data(), id: doc.id })
                 let table = document.getElementById('result_inq');
@@ -122,171 +148,221 @@ onAuthStateChanged(auth, (user) => {
 
                 getDocs(iqd)
                 .then((snapshot) => {
-                let animalsinqdet = []
+                    let animalsinqdet = []
     
-                snapshot.docs.forEach( (doc) => {
-                animalsinqdet.push({...doc.data(), id: doc.id })
-                let data2 = doc.data();
-                let inq_status = getStatus();
+                    snapshot.docs.forEach( (doc) => {
+                        animalsinqdet.push({...doc.data(), id: doc.id })
 
-                function getStatus() {    
-                if( data.isAccepted == true && data.adoptionSuccess == "init" ) {
+                        let data2 = doc.data();
+                        let inq_status = getStatus();
 
-                    let inq_status = "Accepted"
-                    return inq_status
+                        function getStatus() {    
+                            if( data.isAccepted == true && data.adoptionSuccess == "init" ) {
 
-                } else if ( data.isAccepted == true && data.adoptionSuccess == true ) {
+                                let inq_status = "Accepted"
+                                return inq_status
 
-                    let inq_status = "Successful Adoption"
-                    return inq_status
+                            } else if ( data.isAccepted == true && data.adoptionSuccess == true ) {
+
+                                let inq_status = "Successful Adoption"
+                                return inq_status
+                                
+                            } else if ( data.isAccepted == true && data.adoptionSuccess == false ) {
+
+                                let inq_status = "Unsuccessful Adoption"
+                                return inq_status
+                            
+                            } else if ( data.isAccepted == false ) {
+
+                                let inq_status = "Declined"
+                                return inq_status
+                                
+                            } else {
+
+                                let inq_status = "No response yet"
+                                return inq_status
+                            }
+                        }
                     
-                } else if ( data.isAccepted == true && data.adoptionSuccess == false ) {
-
-                    let inq_status = "Unsuccessful Adoption"
-                    return inq_status
-                
-                } else if ( data.isAccepted == false ) {
-
-                    let inq_status = "Declined"
-                    return inq_status
-                    
-                } else {
-
-                    let inq_status = "No response yet"
-                    return inq_status
-                }
-                }
-                
-                let row  = `<tr>
-                            <td data-id="${doc.id}">${data2.name}</td>
-                            <td>${data2.age}</td>
-                            <td>${data2.size}</td>
-                            <td>${data2.gender}</td>
-                            <td>${data2.type}</td>
-                            <td>${data2.breed}</td>
-                            <td>${data2.color}</td>
-                            <td>${data2.desc}</td>
-                            <td>${inq_status}</td>
-                        </tr>`;
-                                    
-                    table.innerHTML += row
+                        let row  = `<tr>
+                                <td data-id="${doc.id}">${data2.name}</td>
+                                <td>${data2.age}</td>
+                                <td>${data2.size}</td>
+                                <td>${data2.gender}</td>
+                                <td>${data2.type}</td>
+                                <td>${data2.breed}</td>
+                                <td>${data2.color}</td>
+                                <td>${data2.desc}</td>
+                                <td>${inq_status}</td>
+                            </tr>`;
+                                        
+                        table.innerHTML += row
+                    })
                 })
             })
         })
-    })
- }
+    }
 
 })
 
 // add accept and decline buttons on user profile, by looping through inquiries array
-const addButtons = (inquiries) => {
-    
-    
+const addButtons = (inquiries) => { 
     const resp = document.querySelectorAll('#result tr')
 
     $('#result tr').each(function(){
         $(this).find('td[data-count]').each(function(){
             if($(this)[0].attributes[0].value != 0) {
+                console.log($(this))
                 for(let el in inquiries) {
-                    if($(this).closest('tr').find('td[data-id]')[0].attributes[0].value == inquiries[el].petId) {
-                        // console.log(inquiries[el])
-                        $(this).closest('tr').find('.response-buttons').append([
-                            $('<p />', {'text': `Applicant: ${inquiries[el].applicant.app_firstName} ${inquiries[el].applicant.app_lastName}`}),
-                            $('<button />', {'text': 'Accept', 'id': `Accept-${inquiries[el].inquiryId}`}),
-                            $('<button />', {'text': 'Decline', 'id': `Decline-${inquiries[el].inquiryId}`})
-                        ])
-
-                        var btnAccept = document.getElementById(`Accept-${inquiries[el].inquiryId}`);
-                        var btnDecline = document.getElementById(`Decline-${inquiries[el].inquiryId}`);
-                        
-                        
-                        btnAccept.addEventListener("click", acceptInquiry);
-                        btnDecline.addEventListener("click", declineInquiry);
-                        
-                        
-                        const updateinqRef = doc(db, "inquiries", inquiries[el].inquiryId);
-                        const updateaniRef = doc(db, "animals", inquiries[el].petId);
-
-                        function acceptInquiry() {
-                            updateDoc(updateinqRef, {
-                                isAccepted: true,
-                                adoptionSuccess: "init"
-                            });
-                            btnAccept.innerText = "Close"
-                            btnDecline.disabled = true
-                            btnAccept.id = `Close-${inquiries[el].inquiryId}`
-                            var btnClose = document.getElementById(`Close-${inquiries[el].inquiryId}`);
-                            btnClose.addEventListener("click", closeInquiry);   
-                            }
-                                                   
-                        function declineInquiry() {
-                            updateDoc(updateinqRef, {
-                                isAccepted: false
-                            });  
-                            btnAccept.disabled = true
-                            btnDecline.disabled = true                      
-                            }
-
-                        function closeInquiry() {
-                            let adoptAsk = confirm('Is the adoption successful?');
-                            if (adoptAsk == true) {
-                                updateDoc(updateaniRef, {
-                                    isAdopted: true
-                                });
-
-                                updateDoc(updateinqRef, {
-                                    adoptionSuccess: true
-                                });
-                                // btnDecline.innerText = "SUCCESS"
-                                // btnClose.innerText = ""
+                    if(inquiries[el].isAccepted == 'init') {
+                        if($(this).closest('tr').find('td[data-id]')[0].attributes[0].value == inquiries[el].petId) {
+                            // console.log(inquiries[el])
+                            $(this).closest('tr').find('.response-buttons').append([
+                                $('<p />', {'text': `Applicant: ${inquiries[el].applicant.app_firstName} ${inquiries[el].applicant.app_lastName}`}),
+                                $('<button />', {'text': 'Accept', 'class': 'accept', 'data-accept': `${inquiries[el].inquiryId}`}),
+                                $('<button />', {'text': 'Decline', 'class': 'decline', 'data-decline': `${inquiries[el].inquiryId}`})
+                            ])
+                        }
+                    } else if (inquiries[el].isAccepted == true) {
+                        if ($(this).closest('tr').find('td[data-id]')[0].attributes[0].value == inquiries[el].petId) {
+                            if (inquiries[el].adoptionSuccess == true) {
+                                $(this).closest('tr').find('.response-buttons').append([
+                                    $(this).closest('tr').find('.response-buttons').append([
+                                        $('<p />', {'text': `Applicant: ${inquiries[el].applicant.app_firstName} ${inquiries[el].applicant.app_lastName}`}),
+                                        $('<button />', {'text': 'Successful Adoption', 'id': `Success-${inquiries[el].inquiryId}`, 'class': 'success', 'data-success': `${inquiries[el].inquiryId}`, 'disabled': 'disabled'}),
+                                    ])
+                                ])
+                            } else if (inquiries[el].adoptionSuccess == false) {
+                                $(this).closest('tr').find('.response-buttons').append([
+                                    $('<p />', {'text': `Applicant: ${inquiries[el].applicant.app_firstName} ${inquiries[el].applicant.app_lastName}`}),
+                                    $('<button />', {'text': 'Rejected', 'id': `Reject-${inquiries[el].inquiryId}`, 'class': 'reject', 'data-reject': `${inquiries[el].inquiryId}`, 'disabled': 'disabled'})
+                                ])
                             } else {
-                                updateDoc(updateinqRef, {
-                                    adoptionSuccess: false
-                                });
-                                // btnDecline.innerText = "FAILED"
-                                // btnClose.innerText = ""
+                                $(this).closest('tr').find('.response-buttons').append([
+                                    $('<p />', {'text': `Applicant: ${inquiries[el].applicant.app_firstName} ${inquiries[el].applicant.app_lastName}`}),
+                                    $('<button />', {'text': 'Close', 'id': `Close-${inquiries[el].inquiryId}`, 'class': 'close', 'data-close': `${inquiries[el].inquiryId}`}),
+                                    $('<button />', {'text': 'Decline', 'id': `Decline-${inquiries[el].inquiryId}`, 'class': 'decline', 'data-decline': `${inquiries[el].inquiryId}`, 'disabled': 'disabled'})
+                                ])
                             }
-                            btnClose.disabled = true
                         }
-
-                        if (inquiries[el].isAccepted == true && inquiries[el].adoptionSuccess == "init") {
-                            
-                            btnAccept.innerText = "Close"
-                            btnDecline.disabled = true
-                            btnAccept.id = `Close-${inquiries[el].inquiryId}`
-                            var btnClose = document.getElementById(`Close-${inquiries[el].inquiryId}`);
-                            btnClose.addEventListener("click", closeInquiry);
-
-                        } else if (inquiries[el].isAccepted == false) {
-                            btnAccept.disabled = true
-                            btnDecline.disabled = true
-                            // btnDecline.innerText = "DECLINED"
-                            // btnAccept.innerText = ""
-
-                        } else if (inquiries[el].isAccepted == true && inquiries[el].adoptionSuccess == true) {
-                            
-                            btnClose.disabled = true
-                            btnDecline.disabled = true
-                            // btnDecline.innerText = "SUCCESS"
-                            // btnClose.innerText = ""
-
-                        } else if (inquiries[el].isAccepted == true && inquiries[el].adoptionSuccess == false) {
-                            
-                            btnClose.disabled = true
-                            btnDecline.disabled = true
-                            // btnDecline.innerText = "FAILED"
-                            // btnClose.innerText = ""
+                    } else if(inquiries[el].isAccepted == false) {
+                        if($(this).closest('tr').find('td[data-id]')[0].attributes[0].value == inquiries[el].petId) {
+                            // console.log(inquiries[el])
+                            $(this).closest('tr').find('.response-buttons').append([
+                                $('<p />', {'text': `Applicant: ${inquiries[el].applicant.app_firstName} ${inquiries[el].applicant.app_lastName}`}),
+                                $('<button />', {'text': 'Rejected', 'id': `Reject-${inquiries[el].inquiryId}`, 'class': 'reject', 'data-reject': `${inquiries[el].inquiryId}`, 'disabled': 'disabled'})
+                            ])
                         }
-
-                        }
-                        
-                        
-
-
-                    }             
-                }
-            })
+                    }
+                    
+                }             
+            }
         })
+    })
+}
+
+function passId(id) {
+    const updateinqRef = doc(db, "inquiries", id);
+    const updateaniRef = doc(db, "animals", id);
+}
+
+
+function acceptInquiry(id) {
+    console.log('accept')
+    const updateinqRef = doc(db, "inquiries", id);
+
+    updateDoc(updateinqRef, {
+        isAccepted: true,
+        adoptionSuccess: "init"
+    });
+
+    changingAcceptToClose(id)
+
+    
+}
+
+function changingAcceptToClose(id) {
+    $('button.accept').each(function() {
+        if($(this).data('accept') == id) {
+            $(this).closest('.response-buttons').append([
+                $('<button />', {'text': 'Close', 'class': 'close', 'data-close': `${id}`})
+            ])
+            $(this).closest('.response-buttons').find('.decline').attr('disabled', 'disabled')
+            $(this).remove();
+            
+        }
+    })
+
+    closeButton()
+}
+
+function closeButton() {
+    $('button.close').each(function() {
+        $(this).on('click', () => {
+            for(let el in inquiries) {
+                if($(this).data('close') == inquiries[el].inquiryId) {
+                    closeInquiry(inquiries[el].inquiryId, inquiries[el].petId)
+                }
+            }
+        })
+    })
+}
+
+
+
+function declineInquiry(id) {
+    console.log(id)
+    passId(id)
+    const updateinqRef = doc(db, "inquiries", id);
+
+    $('button.decline').each(function() {
+        if($(this).data('decline') == id) {
+            updateDoc(updateinqRef, {
+                isAccepted: false
+            });  
+
+            $(this).closest('.response-buttons').find('.decline').attr('disabled', 'disabled')
+            $(this).closest('.response-buttons').find('.accept').attr('disabled', 'disabled')
+        }
+    })
+}
+
+function closeInquiry(inqId, petId) {
+    console.log('close')
+    let adoptAsk = confirm('Is the adoption successful?');
+    const updateinqRef = doc(db, "inquiries", inqId);
+    const updateaniRef = doc(db, "animals", petId);
+
+    if (adoptAsk == true) {
+        updateDoc(updateaniRef, {
+            isAdopted: true
+        });
+
+        updateDoc(updateinqRef, {
+            adoptionSuccess: true
+        });
+
+        changingToReject(adoptAsk, inqId)
+
+    } else {
+        updateDoc(updateinqRef, {
+            adoptionSuccess: false
+        });
+
+        changingToReject(adoptAsk, inqId)
     }
+}
 
-
+function changingToReject(adoptAsk, inqId) {
+    $('button.close').each(function() {
+        if($(this).data('close') == inqId) {
+            if (adoptAsk == true) {
+                $(this).html('Successful Adoption')
+                $(this).attr('disabled', 'disabled')
+            } else {
+                $(this).html('Rejected')
+                $(this).attr('disabled', 'disabled')
+            }
+        }
+    }) 
+}
