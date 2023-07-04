@@ -153,6 +153,7 @@ onAuthStateChanged(auth, (user) => {
                         let data2 = doc.data();
                         let inq_status = getStatus();
 
+                        // changing the status display on animals inquired
                         function getStatus() {    
                             if( data.isAccepted == true && data.adoptionSuccess == "init" ) {
 
