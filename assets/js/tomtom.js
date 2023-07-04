@@ -12,13 +12,12 @@ var animalCenterMarker = [];
 var map;
 
 // API Strings
-var petfinderAPIKey = "7NJvkG519gKR29OuC2pPJT8B3lcK3hYLeTlgpsMMSj31b3dS29";
-var petfinderSecret = "xyCskdF4PT4wSsvBXXlMdsqrAe3HWuLayJpXmfSn";
-var tomtomAPIKey = "4NGblFt1cWFjRxqAPtg7qW4jUfUYjzS1";
+import { petfinderAPI, token } from "./config.js";
+import { tomtomAPI } from "./config.js";
 
 // MARK: - TomTom (Map View) functions ==========================================================================
 
-// Stores the users location in the variable atop
+// Stores the users location in the variable at top
 function storeUserLocation(location) {
   userLocation = [location.coords.longitude, location.coords.latitude];
   setupMap();
@@ -35,7 +34,7 @@ function loadUserLocation() {
 // Initialize the TomTom map in the element with an id set to 'map'
 function setupMap() {
   map = tt.map({
-    key: tomtomAPIKey,
+    key: tomtomAPI,
     container: "map",
     center: [userLocation[0], userLocation[1]],
     zoom: 15,
@@ -64,23 +63,61 @@ function setZoomToFit() {
 }
 
 // Converts a given address as String to coordinates and presents a marker on the map at this position
-function showAddressOnMap(address) {
+function showAddressOnMap(address, organization) {
   const geocodingAPIUrl = `https://api.tomtom.com/search/2/geocode/${encodeURIComponent(
     address
-  )}.json?key=${tomtomAPIKey}`;
+  )}.json?key=${tomtomAPI}`;
+
+  //Popup & List information
+  const orgList = document.getElementById("orgList");
+  orgList.innerHTML = "";
+
+  const popupInfo = document.createElement("div");
+  popupInfo.className = "popupInfo";
+
+  const orgName = document.createElement("p");
+  orgName.className = "orgName";
+  orgName.textContent = organization.name;
+  popupInfo.appendChild(orgName);
+
+  const orgPhone = document.createElement("p");
+  orgPhone.textContent = `Phone ${organization.phone}`;
+  popupInfo.appendChild(orgPhone);
+
+  const orgEmail = document.createElement("p");
+  orgEmail.textContent = `Email: ${organization.email}`;
+  popupInfo.appendChild(orgEmail);
+
+  const orgWebsite = document.createElement("p");
+  orgWebsite.textContent = `Website: ${organization.website}`;
+  popupInfo.appendChild(orgWebsite);
+
+  const orgAddress = document.createElement("p");
+  orgAddress.textContent = `Address: ${address}`;
+  popupInfo.appendChild(orgAddress);
+
+  orgList.appendChild(popupInfo);
 
   fetch(geocodingAPIUrl)
     .then((response) => response.json())
     .then((data) => {
       const results = data.results;
+
       if (results && results.length > 0) {
         const position = results[0].position;
         const latitude = position.lat;
         const longitude = position.lon;
         locationOfAnimalCenter.push([longitude, latitude]);
+        //Pop up tag to display the info.
+        const popup = new tt.Popup({ closeButton: false }).setDOMContent(
+          popupInfo
+        );
+        //Sets up marker with the pop up
         const newMarker = new tt.Marker()
           .setLngLat([longitude, latitude])
-          .addTo(map);
+          .setPopup(popup);
+        //Adds marker and popup to map
+        newMarker.addTo(map);
         animalCenterMarker.push(newMarker);
       } else {
         console.log("No results found");
@@ -103,6 +140,7 @@ function getAddressStringFor(organization) {
   let seperator = ", ";
   let searchAddress =
     city + seperator + country + seperator + postcode + seperator + state;
+
   return searchAddress;
 }
 
@@ -115,12 +153,13 @@ function sleep(ms) {
 // This functions will sleep after loading each location to avoid server limitation errors.
 function loadLocationOfCenter() {
   var petfinderClient = new petfinder.Client({
-    apiKey: petfinderAPIKey,
-    secret: petfinderSecret,
+    apiKey: petfinderAPI,
+    secret: token,
   });
 
   let userLocationString =
     userLocation[1].toString() + ", " + userLocation[0].toString();
+
   petfinderClient.organization
     .search({
       location: userLocationString,
@@ -131,9 +170,9 @@ function loadLocationOfCenter() {
       for (let i = 0; i < organizations.length; i++) {
         let organization = organizations[i];
         let searchAddress = getAddressStringFor(organization);
-        console.log(i, searchAddress);
-        showAddressOnMap(searchAddress);
-        await sleep(500);
+        //console.log(i, searchAddress);
+        showAddressOnMap(searchAddress, organization);
+        await sleep(400);
       }
       setZoomToFit();
     })
