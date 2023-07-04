@@ -69,35 +69,6 @@ function showAddressOnMap(address, organization) {
   )}.json?key=${tomtomAPI}`;
 
   //Popup & List information
-  const orgList = document.getElementById("orgList");
-  orgList.innerHTML = "";
-
-  const popupInfo = document.createElement("div");
-  popupInfo.className = "popupInfo";
-
-  const orgName = document.createElement("p");
-  orgName.className = "orgName";
-  orgName.textContent = organization.name;
-  popupInfo.appendChild(orgName);
-
-  const orgPhone = document.createElement("p");
-  orgPhone.textContent = `Phone: ${organization.phone}`;
-  popupInfo.appendChild(orgPhone);
-
-  const orgEmail = document.createElement("p");
-  orgEmail.textContent = `Email: ${organization.email}`;
-  popupInfo.appendChild(orgEmail);
-
-  const orgWebsite = document.createElement("p");
-  orgWebsite.textContent = `Website: ${organization.website}`;
-  popupInfo.appendChild(orgWebsite);
-
-  const orgAddress = document.createElement("p");
-  orgAddress.textContent = `Address: ${address}`;
-  popupInfo.appendChild(orgAddress);
-
-  orgList.appendChild(popupInfo);
-
   fetch(geocodingAPIUrl)
     .then((response) => response.json())
     .then((data) => {
@@ -108,9 +79,42 @@ function showAddressOnMap(address, organization) {
         const latitude = position.lat;
         const longitude = position.lon;
         locationOfAnimalCenter.push([longitude, latitude]);
+
+        const orgList = document.getElementById("orgList");
+        orgList.innerHTML = "";
+
+        //To display on the list
+        const orgInfo = document.createElement("div");
+        orgInfo.className = "orgInfo";
+
+        const orgName = document.createElement("p");
+        orgName.className = "orgName";
+        orgName.textContent = organization.name;
+        orgInfo.appendChild(orgName);
+
+        const orgPhone = document.createElement("p");
+        orgPhone.textContent = `Phone: ${organization.phone}`;
+        orgInfo.appendChild(orgPhone);
+
+        const orgEmail = document.createElement("p");
+        orgEmail.textContent = `Email: ${organization.email}`;
+        orgInfo.appendChild(orgEmail);
+
+        const orgWebsite = document.createElement("p");
+        orgWebsite.textContent = `Website: ${organization.website}`;
+        orgInfo.appendChild(orgWebsite);
+
+        const orgAddress = document.createElement("p");
+        orgAddress.textContent = `Address: ${address}`;
+        orgInfo.appendChild(orgAddress);
+
+        //orgList.appendChild(orgInfo);
+        orgList.textContent = orgInfo;
+        console.log(orgList);
+
         //Pop up tag to display the info.
         const popup = new tt.Popup({ closeButton: false }).setDOMContent(
-          popupInfo
+          orgInfo
         );
         //Sets up marker with the pop up
         const newMarker = new tt.Marker()
