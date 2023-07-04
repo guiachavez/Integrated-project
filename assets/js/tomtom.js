@@ -12,9 +12,8 @@ var animalCenterMarker = [];
 var map;
 
 // API Strings
-import { petfinderAPI, token } from './config.js'
-import { tomtomAPI } from './config.js'
-
+import { petfinderAPI, token } from "./config.js";
+import { tomtomAPI } from "./config.js";
 
 // MARK: - TomTom (Map View) functions ==========================================================================
 
@@ -139,8 +138,9 @@ function getAddressStringFor(organization) {
   let postcode = organizationAddress.postcode;
   let state = organizationAddress.state;
   let seperator = ", ";
-  let searchAddress = city + seperator + country + seperator + postcode + seperator + state;
-  
+  let searchAddress =
+    city + seperator + country + seperator + postcode + seperator + state;
+
   return searchAddress;
 }
 
@@ -157,9 +157,10 @@ function loadLocationOfCenter() {
     secret: token,
   });
 
-  let userLocationString = userLocation[1].toString() + ", " + userLocation[0].toString();
+  let userLocationString =
+    userLocation[1].toString() + ", " + userLocation[0].toString();
 
-    petfinderClient.organization
+  petfinderClient.organization
     .search({
       location: userLocationString,
       distance: 10,
