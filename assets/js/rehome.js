@@ -30,7 +30,7 @@ class userDetails {
 }
 
 class Petdetails {
-    constructor(pname, ptype, pbreed, pcolor, page, pgender, psize, pdesc, pht, pgwc, photo, ownerid, street, city, country, pcode, state) {
+    constructor(pname, ptype, pbreed, pcolor, page, pgender, psize, pdesc, pht, pgwc, photo, ownerid, street, city, country, pcode, state, isAdopted) {
         this.name = pname;
         this.type = ptype;
         this.breed = pbreed;
@@ -52,6 +52,7 @@ class Petdetails {
             postcode: pcode,
             state: state
         }
+        this.isAdopted = isAdopted;
     }
 }
 
@@ -131,6 +132,7 @@ async function handlePetForm(userid, street, city, country, pcode, state) {
     let pht = JSON.parse(document.querySelector('input[name="trained"]:checked').value);
     let pgwc = JSON.parse(document.querySelector('input[name="children"]:checked').value);
     let petphoto = myFile.files
+    let isAdopted = "init";
 
     // loop through uploaded photos and upload to FIRESTORAGE
     for (var i = 0; i < petphoto.length; i++) {
@@ -153,7 +155,7 @@ async function handlePetForm(userid, street, city, country, pcode, state) {
 
     //add downloadURL to FIRESTORE
     setTimeout(() => {
-        const petdetails = new Petdetails(pname, ptype, pbreed, pcolor, page, pgender, psize, pdesc, pht, pgwc, photos, userid, street, city, country, pcode, state)
+        const petdetails = new Petdetails(pname, ptype, pbreed, pcolor, page, pgender, psize, pdesc, pht, pgwc, photos, userid, street, city, country, pcode, state, isAdopted)
  
         addDoc(aniRef, Object.assign({}, petdetails))
             .then(() => {
