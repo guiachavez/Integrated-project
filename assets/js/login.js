@@ -52,12 +52,15 @@ loginButton.addEventListener('submit', (e) => {
  
      // The signed-in user info.
      const user = result.user;
+     if (user) {
+        console.log('user logged in: ', user);
+     }
      // IdP data available using getAdditionalUserInfo(result)
      // ...
  
      //name , email
  
-     alert(cred.user);
+    //  alert(cred.user);
  
  
    }).catch((error) => {
