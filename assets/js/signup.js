@@ -1,4 +1,4 @@
-import { getFirestore, setDoc, doc } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js'
+import { getFirestore, setDoc, doc, getDoc } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js'
 import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithRedirect, getRedirectResult } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js';
 import { app } from './config.js'
  
@@ -92,7 +92,7 @@ function handleForm(e) {
                     const googleEmail = user.email;
                     const googleFirstName = user.displayName.split(' ')[0];
                     const googleLastName = user.displayName.split(' ')[1];
-                 
+                    
                         // Pre-fill the fields with Google sign-in details
                         useremail.value = googleEmail;
                         fname.value = googleFirstName;
