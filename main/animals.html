@@ -30,11 +30,11 @@
         <div class="search-filter">
           <div class="search-location">
             <label for="location">
-              Location:
+              <!-- Location:
               <div>
                 <input type="text" name="location" id="location">
               </div>
-            </label>
+            </label> -->
           </div>
           
           <div class="animal-selector">
@@ -74,10 +74,11 @@
 
           <div class="content-container">
             <form action="" onsubmit="return false" class="search">
-              <label for="breed">BREED</label>
-              <select name="breed" id="breed">
-                <option value>Any</option>
-              </select>
+              <label for="breed">BREED
+                <select name="breed" id="breed">
+                  <option value>Any</option>
+                </select>
+              </label>
         
               <fieldset>
                 <legend>AGE</legend>
@@ -128,26 +129,27 @@
                   </div>
                   <div>
                     <input type="radio" name="size" value="Small">
-                    <label for="size">Small</label>
+                    <label for="size">Small (0-25lbs)</label>
                   </div>
                   <div>
                     <input type="radio" name="size" value="Medium">
-                    <label for="size">Medium</label>
+                    <label for="size">Medium (26-60lbs)</label>
                   </div>
                   <div>
                     <input type="radio" name="size" value="Large">
-                    <label for="size">Large</label>
+                    <label for="size">Large (61-100lbs)</label>
                   </div>
                   <div>
                     <input type="radio" name="size" value="Xlarge">
-                    <label for="size">Extra Large</label>
+                    <label for="size">Extra Large (101lbs or more)</label>
                   </div>
               </fieldset>
         
-              <label for="color">COLOR</label>
-              <select name="color" id="color">
-                <option value>Any</option>
-              </select>
+              <label for="color">COLOR
+                <select name="color" id="color">
+                  <option value>Any</option>
+                </select>
+              </label>
         
               <fieldset>
                 <legend>Good with children</legend>
@@ -226,6 +228,16 @@
     flex-grow: 0;
     width: 280px;
     padding-right: 30px;
+
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+}
+
+form {
+  display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
 }
 
 .search-filter select {
@@ -236,5 +248,23 @@
   width: 100%;
   height: 300px;
   object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.slick-dots  {
+  bottom: 0;
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+
+select {
+  height: 2rem;
+    border-color: lightgray;
+}
+
+fieldset {
+  border: 0;
+    padding: 0;
+    margin: 0;
 }
 </style>
