@@ -20,3 +20,8 @@
     font-family: typo.$font-raleway;
     font-size: $f * 1px;
 }
+
+@mixin maxwidth{
+    max-width: 2400px;
+    margin: auto;
+}

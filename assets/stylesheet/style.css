@@ -199,6 +199,11 @@ input[type=radio] :checked {
   background-color: #FCF9F7;
 }
 
+.container-2400 {
+  max-width: 2400px;
+  margin: auto;
+}
+
 /* Style Guide BUTTONS --------------- */
 button.filled-default,
 button.filled-default-next {
