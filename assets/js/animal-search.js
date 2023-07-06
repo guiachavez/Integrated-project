@@ -1,5 +1,6 @@
-import { getFirestore, collection, getDocs, getDoc, setDoc, addDoc, deleteDoc, doc, query, where } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js'
+import { getFirestore, collection, getDocs, getDoc, doc, query, where } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js'
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-storage.js";
+import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js';
 import { app } from './config.js'
 import { petfinderAPI, token } from './config.js'
 import { tomtomAPI } from './config.js'
@@ -9,6 +10,7 @@ import { changeAttr, ownerDropdown } from "./../js/color-breed-dropdown.js";
 // init the firestore and storage
 const db = getFirestore(app)
 const storage = getStorage(app);
+const auth = getAuth(app)
 
 // collection refererence
 const aniRef = collection(db, 'animals')
@@ -162,113 +164,122 @@ const reLoadFilter = ()=> {
 
 
 async function searchOwner(color, breed, type, ageArr, sizeArr, genderArr, goodWithChildren, houseTrained) {
-    console.log('searchOwner')
-    let breedArr = []; 
     
-    if (breed == '') {
-        const typeRef = doc(db, "types", type)
+    let userId
 
-        try {
-            const docSnap = await getDoc(typeRef);
-            if (docSnap.exists()) {
-                breedArr = docSnap.data().breeds;
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+        userId = user.uid
             }
-        } catch (e) {
-            console.log(e);
-        }
-
-    } else {
-        breedArr = breed.split(",");
-    };
+        })
         
-    let colorArr = []; 
+        let breedArr = []; 
         
-    if (color == '') {
-        const typeRef = doc(db, "types", type)
+        if (breed == '') {
+            const typeRef = doc(db, "types", type)
 
-        try {
-            const docSnap = await getDoc(typeRef);
-            if (docSnap.exists()) {
-                colorArr = docSnap.data().colors;
+            try {
+                const docSnap = await getDoc(typeRef);
+                if (docSnap.exists()) {
+                    breedArr = docSnap.data().breeds;
+                }
+            } catch (e) {
+                console.log(e);
             }
-        } catch (e) {
-            console.log(e);
-        }
-    } else {
-        colorArr = color.split(",");
-    };
 
-    let location = JSON.parse(localStorage.getItem('location-query'))
-    let city = location.municipality
-    let country = location.country
+        } else {
+            breedArr = breed.split(",");
+        };
+            
+        let colorArr = []; 
+            
+        if (color == '') {
+            const typeRef = doc(db, "types", type)
 
-    const q = query(aniRef,
-        where("type", "==", type), 
-        where("age", "in", ageArr), 
-        where("size", "in", sizeArr), 
-        where("attributes.good_with_children", "==", goodWithChildren),
-        where("attributes.house_trained", "==", houseTrained),
-        where("location.city", "==", city),
-        where("location.country", "==", country))
+            try {
+                const docSnap = await getDoc(typeRef);
+                if (docSnap.exists()) {
+                    colorArr = docSnap.data().colors;
+                }
+            } catch (e) {
+                console.log(e);
+            }
+        } else {
+            colorArr = color.split(",");
+        };
 
-        try {
-            const querySnapshot = await getDocs(q);
-            const results = []
+        let location = JSON.parse(localStorage.getItem('location-query'))
+        let city = location.municipality
+        let country = location.country
+        console.log(userId)
+        const q = query(aniRef,
+            where("type", "==", type), 
+            where("age", "in", ageArr), 
+            where("size", "in", sizeArr), 
+            where("attributes.good_with_children", "==", goodWithChildren),
+            where("attributes.house_trained", "==", houseTrained),
+            where("location.city", "==", city),
+            where("location.country", "==", country),
+            where("owner_id", "!=", userId))
 
-            querySnapshot.forEach((doc) => {
-                results.push([doc.id,doc.data()])
-            })
+            try {
+                const querySnapshot = await getDocs(q);
+                const results = []
 
-            for(const i in results) {
-                if (genderArr.indexOf(results[i][1].gender) > -1) {                  
-                    if (breedArr.indexOf(results[i][1].breed) > -1) {
-                        if (colorArr.indexOf(results[i][1].color) > -1) {
-                            let petPhoto = results[i][1].photo
-                            let isArr = Array.isArray(petPhoto)
+                querySnapshot.forEach((doc) => {
+                    results.push([doc.id,doc.data()])
+                })
 
-                            $('#filtered-pets').append([
-                                $('<div />', {'class': `pet pet-${i}`, 'data-id': `${results[i][0]}`}).append([
-                                    $('<div />', {'class': 'pet-photos slider'})
-                                ]).append([
-                                    $('<div />', {'class': 'pet-details'}).append([
-                                        $('<p />', {text: `${results[i][1].type}, ${results[i][1].breed}, ${results[i][1].name}, ${results[i][1].gender}` })
-                                    ])
-                                ])        
-                            ])
+                for(const i in results) {
+                    if (genderArr.indexOf(results[i][1].gender) > -1) {                  
+                        if (breedArr.indexOf(results[i][1].breed) > -1) {
+                            if (colorArr.indexOf(results[i][1].color) > -1) {
+                                let petPhoto = results[i][1].photo
+                                let isArr = Array.isArray(petPhoto)
 
-                            if(!isArr) {
-                                $(`.pet-${i} .pet-photos`).append([
-                                    $('<div />', {'class': 'pet-img'}).append([
-                                        $('<a />', {'href': `./../main/pet-profile.html?id=${results[i][0]}`}).append([
-                                            $('<img>', {'src': `${results[i][1].photo}`})
+                                $('#filtered-pets').append([
+                                    $('<div />', {'class': `pet pet-${i}`, 'data-id': `${results[i][0]}`}).append([
+                                        $('<div />', {'class': 'pet-photos slider'})
+                                    ]).append([
+                                        $('<div />', {'class': 'pet-details'}).append([
+                                            $('<p />', {text: `${results[i][1].type}, ${results[i][1].breed}, ${results[i][1].name}, ${results[i][1].gender}` })
                                         ])
-                                    ])
+                                    ])        
                                 ])
-                            } else {
-                                for(const key in petPhoto) {
+
+                                if(!isArr) {
                                     $(`.pet-${i} .pet-photos`).append([
-                                        $('<div />', {'class': `pet-img`}).append([
+                                        $('<div />', {'class': 'pet-img'}).append([
                                             $('<a />', {'href': `./../main/pet-profile.html?id=${results[i][0]}`}).append([
-                                                $('<img>', {'src': petPhoto[key]})
+                                                $('<img>', {'src': `${results[i][1].photo}`})
                                             ])
                                         ])
                                     ])
+                                } else {
+                                    for(const key in petPhoto) {
+                                        $(`.pet-${i} .pet-photos`).append([
+                                            $('<div />', {'class': `pet-img`}).append([
+                                                $('<a />', {'href': `./../main/pet-profile.html?id=${results[i][0]}`}).append([
+                                                    $('<img>', {'src': petPhoto[key]})
+                                                ])
+                                            ])
+                                        ])
+                                    }
                                 }
                             }
                         }
                     }
                 }
-            }
-            $('.slider').slick({
-                infinite: true,
-                dots: true,
-                slidesToShow: 1,
-                slidesToScroll: 1
-            });
-        } catch (e) {
-            console.log(e);
-        }        
-    }
+                $('.slider').slick({
+                    infinite: true,
+                    dots: true,
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                });
+            } catch (e) {
+                console.log(e);
+            }        
+}         
 
 // renewing token for petfinder API
 var petObj;
