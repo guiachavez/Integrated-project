@@ -1,0 +1,7 @@
+@use '../abstracts/mixins/mixins' as mx;
+@use '../abstracts/variables/media_queries' as mq;
+@use '../abstracts/variables/colors' as colors;
+
+.container-2400{
+    @include mx.maxwidth;
+}

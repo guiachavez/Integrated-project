@@ -1,29 +1,24 @@
 @use '../abstracts/variables/colors' as colors;
+
 /*Input Text----------*/
-#input-text,
-#focus-text,
-#error-text{
+#text-input{
     width: 360px;
     height: 44px;
     border-radius: 0.5rem;
     border-style: solid;
 }
 
-#input-text::placeholder{
+#text-input::placeholder{
     color: colors.$neutral-color-grey;
 }
 
-#focus-text{
+#text-input:focus{
+    outline: none;
     border-color: colors.$primary-color-main;
 }
 
-#error-text{
-    border-color: colors.$semantic-red-error;
-}
-
 // checkbox and radio button
-#checked-checkbox,
-#selected-radio{
+input[type="radio"] :checked{
     accent-color: colors.$primary-color-main;
 }
 
