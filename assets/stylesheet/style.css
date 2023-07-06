@@ -1,7 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Baloo+2&family=Raleway&display=swap");
-/* BUTTONS --------------- */
-button.filled-default,
-button.filled-default-next {
+button.filled-btn,
+button.filled-next-btn,
+button.filled-mob-btn,
+button.filled-next-mob-btn {
   background-color: #0293A7;
   color: #FCF9F7;
   border: 2px solid #0293A7;
@@ -10,8 +11,8 @@ button.filled-default-next {
   border-radius: 3rem;
 }
 
-button.filled-hover,
-button.filled-hover-next {
+button.filled-btn:hover,
+button.filled-next-btn:hover {
   background-color: #01333A;
   color: #FCF9F7;
   border: 2px solid #01333A;
@@ -20,14 +21,10 @@ button.filled-hover-next {
   border-radius: 3rem;
 }
 
-button.filled-active,
-button.outline-active,
-button.filled-active-mob,
-button.outline-active-mob,
-button.filled-active-next,
-button.outline-active-next,
-button.filled-active-next-mob,
-button.outline-active-next-mob {
+button.filled-btn:active,
+button.filled-next-btn:active,
+button.filled-mob-btn:active,
+button.filled-next-mob-btn:active {
   background-color: #B1DEE4;
   color: #01333A;
   border: 2px solid #01333A;
@@ -36,8 +33,8 @@ button.outline-active-next-mob {
   border-radius: 3rem;
 }
 
-button.filled-disabled,
-button.filled-disabled-next {
+button.filled-btn:disabled,
+button.filled-next-btn:disabled {
   background-color: #C5C5C5;
   color: #818080;
   border: 2px solid #C5C5C5;
@@ -46,10 +43,10 @@ button.filled-disabled-next {
   border-radius: 3rem;
 }
 
-button.outline-default,
-button.outline-default-mob,
-button.outline-default-next,
-button.outline-default-next-mob {
+button.outline-btn,
+button.outline-next-btn,
+button.outline-mob-btn,
+button.outline-next-mob-btn {
   background-color: #FCF9F7;
   color: #0293A7;
   border: 2px solid #0293A7;
@@ -58,8 +55,8 @@ button.outline-default-next-mob {
   border-radius: 3rem;
 }
 
-button.outline-hover,
-button.outline-hover-next {
+button.outline-btn:hover,
+button.outline-next-btn:hover {
   background-color: #0293A7;
   color: #FCF9F7;
   border: 2px solid #0293A7;
@@ -68,21 +65,23 @@ button.outline-hover-next {
   border-radius: 3rem;
 }
 
-button.outline-disabled,
-button.outline-disabled-next {
+button.outline-btn:active,
+button.outline-next-btn:active,
+button.outline-mob-btn:active,
+button.outline-next-mob-btn:active {
+  background-color: #B1DEE4;
+  color: #01333A;
+  border: 2px solid #01333A;
+  width: 172px;
+  height: 48px;
+  border-radius: 3rem;
+}
+
+button.outline-btn:disabled,
+button.outline-next-btn:disabled {
   background-color: #FCF9F7;
   color: #818080;
   border: 2px solid #818080;
-  width: 172px;
-  height: 48px;
-  border-radius: 3rem;
-}
-
-button.filled-default-mob,
-button.filled-default-next-mob {
-  background-color: #0293A7;
-  color: #FCF9F7;
-  border: 2px solid #0293A7;
   width: 172px;
   height: 48px;
   border-radius: 3rem;
@@ -145,29 +144,23 @@ button.font {
 }
 
 /*Input Text----------*/
-#input-text,
-#focus-text,
-#error-text {
+#text-input {
   width: 360px;
   height: 44px;
   border-radius: 0.5rem;
   border-style: solid;
 }
 
-#input-text::placeholder {
+#text-input::placeholder {
   color: #818080;
 }
 
-#focus-text {
+#text-input:focus {
+  outline: none;
   border-color: #0293A7;
 }
 
-#error-text {
-  border-color: #DE3535;
-}
-
-#checked-checkbox,
-#selected-radio {
+input[type=radio] :checked {
   accent-color: #0293A7;
 }
 
@@ -204,6 +197,122 @@ button.font {
 #toggle-off:checked + .toggle-switch::after {
   left: 17px;
   background-color: #FCF9F7;
+}
+
+/* Style Guide BUTTONS --------------- */
+button.filled-default,
+button.filled-default-next {
+  background-color: #0293A7;
+  color: #FCF9F7;
+  border: 2px solid #0293A7;
+  width: 172px;
+  height: 48px;
+  border-radius: 3rem;
+}
+
+button.filled-hover,
+button.filled-hover-next {
+  background-color: #01333A;
+  color: #FCF9F7;
+  border: 2px solid #01333A;
+  width: 172px;
+  height: 48px;
+  border-radius: 3rem;
+}
+
+button.outline-active,
+button.filled-active,
+button.filled-active-mob,
+button.outline-active-mob,
+button.outline-active-next,
+button.filled-active-next,
+button.filled-active-next-mob,
+button.outline-active-next-mob {
+  background-color: #B1DEE4;
+  color: #01333A;
+  border: 2px solid #01333A;
+  width: 172px;
+  height: 48px;
+  border-radius: 3rem;
+}
+
+button.filled-disabled,
+button.filled-disabled-next {
+  background-color: #C5C5C5;
+  color: #818080;
+  border: 2px solid #C5C5C5;
+  width: 172px;
+  height: 48px;
+  border-radius: 3rem;
+}
+
+button.outline-default,
+button.outline-default-mob,
+button.outline-default-next,
+button.outline-default-next-mob {
+  background-color: #FCF9F7;
+  color: #0293A7;
+  border: 2px solid #0293A7;
+  width: 172px;
+  height: 48px;
+  border-radius: 3rem;
+}
+
+button.outline-hover,
+button.outline-hover-next {
+  background-color: #0293A7;
+  color: #FCF9F7;
+  border: 2px solid #0293A7;
+  width: 172px;
+  height: 48px;
+  border-radius: 3rem;
+}
+
+button.outline-disabled,
+button.outline-disabled-next {
+  background-color: #FCF9F7;
+  color: #818080;
+  border: 2px solid #818080;
+  width: 172px;
+  height: 48px;
+  border-radius: 3rem;
+}
+
+button.filled-default-mob,
+button.filled-default-next-mob {
+  background-color: #0293A7;
+  color: #FCF9F7;
+  border: 2px solid #0293A7;
+  width: 172px;
+  height: 48px;
+  border-radius: 3rem;
+}
+
+/*Input text -----------------*/
+#input-text,
+#focus-text,
+#error-text {
+  width: 360px;
+  height: 44px;
+  border-radius: 0.5rem;
+  border-style: solid;
+}
+
+#input-text::placeholder {
+  color: #818080;
+}
+
+#focus-text {
+  border-color: #0293A7;
+}
+
+#error-text {
+  border-color: #DE3535;
+}
+
+#checked-checkbox,
+#selected-radio {
+  accent-color: #0293A7;
 }
 
 /*# sourceMappingURL=style.css.map */

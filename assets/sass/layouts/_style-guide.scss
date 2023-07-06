@@ -1,0 +1,90 @@
+@use '../abstracts/variables/colors' as colors;
+@use '../abstracts/mixins/mixins' as mx;
+@use '../abstracts/variables/typography' as typo;
+
+/* Style Guide BUTTONS --------------- */
+
+// Web-Default-Filled
+button.filled-default,
+button.filled-default-next{
+    @include mx.button-style(colors.$primary-color-main, colors.$neutral-color-white, colors.$primary-color-main);
+}
+
+// Web-Hover-Filled
+button.filled-hover,
+button.filled-hover-next{
+    @include mx.button-style(colors.$primary-color-100, colors.$neutral-color-white, colors.$primary-color-100);
+}
+
+// Web & Mobile-Active
+button.outline-active, 
+button.filled-active, 
+button.filled-active-mob, 
+button.outline-active-mob, 
+button.outline-active-next, 
+button.filled-active-next, 
+button.filled-active-next-mob, 
+button.outline-active-next-mob{
+    @include mx.button-style(colors.$primary-color-25, colors.$primary-color-100, colors.$primary-color-100);
+}
+
+// Web-Disabled-Filled
+button.filled-disabled,
+button.filled-disabled-next{
+    @include mx.button-style(colors.$neutral-color-grey-l, colors.$neutral-color-grey, colors.$neutral-color-grey-l);
+}
+
+// Web-Default-Outline
+button.outline-default,
+button.outline-default-mob,
+button.outline-default-next,
+button.outline-default-next-mob{
+    @include mx.button-style(colors.$neutral-color-white, colors.$primary-color-main, colors.$primary-color-main);
+}
+
+// Web-Hover-Outline
+button.outline-hover,
+button.outline-hover-next{
+    @include mx.button-style(colors.$primary-color-main, colors.$neutral-color-white, colors.$primary-color-main);
+}
+
+// Web-Disabled-Outline
+button.outline-disabled,
+button.outline-disabled-next{
+    @include mx.button-style(colors.$neutral-color-white, colors.$neutral-color-grey, colors.$neutral-color-grey);
+}
+
+
+// Mobile-Default-Filled
+button.filled-default-mob,
+button.filled-default-next-mob{
+    @include mx.button-style(colors.$primary-color-main, colors.$neutral-color-white, colors.$primary-color-main, 48);
+}
+
+/*Input text -----------------*/ 
+#input-text,
+#focus-text,
+#error-text{
+    width: 360px;
+    height: 44px;
+    border-radius: 0.5rem;
+    border-style: solid;
+}
+
+#input-text::placeholder{
+    color: colors.$neutral-color-grey;
+}
+
+#focus-text{
+    border-color: colors.$primary-color-main;
+}
+
+#error-text{
+    border-color: colors.$semantic-red-error;
+}
+
+// checkbox and radio button
+#checked-checkbox,
+#selected-radio{
+    accent-color: colors.$primary-color-main;
+}
