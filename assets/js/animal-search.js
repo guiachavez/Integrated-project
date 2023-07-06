@@ -72,7 +72,7 @@ const homeSearch = () => {
 
     document.getElementById('pet-type').value = type
     document.getElementById('source').value = source
-    document.getElementById('location').value = locationText.freeformAddress
+    //document.getElementById('location').value = locationText.freeformAddress
 
     document.querySelector('.tt-search-box-input').value = locationText.freeformAddress
     $('#filtered-pets').empty()
@@ -316,7 +316,9 @@ var searchPetFinder = (type, breed, age, gender, size, color, goodWithChildren, 
                             $('<div />', {'class': 'pet-photos slider'})
                         ]).append([
                             $('<div />', {'class': 'pet-details'}).append([
-                                $('<p />', {text: `${petObj[i].species}, ${petObj[i].breeds.primary}, ${petObj[i].name}, ${petObj[i].gender}, ${petObj[i].organization_id}` })
+                                $('<p />', {text: `${petObj[i].name}` })
+                            ]).append([
+                                $('<p />', {text: `${petObj[i].species}, ${petObj[i].breeds.primary}, ${petObj[i].gender}, ${petObj[i].organization_id}` })  
                             ])
                         ])
                     ])
