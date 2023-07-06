@@ -15,6 +15,10 @@ var map;
 import { petfinderAPI, token } from "./config.js";
 import { tomtomAPI } from "./config.js";
 
+// Variables to display on the list on the left
+const orgList = document.getElementById("orgList");
+let orgListArr = [];
+
 // MARK: - TomTom (Map View) functions ==========================================================================
 
 // Stores the users location in the variable at top
@@ -68,7 +72,45 @@ function showAddressOnMap(address, organization) {
     address
   )}.json?key=${tomtomAPI}`;
 
-  //Popup & List information
+  //To display on the div (popup)
+  const orgInfo = document.createElement("div");
+  orgInfo.className = "orgInfo";
+
+  //Variables to be appended:
+  const orgName = document.createElement("p");
+  orgName.className = "orgName";
+  orgName.textContent = organization.name;
+  orgInfo.appendChild(orgName);
+
+  const orgPhone = document.createElement("p");
+  orgPhone.textContent = `Phone: ${organization.phone}`;
+  if (organization.phone !== null) {
+    orgInfo.appendChild(orgPhone);
+  }
+
+  const orgEmail = document.createElement("p");
+  orgEmail.textContent = `Email: ${organization.email}`;
+  if (organization.email !== null) {
+    orgInfo.appendChild(orgEmail);
+  }
+
+  const orgWebsite = document.createElement("p");
+  orgWebsite.textContent = `Website: ${organization.website}`;
+  if (organization.website !== null) {
+    orgInfo.appendChild(orgWebsite);
+  }
+
+  const orgAddress = document.createElement("p");
+  orgAddress.textContent = `Address: ${address}`;
+  orgInfo.appendChild(orgAddress);
+
+  //Display the list
+  // orgList.append(orgInfo);
+  orgListArr.push(orgInfo);
+  for (let i = 0; i < orgListArr.length; i++) {
+    orgList.append(orgListArr[i]);
+  }
+
   fetch(geocodingAPIUrl)
     .then((response) => response.json())
     .then((data) => {
@@ -79,38 +121,6 @@ function showAddressOnMap(address, organization) {
         const latitude = position.lat;
         const longitude = position.lon;
         locationOfAnimalCenter.push([longitude, latitude]);
-
-        const orgList = document.getElementById("orgList");
-        orgList.innerHTML = "";
-
-        //To display on the list
-        const orgInfo = document.createElement("div");
-        orgInfo.className = "orgInfo";
-
-        const orgName = document.createElement("p");
-        orgName.className = "orgName";
-        orgName.textContent = organization.name;
-        orgInfo.appendChild(orgName);
-
-        const orgPhone = document.createElement("p");
-        orgPhone.textContent = `Phone: ${organization.phone}`;
-        orgInfo.appendChild(orgPhone);
-
-        const orgEmail = document.createElement("p");
-        orgEmail.textContent = `Email: ${organization.email}`;
-        orgInfo.appendChild(orgEmail);
-
-        const orgWebsite = document.createElement("p");
-        orgWebsite.textContent = `Website: ${organization.website}`;
-        orgInfo.appendChild(orgWebsite);
-
-        const orgAddress = document.createElement("p");
-        orgAddress.textContent = `Address: ${address}`;
-        orgInfo.appendChild(orgAddress);
-
-        //orgList.appendChild(orgInfo);
-        orgList.textContent = orgInfo;
-        console.log(orgList);
 
         //Pop up tag to display the info.
         const popup = new tt.Popup({ closeButton: false }).setDOMContent(
