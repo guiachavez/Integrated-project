@@ -81,7 +81,8 @@ function handleForm(e) {
               getDoc(docRef)
                 .then((doc) => {
                   if (doc.exists()) {
-                    // User information already exists in Firestore, pre-fill the fields
+
+                    // if information already exists in Firestore, pre-fill the fields
                     const userData = doc.data();
                     useremail.value = userData.email;
                     fname.value = userData.firstName;
@@ -89,9 +90,16 @@ function handleForm(e) {
                   } 
                   else {
                         // First-time user, prompt for additional information
-                    const googleEmail = user.email;
-                    const googleFirstName = user.displayName.split(' ')[0];
-                    const googleLastName = user.displayName.split(' ')[1];
+                        const googleEmail = user.email;
+
+                        const displayNameParts = user.displayName.split(' ');
+
+                        const googleFirstName = displayNameParts.length > 0 ? displayNameParts[0] : '';
+                        const googleLastName = displayNameParts.length > 1 ? displayNameParts.slice(1).join(' ') : '';
+
+                console.log('Google Email:', googleEmail);
+                console.log('Google First Name:', googleFirstName);
+                console.log('Google Last Name:', googleLastName);
                     
                         // Pre-fill the fields with Google sign-in details
                         useremail.value = googleEmail;
@@ -102,11 +110,15 @@ function handleForm(e) {
                         const uid = user.uid;
                         const isOwner = false;
                         const petOwner = new accountSignup(uid, googleFirstName, googleLastName, googleEmail, isOwner);
-                    setDoc(docRef, Object.assign({}, petOwner))
-                    .then(() => {
+                    
+                        setDoc(docRef, Object.assign({}, petOwner))
+                        .then(() => {
                         // Document successfully stored
-                    addAccount.reset();
-                    })
+                            addAccount.reset();
+
+                        // to redirect the page ==============
+                            window.location.href = './../main/index.html';
+                        })
                     .catch((error) => {
                     console.log(error.message);
                     });
@@ -132,41 +144,5 @@ function handleForm(e) {
   });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-     /* // This gives you a Google Access Token. You can use it to access Google APIs.
-     const credential = GoogleAuthProvider.credentialFromResult(result);
-     const token = credential.accessToken;
- 
-     // The signed-in user info.
-     const user = result.user;
-     if(user) {
-        const googleEmail = user.email;
-        const googleFirstName = user.displayName.split(' ')[0];
-        const googleLastName = user.displayName.split(' ')[1];
-     }
-     // IdP data available using getAdditionalUserInfo(result)
-     // ...
- 
-     //name , email
- 
-     useremail.value = googleEmail;
-     fname.value = googleFirstName;
-     lname.value = googleLastName
-    //  alert(cred.user); })*/
- 
- 
-   
 
  
