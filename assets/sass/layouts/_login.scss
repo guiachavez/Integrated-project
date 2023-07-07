@@ -83,6 +83,11 @@
   .select_google button {
     text-align: center;
     margin:3.3rem;
+    border-radius:22px;
+  }
+
+  .select_google button span{
+    max-width: 50%;
   }
 
   .select_google button i{
