@@ -56,6 +56,72 @@ class Petdetails {
     }
 }
 
+
+// $('ul.tabs-list li').click(function(){
+
+
+//     var tab_id = $(this).attr('data-tab');
+
+//     $('ul.tabs-list li').removeClass('current');
+//     $('.tab-nested-content').removeClass('current');
+
+//     $(this).addClass('current');
+//     $("#"+tab_id).addClass('current');
+
+//     // var contentH = $("#"+tab_id).height();
+//    // var newHeight = contentH + 100;
+//     // $('.specs .content').height(contentH);
+
+//     if(tab_id == 'tab-1'){
+//       $('.specs .top').css('background', '#eff0f0');
+//     }
+//     else{
+//        $('.specs .top').css('background', 'white');
+//     }
+
+//   });
+
+
+const whichPet = () => {
+    $('.pet-category').each(function() {
+        if(!$(this).hasClass('active')) {
+            $('#submitPet').attr('disabled', 'disabled')
+        }
+
+        $(this).on('click', () => {
+            $('.active').not(this).removeClass('active');
+            $(this).addClass('active')
+
+            $('.pet').not(this).show()
+            $('.active-pet').not(this).hide()
+            $(this).find('.pet').hide()
+            $(this).find('.active-pet').show()
+
+            $('#submitPet').prop("disabled", false)
+            localStorage.setItem('rehome-pet-type', $(this).find('p').text())
+        })
+        
+    })
+}
+
+whichPet()
+
+
+
+const submitPet = document.getElementById('submitPet');
+
+submitPet.addEventListener('click', function() {
+    // let checkHash = location.hash ? location.hash : ('#' + $(this).find('p').text().toLowerCase());
+    // window.location.hash = checkHash
+    // console.log(checkHash)
+    
+    $('#tab-1').hide()
+    $('#tab-2').show()
+
+    document.getElementById('ptype').value = localStorage.getItem('rehome-pet-type')
+})
+
+
 // rehome-pet form
 const addPet = document.querySelector('.rehome-pet');
 //submit button on rehome-pet form
@@ -114,6 +180,8 @@ onAuthStateChanged(auth, (user) => {
                 handlePetForm(userid, street.value, city.value, country.value, pcode.value, state.value)
             })
         })
+    } else {
+        //window.location.href = "./login.html"
     }
 })
 
