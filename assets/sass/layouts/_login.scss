@@ -17,7 +17,7 @@
 }
 
 .login-forgetpw{
-    text-align: right;
+    text-align: right !important;
 }
 
 .login-label-input-div label{
@@ -55,29 +55,49 @@
 
 /* login using google ================ */
   
-.login-main .login-google-text {
-    // border-bottom: 1px solid #100c0c;
+.or-div .login-google-text {
+    border-bottom: 1px solid color.$neutral-color-grey;
+    width:80%;
+    margin: auto;
     position: absolute;
     left: 1.5rem;
     right: 1.5rem;
+    bottom:0;
   }
   
-  .login-google-text p{
-    position: relative;
-    background-color: white;
+  .or-div , .login-google-text a{
+    position:relative;
+    top: 10px;
+    color: color.$neutral-color-grey;
+    padding: 8px;
+    text-decoration: none;
+    letter-spacing: 2px
+  }
+
+  .login-google-text a{
+    background-color:white;
   }
   
-  .login-google-text::before {
-    content: "";
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background-color: #100c0c;
-  }
+  
 
   .select_google button {
     text-align: center;
-    margin:1rem;
+    margin:3.3rem;
   }
+
+  .select_google button i{
+    padding-right:5px;
+  }
+
+  /* set the icon on top of password field */
+
+.login_password_container{
+    position: relative;
+}
+
+.login_password_container i{
+    position: absolute;
+    bottom: 2.5rem;
+    top:2.5rem;
+    right: 1rem;
+}

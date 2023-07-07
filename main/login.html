@@ -4,52 +4,55 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>login page</title>
 
+    <script src="https://kit.fontawesome.com/feb2276715.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./../assets/stylesheet/style.css">
 </head>
 <body>
 
     <main class="login-main">
-    <h1>Login</h1>
+        <h1>Login</h1>
 
-    <h2>Welcome Back!</h2>
+        <h2>Welcome Back!</h2>
     
-    <form action="" class="login">
+        <form action="" class="login">
 
-        <div class="login-label-input-div">
-            <label for="email" class="label">Email</label>
-            <input type="email" name="email" id="signin-email"  class="text-input"  placeholder="name@example.com">
-        </div>
+            <div class="login-label-input-div">
+                <label for="email" class="label">Email</label>
+                <input type="email" name="email" id="signin-email"  class="text-input"  placeholder="name@example.com">
+            </div>
 
-        <div class="login-label-input-div">
-            <label for="password" class="label">Password</label>
-            <input type="password" name="password" id="signin-pw" class="text-input" placeholder="Create Password">
+            <div class="login-label-input-div  login_password_container">
 
-            <i id="showPasswordIcon" class="fa-regular fa-eye-slash"></i>
+                <label for="password" class="label">Password</label>
+                <input type="password" name="password" id="signin-pw" class="text-input" placeholder="Create Password">
 
-            <p class="login-forgetpw">Forget Password?</p>
-        </div>
+                <i id="showPasswordIcon" class="fa-regular fa-eye-slash"></i>
+                <p class="login-forgetpw">Forget Password?</p>
+            </div>
         
+            <button type="submit" class="filled-mob-btn font">login</button>
 
-        <button type="submit" class="filled-mob-btn font">login</button>
-
-        <ul class="login_ul">
-            <li>Don't have an account?<a href="./signup.html">Signup</a></li>
-        </ul>
-    </form>
+            <ul class="login_ul">
+                <li>Don't have an account?<a href="./signup.html">Signup</a></li>
+            </ul>
+        </form>
    
-    <div class="login-google-text">
-        <p>or continue with</p>
-    </div>  
+        <div class="or-div">
+            <div class="login-google-text">
+                <a href="#">or continue with</a>
+            </div>  
+        </div>
+        <div class="select_google">
+            <button type="submit" class="filled-mob-btn font">
+                <i class="fa-brands fa-google"></i>Sign in with Google
+            </button>
+        </div>
 
-    <div class="select_google">
-        <button type="submit" class="filled-mob-btn font"><span></span>Sign in with Google</button>
-    </div>
+        <button class="logout">logout</button>
 
-    <button class="logout">logout</button>
-
-    <script type="module" src="./../assets/js/login.js"></script>
+        <script type="module" src="./../assets/js/login.js"></script>
     </main>
 </body>
 </html>
