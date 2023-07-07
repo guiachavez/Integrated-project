@@ -143,21 +143,32 @@ button.font {
   font-size: 15px;
 }
 
+.label {
+  font-family: "Raleway";
+  font-size: 18px;
+  font-weight: bold;
+}
+
 /*Input Text----------*/
-#text-input {
+.text-input {
   width: 360px;
   height: 44px;
   border-radius: 0.5rem;
   border-style: solid;
 }
 
-#text-input::placeholder {
+.text-input::placeholder {
   color: #818080;
 }
 
-#text-input:focus {
+.text-input:focus {
   outline: none;
   border-color: #0293A7;
+}
+
+.text-input:invalid {
+  outline: none;
+  border-color: #DE3535;
 }
 
 input[type=radio] :checked {
@@ -185,16 +196,16 @@ input[type=radio] :checked {
   transition: all 0.5s;
 }
 
-#toggle-off {
+.toggle-off {
   display: none;
 }
 
-#toggle-off:checked + .toggle-switch {
+.toggle-off:checked + .toggle-switch {
   background-color: #0293A7;
   border-color: #0293A7;
 }
 
-#toggle-off:checked + .toggle-switch::after {
+.toggle-off:checked + .toggle-switch::after {
   left: 17px;
   background-color: #FCF9F7;
 }
