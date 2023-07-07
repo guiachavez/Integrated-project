@@ -4,9 +4,9 @@
 /*Input Text----------*/
 .text-input{
     width: 360px;
-    height: 44px;
-    border-radius: 0.5rem;
-    border-style: solid;
+    height: 35px;
+    border-radius: 0.3rem;
+    border: 1px solid colors.$neutral-color-grey-l;
 }
 
 .text-input::placeholder{

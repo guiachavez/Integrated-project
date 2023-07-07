@@ -1,0 +1,500 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2&family=Raleway&display=swap");
+button.filled-btn,
+button.filled-next-btn,
+button.filled-mob-btn,
+button.filled-next-mob-btn {
+  background-color: #0293A7;
+  color: #FFFFFF;
+  border: 2px solid #0293A7;
+  width: 172px;
+  height: 48px;
+  border-radius: 3rem;
+}
+
+button.filled-btn:hover,
+button.filled-next-btn:hover {
+  background-color: #01333A;
+  color: #FFFFFF;
+  border: 2px solid #01333A;
+  width: 172px;
+  height: 48px;
+  border-radius: 3rem;
+}
+
+button.filled-btn:active,
+button.filled-next-btn:active,
+button.filled-mob-btn:active,
+button.filled-next-mob-btn:active {
+  background-color: #B1DEE4;
+  color: #01333A;
+  border: 2px solid #01333A;
+  width: 172px;
+  height: 48px;
+  border-radius: 3rem;
+}
+
+button.filled-btn:disabled,
+button.filled-next-btn:disabled {
+  background-color: #C5C5C5;
+  color: #818080;
+  border: 2px solid #C5C5C5;
+  width: 172px;
+  height: 48px;
+  border-radius: 3rem;
+}
+
+button.outline-btn,
+button.outline-next-btn,
+button.outline-mob-btn,
+button.outline-next-mob-btn {
+  background-color: #FFFFFF;
+  color: #0293A7;
+  border: 2px solid #0293A7;
+  width: 172px;
+  height: 48px;
+  border-radius: 3rem;
+}
+
+button.outline-btn:hover,
+button.outline-next-btn:hover {
+  background-color: #0293A7;
+  color: #FFFFFF;
+  border: 2px solid #0293A7;
+  width: 172px;
+  height: 48px;
+  border-radius: 3rem;
+}
+
+button.outline-btn:active,
+button.outline-next-btn:active,
+button.outline-mob-btn:active,
+button.outline-next-mob-btn:active {
+  background-color: #B1DEE4;
+  color: #01333A;
+  border: 2px solid #01333A;
+  width: 172px;
+  height: 48px;
+  border-radius: 3rem;
+}
+
+button.outline-btn:disabled,
+button.outline-next-btn:disabled {
+  background-color: #FFFFFF;
+  color: #C5C5C5;
+  border: 2px solid #C5C5C5;
+  width: 172px;
+  height: 48px;
+  border-radius: 3rem;
+}
+
+button.font {
+  font-family: "Raleway";
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.hero-section-title-web {
+  font-family: "Baloo 2";
+  font-size: 55px;
+}
+
+.titles-web {
+  font-family: "Baloo 2";
+  font-size: 32px;
+}
+
+.card-heading-web {
+  font-family: "Raleway";
+  font-size: 22px;
+}
+
+.sub-heading-web {
+  font-family: "Raleway";
+  font-size: 20px;
+}
+
+.paragraph-web {
+  font-family: "Raleway";
+  font-size: 16px;
+}
+
+.hero-section-title-mob {
+  font-family: "Baloo 2";
+  font-size: 30px;
+}
+
+.titles-mob {
+  font-family: "Baloo 2";
+  font-size: 26px;
+}
+
+.card-heading-mob {
+  font-family: "Raleway";
+  font-size: 20px;
+}
+
+.sub-heading-mob {
+  font-family: "Raleway";
+  font-size: 18px;
+}
+
+.paragraph-mob {
+  font-family: "Raleway";
+  font-size: 15px;
+}
+
+.label {
+  font-family: "Raleway";
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/*Input Text----------*/
+.text-input {
+  width: 360px;
+  height: 35px;
+  border-radius: 0.3rem;
+  border: 1px solid #C5C5C5;
+}
+
+.text-input::placeholder {
+  color: #818080;
+}
+
+.text-input:focus {
+  outline: none;
+  border-color: #0293A7;
+}
+
+.text-input:invalid {
+  outline: none;
+  border-color: #DE3535;
+}
+
+input[type=radio] :checked {
+  accent-color: #0293A7;
+}
+
+.toggle-switch {
+  position: relative;
+  display: flex;
+  width: 32px;
+  height: 16px;
+  border-radius: 10px;
+  border: 2px solid #818080;
+}
+
+.toggle-switch::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: #818080;
+  top: 1px;
+  left: 1px;
+  transition: all 0.5s;
+}
+
+.toggle-off {
+  display: none;
+}
+
+.toggle-off:checked + .toggle-switch {
+  background-color: #0293A7;
+  border-color: #0293A7;
+}
+
+.toggle-off:checked + .toggle-switch::after {
+  left: 17px;
+  background-color: #FFFFFF;
+}
+
+.container-2400 {
+  margin: auto;
+  position: relative;
+  width: 1200px;
+}
+
+/* Rehome ==================================== */
+body, h1, h2, p {
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+.rehome-container {
+  display: flex;
+  gap: 1rem;
+}
+.rehome-container > div {
+  width: 50%;
+  flex: 0 1 auto;
+}
+.rehome-container > div:nth-child(2) > div:first-of-type {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.rehome-container .pet-category {
+  border: 1px solid #0293A7;
+  border-radius: 0.5rem;
+  width: 30%;
+  text-align: center;
+  padding: 1rem 0;
+}
+.rehome-container h2 {
+  font-family: "Raleway";
+  font-size: 20px;
+  font-weight: bold;
+}
+.rehome-container p {
+  font-family: "Raleway";
+  font-size: 18px;
+}
+.rehome-container a {
+  text-decoration: none;
+  color: #000000;
+  display: block;
+}
+
+.col-left {
+  position: relative;
+}
+.col-left h1 {
+  font-family: "Baloo 2";
+  font-size: 50px;
+  font-weight: 900;
+  line-height: 1;
+  position: absolute;
+  bottom: 0;
+  padding: 1rem 3rem;
+  color: #FFFFFF;
+  z-index: 1000;
+}
+.col-left img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.col-left::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 999;
+}
+
+.col-right {
+  display: grid;
+  align-content: space-around;
+}
+
+.pet-category.active {
+  background-color: #0293A7;
+}
+
+.active-pet,
+#tab-2,
+#tab-3 {
+  display: none;
+}
+
+.rehome-pet {
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+label {
+  display: grid;
+}
+
+fieldset {
+  border: 1px solid #C5C5C5;
+  width: 360px;
+}
+
+@media screen and (min-width: 1200px) {
+  .wrapper {
+    margin: auto;
+    position: relative;
+    width: 1200px;
+  }
+}
+/* Signup page =========================== */
+.signup_main {
+  text-align: center;
+}
+
+.signup_main h2 {
+  color: #0293A7;
+}
+
+.signup_ul {
+  list-style: none;
+  padding: 0;
+}
+
+.signup_ul li a {
+  text-decoration: none;
+  color: #DE6B35;
+}
+
+/* form of sign up page ================ */
+.signup {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.signup-label-input-div {
+  display: grid;
+  grid-template-rows: repeat(1fr, 1fr);
+}
+
+.signup-label-input-div label {
+  justify-self: start;
+}
+
+/* set the icon on top of password field */
+.signup_password_container {
+  position: relative;
+}
+
+.signup_password_container i {
+  position: absolute;
+  bottom: 2.5rem;
+  top: 2.5rem;
+  right: 1rem;
+}
+
+form {
+  display: flex;
+}
+
+/* Style Guide BUTTONS --------------- */
+button.filled-default,
+button.filled-default-next {
+  background-color: #0293A7;
+  color: #FFFFFF;
+  border: 2px solid #0293A7;
+  width: 172px;
+  height: 48px;
+  border-radius: 3rem;
+}
+
+button.filled-hover,
+button.filled-hover-next {
+  background-color: #01333A;
+  color: #FFFFFF;
+  border: 2px solid #01333A;
+  width: 172px;
+  height: 48px;
+  border-radius: 3rem;
+}
+
+button.outline-active,
+button.filled-active,
+button.filled-active-mob,
+button.outline-active-mob,
+button.outline-active-next,
+button.filled-active-next,
+button.filled-active-next-mob,
+button.outline-active-next-mob {
+  background-color: #B1DEE4;
+  color: #01333A;
+  border: 2px solid #01333A;
+  width: 172px;
+  height: 48px;
+  border-radius: 3rem;
+}
+
+button.filled-disabled,
+button.filled-disabled-next {
+  background-color: #C5C5C5;
+  color: #818080;
+  border: 2px solid #C5C5C5;
+  width: 172px;
+  height: 48px;
+  border-radius: 3rem;
+}
+
+button.outline-default,
+button.outline-default-mob,
+button.outline-default-next,
+button.outline-default-next-mob {
+  background-color: #FFFFFF;
+  color: #0293A7;
+  border: 2px solid #0293A7;
+  width: 172px;
+  height: 48px;
+  border-radius: 3rem;
+}
+
+button.outline-hover,
+button.outline-hover-next {
+  background-color: #0293A7;
+  color: #FFFFFF;
+  border: 2px solid #0293A7;
+  width: 172px;
+  height: 48px;
+  border-radius: 3rem;
+}
+
+button.outline-disabled,
+button.outline-disabled-next {
+  background-color: #FFFFFF;
+  color: #818080;
+  border: 2px solid #818080;
+  width: 172px;
+  height: 48px;
+  border-radius: 3rem;
+}
+
+button.filled-default-mob,
+button.filled-default-next-mob {
+  background-color: #0293A7;
+  color: #FFFFFF;
+  border: 2px solid #0293A7;
+  width: 172px;
+  height: 48px;
+  border-radius: 3rem;
+}
+
+/*Input text -----------------*/
+#input-text,
+#focus-text,
+#error-text {
+  width: 360px;
+  height: 44px;
+  border-radius: 0.5rem;
+  border-style: solid;
+}
+
+#input-text::placeholder {
+  color: #818080;
+}
+
+#focus-text {
+  border-color: #0293A7;
+}
+
+#error-text {
+  border-color: #DE3535;
+}
+
+#checked-checkbox,
+#selected-radio {
+  accent-color: #0293A7;
+}
+
+/*# sourceMappingURL=style.css.map */
