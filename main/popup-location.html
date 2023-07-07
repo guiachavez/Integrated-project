@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- This link tag is required by the TomTom API -->
+    <link rel="stylesheet" type="text/css" href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/maps/maps.css"/>
+
+    <!-- Include JavaScript SDK for TomTom -->
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/maps/maps-web.min.js"></script>
+
+    <!-- Embed the JS file -->
+    <script type="module" src="./../assets/js/popup-location.js" defer></script>
+
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/services/services-web.min.js"></script>
+
+    <!--Style-->
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      #map {
+        height: 500px;
+        width: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <h3>Change Location</h3>
+      <div>
+        <label for="search-city">Search by Zip/City</label>
+        <input type="text" id="search-city" />
+        <label for="search-radius">Search by Location Radius</label>
+        <input type="range" name="Radius" id="radius" min="0" max="10" />
+      </div>
+      <div id="map"></div>
+      <div>
+        <button type="submit" id="apply">Apply</button>
+      </div>
+    </div>
+  </body>
+</html>

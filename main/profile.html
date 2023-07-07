@@ -9,8 +9,10 @@
     </head>
 
     <body>
-        <img class="card-img-top" id="photo" width="250" height="300">
-
+        <div id="profile-pic">
+            <img class="card-img-top" id="photo" width="250" height="300">
+        </div>
+        
         <table class="table is-striped is-narrow is-hoverable is-fullwidth">
             <thead>
             <tr>
@@ -47,6 +49,29 @@
             <tbody id="result">
             </tbody>
         </table>
+
+        <h2> Animals inquired </h2>
+
+
+        <table class="table is-striped is-narrow is-hoverable is-fullwidth">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Size</th>
+                <th>Gender</th>
+                <th>Type</th>
+                <th>Breed</th>
+                <th>Color</th>
+                <th>Description</th>
+                <th>Status</th> 
+            </tr>
+            
+            </thead>
+            <tbody id="result_inq">
+            </tbody>
+        </table>
+
 
         <script type="module" src="./../assets/js/profile.js" defer></script>
     </body>
