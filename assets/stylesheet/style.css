@@ -264,6 +264,79 @@ input[type=radio] :checked {
   right: 1rem;
 }
 
+/* login page ====================== */
+/* form of login page ===================== */
+.login {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.login-label-input-div {
+  display: grid;
+  grid-template-rows: repeat(1fr, 1fr);
+}
+
+.login-forgetpw {
+  text-align: right;
+}
+
+.login-label-input-div label {
+  justify-self: start;
+}
+
+/* login main ================= */
+.login-main {
+  text-align: center;
+}
+
+.login-main h1 {
+  color: #0293A7;
+}
+
+.login-main h2 {
+  color: #94390F;
+}
+
+.login_ul {
+  padding: 0;
+  list-style: none;
+}
+
+.login_ul li a {
+  color: #DE6B35;
+  text-decoration: none;
+}
+
+/* login using google ================ */
+.login-main .login-google-text {
+  position: absolute;
+  left: 1.5rem;
+  right: 1.5rem;
+}
+
+.login-google-text p {
+  position: relative;
+  background-color: white;
+}
+
+.login-google-text::before {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #100c0c;
+}
+
+.select_google button {
+  text-align: center;
+  margin: 1rem;
+}
+
 /* Style Guide BUTTONS --------------- */
 button.filled-default,
 button.filled-default-next {
