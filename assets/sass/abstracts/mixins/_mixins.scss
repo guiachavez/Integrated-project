@@ -22,6 +22,57 @@
 }
 
 @mixin maxwidth{
-    max-width: 2400px;
     margin: auto;
+    position: relative;
+    width: 1200px;
+}
+
+
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin grid($rows: 1fr, $columns: 1fr, $qty: 1) {
+    display: grid;
+    grid-template-rows: $rows;
+    grid-template-columns: repeat($qty, $columns);
+}
+
+@mixin autoGridColumn($px) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax($px, 1fr));
+}
+
+
+@mixin position($position) {
+    position: absolute;
+    
+    @if $position == 'top-horizontally-center' {
+        top: 0;
+        left: 50%;
+        transform: translate(-50%);
+    }
+    @else if $position == 'bottom-horizontally-center' {
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%);
+    }
+    @else if $position == 'vertically-center' {
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+    } 
+    @else if $position == 'both-center' {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    @else if $position == 'absolute' {
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
 }
