@@ -6,27 +6,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Pawfect Match - Create account</title>
+
+    <link rel="stylesheet" href="./../assets/stylesheet/style.css">
+
+    <script src="https://kit.fontawesome.com/feb2276715.js" crossorigin="anonymous"></script>
 </head>
 <body>
+
+    <main class="signup_main">
     <h1>Start your pawfect journey!</h1>
+    <h2 class="titles-mob">Signup</h2>
+    <h3>Register your details to create an account</h3>
 
-    <form action="" class="signup">
-        <label for="email">Email</label>
-        <input type="email" name="email" id="useremail">
+    <form action="" class="signup" >
+        
+        <div class="signup-label-input-div">
+            <label for="fname" class="label">First Name</label>
+                <input type="text" name="fname" id="fname" class="text-input" placeholder="Enter your First Name">
+            
+        </div>
 
-        <label for="password">Password</label>
-        <input type="password" name="password" id="signuppw">
+        <div class="signup-label-input-div">
+            <label for="lname" class="label">Last Name</label>
+                <input type="text" name="lname" id="lname" class="text-input" placeholder="Enter your Last Name">
+            
+        </div>
 
-        <label for="fname">First Name</label>
-        <input type="text" name="fname" id="fname">
+    
+        <div class="signup-label-input-div">
+            <label for="email" class="label">Email</label>
+                <input type="email" name="email" id="useremail" class="text-input"  placeholder="name@example.com" >
+            
+        </div>
 
-        <label for="lname">Last Name</label>
-        <input type="text" name="lname" id="lname">
+        <div class="signup-label-input-div signup_password_container">
+            <label for="password" class="label">Password</label>
+                <input type="password" name="password" id="signuppw" class="text-input" placeholder="Create Password">
+                <i id="showPasswordIcon" class="fa-regular fa-eye-slash"></i>
+        </div>
 
-        <button type="submit">Submit</button>
+
+       
+        <button type="submit" class="filled-mob-btn font">Signup</button>
+
+        <ul class="signup_ul">
+        <li>Already have an account?<a href="./login.html">Login</a></li>
+        </ul>   
     </form>
 
     <script type="module" src="./../assets/js/signup.js"></script>
-
+    </main>
 </body>
 </html>

@@ -1,0 +1,66 @@
+/* Signup page =========================== */
+
+@use "./../abstracts/variables/colors" as color;
+
+// sign in main =============
+
+
+.signup_main{
+    text-align: center;
+}
+
+.signup_main h2{
+    color: color.$primary-color-main;
+}
+
+.signup_ul{
+    list-style: none;
+    padding: 0;
+}
+
+.signup_ul li a{
+    text-decoration: none;
+    color:color.$accent-color-main;
+}
+
+/* form of sign up page ================ */
+
+.signup{
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    gap:1rem;
+}
+
+.signup-label-input-div{
+   display: grid;
+   grid-template-rows: repeat(1fr , 1fr);
+}
+
+.signup-label-input-div label{
+    justify-self: start;
+}
+
+
+/* set the icon on top of password field */
+
+.signup_password_container{
+    position: relative;
+}
+
+.signup_password_container i{
+    position: absolute;
+    bottom: 2.5rem;
+    top:2.5rem;
+    right: 1rem;
+}
+
+
+
+
+
+
+
+
+
