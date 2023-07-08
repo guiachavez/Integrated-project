@@ -104,7 +104,7 @@ function showAddressOnMap(address, organization) {
   orgAddress.textContent = `Address: ${address}`;
   orgInfo.appendChild(orgAddress);
 
-  //Display the list
+  //Stores the shelters' info to use on the list
   orgListArr.push(orgInfo);
 
   fetch(geocodingAPIUrl)
@@ -122,6 +122,7 @@ function showAddressOnMap(address, organization) {
         const popup = new tt.Popup({ closeButton: false }).setDOMContent(
           orgInfo
         );
+
         //Sets up marker with the pop up
         const newMarker = new tt.Marker()
           .setLngLat([longitude, latitude])
@@ -200,8 +201,8 @@ function main() {
 window.addEventListener("load", main);
 
 //Displays the list of shelters on the left
-setTimeout(() => {
+setTimeout(async () => {
   for (let i = 0; i < orgListArr.length; i++) {
-    orgList.append(orgListArr[i]);
+    await orgList.append(orgListArr[i]);
   }
 }, 15000);
