@@ -1,4 +1,4 @@
-import { getFirestore, getDoc, doc, collection, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js'
+import { getFirestore, getDoc, doc, collection, setDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js'
 import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js';
 import { app } from './config.js'
 
@@ -13,7 +13,7 @@ const pet_id = params.get("pet_id");
 const own_id = params.get("own_id");
 
 // refs
-const inqRef = collection(db, 'inquiries')
+const inqRef = doc(collection(db, 'inquiries'))
 // for targeting specific document
 const accRef = doc(db, 'accounts', own_id)
 const petRef = doc(db, 'animals', pet_id)
@@ -21,7 +21,7 @@ const petRef = doc(db, 'animals', pet_id)
 
 console.log(own_id, pet_id)
 class appDetails {
-    constructor(appId, afname, alname, petownerId, pofname, polname, petId, petname, inquired_at) {
+    constructor(appId, afname, alname, petownerId, pofname, polname, petId, petname, inquired_at, inquiryId, isAccepted) {
         this.applicant = {
             applicantId: appId,
             app_firstName: afname,
@@ -35,6 +35,8 @@ class appDetails {
         this.petId = petId;
         this.petname = petname;
         this.inquired_at = inquired_at;
+        this.inquiryId = inquiryId;
+        this.isAccepted = isAccepted;
     }
 }
 
@@ -72,16 +74,18 @@ const getUserDetails = (petownerId, pofname, polname, petId, petname) => {
 
             let appId = user.uid;
             let inquired_at = new serverTimestamp();
-            console.log(inquired_at)
+            let inquiryId = inqRef.id
+            let isAccepted = "init"
+            console.log(inquiryId)
 
             submit.addEventListener('click', (e) => {
                 e.preventDefault();
                 
                 if(localStorage.getItem('source') == 'owner') {
-                    const appdetails = new appDetails(appId, afname.value, alname.value, petownerId, pofname, polname, petId, petname, inquired_at)
+                    const appdetails = new appDetails(appId, afname.value, alname.value, petownerId, pofname, polname, petId, petname, inquired_at, inquiryId, isAccepted)
                     console.log(appdetails)
         
-                    addDoc(inqRef, Object.assign({}, appdetails))
+                    setDoc(inqRef, Object.assign({}, appdetails))
                         .then(() => {
                             inquirePet.reset();
                         })

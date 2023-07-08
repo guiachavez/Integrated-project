@@ -55,9 +55,6 @@ function handleForm(e) {
 }
 
 
-
- 
- 
 const provider = new GoogleAuthProvider(app);
 
 const googleButton = document.querySelector('.google-sign-in');
@@ -143,14 +140,4 @@ googleButton.addEventListener('click', (e) => {
         });
 });
 
-
-
-
-
-
-
-
-
-
-
-   
+/* to show the password ============= */
