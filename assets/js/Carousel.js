@@ -1,5 +1,5 @@
 
-document.addEventListener("DOMContentLoaded", () => {
+/* document.addEventListener("DOMContentLoaded", () => {
 const buttons = document.querySelectorAll("[data-carousel-button]")
 
 buttons.forEach(button => {
@@ -24,4 +24,20 @@ buttons.forEach(button => {
     });
 });
 
-});
+}); */
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const buttons = document.querySelectorAll("[data-carousel-button]");
+    const slides = document.querySelector("[data-slides]");
+    let currentIndex = 0;
+  
+    buttons.forEach(button => {
+      button.addEventListener("click", () => {
+        const offset = button.dataset.carouselButton === "next" ? 1 : -1;
+        currentIndex = (currentIndex + offset + slides.children.length) % slides.children.length;
+        slides.children[currentIndex].dataset.active = true;
+      });
+    });
+  });
+  

@@ -1,4 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Baloo+2&family=Raleway&display=swap");
+button.google-btn {
+  width: 235px;
+  height: 56px;
+  border-radius: 22px;
+  background-color: white;
+  border: 1px solid #C5C5C5;
+  font-size: 18px;
+}
+
 button.filled-btn,
 button.filled-next-btn,
 button.filled-mob-btn,
@@ -10,6 +19,7 @@ button.filled-next-mob-btn {
   height: 48px;
   border-radius: 3rem;
 }
+
 
 button.filled-btn:hover,
 button.filled-next-btn:hover {
@@ -32,6 +42,7 @@ button.filled-next-mob-btn:active {
   height: 48px;
   border-radius: 3rem;
 }
+
 
 button.filled-btn:disabled,
 button.filled-next-btn:disabled {
@@ -138,26 +149,55 @@ button.font {
   font-size: 18px;
 }
 
+.header-link {
+  font-family: "Raleway";
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.header-login {
+  font-family: "Raleway";
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.sub-nav-link {
+  font-family: "Raleway";
+  font-size: 18px;
+}
+
 .paragraph-mob {
   font-family: "Raleway";
   font-size: 15px;
 }
 
+.label {
+  font-family: "Raleway";
+  font-size: 18px;
+  font-weight: bold;
+}
+
 /*Input Text----------*/
-#text-input {
+.text-input {
   width: 360px;
   height: 44px;
   border-radius: 0.5rem;
   border-style: solid;
+  border-width: 1px;
 }
 
-#text-input::placeholder {
+.text-input::placeholder {
   color: #818080;
 }
 
-#text-input:focus {
+.text-input:focus {
   outline: none;
   border-color: #0293A7;
+}
+
+.text-input:invalid {
+  outline: none;
+  border-color: #DE3535;
 }
 
 input[type=radio] :checked {
@@ -185,18 +225,195 @@ input[type=radio] :checked {
   transition: all 0.5s;
 }
 
-#toggle-off {
+.toggle-off {
   display: none;
 }
 
-#toggle-off:checked + .toggle-switch {
+.toggle-off:checked + .toggle-switch {
   background-color: #0293A7;
   border-color: #0293A7;
 }
 
-#toggle-off:checked + .toggle-switch::after {
+.toggle-off:checked + .toggle-switch::after {
   left: 17px;
   background-color: #FCF9F7;
+}
+
+
+/*Header section ------------*/
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5%;
+}
+
+.logo img {
+  width: 150px;
+}
+
+header a {
+  text-decoration: none;
+  color: #0F0500;
+}
+
+.hamburger-menu a {
+  display: block;
+}
+
+.main-menu ul.header-link {
+  list-style-type: none;
+  display: none;
+}
+
+.main-menu ul li a:hover {
+  color: #0293A7;
+}
+
+.login {
+  display: none;
+  text-align: center;
+  border-top: 1px solid #818080;
+  margin: 2%;
+}
+
+.login a {
+  color: #0293A7;
+}
+
+.find-pet-dd {
+  display: none;
+  min-width: 120px;
+  border: 2px solid #0F0500;
+  list-style-type: none;
+  padding: 0;
+  background-color: #fff;
+}
+
+.find-pet-dd a {
+  color: #818080;
+  padding: 10px 2%;
+  display: block;
+  text-align: left;
+}
+
+ul.find-pet a {
+  color: #818080;
+}
+
+.menu {
+  transform: translateX(100%);
+}
+
+.menu-mob {
+  position: fixed;
+  z-index: 1;
+  top: 3.5rem;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: all 1.5s ease-in;
+  transform: translateX(0);
+  backdrop-filter: blur(3px);
+  background-color: #FCF9F7;
+}
+
+@media screen and (min-width: 460px) {
+  .logo img {
+    width: 200px;
+  }
+  .find-pet-dd {
+    position: absolute;
+  }
+  .menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3rem;
+    transform: none;
+  }
+  .hamburger-menu a {
+    display: none;
+  }
+  header.menu {
+    display: flex;
+    justify-content: space-between;
+  }
+  .main-menu ul.header-link {
+    display: flex;
+    gap: 1rem;
+  }
+  .login {
+    display: block;
+    border: unset;
+  }
+}
+
+/*Footer section ------------*/
+footer {
+  background-color: #FEF0E6;
+  padding: 5%;
+}
+
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.app-logo {
+  grid-column: 1/-1;
+  display: flex;
+  justify-content: center;
+}
+
+.app-logo img {
+  width: 200px;
+}
+
+.quick-link ul {
+  list-style-type: none;
+}
+
+.quick-link a,
+.about-us a {
+  text-decoration: none;
+  color: #0F0500;
+}
+
+.quick-link h2,
+.about-us h2 {
+  color: #94390F;
+}
+
+.quick-link li, .team {
+  display: flex;
+  align-items: center;
+}
+
+.copyright {
+  border-top: 1px solid #026E7D;
+  text-align: center;
+  color: #94390F;
+}
+
+.copyright span {
+  color: #026E7D;
+}
+
+@media screen and (min-width: 820px) {
+  .footer-links {
+    display: flex;
+    justify-content: space-between;
+  }
+  .quick-link ul {
+    display: flex;
+    gap: 1rem;
+    padding: 0;
+  }
+  .copyright {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
 .container-2400 {
@@ -204,12 +421,27 @@ input[type=radio] :checked {
   margin: auto;
 }
 
-/* HOMEPAGE STYLING =============================================================================== */
-/* Style the search??????? */
-ul {
+/* Signup page =========================== */
+.signup-form-div {
+  text-align: center;
+}
+
+.signup-form-div h2 {
+  color: #0293A7;
+}
+
+.signup_ul {
   list-style: none;
   padding: 0;
 }
+
+.signup_ul li a {
+  text-decoration: none;
+  color: #DE6B35;
+}
+
+/* HOMEPAGE STYLING =============================================================================== */
+/* Style the search??????? */
 
 .select-wrapper {
   position: relative;
@@ -286,6 +518,184 @@ ul {
 .custom-option.selected {
   color: #ffffff;
   background-color: #305c91;
+}
+
+
+/* form of sign up page ================ */
+.signup {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.signup-label-input-div {
+  display: grid;
+  grid-template-rows: repeat(1fr, 1fr);
+}
+
+.signup-label-input-div label {
+  justify-self: start;
+}
+
+/* set the icon on top of password field */
+.password-input-container {
+  position: relative;
+}
+
+.password-input-container img {
+  position: absolute;
+  height: 20px;
+  right: 1rem;
+  bottom: 1.1rem;
+}
+
+.select_google button {
+  position: relative;
+  top: 3rem;
+  margin: auto;
+}
+
+.google-btn {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  padding: 1rem;
+  align-items: center;
+}
+
+.google-btn span img {
+  height: 30px;
+}
+
+@media screen and (min-width: 1000px) {
+  .signup_main {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    align-items: center;
+  }
+  .image-container {
+    height: 100%;
+    width: auto;
+    background: center/cover no-repeat url("/assets/images/petfriendly-home.svg");
+    border-radius: 1rem;
+  }
+}
+/* login page ====================== */
+/* form of login page ===================== */
+.login {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.login-label-input-div {
+  display: grid;
+  grid-template-rows: repeat(1fr, 1fr);
+}
+
+.login-forgetpw {
+  text-align: right !important;
+}
+
+.login-label-input-div label {
+  justify-self: start;
+}
+
+/* login main ================= */
+.login-form-div {
+  text-align: center;
+}
+
+.login-form-div h1 {
+  color: #0293A7;
+}
+
+.login-form-div h2 {
+  color: #94390F;
+}
+
+.login_ul {
+  padding: 0;
+  list-style: none;
+}
+
+.login_ul li a {
+  color: #DE6B35;
+  text-decoration: none;
+}
+
+/* login using google ================ */
+.or-div .login-google-text {
+  border-bottom: 1px solid #818080;
+  width: 80%;
+  margin: auto;
+  position: absolute;
+  left: 1.5rem;
+  right: 1.5rem;
+  bottom: 0;
+}
+
+.or-div, .login-google-text a {
+  position: relative;
+  top: 10px;
+  color: #818080;
+  padding: 8px;
+  text-decoration: none;
+  letter-spacing: 2px;
+}
+
+.login-google-text a {
+  background-color: white;
+}
+
+/* set the icon on top of password field */
+.password-input-container {
+  position: relative;
+}
+
+.password-input-container img {
+  position: absolute;
+  height: 20px;
+  right: 1rem;
+  bottom: 1.1rem;
+}
+
+.select_google button {
+  position: relative;
+  top: 3rem;
+  margin: auto;
+}
+
+.google-btn {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  padding: 1rem;
+  align-items: center;
+}
+
+.google-btn span img {
+  height: 30px;
+}
+
+@media screen and (min-width: 1000px) {
+  .login-main {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    align-items: center;
+  }
+  .image-container {
+    height: 100%;
+    width: auto;
+    background: center/cover no-repeat url("/assets/images/Pet-img-2.svg");
+    border-radius: 1rem;
+  }
 }
 
 /* Style Guide BUTTONS --------------- */
