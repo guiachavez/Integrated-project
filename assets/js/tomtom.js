@@ -105,11 +105,7 @@ function showAddressOnMap(address, organization) {
   orgInfo.appendChild(orgAddress);
 
   //Display the list
-  // orgList.append(orgInfo);
   orgListArr.push(orgInfo);
-  for (let i = 0; i < orgListArr.length; i++) {
-    orgList.append(orgListArr[i]);
-  }
 
   fetch(geocodingAPIUrl)
     .then((response) => response.json())
@@ -202,3 +198,10 @@ function main() {
 }
 
 window.addEventListener("load", main);
+
+//Displays the list of shelters on the left
+setTimeout(() => {
+  for (let i = 0; i < orgListArr.length; i++) {
+    orgList.append(orgListArr[i]);
+  }
+}, 15000);

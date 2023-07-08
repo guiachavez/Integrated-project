@@ -10,8 +10,8 @@ button.filled-default-next {
   border-radius: 3rem;
 }
 
-button.filled-hover,
-button.filled-hover-next {
+button.filled-default:hover,
+button.filled-default-next:hover {
   background-color: #01333A;
   color: #FCF9F7;
   border: 2px solid #01333A;
@@ -20,14 +20,9 @@ button.filled-hover-next {
   border-radius: 3rem;
 }
 
-button.filled-active,
-button.outline-active,
-button.filled-active-mob,
-button.outline-active-mob,
-button.filled-active-next,
-button.outline-active-next,
-button.filled-active-next-mob,
-button.outline-active-next-mob {
+button.filled-default:active,
+button.filled-default-next:active,
+button.outline-default:active {
   background-color: #B1DEE4;
   color: #01333A;
   border: 2px solid #01333A;
@@ -36,8 +31,8 @@ button.outline-active-next-mob {
   border-radius: 3rem;
 }
 
-button.filled-disabled,
-button.filled-disabled-next {
+button.filled-default:disabled,
+button.filled-default-next:disabled {
   background-color: #C5C5C5;
   color: #818080;
   border: 2px solid #C5C5C5;
