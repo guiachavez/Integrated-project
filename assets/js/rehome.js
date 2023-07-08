@@ -56,14 +56,95 @@ class Petdetails {
     }
 }
 
-// rehome-pet form
+// choosing pet on the first page of rehome
+const whichPet = () => {
+    $('.pet-category').each(function() {
+        if(!$(this).hasClass('active')) {
+            $('#submitPet').attr('disabled', 'disabled')
+        }
+
+        $(this).on('click', () => {
+            $('.active').not(this).removeClass('active');
+            $(this).addClass('active')
+
+            $('.pet').not(this).show()
+            $('.active-pet').not(this).hide()
+            $(this).find('.pet').hide()
+            $(this).find('.active-pet').show()
+
+            $('#submitPet').prop("disabled", false)
+            localStorage.setItem('rehome-pet-type', $(this).find('p').text())
+        })
+        
+    })
+}
+whichPet()
+
+// after choosing pet proceed to tab-2
+const submitPet = document.getElementById('submitPet');
+let pages = document.querySelectorAll('.tab');
+let bar = document.querySelectorAll('.progress-holder')
+
+
+let hash = () => {
+    let checkTab = location.hash ? location.hash : '#tab-1';
+    for(let el of pages) {
+        if('#'+el.id == checkTab) {
+            console.log(checkTab)
+            el.style.display = 'block'
+        } else {
+            el.style.display = 'none'
+        }
+    }
+
+    for(let i of bar) {
+        if(i.classList.contains(checkTab.slice(1))) {
+            $(i).find('.progress-bar').css({
+                'width': '100%',
+                'opacity': '40%'
+            })
+        }
+
+        if(location.hash == '#tab-2') {
+            $('.tab-1 .progress-bar').css({
+                'width': '100%',
+            })
+
+            $('.tab-3 .progress-bar').css({
+                'width': '0%',
+            })
+        } else if(location.hash == '#tab-3') {
+            $('.tab-1 .progress-bar').css({
+                'width': '100%'
+            })
+            $('.tab-2 .progress-bar').css({
+                'width': '100%',
+                'opacity': '1'
+            })
+        }
+    }
+}
+
+
+submitPet.addEventListener('click', function() {
+
+    $('#tab-progress').addClass('active')
+
+    location.hash = '#tab-2'
+    hash()
+
+    document.getElementById('ptype').value = localStorage.getItem('rehome-pet-type')
+
+
+})
+
+
+// rehome-pet form and submit button on rehome-pet form
 const addPet = document.querySelector('.rehome-pet');
-//submit button on rehome-pet form
 const submit = document.getElementById('post-now');
 
-// rehome-user form
+// rehome-user form and submit button on rehome-owner form
 const userForm = document.querySelector('.rehome-user');
-//submit button on rehome-owner form
 const submitOwner = document.getElementById('post-owner')
 
 // user form inputs
@@ -77,6 +158,7 @@ let state = document.getElementById('userstate');
 let pcode = document.getElementById('userpcode');
 let street = document.getElementById('userstreet');
 
+// check if user is logged in, if yes auto populate fields else redirect to login page
 onAuthStateChanged(auth, (user) => {
     if (user) {
         const uidRef = doc(db, "accounts", user.uid); 
@@ -84,7 +166,7 @@ onAuthStateChanged(auth, (user) => {
 
         getDoc(uidRef).then(docSnap => {
             let data = docSnap.data();
-            console.log(data)
+
             fname.value = data.firstName;
             lname.value = data.lastName;
             email.value = data.email;
@@ -99,21 +181,25 @@ onAuthStateChanged(auth, (user) => {
                 pcode.value = data.address.postcode
                 country.value = data.address.country
             }
-            console.log(isOwner)
-            if(isOwner == false) {
-                console.log('here')
-                submitOwner.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    console.log('called')
-                    handleUserForm(user, phone, street, city, country, pcode, state)
-                })
-            }
+            
+            submitOwner.addEventListener('click', (e) => {
+                e.preventDefault();
+                handleUserForm(user, phone, street, city, country, pcode, state)
+                handlePetForm(userid, street.value, city.value, country.value, pcode.value, state.value)
+            })
+            
 
             submit.addEventListener('click', (e) => {
                 e.preventDefault();
-                handlePetForm(userid, street.value, city.value, country.value, pcode.value, state.value)
+                console.log('pet')
+
+                location.hash = '#tab-3'
+                hash()
+                
             })
         })
+    } else {
+        //window.location.href = "./login.html"
     }
 })
 
@@ -125,12 +211,12 @@ async function handlePetForm(userid, street, city, country, pcode, state) {
     let ptype = document.getElementById('ptype').value;
     let pbreed = document.getElementById('pbreed').value;
     let pcolor = document.getElementById('pcolor').value;
-    let page = document.querySelector('input[name="age"]:checked').value;
-    let pgender = document.querySelector('input[name="gender"]:checked').value;
-    let psize = document.querySelector('input[name="size"]:checked').value;
+    let page = document.getElementById('age').value;
+    let pgender = document.getElementById('gender').value;
+    let psize = document.getElementById('size').value;
     let pdesc = document.getElementById('pdesc').value;
-    let pht = JSON.parse(document.querySelector('input[name="trained"]:checked').value);
-    let pgwc = JSON.parse(document.querySelector('input[name="children"]:checked').value);
+    let pht = document.querySelector("input[name='trained']").checked ? 1 : 0;
+    let pgwc = document.querySelector("input[name='children']").checked ? 1 : 0;
     let petphoto = myFile.files
     let isAdopted = "init";
 
@@ -157,13 +243,21 @@ async function handlePetForm(userid, street, city, country, pcode, state) {
     setTimeout(() => {
         const petdetails = new Petdetails(pname, ptype, pbreed, pcolor, page, pgender, psize, pdesc, pht, pgwc, photos, userid, street, city, country, pcode, state, isAdopted)
  
+        $('.modal.spinner').removeClass('modal-active')
         addDoc(aniRef, Object.assign({}, petdetails))
             .then(() => {
                 addPet.reset();
                 document.querySelector('.displayImages').innerHTML = ''
-        })
-    }, 5000)
+                userForm.reset()
+                $('.success-modal').addClass('modal-active');
 
+            }).catch((err) => {
+                console.log(err.message)
+                //add frontend display here for error message
+            })
+    }, 4000)
+
+    $('.modal.spinner').addClass('modal-active')
     //add breed and color to FIRESTORE
     const typeRef = doc(db, 'types', ptype);
     updateDoc(typeRef, {
@@ -176,6 +270,8 @@ async function handlePetForm(userid, street, city, country, pcode, state) {
     updateDoc(userRef, {
         isOwner: true
     });
+
+    
 }
 
 
@@ -187,7 +283,7 @@ function handleUserForm(user, phone, street, city, country, pcode, state) {
     const docRef = doc(db, 'accounts', user.uid)
     setDoc(docRef, Object.assign({}, userdetails,),  { merge: true })
         .then(() => {
-            userForm.reset()
+            
         })
 
 
@@ -201,12 +297,6 @@ function handleUserForm(user, phone, street, city, country, pcode, state) {
 let imageInput = document.getElementById('myFile');
 let imageOutput = document.querySelector('.displayImages')
 let imageArr = []
-
-const deleteImage = () => {
-    console.log('called')
-    imageArr.splice(i, 1)
-    displayImages()
-}   
 
 imageInput.addEventListener("change", () => {
     let uploadedImages = imageInput.files
@@ -222,11 +312,66 @@ const displayImages = () => {
     let images = ''
 
     imageArr.forEach((img, i) => {
-        images += `<div class="image">
+        images += `<div class="upload-image">
                         <img src="${URL.createObjectURL(img)}" alt="image">
-                        <div onclick="deleteImage(${i})">&times;</div>
+                        <div class="close">&times;</div>
                     </div>`
     })
 
     imageOutput.innerHTML = images   
+    console.log(imageArr)
+
+    $('.close').each(function() {
+        $(this).on('click', () => {
+            $(this).closest('.upload-image').remove()
+        })
+    })
 }
+
+
+// check if fields have values
+
+$('.rehome-pet input').bind('keyup', function() {
+    checkVal()
+})
+
+$('.rehome-pet textarea').bind('keyup', function() {
+    checkVal()
+})
+
+$('.rehome-pet select').change(function(){
+    checkVal()
+})
+
+
+function checkVal() {
+    let valArr = []
+    $('[required]').each(function() {
+        if ($(this).val() != '') {
+            valArr.push($(this).val())
+        }
+    })
+
+    //return empty
+    console.log(valArr)
+    console.log(valArr.length)
+    const checkArr = (currentValue) => currentValue != null;
+   if (valArr.length >= 8 && valArr.every(checkArr)) {
+    submit.removeAttribute('disabled')
+    localStorage.setItem('pet-details-form', JSON.stringify(valArr))
+   } else {
+    submit.setAttribute('disabled', 'disabled')
+   }
+}
+
+checkVal()
+
+$('#back-pet-form').on('click', () => {
+    location.hash = '#tab-2'
+    hash()
+})
+
+$('.go-home').on('click', function() {
+    window.location.href = './index.html'
+})
+

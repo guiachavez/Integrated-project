@@ -64,7 +64,7 @@ button.outline-next-mob-btn:active{
 
 button.outline-btn:disabled,
 button.outline-next-btn:disabled{
-    @include mx.button-style(colors.$neutral-color-white, colors.$neutral-color-grey, colors.$neutral-color-grey);
+    @include mx.button-style(colors.$neutral-color-white, colors.$neutral-color-grey-l, colors.$neutral-color-grey-l);
 }
 
 // Font used for button
