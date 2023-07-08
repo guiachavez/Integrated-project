@@ -76,3 +76,15 @@
         right: 0;
     }
 }
+
+@mixin modalBackground {
+    transition: 0.75s all cubic-bezier(0.23, 1, 0.32, 1);
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    overflow: auto;
+    background: rgba(0, 0, 0, 0.88);
+}

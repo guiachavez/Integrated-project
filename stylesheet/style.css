@@ -154,6 +154,7 @@ button.font {
   width: 360px;
   height: 35px;
   border-radius: 0.3rem;
+  padding: 0;
   border: 1px solid #C5C5C5;
 }
 
@@ -225,6 +226,17 @@ img {
   max-width: 100%;
 }
 
+a {
+  text-decoration: none;
+  color: #000000;
+  display: block;
+}
+
+.content-center {
+  display: grid;
+  justify-content: center;
+}
+
 .rehome-container {
   display: flex;
   gap: 1rem;
@@ -254,11 +266,6 @@ img {
   font-family: "Raleway";
   font-size: 18px;
 }
-.rehome-container a {
-  text-decoration: none;
-  color: #000000;
-  display: block;
-}
 
 .col-left {
   position: relative;
@@ -270,7 +277,7 @@ img {
   line-height: 1;
   position: absolute;
   bottom: 0;
-  padding: 1rem 3rem;
+  padding: 3rem;
   color: #FFFFFF;
   z-index: 1000;
 }
@@ -301,24 +308,196 @@ img {
 }
 
 .active-pet,
+#tab-progress,
 #tab-2,
 #tab-3 {
   display: none;
 }
 
-.rehome-pet {
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 100%;
+.form-fields {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
 }
 
 label {
   display: grid;
 }
 
-fieldset {
+select,
+textarea {
   border: 1px solid #C5C5C5;
   width: 360px;
+  height: 35px;
+  outline: 0;
+  border-radius: 0.3rem;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  cursor: pointer;
+  background-color: #818080;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: #FFFFFF;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #0293A7;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #0293A7;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.toggle-attributes {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+
+.toggle-attributes label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  row-gap: 2rem;
+  width: 50%;
+}
+
+.upload-image img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border: 1px solid #C5C5C5;
+}
+
+.displayImages {
+  display: flex;
+}
+
+#tab-2 form > div {
+  margin-bottom: 2rem;
+}
+
+#tab-2 form > div:last-of-type,
+#tab-3 form > div:last-of-type {
+  display: flex;
+  justify-content: flex-end;
+  gap: 2rem;
+  align-items: center;
+}
+
+#tab-progress.active {
+  display: grid;
+}
+
+#tab-progress {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  width: 100%;
+  justify-self: center;
+}
+
+.progress-holder {
+  display: inline-flex;
+  overflow: hidden;
+  background-color: #C5C5C5;
+  text-align: center;
+  border-radius: 0.25rem;
+  margin: 0.2em 0;
+  height: 0.5rem;
+  width: 100%;
+}
+
+.progress-bar {
+  width: 0%;
+  background-color: #0293A7;
+}
+
+.modal {
+  transition: 0.75s all cubic-bezier(0.23, 1, 0.32, 1);
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 10000;
+  opacity: 0;
+  visibility: hidden;
+  overflow: auto;
+  background: rgba(0, 0, 0, 0.88);
+}
+
+.modal.modal-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #FFFFFF;
+  width: 50%;
+  margin: auto;
+  padding: 3rem;
+  text-align: center;
+}
+
+.lottie {
+  width: 300px;
+  height: 200px;
+  margin: auto;
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  margin: auto;
+  padding: 3rem;
+  text-align: center;
 }
 
 @media screen and (min-width: 1200px) {
@@ -375,10 +554,6 @@ fieldset {
   bottom: 2.5rem;
   top: 2.5rem;
   right: 1rem;
-}
-
-form {
-  display: flex;
 }
 
 /* Style Guide BUTTONS --------------- */
