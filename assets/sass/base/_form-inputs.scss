@@ -1,20 +1,26 @@
 @use '../abstracts/variables/colors' as colors;
+@use '../abstracts/mixins/mixins' as mx;
 
 /*Input Text----------*/
-#text-input{
+.text-input{
     width: 360px;
     height: 44px;
     border-radius: 0.5rem;
     border-style: solid;
 }
 
-#text-input::placeholder{
+.text-input::placeholder{
     color: colors.$neutral-color-grey;
 }
 
-#text-input:focus{
+.text-input:focus{
     outline: none;
     border-color: colors.$primary-color-main;
+}
+
+.text-input:invalid{
+    outline: none;
+    border-color: colors.$semantic-red-error;
 }
 
 // checkbox and radio button
@@ -44,16 +50,16 @@ input[type="radio"] :checked{
     transition:  all 0.5s;
 }
 
-#toggle-off{
+.toggle-off{
     display: none;
 }
 
-#toggle-off:checked + .toggle-switch{
+.toggle-off:checked + .toggle-switch{
     background-color: colors.$primary-color-main;
     border-color: colors.$primary-color-main;
 }
 
-#toggle-off:checked + .toggle-switch::after{
+.toggle-off:checked + .toggle-switch::after{
     left: 17px;
     background-color: colors.$neutral-color-white;
 }
