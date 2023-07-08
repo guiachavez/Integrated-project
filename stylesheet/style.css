@@ -249,6 +249,7 @@ a {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 .rehome-container .pet-category {
   border: 1px solid #0293A7;
@@ -301,6 +302,9 @@ a {
 .col-right {
   display: grid;
   align-content: space-around;
+}
+.col-right > div:last-of-type {
+  text-align: right;
 }
 
 .pet-category.active {
@@ -466,7 +470,7 @@ input:checked + .slider:before {
   opacity: 0;
   visibility: hidden;
   overflow: auto;
-  background: rgba(0, 0, 0, 0.88);
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .modal.modal-active {
@@ -485,19 +489,27 @@ input:checked + .slider:before {
   padding: 3rem;
   text-align: center;
 }
+.modal-content h2 {
+  margin-bottom: 1rem;
+}
 
 .lottie {
-  width: 300px;
-  height: 200px;
-  margin: auto;
   position: absolute;
-  top: 8%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 50%;
   margin: auto;
-  padding: 3rem;
+  width: 50%;
   text-align: center;
+}
+
+.controls {
+  margin-top: 3rem;
+}
+.controls a {
+  color: #C5C5C5;
+  text-decoration: underline;
+  margin-top: 1rem;
 }
 
 @media screen and (min-width: 1200px) {

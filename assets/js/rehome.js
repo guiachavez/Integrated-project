@@ -243,19 +243,21 @@ async function handlePetForm(userid, street, city, country, pcode, state) {
     setTimeout(() => {
         const petdetails = new Petdetails(pname, ptype, pbreed, pcolor, page, pgender, psize, pdesc, pht, pgwc, photos, userid, street, city, country, pcode, state, isAdopted)
  
+        $('.modal.spinner').removeClass('modal-active')
         addDoc(aniRef, Object.assign({}, petdetails))
             .then(() => {
                 addPet.reset();
                 document.querySelector('.displayImages').innerHTML = ''
-
+                userForm.reset()
                 $('.success-modal').addClass('modal-active');
 
             }).catch((err) => {
                 console.log(err.message)
                 //add frontend display here for error message
             })
-    }, 5000)
+    }, 4000)
 
+    $('.modal.spinner').addClass('modal-active')
     //add breed and color to FIRESTORE
     const typeRef = doc(db, 'types', ptype);
     updateDoc(typeRef, {
@@ -268,6 +270,8 @@ async function handlePetForm(userid, street, city, country, pcode, state) {
     updateDoc(userRef, {
         isOwner: true
     });
+
+    
 }
 
 
@@ -279,7 +283,7 @@ function handleUserForm(user, phone, street, city, country, pcode, state) {
     const docRef = doc(db, 'accounts', user.uid)
     setDoc(docRef, Object.assign({}, userdetails,),  { merge: true })
         .then(() => {
-            userForm.reset()
+            
         })
 
 
@@ -363,16 +367,11 @@ function checkVal() {
 checkVal()
 
 $('#back-pet-form').on('click', () => {
-    // let prevData = JSON.parse(localStorage.getItem('pet-details-form'))
-    // ptype.value = prevData[0]
-    // pname.value = prevData[1]
-    // pbreed.value = prevData[2]
-    // gender.value = prevData[3]
-    // age.value = prevData[4]
-    // size.value = prevData[5]
-    // pcolor.value = prevData[6]
-    // pdesc.value = prevData[7]
-
     location.hash = '#tab-2'
     hash()
 })
+
+$('.go-home').on('click', function() {
+    window.location.href = './index.html'
+})
+

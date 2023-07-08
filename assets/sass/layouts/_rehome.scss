@@ -35,6 +35,7 @@ a {
         display: flex;
         gap: 1rem;
         flex-wrap: wrap;
+        justify-content: space-between;
     }
 
     .pet-category {
@@ -89,6 +90,10 @@ a {
 .col-right {
     display: grid;
     align-content: space-around;
+
+    > div:last-of-type {
+        text-align: right;
+    }
 }
 
 .pet-category.active {
@@ -258,20 +263,27 @@ input:checked + .slider:before {
     margin: auto;
     padding: 3rem;
     text-align: center;
+
+    h2 {
+        margin-bottom: 1rem;
+    }
 }
 
 .lottie {
-    width: 300px;
-    height: 200px;
+    @include mx.position(both-center);
     margin: auto;
-    position: absolute;
-    top: 8%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     width: 50%;
-    margin: auto;
-    padding: 3rem;
     text-align: center;
+}
+
+.controls {
+    margin-top: 3rem;
+
+    a {
+        color: colors.$neutral-color-grey-l;
+        text-decoration: underline;
+        margin-top: 1rem;
+    }
 }
 
 @media screen and (min-width: 1200px) {
