@@ -264,6 +264,97 @@ input[type=radio] :checked {
   right: 1rem;
 }
 
+/* login page ====================== */
+/* form of login page ===================== */
+.login {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.login-label-input-div {
+  display: grid;
+  grid-template-rows: repeat(1fr, 1fr);
+}
+
+.login-forgetpw {
+  text-align: right !important;
+}
+
+.login-label-input-div label {
+  justify-self: start;
+}
+
+/* login main ================= */
+.login-main {
+  text-align: center;
+}
+
+.login-main h1 {
+  color: #0293A7;
+}
+
+.login-main h2 {
+  color: #94390F;
+}
+
+.login_ul {
+  padding: 0;
+  list-style: none;
+}
+
+.login_ul li a {
+  color: #DE6B35;
+  text-decoration: none;
+}
+
+/* login using google ================ */
+.or-div .login-google-text {
+  border-bottom: 1px solid #818080;
+  width: 80%;
+  margin: auto;
+  position: absolute;
+  left: 1.5rem;
+  right: 1.5rem;
+  bottom: 0;
+}
+
+.or-div, .login-google-text a {
+  position: relative;
+  top: 10px;
+  color: #818080;
+  padding: 8px;
+  text-decoration: none;
+  letter-spacing: 2px;
+}
+
+.login-google-text a {
+  background-color: white;
+}
+
+.select_google button {
+  text-align: center;
+  margin: 3.3rem;
+}
+
+.select_google button i {
+  padding-right: 5px;
+}
+
+/* set the icon on top of password field */
+.login_password_container {
+  position: relative;
+}
+
+.login_password_container i {
+  position: absolute;
+  bottom: 2.5rem;
+  top: 2.5rem;
+  right: 1rem;
+}
+
 /* Style Guide BUTTONS --------------- */
 button.filled-default,
 button.filled-default-next {

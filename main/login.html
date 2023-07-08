@@ -4,25 +4,56 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>login page</title>
+
+    <script src="https://kit.fontawesome.com/feb2276715.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./../assets/stylesheet/style.css">
 </head>
 <body>
-    <h1>Firebase 9</h1>
 
-    <h2>Firebase Auth</h2>
+    <main class="login-main">
+        <h1>Login</h1>
+
+        <h2>Welcome Back!</h2>
     
-    <form action="" class="login">
-        <label for="email">Email</label>
-        <input type="email" name="email" id="signin-email">
+        <form action="" class="login">
 
-        <label for="password">Password</label>
-        <input type="password" name="password" id="signin-pw">
+            <div class="login-label-input-div">
+                <label for="email" class="label">Email</label>
+                <input type="email" name="email" id="signin-email"  class="text-input"  placeholder="name@example.com">
+            </div>
 
-        <button>login</button>
-    </form>
+            <div class="login-label-input-div  login_password_container">
 
-    <button class="logout">logout</button>
+                <label for="password" class="label">Password</label>
+                <input type="password" name="password" id="signin-pw" class="text-input" placeholder="Create Password">
 
-    <script type="module" src="./../assets/js/login.js"></script>
+                <i id="showPasswordIcon" class="fa-regular fa-eye-slash"></i>
+                <p class="login-forgetpw">Forget Password?</p>
+            </div>
+        
+            <button type="submit" class="filled-mob-btn font">login</button>
+
+            <ul class="login_ul">
+                <li>Don't have an account?<a href="./signup.html">Signup</a></li>
+            </ul>
+        </form>
+   
+        <div class="or-div">
+            <div class="login-google-text">
+                <a href="#">or continue with</a>
+            </div>  
+        </div>
+        <div class="select_google">
+            <button type="submit">
+                <span><img src="./../assets/images/Google icon.svg" alt="Google logo"></span>
+                Sign in with Google
+            </button>
+        </div>
+
+        <button class="logout">logout</button>
+
+        <script type="module" src="./../assets/js/login.js"></script>
+    </main>
 </body>
 </html>
