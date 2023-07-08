@@ -1,0 +1,71 @@
+@use '../abstracts/variables/colors' as colors;
+
+/*Footer section ------------*/
+footer{
+    background-color: colors.$accent-color-10;
+    padding: 5%;
+}
+
+.footer-links{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.app-logo{
+    grid-column: 1/-1;
+    display: flex;
+    justify-content: center;
+}
+
+.app-logo img{
+    width: 200px;
+}
+
+.quick-link ul{
+    list-style-type: none;
+}
+
+.quick-link a,
+.about-us a{
+    text-decoration: none;
+    color: colors.$neutral-color-black;
+}
+
+
+.quick-link h2,
+.about-us h2{
+    color: colors.$accent-color-75;
+}
+
+.quick-link li, .team{
+    display: flex;
+    align-items: center;
+}
+
+.copyright{
+    border-top: 1px solid colors.$primary-color-75;
+    text-align: center;
+    color: colors.$accent-color-75;
+}
+
+.copyright span{
+    color: colors.$primary-color-75;
+}
+
+@media screen and (min-width: 820px) {
+    .footer-links{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .quick-link ul{
+        display: flex;
+        gap: 1rem ;
+        padding: 0;
+    }
+    
+    .copyright{
+        display: flex;
+        justify-content: space-between;
+    }  
+}

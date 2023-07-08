@@ -20,6 +20,7 @@ button.filled-next-mob-btn {
   border-radius: 3rem;
 }
 
+
 button.filled-btn:hover,
 button.filled-next-btn:hover {
   background-color: #01333A;
@@ -41,6 +42,7 @@ button.filled-next-mob-btn:active {
   height: 48px;
   border-radius: 3rem;
 }
+
 
 button.filled-btn:disabled,
 button.filled-next-btn:disabled {
@@ -147,6 +149,23 @@ button.font {
   font-size: 18px;
 }
 
+.header-link {
+  font-family: "Raleway";
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.header-login {
+  font-family: "Raleway";
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.sub-nav-link {
+  font-family: "Raleway";
+  font-size: 18px;
+}
+
 .paragraph-mob {
   font-family: "Raleway";
   font-size: 15px;
@@ -164,6 +183,7 @@ button.font {
   height: 44px;
   border-radius: 0.5rem;
   border-style: solid;
+  border-width: 1px;
 }
 
 .text-input::placeholder {
@@ -217,6 +237,183 @@ input[type=radio] :checked {
 .toggle-off:checked + .toggle-switch::after {
   left: 17px;
   background-color: #FCF9F7;
+}
+
+
+/*Header section ------------*/
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5%;
+}
+
+.logo img {
+  width: 150px;
+}
+
+header a {
+  text-decoration: none;
+  color: #0F0500;
+}
+
+.hamburger-menu a {
+  display: block;
+}
+
+.main-menu ul.header-link {
+  list-style-type: none;
+  display: none;
+}
+
+.main-menu ul li a:hover {
+  color: #0293A7;
+}
+
+.login {
+  display: none;
+  text-align: center;
+  border-top: 1px solid #818080;
+  margin: 2%;
+}
+
+.login a {
+  color: #0293A7;
+}
+
+.find-pet-dd {
+  display: none;
+  min-width: 120px;
+  border: 2px solid #0F0500;
+  list-style-type: none;
+  padding: 0;
+  background-color: #fff;
+}
+
+.find-pet-dd a {
+  color: #818080;
+  padding: 10px 2%;
+  display: block;
+  text-align: left;
+}
+
+ul.find-pet a {
+  color: #818080;
+}
+
+.menu {
+  transform: translateX(100%);
+}
+
+.menu-mob {
+  position: fixed;
+  z-index: 1;
+  top: 3.5rem;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: all 1.5s ease-in;
+  transform: translateX(0);
+  backdrop-filter: blur(3px);
+  background-color: #FCF9F7;
+}
+
+@media screen and (min-width: 460px) {
+  .logo img {
+    width: 200px;
+  }
+  .find-pet-dd {
+    position: absolute;
+  }
+  .menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3rem;
+    transform: none;
+  }
+  .hamburger-menu a {
+    display: none;
+  }
+  header.menu {
+    display: flex;
+    justify-content: space-between;
+  }
+  .main-menu ul.header-link {
+    display: flex;
+    gap: 1rem;
+  }
+  .login {
+    display: block;
+    border: unset;
+  }
+}
+
+/*Footer section ------------*/
+footer {
+  background-color: #FEF0E6;
+  padding: 5%;
+}
+
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.app-logo {
+  grid-column: 1/-1;
+  display: flex;
+  justify-content: center;
+}
+
+.app-logo img {
+  width: 200px;
+}
+
+.quick-link ul {
+  list-style-type: none;
+}
+
+.quick-link a,
+.about-us a {
+  text-decoration: none;
+  color: #0F0500;
+}
+
+.quick-link h2,
+.about-us h2 {
+  color: #94390F;
+}
+
+.quick-link li, .team {
+  display: flex;
+  align-items: center;
+}
+
+.copyright {
+  border-top: 1px solid #026E7D;
+  text-align: center;
+  color: #94390F;
+}
+
+.copyright span {
+  color: #026E7D;
+}
+
+@media screen and (min-width: 820px) {
+  .footer-links {
+    display: flex;
+    justify-content: space-between;
+  }
+  .quick-link ul {
+    display: flex;
+    gap: 1rem;
+    padding: 0;
+  }
+  .copyright {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
 .container-2400 {
