@@ -6,27 +6,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Pawfect Match - Create account</title>
+
+    <link rel="stylesheet" href="./../assets/stylesheet/style.css">
 </head>
 <body>
-    <h1>Start your pawfect journey!</h1>
 
-    <form action="" class="signup">
-        <label for="email">Email</label>
-        <input type="email" name="email" id="useremail">
+    <main class="signup_main">
+        
+            <div class="image-container">
+            </div>
+       
+        
+        <div class="signup-form-div">
+            <h1>Start your pawfect journey!</h1>
+            <h2>Signup</h2>
+            <h3>Register your details to create an account</h3>
 
-        <label for="password">Password</label>
-        <input type="password" name="password" id="signuppw">
+            <form action="" class="signup" >
+        
+                <div class="signup-label-input-div">
+                    <label for="fname" class="label">First Name</label>
+                    <input type="text" name="fname" id="fname" class="text-input" placeholder="Enter your First Name">
+            
+                </div>
 
-        <label for="fname">First Name</label>
-        <input type="text" name="fname" id="fname">
+                <div class="signup-label-input-div">
+                    <label for="lname" class="label">Last Name</label>
+                    <input type="text" name="lname" id="lname" class="text-input" placeholder="Enter your Last Name">
+            
+                </div>
 
-        <label for="lname">Last Name</label>
-        <input type="text" name="lname" id="lname">
+    
+                <div class="signup-label-input-div">
+                    <label for="email" class="label">Email</label>
+                    <input type="email" name="email" id="useremail" class="text-input"  placeholder="name@example.com" >
+            
+                </div>
 
-        <button type="submit">Submit</button>
-    </form>
+                <div class="signup-label-input-div">
+                    <label for="password" class="label">Password</label>
+                    
+                    <div class="password-input-container">
+                        <input type="password" name="password" id="signuppw" class="text-input" placeholder="Create Password">
+                        <img src="/assets/images/eye-off.svg" alt="eyes off" class="eyes_off">
+                    </div>
+                   
+                </div>
 
-    <script type="module" src="./../assets/js/signup.js"></script>
 
+       
+                <button type="submit" class="filled-mob-btn font">Signup</button>
+
+                <ul class="signup_ul">
+                    <li>Already have an account?<a href="./login.html">Login</a></li>
+                </ul>   
+            </form>
+
+            <div class="or-div">
+                <div class="login-google-text">
+                    <a href="#">or continue with</a>
+                </div>  
+            </div>
+            <div class="select_google">
+                <button type="submit" class="google-btn">
+                    <span><img src="./../assets/images/Google icon.svg" alt="Google logo"></span>
+                    Sign in with Google
+                </button>
+            </div>
+
+        <script type="module" src="./../assets/js/signup.js"></script>
+
+        </div>
+    </main>
 </body>
 </html>

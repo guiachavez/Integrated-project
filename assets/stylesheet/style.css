@@ -1,7 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Baloo+2&family=Raleway&display=swap");
-/* BUTTONS --------------- */
-button.filled-default,
-button.filled-default-next {
+button.google-btn {
+  width: 235px;
+  height: 56px;
+  border-radius: 22px;
+  background-color: white;
+  border: 1px solid #C5C5C5;
+  font-size: 18px;
+}
+
+button.filled-btn,
+button.filled-next-btn,
+button.filled-mob-btn,
+button.filled-next-mob-btn {
   background-color: #0293A7;
   color: #FCF9F7;
   border: 2px solid #0293A7;
@@ -10,8 +20,9 @@ button.filled-default-next {
   border-radius: 3rem;
 }
 
-button.filled-default:hover,
-button.filled-default-next:hover {
+
+button.filled-btn:hover,
+button.filled-next-btn:hover {
   background-color: #01333A;
   color: #FCF9F7;
   border: 2px solid #01333A;
@@ -20,9 +31,10 @@ button.filled-default-next:hover {
   border-radius: 3rem;
 }
 
-button.filled-default:active,
-button.filled-default-next:active,
-button.outline-default:active {
+button.filled-btn:active,
+button.filled-next-btn:active,
+button.filled-mob-btn:active,
+button.filled-next-mob-btn:active {
   background-color: #B1DEE4;
   color: #01333A;
   border: 2px solid #01333A;
@@ -31,8 +43,9 @@ button.outline-default:active {
   border-radius: 3rem;
 }
 
-button.filled-default:disabled,
-button.filled-default-next:disabled {
+
+button.filled-btn:disabled,
+button.filled-next-btn:disabled {
   background-color: #C5C5C5;
   color: #818080;
   border: 2px solid #C5C5C5;
@@ -41,10 +54,10 @@ button.filled-default-next:disabled {
   border-radius: 3rem;
 }
 
-button.outline-default,
-button.outline-default-mob,
-button.outline-default-next,
-button.outline-default-next-mob {
+button.outline-btn,
+button.outline-next-btn,
+button.outline-mob-btn,
+button.outline-next-mob-btn {
   background-color: #FCF9F7;
   color: #0293A7;
   border: 2px solid #0293A7;
@@ -53,8 +66,8 @@ button.outline-default-next-mob {
   border-radius: 3rem;
 }
 
-button.outline-hover,
-button.outline-hover-next {
+button.outline-btn:hover,
+button.outline-next-btn:hover {
   background-color: #0293A7;
   color: #FCF9F7;
   border: 2px solid #0293A7;
@@ -63,21 +76,23 @@ button.outline-hover-next {
   border-radius: 3rem;
 }
 
-button.outline-disabled,
-button.outline-disabled-next {
+button.outline-btn:active,
+button.outline-next-btn:active,
+button.outline-mob-btn:active,
+button.outline-next-mob-btn:active {
+  background-color: #B1DEE4;
+  color: #01333A;
+  border: 2px solid #01333A;
+  width: 172px;
+  height: 48px;
+  border-radius: 3rem;
+}
+
+button.outline-btn:disabled,
+button.outline-next-btn:disabled {
   background-color: #FCF9F7;
   color: #818080;
   border: 2px solid #818080;
-  width: 172px;
-  height: 48px;
-  border-radius: 3rem;
-}
-
-button.filled-default-mob,
-button.filled-default-next-mob {
-  background-color: #0293A7;
-  color: #FCF9F7;
-  border: 2px solid #0293A7;
   width: 172px;
   height: 48px;
   border-radius: 3rem;
@@ -156,10 +171,14 @@ button.font {
   font-size: 15px;
 }
 
+.label {
+  font-family: "Raleway";
+  font-size: 18px;
+  font-weight: bold;
+}
+
 /*Input Text----------*/
-#input-text,
-#focus-text,
-#error-text {
+.text-input {
   width: 360px;
   height: 44px;
   border-radius: 0.5rem;
@@ -167,20 +186,21 @@ button.font {
   border-width: 1px;
 }
 
-#input-text::placeholder {
+.text-input::placeholder {
   color: #818080;
 }
 
-#focus-text {
+.text-input:focus {
+  outline: none;
   border-color: #0293A7;
 }
 
-#error-text {
+.text-input:invalid {
+  outline: none;
   border-color: #DE3535;
 }
 
-#checked-checkbox,
-#selected-radio {
+input[type=radio] :checked {
   accent-color: #0293A7;
 }
 
@@ -205,19 +225,20 @@ button.font {
   transition: all 0.5s;
 }
 
-#toggle-off {
+.toggle-off {
   display: none;
 }
 
-#toggle-off:checked + .toggle-switch {
+.toggle-off:checked + .toggle-switch {
   background-color: #0293A7;
   border-color: #0293A7;
 }
 
-#toggle-off:checked + .toggle-switch::after {
+.toggle-off:checked + .toggle-switch::after {
   left: 17px;
   background-color: #FCF9F7;
 }
+
 
 /*Header section ------------*/
 header {
@@ -327,6 +348,7 @@ ul.find-pet a {
     border: unset;
   }
 }
+
 /*Footer section ------------*/
 footer {
   background-color: #FEF0E6;
@@ -392,6 +414,322 @@ footer {
     display: flex;
     justify-content: space-between;
   }
+}
+
+.container-2400 {
+  max-width: 2400px;
+  margin: auto;
+}
+
+/* Signup page =========================== */
+.signup-form-div {
+  text-align: center;
+}
+
+.signup-form-div h2 {
+  color: #0293A7;
+}
+
+.signup_ul {
+  list-style: none;
+  padding: 0;
+}
+
+.signup_ul li a {
+  text-decoration: none;
+  color: #DE6B35;
+}
+
+/* form of sign up page ================ */
+.signup {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.signup-label-input-div {
+  display: grid;
+  grid-template-rows: repeat(1fr, 1fr);
+}
+
+.signup-label-input-div label {
+  justify-self: start;
+}
+
+/* set the icon on top of password field */
+.password-input-container {
+  position: relative;
+}
+
+.password-input-container img {
+  position: absolute;
+  height: 20px;
+  right: 1rem;
+  bottom: 1.1rem;
+}
+
+.select_google button {
+  position: relative;
+  top: 3rem;
+  margin: auto;
+}
+
+.google-btn {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  padding: 1rem;
+  align-items: center;
+}
+
+.google-btn span img {
+  height: 30px;
+}
+
+@media screen and (min-width: 1000px) {
+  .signup_main {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    align-items: center;
+  }
+  .image-container {
+    height: 100%;
+    width: auto;
+    background: center/cover no-repeat url("/assets/images/petfriendly-home.svg");
+    border-radius: 1rem;
+  }
+}
+/* login page ====================== */
+/* form of login page ===================== */
+.login {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.login-label-input-div {
+  display: grid;
+  grid-template-rows: repeat(1fr, 1fr);
+}
+
+.login-forgetpw {
+  text-align: right !important;
+}
+
+.login-label-input-div label {
+  justify-self: start;
+}
+
+/* login main ================= */
+.login-form-div {
+  text-align: center;
+}
+
+.login-form-div h1 {
+  color: #0293A7;
+}
+
+.login-form-div h2 {
+  color: #94390F;
+}
+
+.login_ul {
+  padding: 0;
+  list-style: none;
+}
+
+.login_ul li a {
+  color: #DE6B35;
+  text-decoration: none;
+}
+
+/* login using google ================ */
+.or-div .login-google-text {
+  border-bottom: 1px solid #818080;
+  width: 80%;
+  margin: auto;
+  position: absolute;
+  left: 1.5rem;
+  right: 1.5rem;
+  bottom: 0;
+}
+
+.or-div, .login-google-text a {
+  position: relative;
+  top: 10px;
+  color: #818080;
+  padding: 8px;
+  text-decoration: none;
+  letter-spacing: 2px;
+}
+
+.login-google-text a {
+  background-color: white;
+}
+
+/* set the icon on top of password field */
+.password-input-container {
+  position: relative;
+}
+
+.password-input-container img {
+  position: absolute;
+  height: 20px;
+  right: 1rem;
+  bottom: 1.1rem;
+}
+
+.select_google button {
+  position: relative;
+  top: 3rem;
+  margin: auto;
+}
+
+.google-btn {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  padding: 1rem;
+  align-items: center;
+}
+
+.google-btn span img {
+  height: 30px;
+}
+
+@media screen and (min-width: 1000px) {
+  .login-main {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    align-items: center;
+  }
+  .image-container {
+    height: 100%;
+    width: auto;
+    background: center/cover no-repeat url("/assets/images/Pet-img-2.svg");
+    border-radius: 1rem;
+  }
+}
+/* Style Guide BUTTONS --------------- */
+button.filled-default,
+button.filled-default-next {
+  background-color: #0293A7;
+  color: #FCF9F7;
+  border: 2px solid #0293A7;
+  width: 172px;
+  height: 48px;
+  border-radius: 3rem;
+}
+
+button.filled-hover,
+button.filled-hover-next {
+  background-color: #01333A;
+  color: #FCF9F7;
+  border: 2px solid #01333A;
+  width: 172px;
+  height: 48px;
+  border-radius: 3rem;
+}
+
+button.outline-active,
+button.filled-active,
+button.filled-active-mob,
+button.outline-active-mob,
+button.outline-active-next,
+button.filled-active-next,
+button.filled-active-next-mob,
+button.outline-active-next-mob {
+  background-color: #B1DEE4;
+  color: #01333A;
+  border: 2px solid #01333A;
+  width: 172px;
+  height: 48px;
+  border-radius: 3rem;
+}
+
+button.filled-disabled,
+button.filled-disabled-next {
+  background-color: #C5C5C5;
+  color: #818080;
+  border: 2px solid #C5C5C5;
+  width: 172px;
+  height: 48px;
+  border-radius: 3rem;
+}
+
+button.outline-default,
+button.outline-default-mob,
+button.outline-default-next,
+button.outline-default-next-mob {
+  background-color: #FCF9F7;
+  color: #0293A7;
+  border: 2px solid #0293A7;
+  width: 172px;
+  height: 48px;
+  border-radius: 3rem;
+}
+
+button.outline-hover,
+button.outline-hover-next {
+  background-color: #0293A7;
+  color: #FCF9F7;
+  border: 2px solid #0293A7;
+  width: 172px;
+  height: 48px;
+  border-radius: 3rem;
+}
+
+button.outline-disabled,
+button.outline-disabled-next {
+  background-color: #FCF9F7;
+  color: #818080;
+  border: 2px solid #818080;
+  width: 172px;
+  height: 48px;
+  border-radius: 3rem;
+}
+
+button.filled-default-mob,
+button.filled-default-next-mob {
+  background-color: #0293A7;
+  color: #FCF9F7;
+  border: 2px solid #0293A7;
+  width: 172px;
+  height: 48px;
+  border-radius: 3rem;
+}
+
+/*Input text -----------------*/
+#input-text,
+#focus-text,
+#error-text {
+  width: 360px;
+  height: 44px;
+  border-radius: 0.5rem;
+  border-style: solid;
+}
+
+#input-text::placeholder {
+  color: #818080;
+}
+
+#focus-text {
+  border-color: #0293A7;
+}
+
+#error-text {
+  border-color: #DE3535;
+}
+
+#checked-checkbox,
+#selected-radio {
+  accent-color: #0293A7;
 }
 
 /*# sourceMappingURL=style.css.map */

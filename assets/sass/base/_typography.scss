@@ -54,3 +54,8 @@
 .paragraph-mob{
     @include mx.raleway-typography(15);
 }
+
+.label{
+    @include mx.raleway-typography(18);
+    font-weight: bold;
+}

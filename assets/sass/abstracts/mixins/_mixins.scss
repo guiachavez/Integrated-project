@@ -1,13 +1,6 @@
 @use '../variables/colors' as colors;
 @use '../variables/typography' as typo;
-// rounded
-// @mixin cornered($r: 4px) {
-//     border-radius: $r;
-// }
 
-// @mixin border($w: 4px, $s: solid, $c: colors.$primary-color-main) {
-//     border: $w $s $c;
-// }
 
 @mixin button-style($bc, $tc, $c, $h: 48) {
     background-color: $bc;
@@ -26,4 +19,72 @@
 @mixin raleway-typography($f){
     font-family: typo.$font-raleway;
     font-size: $f * 1px;
+}
+
+@mixin maxwidth{
+    margin: auto;
+    position: relative;
+    width: 1200px;
+}
+
+
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin grid($rows: 1fr, $columns: 1fr, $qty: 1) {
+    display: grid;
+    grid-template-rows: $rows;
+    grid-template-columns: repeat($qty, $columns);
+}
+
+@mixin autoGridColumn($px) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax($px, 1fr));
+}
+
+
+@mixin position($position) {
+    position: absolute;
+    
+    @if $position == 'top-horizontally-center' {
+        top: 0;
+        left: 50%;
+        transform: translate(-50%);
+    }
+    @else if $position == 'bottom-horizontally-center' {
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%);
+    }
+    @else if $position == 'vertically-center' {
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+    } 
+    @else if $position == 'both-center' {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    @else if $position == 'absolute' {
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+}
+
+@mixin modalBackground {
+    transition: 0.75s all cubic-bezier(0.23, 1, 0.32, 1);
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    overflow: auto;
+    background: rgba(0, 0, 0, 0.5);
 }
