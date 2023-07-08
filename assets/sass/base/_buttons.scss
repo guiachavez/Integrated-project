@@ -2,6 +2,21 @@
 @use '../abstracts/mixins/mixins' as mx;
 @use '../abstracts/variables/typography' as typo;
 
+
+// google sign in button : google button (filled start)
+button.google-btn{
+    width:235px;
+    height:56px;
+    border-radius:22px;
+    background-color: white;
+    border:1px solid colors.$neutral-color-grey-l;
+    font-size:18px;
+
+}
+
+// google-btn (hover)
+
+
 // Filled button
 button.filled-btn,
 button.filled-next-btn,

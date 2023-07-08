@@ -1,4 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Baloo+2&family=Raleway&display=swap");
+button.google-btn {
+  width: 235px;
+  height: 56px;
+  border-radius: 22px;
+  background-color: white;
+  border: 1px solid #C5C5C5;
+  font-size: 18px;
+}
+
 button.filled-btn,
 button.filled-next-btn,
 button.filled-mob-btn,
@@ -216,11 +225,11 @@ input[type=radio] :checked {
 }
 
 /* Signup page =========================== */
-.signup_main {
+.signup-form-div {
   text-align: center;
 }
 
-.signup_main h2 {
+.signup-form-div h2 {
   color: #0293A7;
 }
 
@@ -253,17 +262,49 @@ input[type=radio] :checked {
 }
 
 /* set the icon on top of password field */
-.signup_password_container {
+.password-input-container {
   position: relative;
 }
 
-.signup_password_container i {
+.password-input-container img {
   position: absolute;
-  bottom: 2.5rem;
-  top: 2.5rem;
+  height: 20px;
   right: 1rem;
+  bottom: 1.1rem;
 }
 
+.select_google button {
+  position: relative;
+  top: 3rem;
+  margin: auto;
+}
+
+.google-btn {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  padding: 1rem;
+  align-items: center;
+}
+
+.google-btn span img {
+  height: 30px;
+}
+
+@media screen and (min-width: 1000px) {
+  .signup_main {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    align-items: center;
+  }
+  .image-container {
+    height: 100%;
+    width: auto;
+    background: center/cover no-repeat url("/assets/images/petfriendly-home.svg");
+    border-radius: 1rem;
+  }
+}
 /* login page ====================== */
 /* form of login page ===================== */
 .login {
@@ -288,15 +329,15 @@ input[type=radio] :checked {
 }
 
 /* login main ================= */
-.login-main {
+.login-form-div {
   text-align: center;
 }
 
-.login-main h1 {
+.login-form-div h1 {
   color: #0293A7;
 }
 
-.login-main h2 {
+.login-form-div h2 {
   color: #94390F;
 }
 
@@ -334,27 +375,50 @@ input[type=radio] :checked {
   background-color: white;
 }
 
-.select_google button {
-  text-align: center;
-  margin: 3.3rem;
-}
-
-.select_google button i {
-  padding-right: 5px;
-}
-
 /* set the icon on top of password field */
-.login_password_container {
+.password-input-container {
   position: relative;
 }
 
-.login_password_container i {
+.password-input-container img {
   position: absolute;
-  bottom: 2.5rem;
-  top: 2.5rem;
+  height: 20px;
   right: 1rem;
+  bottom: 1.1rem;
 }
 
+.select_google button {
+  position: relative;
+  top: 3rem;
+  margin: auto;
+}
+
+.google-btn {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  padding: 1rem;
+  align-items: center;
+}
+
+.google-btn span img {
+  height: 30px;
+}
+
+@media screen and (min-width: 1000px) {
+  .login-main {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    align-items: center;
+  }
+  .image-container {
+    height: 100%;
+    width: auto;
+    background: center/cover no-repeat url("/assets/images/Pet-img-2.svg");
+    border-radius: 1rem;
+  }
+}
 /* Style Guide BUTTONS --------------- */
 button.filled-default,
 button.filled-default-next {

@@ -12,48 +12,59 @@
 <body>
 
     <main class="login-main">
-        <h1>Login</h1>
 
-        <h2>Welcome Back!</h2>
-    
-        <form action="" class="login">
-
-            <div class="login-label-input-div">
-                <label for="email" class="label">Email</label>
-                <input type="email" name="email" id="signin-email"  class="text-input"  placeholder="name@example.com">
-            </div>
-
-            <div class="login-label-input-div  login_password_container">
-
-                <label for="password" class="label">Password</label>
-                <input type="password" name="password" id="signin-pw" class="text-input" placeholder="Create Password">
-
-                <i id="showPasswordIcon" class="fa-regular fa-eye-slash"></i>
-                <p class="login-forgetpw">Forget Password?</p>
-            </div>
         
-            <button type="submit" class="filled-mob-btn font">login</button>
+        <div class="image-container">
 
-            <ul class="login_ul">
-                <li>Don't have an account?<a href="./signup.html">Signup</a></li>
-            </ul>
-        </form>
+        </div>
+
+
+        <div class="login-form-div">
+            <h1>Login</h1>
+
+            <h2>Welcome Back!</h2>
+    
+            <form action="" class="login">
+
+                <div class="login-label-input-div">
+                    <label for="email" class="label">Email</label>
+                    <input type="email" name="email" id="signin-email"  class="text-input"  placeholder="name@example.com">
+                </div>
+
+                <div class="login-label-input-div">
+
+                    <label for="password" class="label">Password</label>
+                    <div class="password-input-container">
+                        <input type="password" name="password" id="signin-pw" class="text-input" placeholder="Create Password">
+                        <img src="/assets/images/eye-off.svg" alt="eyes off" class="eyes_off">
+                    </div>
+                
+                    <p class="login-forgetpw">Forget Password?</p>
+                </div>
+        
+                <button type="submit" class="filled-mob-btn font">login</button>
+
+                <ul class="login_ul">
+                    <li>Don't have an account?<a href="./signup.html">Signup</a></li>
+                 </ul>
+                </form>
    
-        <div class="or-div">
-            <div class="login-google-text">
-                <a href="#">or continue with</a>
-            </div>  
-        </div>
-        <div class="select_google">
-            <button type="submit">
-                <span><img src="./../assets/images/Google icon.svg" alt="Google logo"></span>
-                Sign in with Google
-            </button>
-        </div>
+                <div class="or-div">
+                    <div class="login-google-text">
+                        <a href="#">or continue with</a>
+                    </div>  
+                 </div>
+                <div class="select_google">
+                    <button type="submit" class="google-btn">
+                        <span><img src="./../assets/images/Google icon.svg" alt="Google logo"></span>
+                        Sign in with Google
+                    </button>
+                </div>
 
-        <button class="logout">logout</button>
+                <button class="logout">logout</button>
 
-        <script type="module" src="./../assets/js/login.js"></script>
+                <script type="module" src="./../assets/js/login.js"></script>
+        </div>
     </main>
 </body>
 </html>

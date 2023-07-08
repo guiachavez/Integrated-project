@@ -4,11 +4,11 @@
 
 // sign in main =============
 
-.signup_main{
+.signup-form-div{
     text-align: center;
 }
 
-.signup_main h2{
+.signup-form-div h2{
     color: color.$primary-color-main;
 }
 
@@ -44,15 +44,53 @@
 
 /* set the icon on top of password field */
 
-.signup_password_container{
+.password-input-container{
     position: relative;
 }
 
-.signup_password_container i{
-    position: absolute;
-    bottom: 2.5rem;
-    top:2.5rem;
-    right: 1rem;
+.password-input-container img{
+   position: absolute;
+   height: 20px;
+   right:1rem;
+   bottom: 1.1rem;
 }
 
+// google button ============
+
+.select_google button{
+    position: relative;
+    top:3rem;
+    margin: auto;
+}
+
+.google-btn{
+    display: flex;
+    flex-wrap: nowrap;
+    gap:1rem;
+    padding:1rem;
+    align-items: center;
+}
+
+.google-btn span img{
+    height:30px;
+}
+
+
+
+
+@media screen and (min-width:1000px){
+
+    .signup_main{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        justify-content: center;
+        align-items: center;
+    }
+    .image-container{
+        height: 100%;
+        width:auto;
+        background: center / cover no-repeat url("/assets/images/petfriendly-home.svg");
+        border-radius:1rem;
+    }
+}
 
