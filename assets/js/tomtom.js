@@ -81,7 +81,7 @@ function showAddressOnMap(address, organization) {
   popupInfo.appendChild(orgName);
 
   const orgPhone = document.createElement("p");
-  orgPhone.textContent = `Phone ${organization.phone}`;
+  orgPhone.textContent = `Phone: ${organization.phone}`;
   popupInfo.appendChild(orgPhone);
 
   const orgEmail = document.createElement("p");
