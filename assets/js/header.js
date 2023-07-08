@@ -1,12 +1,11 @@
 const subNav = document.querySelector(".dd-pet")
-
 const subNavList = document.querySelector(".find-pet-dd")
 
 const hamMenu = document.querySelector(".hamburger-menu")
-
 const mainMenu = document.querySelector(".header-link")
-
 const loginSignup = document.querySelector(".login")
+
+const menu = document.querySelector(".menu")
 
 var hamMenuValue = true;
 
@@ -28,5 +27,7 @@ hamMenu.addEventListener('click', function(){
         loginSignup.style.display = 'none';
     }
 
+    menu.classList.toggle("menu-nav")
+    menu.classList.toggle("menu-mob")
     hamMenuValue = !hamMenuValue
 })

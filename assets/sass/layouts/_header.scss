@@ -4,18 +4,22 @@
 
 header{
     display: flex;
-    // align-items: center;
+    align-items: center;
     justify-content: space-between;
-    margin: 0 5%;
+    padding: 0 5%;
 }
 
 .logo img{
-    width: 50%;
+    width: 150px;
 }
 
 header a{
     text-decoration: none;
     color: colors.$neutral-color-black;
+}
+
+.hamburger-menu a{
+    display: block;
 }
 
 .main-menu ul.header-link{
@@ -29,6 +33,9 @@ header a{
 
 .login{
     display: none;
+    text-align: center;
+    border-top: 1px solid colors.$neutral-color-grey;
+    margin: 2%;
 }
 
 .login a{
@@ -37,11 +44,11 @@ header a{
 
 .find-pet-dd{
     display: none;
-    // position: absolute;
     min-width: 120px;
-    box-shadow: 0px 1px 2px 2px colors.$neutral-color-black; 
+    border: 2px solid colors.$neutral-color-black; 
     list-style-type: none;
     padding: 0;
+    background-color: #fff;
 }
 
 .find-pet-dd a{
@@ -55,10 +62,31 @@ ul.find-pet a{
     color: colors.$neutral-color-grey;
 }
 
+.menu{
+    transform: translateX(100%);
+}
+
+.menu-mob{
+    position: fixed;
+    z-index: 1;
+    top: 3.5rem;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: all 1.5s ease-in;
+    transform: translateX(0);
+    backdrop-filter: blur(3px);
+    background-color: colors.$neutral-color-white;
+}
+
 @media screen and (min-width: 460px) {
 
     .logo img{
         width: 200px;
+    }
+
+    .find-pet-dd{
+        position: absolute;
     }
 
     .menu{
@@ -66,10 +94,11 @@ ul.find-pet a{
         justify-content: space-between;
         align-items: center;
         gap: 3rem;
+        transform: none;
     }
 
     .hamburger-menu a{
-        display: none !important;
+        display: none;
     }
     
     header.menu{
@@ -84,5 +113,6 @@ ul.find-pet a{
 
     .login{
         display: block;
+        border: unset;
     }
 }

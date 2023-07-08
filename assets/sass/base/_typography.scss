@@ -47,6 +47,10 @@
     font-weight: bold;
 }
 
+.sub-nav-link{
+    @include mx.raleway-typography(18);
+}
+
 .paragraph-mob{
     @include mx.raleway-typography(15);
 }

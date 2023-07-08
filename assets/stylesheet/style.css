@@ -146,6 +146,11 @@ button.font {
   font-weight: bold;
 }
 
+.sub-nav-link {
+  font-family: "Raleway";
+  font-size: 18px;
+}
+
 .paragraph-mob {
   font-family: "Raleway";
   font-size: 15px;
@@ -217,17 +222,22 @@ button.font {
 /*Header section ------------*/
 header {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  margin: 0 5%;
+  padding: 0 5%;
 }
 
 .logo img {
-  width: 50%;
+  width: 150px;
 }
 
 header a {
   text-decoration: none;
   color: #0F0500;
+}
+
+.hamburger-menu a {
+  display: block;
 }
 
 .main-menu ul.header-link {
@@ -241,6 +251,9 @@ header a {
 
 .login {
   display: none;
+  text-align: center;
+  border-top: 1px solid #818080;
+  margin: 2%;
 }
 
 .login a {
@@ -250,9 +263,10 @@ header a {
 .find-pet-dd {
   display: none;
   min-width: 120px;
-  box-shadow: 0px 1px 2px 2px #0F0500;
+  border: 2px solid #0F0500;
   list-style-type: none;
   padding: 0;
+  background-color: #fff;
 }
 
 .find-pet-dd a {
@@ -266,18 +280,39 @@ ul.find-pet a {
   color: #818080;
 }
 
+.menu {
+  transform: translateX(100%);
+}
+
+.menu-mob {
+  position: fixed;
+  z-index: 1;
+  top: 3.5rem;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: all 1.5s ease-in;
+  transform: translateX(0);
+  backdrop-filter: blur(3px);
+  background-color: #FCF9F7;
+}
+
 @media screen and (min-width: 460px) {
   .logo img {
     width: 200px;
+  }
+  .find-pet-dd {
+    position: absolute;
   }
   .menu {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 3rem;
+    transform: none;
   }
   .hamburger-menu a {
-    display: none !important;
+    display: none;
   }
   header.menu {
     display: flex;
@@ -289,11 +324,13 @@ ul.find-pet a {
   }
   .login {
     display: block;
+    border: unset;
   }
 }
 /*Footer section ------------*/
 footer {
   background-color: #FEF0E6;
+  padding: 5%;
 }
 
 .footer-links {
@@ -301,14 +338,14 @@ footer {
   grid-template-columns: repeat(2, 1fr);
 }
 
-.footer-links, .copyright {
-  margin: 0 5%;
-}
-
 .app-logo {
   grid-column: 1/-1;
   display: flex;
   justify-content: center;
+}
+
+.app-logo img {
+  width: 200px;
 }
 
 .quick-link ul {

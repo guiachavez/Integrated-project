@@ -3,6 +3,7 @@
 /*Footer section ------------*/
 footer{
     background-color: colors.$accent-color-10;
+    padding: 5%;
 }
 
 .footer-links{
@@ -10,14 +11,14 @@ footer{
     grid-template-columns: repeat(2, 1fr);
 }
 
-.footer-links, .copyright{
-    margin: 0 5%;
-}
-
 .app-logo{
     grid-column: 1/-1;
     display: flex;
     justify-content: center;
+}
+
+.app-logo img{
+    width: 200px;
 }
 
 .quick-link ul{
