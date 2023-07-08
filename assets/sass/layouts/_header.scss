@@ -1,0 +1,88 @@
+@use '../abstracts/variables/colors' as colors;
+
+/*Header section ------------*/
+
+header{
+    display: flex;
+    // align-items: center;
+    justify-content: space-between;
+    margin: 0 5%;
+}
+
+.logo img{
+    width: 50%;
+}
+
+header a{
+    text-decoration: none;
+    color: colors.$neutral-color-black;
+}
+
+.main-menu ul.header-link{
+    list-style-type: none;
+    display: none;
+}
+
+.main-menu ul li a:hover{
+    color: colors.$primary-color-main;
+}
+
+.login{
+    display: none;
+}
+
+.login a{
+    color: colors.$primary-color-main;
+}
+
+.find-pet-dd{
+    display: none;
+    // position: absolute;
+    min-width: 120px;
+    box-shadow: 0px 1px 2px 2px colors.$neutral-color-black; 
+    list-style-type: none;
+    padding: 0;
+}
+
+.find-pet-dd a{
+    color: colors.$neutral-color-grey;
+    padding: 10px 2%;
+    display: block;
+    text-align: left;
+}
+
+ul.find-pet a{
+    color: colors.$neutral-color-grey;
+}
+
+@media screen and (min-width: 460px) {
+
+    .logo img{
+        width: 200px;
+    }
+
+    .menu{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 3rem;
+    }
+
+    .hamburger-menu a{
+        display: none !important;
+    }
+    
+    header.menu{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .main-menu ul.header-link{
+        display: flex;
+        gap: 1rem;
+    }
+
+    .login{
+        display: block;
+    }
+}

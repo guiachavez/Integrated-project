@@ -37,6 +37,16 @@
     @include mx.raleway-typography(18);
 }
 
+.header-link{
+    @include mx.raleway-typography(20);
+    font-weight: bold;
+}
+
+.header-login{
+    @include mx.raleway-typography(18);
+    font-weight: bold;
+}
+
 .paragraph-mob{
     @include mx.raleway-typography(15);
 }
