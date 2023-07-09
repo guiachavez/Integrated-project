@@ -42,14 +42,14 @@ body{
     z-index: 2;
     background: none;
     border:none;
-    font-size: 4rem;
+    /* font-size: 4rem; */
     top:50%;
     transform:translateY(-50%);
-    color:rgb(255,255,255,.5);
+    /* color:rgb(255,255,255,.5); */
     cursor: pointer;
     border-radius:.25rem;
-    padding: 0 .5rem;
-    background-color: rgba(0,0,0,.1);
+    /* padding: 0 .5rem; */
+    /* background-color: rgba(0,0,0,.1); */
 }
 
 .carousel-button:focus,
