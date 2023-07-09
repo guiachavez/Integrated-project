@@ -1,6 +1,6 @@
 import { getFirestore, getDoc, getDocs, doc, query, where, collection, getCountFromServer, documentId, updateDoc } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js'
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-storage.js";
-import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js';
+import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js';
 import { app } from './config.js'
 
 
@@ -358,3 +358,17 @@ function changingToStatus(adoptAsk, inqId) {
         }
     }) 
 }
+
+
+const logoutButton = document.querySelector('.logout')
+logoutButton.addEventListener('click', () => {
+    signOut(auth)
+        .then(() => {
+            console.log('user signed out')
+            alert("You are now logged out!")
+            window.location.href = './login.html'
+        })
+        .catch((err) => {
+            console.log(err.message)
+        })
+})
