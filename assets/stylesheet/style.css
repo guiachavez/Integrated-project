@@ -326,7 +326,7 @@ img {
   height: 52px;
   padding: 0 8px;
   background-color: white;
-  border: 1px solid #0293A7;
+  border: 1.5px solid #0293A7;
   border-radius: 8px;
 }
 .home_searchbox .petSelector option,
@@ -373,12 +373,15 @@ img {
 
 /* Featured Section ============================= */
 .home_featured {
-  padding: 10% 5%;
+  padding: 8% 5%;
 }
 .home_featured h2 {
   font-size: 30px;
   text-align: center;
   margin-bottom: 15px;
+}
+.home_featured .home_big-carousel {
+  display: none;
 }
 .home_featured .carousel {
   width: 100%;
@@ -414,11 +417,18 @@ img {
   .home_featured h2 {
     font-size: 36px;
   }
+  .home_featured .home_small-carousel {
+    display: none;
+  }
+  .home_featured .home_big-carousel {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 /* Map Section ================================== */
 .home_map-box {
-  padding: 0 5%;
+  padding: 0 5% 8%;
   display: none;
 }
 .home_map-box h2 {
@@ -428,22 +438,19 @@ img {
 @media screen and (min-width: 820px) {
   .home_map-box {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 2fr 4fr;
+    gap: 20px;
   }
   .home_map-box h2 {
     font-size: 36px;
     grid-column: span 2;
   }
   .home_map-box #map {
-    width: 80vw;
     height: 80vh;
   }
-  .home_map-box #orgList {
-    width: 20vw;
-  }
-  .home_map-box #map {
-    width: 60vw;
+  .home_map-box .orgList {
     height: 80vh;
+    overflow-y: scroll;
   }
   .home_map-box .orgName {
     font-weight: bold;
@@ -452,7 +459,7 @@ img {
   .home_map-box .orgInfo {
     margin: 0;
     padding: 0;
-    font-size: 15px;
+    font-size: 14px;
     width: auto;
   }
   .home_map-box .orgInfo p {
@@ -461,6 +468,24 @@ img {
   }
   .home_map-box .orgInfo p span {
     font-weight: bold;
+  }
+  .home_map-box .orgList .orgName {
+    font-size: 15px;
+  }
+  .home_map-box .orgList .orgInfo {
+    border-bottom: 1.5px solid #0293A7;
+    padding: 2% 2% 4%;
+    margin-bottom: 10px;
+    font-size: 13px;
+  }
+  .home_map-box .orgList .orgInfo:hover {
+    background-color: #E6F4F6;
+    border-radius: 8px 8px 0 0;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .home_map-box {
+    grid-template-columns: 1fr 3fr;
   }
 }
 
@@ -643,9 +668,47 @@ img {
   .home_adopt-stories h2 {
     text-align: left;
   }
-  .home_adopt-stories button {
+  .home_adopt-stories .home_post-now {
+    display: block;
     margin: 0;
     margin-top: 15px;
+  }
+  .home_adopt-stories .carousel {
+    height: 50vh;
+    margin-top: 0;
+  }
+  .home_adopt-stories .slide {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .home_adopt-stories .slide img {
+    width: 80%;
+    height: 65%;
+    margin-left: 20%;
+    margin-right: 0;
+    border-radius: 8px 0 0 0;
+    border: none;
+    border-left: 1.5px solid #0293A7;
+    border-top: 1.5px solid #0293A7;
+  }
+  .home_adopt-stories .slide .home_pet-card {
+    width: 80%;
+    margin-left: 20%;
+    margin-right: 0;
+    border-radius: 0 0 0 8px;
+    border: none;
+    border-left: 1.5px solid #0293A7;
+    border-bottom: 1.5px solid #0293A7;
+  }
+  .home_adopt-stories .slide .home_pet-story {
+    width: 80%;
+    margin: 0;
+    margin-right: 10%;
+    border-radius: 0 8px 8px 0;
+    border: none;
+    border-right: 1.5px solid #0293A7;
+    border-bottom: 1.5px solid #0293A7;
+    border-top: 1.5px solid #0293A7;
   }
 }
 
