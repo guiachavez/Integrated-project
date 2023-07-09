@@ -24,22 +24,31 @@
 
     <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/services/services-web.min.js"></script>
 
+    <!-- JS for Carousel -->
+    <script src="./../assets/js/Carousel.js" defer></script>
+    <!-- CSS for Carousel -->
+    <link rel="stylesheet" href="./../assets/stylesheet/carousel.css" />
+
     <!-- Our CSS -->
     <link rel="stylesheet" href="./../assets/stylesheet/style.css" />
 
     <title>Pawfect Match</title>
   </head>
-  <body>
+  <body class="home_body">
     <!-- Header ============================================================= -->
     <header class="tt-side-panel__header"></header>
 
     <!-- Main section ======================================================= -->
-    <main>
+    <main class="home_main">
       <!-- Hero section -->
       <section class="home_hero">
-        <div>
-          <h1>Your Companion Awaits, Find the Pawfect Match</h1>
-          <h3>Over a thousand rescue pets need a home and a second chance.</h3>
+        <div class="home_hero-text">
+          <h1 class="hero-section-title-mob">
+            Your Companion Awaits, Find the <span>Pawfect Match</span>
+          </h1>
+          <h3 class="sub-heading-mob">
+            Over a thousand rescue pets need a home and a second chance.
+          </h3>
         </div>
         <div>
           <img src="/assets/images/frontdog.svg" alt="happy dog" />
@@ -50,21 +59,10 @@
       <section class="home_searchbox">
         <!-- ./../main/animals.html -->
         <form action="#" class="home-search">
-          <div>
-            <label for="query">
-              <input
-                type="text"
-                name="location"
-                id="query"
-                placeholder="City/Postal Code"
-              />
-            </label>
-          </div>
-
           <div class="animal-selector">
-            <select name="type" id="type" class="petSelector">
+            <select name="type" id="type" class="petSelector sub-heading-mob">
               <option disabled selected value class="selectedPet">
-                -- select an option --
+                Type of Pet
               </option>
               <option value="Dog">Dog</option>
               <option value="Cat">Cat</option>
@@ -77,37 +75,107 @@
           </div>
 
           <div class="adopt-from-selector">
-            <label>
-              WHERE TO ADOPT FROM
-              <select id="source">
-                <option disabled selected value>-- select an option --</option>
-                <option value="shelter">Shelter</option>
-                <option value="owner">Pet Owner</option>
-              </select>
-            </label>
+            <select id="source" class="where-from-selector sub-heading-mob">
+              <option disabled selected value>Where from</option>
+              <option value="shelter">Shelter</option>
+              <option value="owner">Pet Owner</option>
+            </select>
           </div>
 
-          <div>
-            <input type="submit" value="Search" id="submit" />
+          <div class="home_search-btn">
+            <input
+              type="submit"
+              value="Search"
+              id="submit"
+              class="sub-heading-mob"
+            />
           </div>
         </form>
       </section>
 
       <!-- Featured Pets Section -->
       <section class="home_featured">
-        <h2>Featured Pets</h2>
+        <h2 class="card-heading-mob">Featured Pets</h2>
         <!-- Here goes the caruousel -->
+        <section aria-label="photos">
+          <div class="carousel" data-carousel>
+            <button class="carousel-button prev" data-carousel-button="prev">
+              <img
+                src="./../assets/images/ChevronLeft-1.svg"
+                alt="previous image"
+              />
+            </button>
+            <button class="carousel-button next" data-carousel-button="next">
+              <img src="./../assets/images/ChevronLeft.svg" alt="next image" />
+            </button>
+            <ul data-slides>
+              <li class="slide" data-active>
+                <img
+                  src="https://picsum.photos/800/800?/rand=431"
+                  alt="random pics"
+                />
+              </li>
+              <li class="slide">
+                <img
+                  src="https://picsum.photos/800/800?/rand=432"
+                  alt="random pics"
+                />
+              </li>
+              <li class="slide">
+                <img
+                  src="https://picsum.photos/800/800?/rand=433"
+                  alt="random pics"
+                />
+              </li>
+              <li class="slide">
+                <img
+                  src="https://picsum.photos/800/800?/rand=444"
+                  alt="random pics"
+                />
+              </li>
+              <li class="slide">
+                <img
+                  src="https://picsum.photos/800/800?/rand=455"
+                  alt="random pics"
+                />
+              </li>
+              <li class="slide">
+                <img
+                  src="https://picsum.photos/800/800?/rand=466"
+                  alt="random pics"
+                />
+              </li>
+              <li class="slide">
+                <img
+                  src="https://picsum.photos/800/800?/rand=477"
+                  alt="random pics"
+                />
+              </li>
+              <li class="slide">
+                <img
+                  src="https://picsum.photos/800/800?/rand=488"
+                  alt="random pics"
+                />
+              </li>
+            </ul>
+          </div>
+        </section>
       </section>
 
       <!-- Map Section -->
-      <section>
-        <div id="map" style="width: 90vw; height: 90vh"></div>
+      <section class="home_map-box">
+        <h2 class="card-heading-mob">Find a Shelter</h2>
+        <div id="map">
+          <!-- map goes here -->
+        </div>
       </section>
 
       <!-- Prepare to Adopt Section -->
       <section class="home_prepare-to-adopt">
-        <h2>Things to Know and Prepare When Adopting</h2>
-        <h3>
+        <h2 class="card-heading-mob">
+          Things to Know and Prepare When Adopting
+        </h2>
+        <h3 class="sub-heading-mob">
           Before bringing a new furry family member home, consider the
           responsibility of providing a safe haven, affection, and time they
           need to thrive.
@@ -118,7 +186,7 @@
           </div>
           <div>
             <div class="home_prepare-list">
-              <div>
+              <div class="home_paw-list">
                 <img src="/assets/images/Paw.svg" alt="paw list item" />
               </div>
               <div>
@@ -130,7 +198,7 @@
               </div>
             </div>
             <div class="home_prepare-list">
-              <div>
+              <div class="home_paw-list">
                 <img src="/assets/images/Paw.svg" alt="paw list item" />
               </div>
               <div>
@@ -143,7 +211,7 @@
               </div>
             </div>
             <div class="home_prepare-list">
-              <div>
+              <div class="home_paw-list">
                 <img src="/assets/images/Paw.svg" alt="paw list item" />
               </div>
               <div>
@@ -161,19 +229,28 @@
 
       <!-- CTA Rehome -->
       <section class="home_cta-rehome">
-        <h2>Do you want to find a home for your pet?</h2>
-        <h3>Paving a path to happiness, finding a new home for your paws.</h3>
+        <h2 class="card-heading-mob">
+          Do you want to find a home for your pet?
+        </h2>
+        <h3 class="sub-heading-mob">
+          Paving a path to happiness, finding a new home for your paws.
+        </h3>
         <form action="/main/rehome.html">
-          <button>Rehome</button>
+          <button class="filled-btn sub-heading-mob">Rehome</button>
         </form>
       </section>
 
       <!-- Adoption Stories Section -->
       <section class="home_adopt-stories">
-        <h2>Want to share your Adoption Story?</h2>
-        <form action="/main/adoption-journey.html">
-          <button>Post now</button>
-        </form>
+        <div>
+          <h2>Want to share your Adoption Story?</h2>
+          <form action="/main/adoption-journey.html">
+            <button class="filled-btn sub-heading-mob">Post now</button>
+          </form>
+        </div>
+        <div>
+          <!-- Carousel goes here -->
+        </div>
       </section>
     </main>
 
