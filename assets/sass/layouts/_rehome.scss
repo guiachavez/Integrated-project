@@ -3,20 +3,6 @@
 @use '../abstracts/mixins/mixins' as mx;
 @use '../abstracts/variables/typography' as t;
 
-body, h1, h2, p {
-    margin: 0;
-}
-
-img {
-    max-width: 100%;
-}
-
-a {
-    text-decoration: none;
-    color: colors.$neutral-color-black;
-    display: block;
-}
-
 .content-center {
     display: grid;
     justify-content: center;
@@ -207,7 +193,7 @@ input:checked + .slider:before {
     display: flex;
 }
 
-#tab-2 form > div {
+#tab-2 form > div:not(:last-of-type) {
     margin-bottom: 2rem;
 }
 
