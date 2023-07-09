@@ -51,13 +51,13 @@ header a {
     color: colors.$primary-color-main;
 }
 
-.header-link li.active {
+.header-link li.selected {
     border-bottom: 2px solid colors.$primary-color-main;
     color: colors.$primary-color-main;
     font-weight: 700;
 }
 
-.header-link li.active a {
+.header-link li.selected a {
     color: colors.$primary-color-main;
 }
 

@@ -9,9 +9,9 @@ window.onload = function() {
             console.log($(this).attr('data-path'))
 
             if (window.location.pathname.includes($(this).attr('data-path'))) {
-                $(this).closest('li').addClass('active')
+                $(this).closest('li').addClass('selected')
             } else {
-                $(this).closest('li').removeClass('active')
+                $(this).closest('li').removeClass('selected')
             }
         })
         
