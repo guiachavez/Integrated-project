@@ -7,22 +7,15 @@
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 
     <!-- This link tag is required by the TomTom API -->
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/maps/maps.css"
-    />
-    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.12/SearchBox-web.js"></script>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.12/SearchBox.css"
-    />
+    <link rel="stylesheet" type="text/css" href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/maps/maps.css"/>
+    <link rel="stylesheet" type="text/css" href="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.12/SearchBox.css" />
+
 
     <!-- Include JavaScript SDK for TomTom -->
     <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/maps/maps-web.min.js"></script>
-
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.12/SearchBox-web.js"></script>
     <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/services/services-web.min.js"></script>
+
 
     <!-- Our TomTom JS -->
     <script type="module" src="./../assets/js/home-tomtom.js" defer></script>
@@ -36,16 +29,19 @@
     <!-- CSS for Carousel -->
     <link rel="stylesheet" href="./../assets/stylesheet/carousel.css" />
 
-    <!-- Our CSS -->
+
+    <!-- CSS -->
     <link rel="stylesheet" href="./../assets/stylesheet/style.css" />
+
+    <!-- Scripts -->
+    
 
     <title>Pawfect Match</title>
   </head>
+
   <body class="home_body">
-    <!-- Header ============================================================= -->
     <header class="tt-side-panel__header"></header>
 
-    <!-- Main section ======================================================= -->
     <main class="home_main">
       <!-- Hero section -->
       <section class="home_hero">
@@ -66,6 +62,17 @@
       <section class="home_searchbox">
         <!-- ./../main/animals.html -->
         <form action="#" class="home-search">
+          <div>
+            <label for="query">
+              <input
+                type="text"
+                name="location"
+                id="query"
+                placeholder="City/Postal Code"
+              />
+            </label>
+          </div>
+          
           <div class="animal-selector">
             <select name="type" id="type" class="petSelector sub-heading-mob">
               <option disabled selected value class="selectedPet">
@@ -394,9 +401,10 @@
       </section>
     </main>
 
-    <!-- Footer ============================================================= -->
     <footer></footer>
 
-    <script type="module" src="./../assets/js/index.js"></script>
   </body>
 </html>
+
+<script src="./../assets/js/global-functions.js" defer></script>
+<script type="module" src="./../assets/js/index.js" defer></script>

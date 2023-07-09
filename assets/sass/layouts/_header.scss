@@ -1,21 +1,41 @@
 @use '../abstracts/variables/colors' as colors;
+@use '../abstracts/mixins/mixins' as mx;
 
-/*Header section ------------*/
+/* Header section ============================ */
+body, h1, h2, p {
+    margin: 0;
+}
 
-header{
+img {
+    max-width: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: colors.$neutral-color-black;
+    display: block;
+}
+
+header {
+    background-color: white;
+    border-bottom: 1px solid #f0f0f0;
+    box-shadow: 0 3px 7px -7px colors.$neutral-color-grey-l;
+    padding: 0 1rem;
+}
+
+.header-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 5%;
+    padding: 0.5rem;
 }
 
-.logo img{
-    width: 150px;
+.logo img {
+    width: 170px;
 }
 
-header a{
-    text-decoration: none;
-    color: colors.$neutral-color-black;
+header a {
+    padding: 0.5rem;
 }
 
 .hamburger-menu a{
@@ -31,16 +51,26 @@ header a{
     color: colors.$primary-color-main;
 }
 
-.login{
-    display: none;
-    text-align: center;
-    border-top: 1px solid colors.$neutral-color-grey;
-    margin: 2%;
+.header-link li.selected {
+    border-bottom: 2px solid colors.$primary-color-main;
+    color: colors.$primary-color-main;
+    font-weight: 700;
 }
 
-.login a{
+.header-link li.selected a {
     color: colors.$primary-color-main;
 }
+
+// .login {
+//     display: none;
+//     text-align: center;
+//     border-top: 1px solid colors.$neutral-color-grey;
+//     margin: 2%;
+// }
+
+// .login a {
+//     color: colors.$primary-color-main;
+// }
 
 .find-pet-dd{
     display: none;
@@ -111,8 +141,14 @@ ul.find-pet a{
         gap: 1rem;
     }
 
-    .login{
-        display: block;
-        border: unset;
+    // .login{
+    //     display: block;
+    //     border: unset;
+    // }
+}
+
+@media screen and (min-width: 1200px) {
+    .header-container {
+        @include mx.maxwidth;
     }
 }

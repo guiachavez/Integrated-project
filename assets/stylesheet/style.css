@@ -1,11 +1,20 @@
-@import url("https://fonts.googleapis.com/css2?family=Baloo+2&family=Raleway&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@300;700&family=Raleway:wght@300;700&display=swap");
+button, a {
+  cursor: pointer;
+}
+
 button.google-btn {
   width: 235px;
   height: 56px;
-  border-radius: 22px;
-  background-color: white;
+  border-radius: 3rem;
+  background-color: #FFFFFF;
   border: 1px solid #C5C5C5;
   font-size: 18px;
+}
+
+button.google-btn:hover {
+  background-color: #C5C5C5;
+  color: #FFFFFF;
 }
 
 button.filled-btn,
@@ -69,6 +78,15 @@ button.outline-next-btn:hover {
   background-color: #0293A7;
   color: #FFFFFF;
   border: 2px solid #0293A7;
+  width: 172px;
+  height: 48px;
+  border-radius: 3rem;
+}
+
+button.filled-mob-btn:hover {
+  background-color: #026E7D;
+  color: #FFFFFF;
+  border: 2px solid #026E7D;
   width: 172px;
   height: 48px;
   border-radius: 3rem;
@@ -149,8 +167,8 @@ button.font {
 
 .header-link {
   font-family: "Raleway";
-  font-size: 20px;
-  font-weight: bold;
+  font-size: 18px;
+  font-weight: 500;
 }
 
 .header-login {
@@ -173,15 +191,6 @@ button.font {
   font-family: "Raleway";
   font-size: 18px;
   font-weight: bold;
-}
-
-/*Input Text----------*/
-.text-input {
-  width: 360px;
-  height: 35px;
-  border-radius: 0.3rem;
-  padding: 0;
-  border: 1px solid #C5C5C5;
 }
 
 .text-input::placeholder {
@@ -1097,24 +1106,17 @@ input:checked + .slider:before {
     width: 1200px;
   }
 }
-/* Signup page =========================== */
-.signup-form-div {
-  text-align: center;
+
+/*Input Text----------*/
+.text-input {
+  height: 40px;
+  border-radius: 0.3rem;
+  padding: 0 1rem;
+  border: 1px solid #C5C5C5;
+  font-family: "Raleway";
+  font-size: 16px;
 }
 
-.signup-form-div h2 {
-  color: #0293A7;
-}
-
-.signup_ul {
-  list-style: none;
-  padding: 0;
-}
-
-.signup_ul li a {
-  text-decoration: none;
-  color: #DE6B35;
-}
 
 /* form of sign up page ================ */
 .signup {
@@ -1125,60 +1127,530 @@ input:checked + .slider:before {
   gap: 1rem;
 }
 
-.signup-label-input-div {
-  display: grid;
-  grid-template-rows: repeat(1fr, 1fr);
+.text-input:invalid {
+  outline: none;
+  border-color: #DE3535;
 }
 
-.signup-label-input-div label {
-  justify-self: start;
+input[type=radio] :checked {
+  accent-color: #0293A7;
 }
 
-/* set the icon on top of password field */
-.password-input-container {
+.toggle-switch {
   position: relative;
-}
-
-.password-input-container img {
-  position: absolute;
-  height: 20px;
-  right: 1rem;
-  bottom: 1.1rem;
-}
-
-.select_google button {
-  position: relative;
-  top: 3rem;
-  margin: auto;
-}
-
-.google-btn {
   display: flex;
-  flex-wrap: nowrap;
-  gap: 1rem;
-  padding: 1rem;
-  align-items: center;
+  width: 32px;
+  height: 16px;
+  border-radius: 10px;
+  border: 2px solid #818080;
 }
 
-.google-btn span img {
-  height: 30px;
+.toggle-switch::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: #818080;
+  top: 1px;
+  left: 1px;
+  transition: all 0.5s;
 }
 
-/*Header section ------------*/
-header {
+.toggle-off {
+  display: none;
+}
+
+.toggle-off:checked + .toggle-switch {
+  background-color: #0293A7;
+  border-color: #0293A7;
+}
+
+.toggle-off:checked + .toggle-switch::after {
+  left: 17px;
+  background-color: #FFFFFF;
+}
+
+.container-2400 {
+  margin: auto;
+  position: relative;
+  width: 1200px;
+}
+
+/* HOMEPAGE STYLING ========================== */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.select-wrapper {
+  position: relative;
+  user-select: none;
+  width: 100%;
+}
+
+.select {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-width: 0 2px 0 2px;
+  border-style: solid;
+  border-color: #394a6d;
+}
+
+.select__trigger {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 5%;
+  padding: 0 22px;
+  font-size: 20px;
+  font-weight: 300;
+  color: #3b3b3b;
+  height: 60px;
+  line-height: 60px;
+  background: #ffffff;
+  cursor: pointer;
+  border-width: 2px 0 2px 0;
+  border-style: solid;
+  border-color: #394a6d;
+}
+
+.custom-options {
+  position: absolute;
+  display: block;
+  top: 100%;
+  left: 0;
+  right: 0;
+  border: 2px solid #394a6d;
+  border-top: 0;
+  background: #fff;
+  transition: all 0.5s;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.select.open .custom-options {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+}
+
+.custom-option {
+  position: relative;
+  display: block;
+  padding: 0 22px 0 22px;
+  font-size: 22px;
+  font-weight: 300;
+  color: #3b3b3b;
+  line-height: 60px;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.custom-option:hover {
+  cursor: pointer;
+  background-color: #b2b2b2;
+}
+
+.custom-option.selected {
+  color: #ffffff;
+  background-color: #305c91;
+}
+
+.pet-profile {
+  display: flex;
+  gap: 1rem;
+}
+
+.gallery-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  width: 50%;
+}
+
+.js .slider-for > div:nth-child(1n+2) {
+  display: none;
+}
+
+.js .slider-for > div:nth-child(1n+2) {
+  display: block;
+}
+
+.slider-nav img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+}
+
+.slider-for img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+.slider-for .slick-prev {
+  left: 25px;
+  z-index: 999;
+}
+
+.slider-for .slick-next {
+  right: 35px;
+}
+
+.slider-nav .slick-arrow {
+  display: none;
+}
+
+.slick-track {
+  left: unset !important;
+  display: flex;
+  justify-content: space-between;
+}
+
+.slider-nav .slick-slide.slick-current {
+  border: 1px solid blue;
+}
+
+.other-details {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pet-details {
+  padding: 0 1rem;
+}
+
+.slick-prev:before, .slick-next:before {
+  font-size: 30px;
+}
+
+/* Rehome ==================================== */
+.content-center {
+  display: grid;
+  justify-content: center;
+}
+
+.rehome-container {
+  display: flex;
+  gap: 1rem;
+}
+.rehome-container > div {
+  width: 50%;
+  flex: 0 1 auto;
+}
+.rehome-container > div:nth-child(2) > div:first-of-type {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.rehome-container .pet-category {
+  border: 1px solid #0293A7;
+  border-radius: 0.5rem;
+  width: 30%;
+  text-align: center;
+  padding: 1rem 0;
+}
+.rehome-container h2 {
+  font-family: "Raleway";
+  font-size: 20px;
+  font-weight: bold;
+}
+.rehome-container p {
+  font-family: "Raleway";
+  font-size: 18px;
+}
+
+.col-left {
+  position: relative;
+}
+.col-left h1 {
+  font-family: "Baloo 2";
+  font-size: 50px;
+  font-weight: 900;
+  line-height: 1;
+  position: absolute;
+  bottom: 0;
+  padding: 3rem;
+  color: #FFFFFF;
+  z-index: 1000;
+}
+.col-left img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.col-left::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 999;
+}
+
+.col-right {
+  display: grid;
+  align-content: space-around;
+}
+.col-right > div:last-of-type {
+  text-align: right;
+}
+
+.pet-category.active {
+  background-color: #0293A7;
+}
+
+.active-pet,
+#tab-progress,
+#tab-2,
+#tab-3 {
+  display: none;
+}
+
+.form-fields {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+label {
+  display: grid;
+}
+
+select,
+textarea {
+  border: 1px solid #C5C5C5;
+  width: 360px;
+  height: 35px;
+  outline: 0;
+  border-radius: 0.3rem;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.radio-slider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  cursor: pointer;
+  background-color: #818080;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.radio-slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: #FFFFFF;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .radio-slider {
+  background-color: #0293A7;
+}
+
+input:focus + .radio-slider {
+  box-shadow: 0 0 1px #0293A7;
+}
+
+input:checked + .radio-slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.radio-slider.round {
+  border-radius: 34px;
+}
+
+.radio-slider.round:before {
+  border-radius: 50%;
+}
+
+.toggle-attributes {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+
+.toggle-attributes label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  row-gap: 2rem;
+  width: 50%;
+}
+
+.upload-image img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border: 1px solid #C5C5C5;
+}
+
+.displayImages {
+  display: flex;
+}
+
+#tab-2 form > div:not(:last-of-type) {
+  margin-bottom: 2rem;
+}
+
+#tab-2 form > div:last-of-type,
+#tab-3 form > div:last-of-type {
+  display: flex;
+  justify-content: flex-end;
+  gap: 2rem;
+  align-items: center;
+}
+
+#tab-progress.active {
+  display: grid;
+}
+
+#tab-progress {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  width: 100%;
+  justify-self: center;
+}
+
+.progress-holder {
+  display: inline-flex;
+  overflow: hidden;
+  background-color: #C5C5C5;
+  text-align: center;
+  border-radius: 0.25rem;
+  margin: 0.2em 0;
+  height: 0.5rem;
+  width: 100%;
+}
+
+.progress-bar {
+  width: 0%;
+  background-color: #0293A7;
+}
+
+.modal {
+  transition: 0.75s all cubic-bezier(0.23, 1, 0.32, 1);
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 10000;
+  opacity: 0;
+  visibility: hidden;
+  overflow: auto;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modal.modal-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #FFFFFF;
+  width: 50%;
+  margin: auto;
+  padding: 3rem;
+  text-align: center;
+}
+.modal-content h2 {
+  margin-bottom: 1rem;
+}
+
+.lottie {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: auto;
+  width: 50%;
+  text-align: center;
+}
+
+.controls {
+  margin-top: 3rem;
+}
+.controls a {
+  color: #C5C5C5;
+  text-decoration: underline;
+  margin-top: 1rem;
+}
+
+@media screen and (min-width: 1200px) {
+  .wrapper {
+    margin: auto;
+    position: relative;
+    width: 1200px;
+  }
+}
+/* Header section ============================ */
+body, h1, h2, p {
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: #000000;
+  display: block;
+}
+
+header {
+  background-color: white;
+  border-bottom: 1px solid #f0f0f0;
+  box-shadow: 0 3px 7px -7px #C5C5C5;
+  padding: 0 1rem;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
 }
 
 .logo img {
-  width: 150px;
+  width: 170px;
 }
 
 header a {
-  text-decoration: none;
-  color: #000000;
+  padding: 0.5rem;
 }
 
 .hamburger-menu a {
@@ -1194,14 +1666,13 @@ header a {
   color: #0293A7;
 }
 
-.login {
-  display: none;
-  text-align: center;
-  border-top: 1px solid #818080;
-  margin: 2%;
+.header-link li.selected {
+  border-bottom: 2px solid #0293A7;
+  color: #0293A7;
+  font-weight: 700;
 }
 
-.login a {
+.header-link li.selected a {
   color: #0293A7;
 }
 
@@ -1267,20 +1738,28 @@ ul.find-pet a {
     display: flex;
     gap: 1rem;
   }
-  .login {
-    display: block;
-    border: unset;
+}
+@media screen and (min-width: 1200px) {
+  .header-container {
+    margin: auto;
+    position: relative;
+    width: 1200px;
   }
 }
 /*Footer section ------------*/
 footer {
   background-color: #FEF0E6;
-  padding: 5%;
+  padding: 0 1rem;
+}
+
+.footer-container {
+  padding: 1rem 0.5rem;
 }
 
 .footer-links {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  margin: 1.5rem 0;
 }
 
 .app-logo {
@@ -1293,30 +1772,39 @@ footer {
   width: 200px;
 }
 
-.quick-link ul {
-  list-style-type: none;
+.quick-link ul,
+.team {
+  padding: 1rem 0;
 }
 
-.quick-link a,
-.about-us a {
-  text-decoration: none;
-  color: #000000;
+footer a {
+  font-family: "Raleway";
+  font-size: 16px;
 }
 
-.quick-link h2,
-.about-us h2 {
+footer h2,
+footer h2 {
   color: #94390F;
+  font-family: "Raleway";
+  font-size: 18px;
 }
 
 .quick-link li, .team {
   display: flex;
   align-items: center;
+  gap: 0.5rem;
 }
 
 .copyright {
-  border-top: 1px solid #026E7D;
+  padding: 0.5rem 0;
+  border-top: 1px solid #C5C5C5;
   text-align: center;
   color: #94390F;
+}
+
+.copyright p {
+  font-family: "Raleway";
+  font-size: 12px;
 }
 
 .copyright span {
@@ -1331,86 +1819,125 @@ footer {
   .quick-link ul {
     display: flex;
     gap: 1rem;
-    padding: 0;
   }
   .copyright {
     display: flex;
     justify-content: space-between;
   }
 }
-/* login page ====================== */
-/* form of login page ===================== */
-.login {
+
+@media screen and (min-width: 1200px) {
+  .footer-container {
+    margin: auto;
+    position: relative;
+    width: 1200px;
+  }
+}
+/* login page ================================ */
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.login-main,
+.signup_main {
+  padding: 3rem 1rem;
+}
+
+.login, .signup {
   display: flex;
   flex-flow: column;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: 2rem;
+  padding-top: 1rem;
 }
 
-.login-label-input-div {
+.login-label-input-div,
+.signup-label-input-div {
   display: grid;
-  grid-template-rows: repeat(1fr, 1fr);
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+  width: 100%;
 }
 
-.login-forgetpw {
+.login-forgotpw {
+  font-family: "Raleway";
+  font-size: 14px;
+  color: #6a6a6a;
   text-align: right !important;
+  text-decoration: underline;
+  cursor: pointer;
+  margin: 0.5rem 0;
 }
 
-.login-label-input-div label {
+.login-forgotpw:hover {
+  color: #026E7D;
+}
+
+.login-label-input-div label,
+.signup-label-input-div label {
   justify-self: start;
 }
 
-/* login main ================= */
-.login-form-div {
+.login-form-div,
+.signup-form-div {
   text-align: center;
 }
 
-.login-form-div h1 {
+.login-form-div h1,
+.signup-form-div h1 {
   color: #0293A7;
+  font-family: "Raleway";
+  font-size: 30px;
 }
 
-.login-form-div h2 {
+.login-form-div h2,
+.signup-form-div h2 {
   color: #94390F;
+  font-family: "Raleway";
+  font-size: 16px;
+  font-weight: 300;
+  margin: 1rem;
 }
 
-.login_ul {
-  padding: 0;
-  list-style: none;
+.login_ul p {
+  font-family: "Raleway";
+  font-size: 14px;
 }
-
-.login_ul li a {
+.login_ul p a {
   color: #DE6B35;
-  text-decoration: none;
+  display: inline-block;
 }
 
-/* login using google ================ */
 .or-div .login-google-text {
-  border-bottom: 1px solid #818080;
-  width: 80%;
+  border-bottom: 1px solid #C5C5C5;
+  width: 100%;
   margin: auto;
   position: absolute;
-  left: 1.5rem;
-  right: 1.5rem;
   bottom: 0;
 }
 
-.or-div, .login-google-text a {
+.or-div {
   position: relative;
   top: 10px;
-  color: #818080;
-  padding: 8px;
-  text-decoration: none;
-  letter-spacing: 2px;
+  margin: 2rem 1rem;
 }
 
-.login-google-text a {
-  background-color: white;
-}
-
-/* set the icon on top of password field */
-.password-input-container {
+.or-div a {
   position: relative;
+  top: 8px;
+  display: inline-block;
+  background-color: #FFFFFF;
+  color: #6a6a6a;
+  padding: 0 1rem;
+  font-family: "Raleway";
+  font-size: 14px;
 }
 
 .password-input-container img {
@@ -1420,17 +1947,23 @@ footer {
   bottom: 1.1rem;
 }
 
+.select_google {
+  margin-top: 4rem;
+}
+
 .select_google button {
-  position: relative;
-  top: 3rem;
   margin: auto;
+  font-family: "Raleway";
+  font-size: 16px;
+  font-weight: 500;
+  justify-content: space-between;
 }
 
 .google-btn {
   display: flex;
   flex-wrap: nowrap;
   gap: 1rem;
-  padding: 1rem;
+  padding: 1rem 1.5rem;
   align-items: center;
 }
 
@@ -1438,18 +1971,37 @@ footer {
   height: 30px;
 }
 
-@media screen and (min-width: 1000px) {
-  .login-main {
+#forgot-email {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+@media screen and (min-width: 820px) {
+  .login-main,
+  .signup_main {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     justify-content: center;
     align-items: center;
+    height: 100vh;
+    padding: 0;
+  }
+  .login-label-input-div,
+  .signup-label-input-div {
+    width: 70%;
+  }
+  .or-div .login-google-text {
+    width: 75%;
+    left: 0;
+    right: 0;
   }
   .image-container {
     height: 100%;
     width: auto;
     background: center/cover no-repeat url("/assets/images/Pet-img-2.svg");
-    border-radius: 1rem;
   }
 }
 /* Style Guide BUTTONS --------------- */

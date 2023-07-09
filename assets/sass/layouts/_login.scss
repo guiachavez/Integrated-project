@@ -1,135 +1,179 @@
-/* login page ====================== */
-
 @use './../abstracts/variables/colors' as color;
-/* form of login page ===================== */
+@use './../abstracts/mixins/mixins' as mx;
 
-.login{
+/* login page ================================ */
+.visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+.login-main,
+.signup_main {
+    padding: 3rem 1rem;
+}
+
+.login, .signup {
     display: flex;
     flex-flow: column;
     justify-content: center;
     align-items: center;
-    gap:1rem;
+    gap: 2rem;
+    padding-top: 1rem;
 }
 
-.login-label-input-div{
+.login-label-input-div,
+.signup-label-input-div {
     display: grid;
-   grid-template-rows: repeat(1fr , 1fr);
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    width: 100%
 }
 
-.login-forgetpw{
+.login-forgotpw {
+    @include mx.raleway-typography(14);
+    color: color.$neutral-color-grey-d;
     text-align: right !important;
+    text-decoration: underline;
+    cursor: pointer;
+    margin: 0.5rem 0;
 }
 
-.login-label-input-div label{
+.login-forgotpw:hover {
+    color: color.$primary-color-75;
+}
+
+.login-label-input-div label,
+.signup-label-input-div label {
     justify-self: start;
 }
 
-
-
-
-
-
-/* login main ================= */
-.login-form-div{
+.login-form-div,
+.signup-form-div {
     text-align: center;
 }
 
-.login-form-div h1{
+.login-form-div h1,
+.signup-form-div h1 {
     color: color.$primary-color-main;
+    @include mx.raleway-typography(30);
 }
 
-.login-form-div h2{
+.login-form-div h2,
+.signup-form-div h2 {
     color: color.$accent-color-75;
+    @include mx.raleway-typography(16);
+    font-weight: 300;
+    margin: 1rem;
 }
 
-.login_ul{
-    padding: 0;
-    list-style: none;
+.login_ul p {
+    @include mx.raleway-typography(14);
+
+    a {
+        color: color.$accent-color-main;
+        display: inline-block;
+    } 
 }
-
-.login_ul li a{
-    color: color.$accent-color-main;
-    text-decoration: none;
-}
-
-
-/* login using google ================ */
   
 .or-div .login-google-text {
-    border-bottom: 1px solid color.$neutral-color-grey;
-    width:80%;
+    border-bottom: 1px solid color.$neutral-color-grey-l;
+    width: 100%;
     margin: auto;
     position: absolute;
-    left: 1.5rem;
-    right: 1.5rem;
-    bottom:0;
-  }
+    bottom: 0;
+}
   
-  .or-div , .login-google-text a{
+.or-div {
     position:relative;
     top: 10px;
-    color: color.$neutral-color-grey;
-    padding: 8px;
-    text-decoration: none;
-    letter-spacing: 2px
-  }
-
-  .login-google-text a{
-    background-color:white;
-  }
-  
-  
-
-
-  /* set the icon on top of password field */
-
-.password-input-container{
-    position: relative;
+    margin: 2rem 1rem;
 }
 
-.password-input-container img{
+.or-div a {
+    position: relative;
+    top: 8px;
+    display: inline-block;
+    background-color: color.$neutral-color-white;
+    color: color.$neutral-color-grey-d;
+    padding: 0 1rem;
+    
+    @include mx.raleway-typography(14);
+}
+
+.password-input-container img {
    position: absolute;
    height: 20px;
    right:1rem;
    bottom: 1.1rem;
 }
 
-
-// google button ============
-
-.select_google button{
-    position: relative;
-    top:3rem;
-    margin: auto;
+.select_google {
+    margin-top: 4rem
 }
 
-.google-btn{
+.select_google button {
+    margin: auto;
+    @include mx.raleway-typography(16);
+    font-weight: 500;
+    justify-content: space-between;
+}
+
+.google-btn {
     display: flex;
     flex-wrap: nowrap;
-    gap:1rem;
-    padding:1rem;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
     align-items: center;
 }
 
-.google-btn span img{
+.google-btn span img {
     height:30px;
 }
 
+#forgot-email {
+    @include mx.position(absolute);
+}
 
-
-
-@media screen and (min-width:1000px){
-
-    .login-main{
+@media screen and (min-width:820px) {
+    .login-main,
+    .signup_main {
         display: grid;
         grid-template-columns: repeat(2,1fr);
         justify-content: center;
         align-items: center;
+        height: 100vh;
+        padding: 0;
     }
-    .image-container{
+
+    .login-label-input-div,
+    .signup-label-input-div {
+        width: 70%;
+    }
+
+    .or-div .login-google-text {
+        width: 75%;
+        left: 0;
+        right: 0;
+    }
+
+    .image-container {
         height: 100%;
-        width:auto;
+        width: auto;
         background: center / cover no-repeat url("/assets/images/Pet-img-2.svg");
-        border-radius:1rem;
     }
 }
+
+// @media screen and (min-width: 460px) {
+    
+// }
+
+// @media screen and (min-width: 1200px) {
+//     .signup_main {
+//         @include mx.maxwidth;
+//     }
+// }

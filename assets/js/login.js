@@ -1,21 +1,11 @@
-import { getAuth, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, GoogleAuthProvider, signInWithRedirect, getRedirectResult } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js';
+import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, sendPasswordResetEmail } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js';
 import { app } from './config.js'
 
 // Initialize Authentication
 const auth = getAuth(app)
+const provider = new GoogleAuthProvider(app)
 
-// login and logout
-const logoutButton = document.querySelector('.logout')
-logoutButton.addEventListener('click', () => {
-    signOut(auth)
-        .then(() => {
-            console.log('user signed out')
-        })
-        .catch((err) => {
-            console.log(err.message)
-        })
-})
-
+//login method using email
 const loginButton = document.querySelector('.login')
 loginButton.addEventListener('submit', (e) => {
     e.preventDefault()
@@ -26,53 +16,54 @@ loginButton.addEventListener('submit', (e) => {
     signInWithEmailAndPassword(auth, email, pw)
         .then((cred) => {
             console.log('user logged in: ', cred.user)
-            //window.location.href ="./../main/ownerpost.html"
+            window.location.href = './index.html'
         })
         .catch((err) => {
             console.log(err.message)
         })
 })
 
+//login method using google
+const googleButton = document.querySelector('.google-btn')
+googleButton.addEventListener('click', (e) => {
+    e.preventDefault();
+ 
+    signInWithPopup(auth, provider)
+        .then((result) => {
 
- 
- const provider = new GoogleAuthProvider(app);
+            const user = result.user;
+            console.log('user logged in: ', user.email)
+            window.location.href = './index.html'
+        })
+        .catch((err) => {
+            console.log(err.message)
+        })
+});
 
- const googleButton = document.querySelector('.google-sign-in')
- 
- googleButton.addEventListener('click', (e) =>{
-     e.preventDefault();
- 
-     signInWithRedirect(auth, provider);
- 
-     getRedirectResult(auth)
-     .then((result) => {
-     // This gives you a Google Access Token. You can use it to access Google APIs.
-     const credential = GoogleAuthProvider.credentialFromResult(result);
-     const token = credential.accessToken;
- 
-     // The signed-in user info.
-     const user = result.user;
-     if (user) {
-        console.log('user logged in: ', user);
-     }
-     // IdP data available using getAdditionalUserInfo(result)
-     // ...
- 
-     //name , email
- 
-    //  alert(cred.user);
- 
- 
-   }).catch((error) => {
-     // Handle Errors here.
-     const errorCode = error.code;
-     const errorMessage = error.message;
-     // The email of the user's account used.
-     const email = error.customData.email;
-     // The AuthCredential type that was used.
-     const credential = GoogleAuthProvider.credentialFromError(error);
-     // ...
-   });
- 
- })
- 
+//forgot pw function
+const forgotPw = document.querySelector('.login-forgotpw');
+forgotPw.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    var forgotDiv = document.getElementById("forgot-email");
+        
+        forgotDiv.classList.add('modal-active')
+        // if (forgotDiv.style.display === "none") {
+        //     forgotDiv.style.display = "block";
+        // }
+    })
+    
+const submitForgot = document.querySelector('.submit_forgot');
+submitForgot.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const email = submitForgot.forgotemail.value
+    
+    sendPasswordResetEmail(auth, email)
+        .then(() => {
+            alert("Password reset email sent!")
+        })
+        .catch((err) => {
+            console.log(err.message)
+        });
+})

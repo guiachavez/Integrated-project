@@ -38,8 +38,8 @@
 }
 
 .header-link{
-    @include mx.raleway-typography(20);
-    font-weight: bold;
+    @include mx.raleway-typography(18);
+    font-weight: 500;
 }
 
 .header-login{
@@ -56,6 +56,6 @@
 }
 
 .label{
-    @include mx.raleway-typography(18);
+    @include mx.raleway-typography(16);
     font-weight: bold;
 }

@@ -15,37 +15,40 @@
       <title>Pet Profile</title>
   </head>
   <body>
-    <div class="pet-profile">
-      <div class="gallery-container">
-        <div class="slider slider-for slick-slider slider-profile"></div>
-        <div class="gallery slider slider-nav slick-slider slick-dotted"></div>
-      </div>
-      <div class="pet-details">
-        <h2 class="pet-name"></h2>
-        <p class="pet-description"></p>
-        <div class="other-details">
-          <div>
-            <div><span></span><p class="pet-location"></p></div>
-            <div><span></span><p class="pet-age"></p></div>
-            <div><span></span><p class="pet-size"></p></div>
-          </div>
-          <div>
-            <div><span></span><p class="pet-organization"></p></div>
-            <div><span></span><p class="pet-breed"></p></div>
-            <div><span></span><p class="pet-gender"></p></div>
-          </div>
+    <header></header>
+
+    <main>
+      <div class="pet-profile">
+        <div class="gallery-container">
+          <div class="slider slider-for slick-slider slider-profile"></div>
+          <div class="gallery slider slider-nav slick-slider slick-dotted"></div>
         </div>
+        <div class="pet-details">
+          <h2 class="pet-name"></h2>
+          <p class="pet-description"></p>
+          <div class="other-details">
+            <div>
+              <div><span></span><p class="pet-location"></p></div>
+              <div><span></span><p class="pet-age"></p></div>
+              <div><span></span><p class="pet-size"></p></div>
+            </div>
+            <div>
+              <div><span></span><p class="pet-organization"></p></div>
+              <div><span></span><p class="pet-breed"></p></div>
+              <div><span></span><p class="pet-gender"></p></div>
+            </div>
+          </div>
 
-        <img class="card-img-top" id="photo">
+          <img class="card-img-top" id="photo">
+        </div>
+        
       </div>
-      
-    </div>
+    </main>
 
-      
-    
+    <footer></footer>
 
-    <br />
     <script type="module" src="./../assets/js/pet-profile.js" defer></script>
+    <script src="./../assets/js/global-functions.js" defer></script>
     <!-- <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script> -->
 
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
@@ -53,97 +56,6 @@
 </html>
 
 <style> 
-  .pet-profile {
-    display: flex;
-    gap: 1rem;
-  }
-  .gallery-container {
-    display: flex;
-    flex-direction: column;
-    row-gap: 1rem;
-    width: 50%;
-  }
   
-  ul {
-    display: flex;
-    flex-direction: column;
-  }
-
-  li {
-      list-style: none;
-      display: inline-block;
-      position: relative;
-  }
-
-  img {
-    max-width: 100%;
-  }
-
-  a {
-    display: block;
-  }
-
-  li img {
-    max-width: 100%;
-    width: 48px;
-    height: 48px;
-    object-fit: cover;
-  }
-
-  .js .slider-for > div:nth-child(1n + 2) {
-    display: none;
-  }
-
-  .js .slider-for > div:nth-child(1n + 2) {
-    display: block;
-  }
-
-  .slider-nav img {
-    width: 100%;
-    height: 100px;
-    object-fit: cover;
-  }
-        
-  .slider-for img {
-    width: 100%;
-    height: 400px;
-    object-fit: cover;
-  }
-
-  .slider-for .slick-prev {
-    left: 25px;
-    z-index: 999;
-  }
-
-  .slider-for .slick-next {
-      right: 35px;
-  }
-
-  .slider-nav .slick-arrow {
-    display: none;
-  }
-
-  .slick-track {
-    left: unset !important;
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .slider-nav .slick-slide.slick-current {
-    border: 1px solid blue;
-  }
-
-  .other-details {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .pet-details {
-    padding: 0 1rem;
-  }
-
-  .slick-prev:before, .slick-next:before {
-    font-size: 30px;
-  }
 </style>
 

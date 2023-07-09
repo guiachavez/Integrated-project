@@ -3,20 +3,6 @@
 @use '../abstracts/mixins/mixins' as mx;
 @use '../abstracts/variables/typography' as t;
 
-body, h1, h2, p {
-    margin: 0;
-}
-
-img {
-    max-width: 100%;
-}
-
-a {
-    text-decoration: none;
-    color: colors.$neutral-color-black;
-    display: block;
-}
-
 .content-center {
     display: grid;
     justify-content: center;
@@ -139,7 +125,7 @@ textarea {
     height: 0;
 }
   
-.slider {
+.radio-slider {
     @include mx.position(absolute);
 
     cursor: pointer;
@@ -148,7 +134,7 @@ textarea {
     transition: .4s;
 }
   
-.slider:before {
+.radio-slider:before {
     position: absolute;
     content: "";
     height: 26px;
@@ -160,26 +146,25 @@ textarea {
     transition: .4s;
 }
   
-input:checked + .slider {
+input:checked + .radio-slider {
     background-color: colors.$primary-color-main;
 }
   
-input:focus + .slider {
+input:focus + .radio-slider {
     box-shadow: 0 0 1px colors.$primary-color-main;
 }
   
-input:checked + .slider:before {
+input:checked + .radio-slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
 }
   
-  /* Rounded sliders */
-.slider.round {
+.radio-slider.round {
     border-radius: 34px;
 }
   
-.slider.round:before {
+.radio-slider.round:before {
     border-radius: 50%;
 }
 .toggle-attributes {
@@ -207,7 +192,7 @@ input:checked + .slider:before {
     display: flex;
 }
 
-#tab-2 form > div {
+#tab-2 form > div:not(:last-of-type) {
     margin-bottom: 2rem;
 }
 
