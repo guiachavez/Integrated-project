@@ -148,10 +148,16 @@ img {
 
 /* Featured Section ============================= */
 .home_featured {
-  padding: 0 5%;
+  padding: 10% 5%;
   h2 {
     font-size: 30px;
     text-align: center;
+  }
+
+  .carousel {
+    width: 90%;
+    height: 70vh;
+    margin: auto;
   }
 
   @media screen and (min-width: query.$media-tablet-width) {
