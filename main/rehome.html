@@ -5,283 +5,289 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="./../stylesheet/style.css">
+    <link rel="stylesheet" href="./../assets/stylesheet/style.css">
     <!-- <link rel="stylesheet" href="./../stylesheet/normalize.css"> -->
 
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+    <script src="./../assets/js/global-functions.js" defer></script>
     <title>Post for rehome</title>
 </head>
 <body>
-  <div class="modal success-modal rehome">
-    <div class="modal-content">
-      <h2>Post Completed!</h2>
-      <p>Your pet <span>Rehome</span> listing was successfully created!</p>
+  <header></header>
+  <main>
+    <div class="modal success-modal rehome">
+      <div class="modal-content">
+        <h2>Post Completed!</h2>
+        <p>Your pet <span>Rehome</span> listing was successfully created!</p>
 
-      <div class="controls">
-        <button class="filled-default-mob font go-home">Home</button>
-        <a href="./../main/profile.html">Take me to my Profile</a>
+        <div class="controls">
+          <button class="filled-default-mob font go-home">Home</button>
+          <a href="./../main/profile.html">Take me to my Profile</a>
+        </div>
+      
       </div>
-     
     </div>
-  </div>
 
-  <div class="modal spinner">
+    <div class="modal spinner">
 
-    <!-- <iframe src="https://embed.lottiefiles.com/animation/142715"></iframe> -->
-    <!-- <img src="./../assets/img/Spinner-1s-450px.gif" alt=""> -->
+      <!-- <iframe src="https://embed.lottiefiles.com/animation/142715"></iframe> -->
+      <!-- <img src="./../assets/img/Spinner-1s-450px.gif" alt=""> -->
 
-      <lottie-player class="lottie" src="https://assets2.lottiefiles.com/packages/lf20_EzXPcIqk02.json"  background="transparent"  speed="1"  style="width: 200px; height: 200px;"  loop autoplay></lottie-player>
-  </div>
-  <div class="wrapper content-center">
-    <section id="tab-1" class="tab">
-      <div class="rehome-container">
-        <div class="col-left">
-          <h1>Let ‘s Together find a new home for your pet.</h1>
-          <img src="./../assets/img/nicholas-brownlow.png" alt="">
-        </div>
+        <lottie-player class="lottie" src="https://assets2.lottiefiles.com/packages/lf20_EzXPcIqk02.json"  background="transparent"  speed="1"  style="width: 200px; height: 200px;"  loop autoplay></lottie-player>
+    </div>
+    <div class="wrapper content-center">
+      <section id="tab-1" class="tab">
+        <div class="rehome-container">
+          <div class="col-left">
+            <h1>Let ‘s Together find a new home for your pet.</h1>
+            <img src="./../assets/images/nicholas-brownlow.png" alt="">
+          </div>
 
-        <div class="col-right">
-          <h2>Which pet you want to rehome?</h2>
-          <div>
-            <div class="pet-category">
-              <a href="#">
-                <img class="pet" src="./../assets/img/Dog.svg" alt="">
-                <img class="active-pet" src="./../assets/img/Dogfill.svg" alt="">
-                <p>Dog</p>
-              </a>
+          <div class="col-right">
+            <h2>Which pet you want to rehome?</h2>
+            <div>
+              <div class="pet-category">
+                <a href="#">
+                  <img class="pet" src="./../assets/images/Dog.svg" alt="">
+                  <img class="active-pet" src="./../assets/images/Dogfill.svg" alt="">
+                  <p>Dog</p>
+                </a>
+              </div>
+              <div class="pet-category">
+                <a href="#">
+                  <img class="pet" src="./../assets/images/Cat.svg" alt="">
+                  <img class="active-pet" src="./../assets/images/Catfill.svg" alt="">
+                  <p>Cat</p>
+                </a>
+              </div>
+              <div class="pet-category">
+                <a href="#">
+                  <img class="pet" src="./../assets/images/Bird.svg" alt="">
+                  <img class="active-pet" src="./../assets/images/Birdfill.svg" alt="">
+                  <p>Bird</p>
+                </a>
+              </div>
+              <div class="pet-category">
+                <a href="#">
+                  <img class="pet" src="./../assets/images/Horse.svg" alt="">
+                  <img class="active-pet" src="./../assets/images/Horsefill.svg" alt="">
+                  <p>Horse</p>
+                </a>
+              </div>
+              <div class="pet-category">
+                <a href="#">
+                  <img class="pet" src="./../assets/images/Fin.svg" alt="">
+                  <img class="active-pet" src="./../assets/images/Finfill.svg" alt="">
+                  <p>Fin</p>
+                </a>
+              </div>
+              <div class="pet-category">
+                <a href="#">
+                  <img class="pet" src="./../assets/images/Scale.svg" alt="">
+                  <img class="active-pet" src="./../assets/images/Scalefill.svg" alt="">
+                  <p>Scale</p>
+                </a>
+              </div>
+              <div class="pet-category">
+                <a href="#">
+                  <img class="pet" src="./../assets/images/Barnyard.svg" alt="">
+                  <img class="active-pet" src="./../assets/images/Barnyardfill.svg" alt="">
+                  <p>Barnyard</p>
+                </a>
+              </div>
             </div>
-            <div class="pet-category">
-              <a href="#">
-                <img class="pet" src="./../assets/img/Cat.svg" alt="">
-                <img class="active-pet" src="./../assets/img/Catfill.svg" alt="">
-                <p>Cat</p>
-              </a>
-            </div>
-            <div class="pet-category">
-              <a href="#">
-                <img class="pet" src="./../assets/img/Bird.svg" alt="">
-                <img class="active-pet" src="./../assets/img/Birdfill.svg" alt="">
-                <p>Bird</p>
-              </a>
-            </div>
-            <div class="pet-category">
-              <a href="#">
-                <img class="pet" src="./../assets/img/Horse.svg" alt="">
-                <img class="active-pet" src="./../assets/img/Horsefill.svg" alt="">
-                <p>Horse</p>
-              </a>
-            </div>
-            <div class="pet-category">
-              <a href="#">
-                <img class="pet" src="./../assets/img/Fin.svg" alt="">
-                <img class="active-pet" src="./../assets/img/Finfill.svg" alt="">
-                <p>Fin</p>
-              </a>
-            </div>
-            <div class="pet-category">
-              <a href="#">
-                <img class="pet" src="./../assets/img/Scale.svg" alt="">
-                <img class="active-pet" src="./../assets/img/Scalefill.svg" alt="">
-                <p>Scale</p>
-              </a>
-            </div>
-            <div class="pet-category">
-              <a href="#">
-                <img class="pet" src="./../assets/img/Barnyard.svg" alt="">
-                <img class="active-pet" src="./../assets/img/Barnyardfill.svg" alt="">
-                <p>Barnyard</p>
-              </a>
+            <div>
+              <button class="outline-next-btn font" id="submitPet">Next</button>
             </div>
           </div>
-          <div>
-            <button class="outline-next-btn font" id="submitPet">Next</button>
+        </div>
+      </section>
+
+      <section id="tab-progress">
+        <div>
+          <p>Pet Category</p>
+          <div class="progress-holder tab-1">
+            <div class="progress-bar"></div>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="tab-progress">
-      <div>
-        <p>Pet Category</p>
-        <div class="progress-holder tab-1">
-          <div class="progress-bar"></div>
-        </div>
-      </div>
-      
-      <div>
-        <p>Pet Details</p>
-        <div class="progress-holder tab-2">
-          <div class="progress-bar"></div>
-        </div>
-      </div>
-      
-      <div>
-        <p>Pet Owner's Details</p>
-        <div class="progress-holder tab-3">
-          <div class="progress-bar"></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="tab-2" class="tab">
-      <h2>Pet Details</h2>
-
-      <div class="animal-selector">
-        <label for="type">
-          TYPE OF PET
-          <select name="ptype" id="ptype" required>
-            <option disabled selected value> -- select an option -- </option>
-            <option value="Dog">Dog</option>
-            <option value="Cat">Cat</option>
-            <option value="Rabbit">Rabbit</option>
-            <option value="Bird">Bird</option>
-            <option value="Horse">Horse</option>
-            <option value="Scales, Fins & Other">Scales, Fins & Other</option>
-            <option value="Barnyard">Barnyard</option>
-          </select>
-        </label>
-      </div>
-
-      <form action="" class="rehome-pet">
-          
-        <div class="form-fields">
-          <label for="pname">Pet Name
-            <input type="text" name="pname" id="pname" class="text-input" required>
-          </label>
-
-          <label for="breed">Breed
-            <input type="text" name="pbreed" id="pbreed" class="text-input" required>
-          </label>
-
-          <label for="gender"> Gender
-            <select name="gender" id="gender" required>
-              <option disabled selected value> Select </option>
-              <option value="Female">Female</option>
-              <option value="Male">Male</option>
-            </select>
-          </label>
-
-          <label for="age">Age
-            <select name="age" id="age" required>
-              <option disabled selected value> Select </option>
-              <option value="Baby">Baby</option>
-              <option value="Young">Young</option>
-              <option value="Adult">Adult</option>
-              <option value="Senior">Senior</option>
-            </select>
-          </label>
-          
-          <label for="size">Size
-            <select name="size" id="size" required>
-              <option disabled selected value> Select </option>
-              <option value="Small">Small</option>
-              <option value="Medium">Medium</option>
-              <option value="Large">Large</option>
-              <option value="Xlarge">Extra Large</option>
-            </select>
-          </label>
-          
-
-          <label for="color">Color
-            <input type="text" name="pcolor" id="pcolor" class="text-input" required>
-          </label> 
-          
-          <label for="pdesc">Short Description
-            <textarea name="pdesc" id="pdesc" cols="30" rows="10" required></textarea>
-          </label>
-        </div>
-
-        <div class="toggle-attributes">
-          <label>Good with children
-            <div class="switch">
-              <input type="checkbox" name="children">
-              <span class="slider round"></span>
-            </div>
-          </label>
-
-          <label>House Trained
-            <div class="switch">
-              <input type="checkbox" name="trained">
-              <span class="slider round"></span>
-            </div>
-          </label>
-        </div> 
-
-        <div>
-          <label for="filename">Photos</label>
-          <input type="file" id="myFile" name="filename" multiple required>
-          <output class="displayImages"></output>
-        </div>
-          
-        <!-- <input value="Reset" type="reset"> -->
-        <div>
-          <!-- <div>
-            <a href="#" id="back-petform">Back</a>
-          </div> -->
-          <button type="submit" id="post-now" class="outline-next-btn font" disabled>Submit</button>
-        </div>
-        
-      </form>
-    </section>
-
-    <section id="tab-3" class="tab">
-      <h2>Pet Owner Details</h2>
-      <form action="" class="rehome-user">
-        <div class="form-fields">
-          <label for="fname">First Name
-            <input type="text" name="fname" id="user-first-name" class="text-input">
-          </label>
-          
-
-          <label for="lname">Last Name
-            <input type="text" name="lname" id="user-last-name" class="text-input">
-          </label>
-
-          <label for="email">E-mail
-            <input type="email" name="email" id="user-email" class="text-input">
-          </label>
-          
-
-          <label for="ownerphone">Phone Number
-            <input type="tel" name="ownerphone" id="userphone" class="text-input">
-          </label>
-          
-          <label for="country">Country
-            <input type="text" name="country" id="usercountry" class="text-input">
-          </label>
-          
-
-          <label for="city">City
-            <input type="text" name="city" id="usercity" class="text-input">
-          </label>
-        
-
-          <label for="state">State
-            <input type="text" name="state" id="userstate" class="text-input">
-          </label>
-          
-
-          <label for="pcode">Postal Code
-            <input type="text" name="pcode" id="userpcode" class="text-input">
-          </label>
-          
-
-          <label for="street">Street
-            <input type="text" name="street" id="userstreet" class="text-input">
-          </label>
         </div>
         
         <div>
-          <div>
-            <a href="#" id="back-pet-form">Back</a>
+          <p>Pet Details</p>
+          <div class="progress-holder tab-2">
+            <div class="progress-bar"></div>
           </div>
-          <button type="submit" id="post-owner" class="outline-next-btn font">Submit</button>
         </div>
         
-      </form>
-    </section>
-  </div>
+        <div>
+          <p>Pet Owner's Details</p>
+          <div class="progress-holder tab-3">
+            <div class="progress-bar"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="tab-2" class="tab">
+        <h2>Pet Details</h2>
+
+        <div class="animal-selector">
+          <label for="type">
+            TYPE OF PET
+            <select name="ptype" id="ptype" required>
+              <option disabled selected value> -- select an option -- </option>
+              <option value="Dog">Dog</option>
+              <option value="Cat">Cat</option>
+              <option value="Rabbit">Rabbit</option>
+              <option value="Bird">Bird</option>
+              <option value="Horse">Horse</option>
+              <option value="Scales, Fins & Other">Scales, Fins & Other</option>
+              <option value="Barnyard">Barnyard</option>
+            </select>
+          </label>
+        </div>
+
+        <form action="" class="rehome-pet">
+            
+          <div class="form-fields">
+            <label for="pname">Pet Name
+              <input type="text" name="pname" id="pname" class="text-input" required>
+            </label>
+
+            <label for="breed">Breed
+              <input type="text" name="pbreed" id="pbreed" class="text-input" required>
+            </label>
+
+            <label for="gender"> Gender
+              <select name="gender" id="gender" required>
+                <option disabled selected value> Select </option>
+                <option value="Female">Female</option>
+                <option value="Male">Male</option>
+              </select>
+            </label>
+
+            <label for="age">Age
+              <select name="age" id="age" required>
+                <option disabled selected value> Select </option>
+                <option value="Baby">Baby</option>
+                <option value="Young">Young</option>
+                <option value="Adult">Adult</option>
+                <option value="Senior">Senior</option>
+              </select>
+            </label>
+            
+            <label for="size">Size
+              <select name="size" id="size" required>
+                <option disabled selected value> Select </option>
+                <option value="Small">Small</option>
+                <option value="Medium">Medium</option>
+                <option value="Large">Large</option>
+                <option value="Xlarge">Extra Large</option>
+              </select>
+            </label>
+            
+
+            <label for="color">Color
+              <input type="text" name="pcolor" id="pcolor" class="text-input" required>
+            </label> 
+            
+            <label for="pdesc">Short Description
+              <textarea name="pdesc" id="pdesc" cols="30" rows="10" required></textarea>
+            </label>
+          </div>
+
+          <div class="toggle-attributes">
+            <label>Good with children
+              <div class="switch">
+                <input type="checkbox" name="children">
+                <span class="radio-slider round"></span>
+              </div>
+            </label>
+
+            <label>House Trained
+              <div class="switch">
+                <input type="checkbox" name="trained">
+                <span class="radio-slider round"></span>
+              </div>
+            </label>
+          </div> 
+
+          <div>
+            <label for="filename">Photos</label>
+            <input type="file" id="myFile" name="filename" multiple required>
+            <output class="displayImages"></output>
+          </div>
+            
+          <!-- <input value="Reset" type="reset"> -->
+          <div>
+            <!-- <div>
+              <a href="#" id="back-petform">Back</a>
+            </div> -->
+            <button type="submit" id="post-now" class="outline-next-btn font" disabled>Submit</button>
+          </div>
+          
+        </form>
+      </section>
+
+      <section id="tab-3" class="tab">
+        <h2>Pet Owner Details</h2>
+        <form action="" class="rehome-user">
+          <div class="form-fields">
+            <label for="fname">First Name
+              <input type="text" name="fname" id="user-first-name" class="text-input">
+            </label>
+            
+
+            <label for="lname">Last Name
+              <input type="text" name="lname" id="user-last-name" class="text-input">
+            </label>
+
+            <label for="email">E-mail
+              <input type="email" name="email" id="user-email" class="text-input">
+            </label>
+            
+
+            <label for="ownerphone">Phone Number
+              <input type="tel" name="ownerphone" id="userphone" class="text-input">
+            </label>
+            
+            <label for="country">Country
+              <input type="text" name="country" id="usercountry" class="text-input">
+            </label>
+            
+
+            <label for="city">City
+              <input type="text" name="city" id="usercity" class="text-input">
+            </label>
+          
+
+            <label for="state">State
+              <input type="text" name="state" id="userstate" class="text-input">
+            </label>
+            
+
+            <label for="pcode">Postal Code
+              <input type="text" name="pcode" id="userpcode" class="text-input">
+            </label>
+            
+
+            <label for="street">Street
+              <input type="text" name="street" id="userstreet" class="text-input">
+            </label>
+          </div>
+          
+          <div>
+            <div>
+              <a href="#" id="back-pet-form">Back</a>
+            </div>
+            <button type="submit" id="post-owner" class="outline-next-btn font">Submit</button>
+          </div>
+          
+        </form>
+      </section>
+    </div>
+  </main>
+  <footer></footer>
   <script type="module" src="./../assets/js/rehome.js"></script>
 
 </body>
