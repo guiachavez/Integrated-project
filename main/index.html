@@ -7,33 +7,26 @@
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 
     <!-- This link tag is required by the TomTom API -->
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/maps/maps.css"
-    />
-    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.12/SearchBox-web.js"></script>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.12/SearchBox.css"
-    />
+    <link rel="stylesheet" type="text/css" href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/maps/maps.css"/>
+    <link rel="stylesheet" type="text/css" href="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.12/SearchBox.css" />
+
 
     <!-- Include JavaScript SDK for TomTom -->
     <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/maps/maps-web.min.js"></script>
-
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.12/SearchBox-web.js"></script>
     <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/services/services-web.min.js"></script>
 
-    <!-- Our CSS -->
+    <!-- CSS -->
     <link rel="stylesheet" href="./../assets/stylesheet/style.css" />
+
+    <!-- Scripts -->
+    
 
     <title>Pawfect Match</title>
   </head>
   <body>
-    <!-- Header ============================================================= -->
     <header class="tt-side-panel__header"></header>
 
-    <!-- Main section ======================================================= -->
     <main>
       <!-- Hero section -->
       <section class="home_hero">
@@ -177,9 +170,10 @@
       </section>
     </main>
 
-    <!-- Footer ============================================================= -->
     <footer></footer>
 
-    <script type="module" src="./../assets/js/index.js"></script>
   </body>
 </html>
+
+<script src="./../assets/js/global-functions.js" defer></script>
+<script type="module" src="./../assets/js/index.js" defer></script>
