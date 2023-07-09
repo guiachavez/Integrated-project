@@ -7,77 +7,62 @@
 
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="https://kit.fontawesome.com/feb2276715.js" crossorigin="anonymous"></script>
+    <script type="module" src="./../assets/js/signup.js" defer></script>
 
     <link rel="stylesheet" href="./../assets/stylesheet/style.css">
   
-    <title>Pawfect Match - Create account</title>
+    <title>Sign up</title>
 </head>
 <body>
     <main class="signup_main">
-        
-            <div class="image-container">
-            </div>
+        <div class="image-container"></div>
        
-        
         <div class="signup-form-div">
-            <h1>Start your pawfect journey!</h1>
-            <h2>Signup</h2>
-            <h3>Register your details to create an account</h3>
+            <h1>Sign up</h1>
+            <h2>Register your details to create an account.</h2>
 
             <form action="" class="signup" >
         
                 <div class="signup-label-input-div">
                     <label for="fname" class="label">First Name</label>
                     <input type="text" name="fname" id="fname" class="text-input" placeholder="Enter your First Name">
-            
                 </div>
 
                 <div class="signup-label-input-div">
                     <label for="lname" class="label">Last Name</label>
                     <input type="text" name="lname" id="lname" class="text-input" placeholder="Enter your Last Name">
-            
                 </div>
 
     
                 <div class="signup-label-input-div">
                     <label for="email" class="label">Email</label>
                     <input type="email" name="email" id="useremail" class="text-input"  placeholder="name@example.com" >
-            
                 </div>
 
                 <div class="signup-label-input-div">
                     <label for="password" class="label">Password</label>
-                    
-                    <div class="password-input-container">
-                        <input type="password" name="password" id="signuppw" class="text-input" placeholder="Create Password">
-                        <img src="/assets/images/eye-off.svg" alt="eyes off" class="eyes_off">
-                    </div>
-                   
+                    <input type="password" name="password" id="signuppw" class="text-input" placeholder="Create Password">
+                    <!-- <img src="/assets/images/eye-off.svg" alt="eyes off" class="eyes_off"> -->
                 </div>
 
+                <button type="submit" class="filled-mob-btn font">Sign up</button>
 
-       
-                <button type="submit" class="filled-mob-btn font">Signup</button>
-
-                <ul class="signup_ul">
-                    <li>Already have an account?<a href="./login.html">Login</a></li>
-                </ul>   
+                <div class="login_ul">
+                    <p>Already have an account? <a href="./login.html">Sign in</a></p>
+                </div>   
             </form>
 
             <div class="or-div">
-                <div class="login-google-text">
-                    <a href="#">or continue with</a>
-                </div>  
+                <div class="login-google-text"></div>  
+                <a href="#">or continue with</a>
             </div>
+
             <div class="select_google">
                 <button type="submit" class="google-btn">
-                    <span><img src="./../assets/images/Google icon.svg" alt="Google logo"></span>
+                    <img src="./../assets/images/Google icon.svg" alt="Google logo" width="15%">
                     Sign in with Google
                 </button>
             </div>
-
-          <script type="module" src="./../assets/js/signup.js"></script>
-
         </div>
     </main>
 </body>
