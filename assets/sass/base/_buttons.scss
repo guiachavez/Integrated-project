@@ -4,17 +4,22 @@
 
 
 // google sign in button : google button (filled start)
-button.google-btn{
+button, a  {
+    cursor: pointer;
+}
+button.google-btn {
     width:235px;
     height:56px;
-    border-radius:22px;
-    background-color: white;
+    border-radius: 3rem;
+    background-color: colors.$neutral-color-white;
     border:1px solid colors.$neutral-color-grey-l;
     font-size:18px;
-
 }
 
-// google-btn (hover)
+button.google-btn:hover {
+    background-color: colors.$neutral-color-grey-l;
+    color: colors.$neutral-color-white;
+}
 
 
 // Filled button
@@ -26,7 +31,7 @@ button.filled-next-mob-btn{
 }
 
 button.filled-btn:hover,
-button.filled-next-btn:hover{
+button.filled-next-btn:hover {
     @include mx.button-style(colors.$primary-color-100, colors.$neutral-color-white, colors.$primary-color-100);
 }
 
@@ -51,8 +56,12 @@ button.outline-next-mob-btn{
 }
 
 button.outline-btn:hover,
-button.outline-next-btn:hover{
+button.outline-next-btn:hover {
     @include mx.button-style(colors.$primary-color-main, colors.$neutral-color-white, colors.$primary-color-main);
+}
+
+button.filled-mob-btn:hover {
+    @include mx.button-style(colors.$primary-color-75, colors.$neutral-color-white, colors.$primary-color-75);
 }
 
 button.outline-btn:active,
