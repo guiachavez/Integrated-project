@@ -1,8 +1,12 @@
+@use './global';
+@use './header';
+@use './footer';
+@use './login';
 @use './homepage';
 @use './pet-profile';
 @use './rehome';
 @use './user-profile';
-@use './header';
-@use './footer';
-@use './login';
+@use './animals';
+@use './inquiries';
 @use './style-guide';
+

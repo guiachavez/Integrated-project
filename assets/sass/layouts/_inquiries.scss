@@ -1,0 +1,17 @@
+@use '../abstracts/mixins/mixins' as mx;
+@use '../abstracts/variables/colors' as colors;
+
+/* Adoption/Inquiry =========================== */
+.inquire-pet label {
+    margin: 1rem 0;
+}
+
+.inquiry-main {
+    padding: 3rem 2rem;
+}
+
+@media screen and (min-width: 1200px) {
+    .inquiry-main {
+        @include mx.maxwidth;
+    }
+}

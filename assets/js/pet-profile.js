@@ -47,7 +47,7 @@ if(localStorage.getItem('source') == 'owner') {
             document.querySelector('.pet-breed').innerHTML = `${data.species}`
             document.querySelector('.pet-gender').innerHTML = `${data.gender}`
 
-            $('body').append([
+            $('.pet-details').append([
                 $('<button />', {'text': 'Apply to Adopt', 'class': 'filled-default font','onclick': `window.location.href='inquiries.html?pet_id=${id}&own_id=${owndata.uid}'`})
             ])
         })
@@ -88,7 +88,7 @@ if(localStorage.getItem('source') == 'owner') {
             document.querySelector('.pet-breed').innerHTML = `${el.species}`
             document.querySelector('.pet-gender').innerHTML = `${el.gender}`
             $('.pet-details').append([
-                $('<button />', {'text': 'Apply to Adopt', 'class': 'filled-default font', 'onclick': `window.location.href='inquiries.html?pet_id=${id}&own_id=${el.organization_id}'`})
+                $('<button />', {'text': 'Apply to Adopt', 'class': 'filled-mob-btn font', 'onclick': `window.location.href='inquiries.html?pet_id=${id}&own_id=${el.organization_id}'`})
             ])
             let photos = el.photos
             const photoArr= photos.map(element => element.medium);

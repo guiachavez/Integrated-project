@@ -242,7 +242,9 @@ async function searchOwner(color, breed, type, ageArr, sizeArr, genderArr, goodW
                                         $('<div />', {'class': 'pet-photos slider'})
                                     ]).append([
                                         $('<div />', {'class': 'pet-details'}).append([
-                                            $('<p />', {text: `${results[i][1].type}, ${results[i][1].breed}, ${results[i][1].name}, ${results[i][1].gender}` })
+                                            $('<p />', {text: `${results[i][1].name}`, class: 'pet-name'}),
+                                            $('<p />', {text: `${results[i][1].gender}, ${results[i][1].breed}` }),
+                                            $('<p />', {text: `${results[i][1].location.city}, ${results[i][1].location.country}`, class: 'pet-location'}) 
                                         ])
                                     ])        
                                 ])
@@ -316,9 +318,12 @@ var searchPetFinder = (type, breed, age, gender, size, color, goodWithChildren, 
                             $('<div />', {'class': 'pet-photos slider'})
                         ]).append([
                             $('<div />', {'class': 'pet-details'}).append([
-                                $('<p />', {text: `${petObj[i].name}` })
+                                $('<p />', {text: `${petObj[i].name}`, class: 'pet-name'})
                             ]).append([
-                                $('<p />', {text: `${petObj[i].species}, ${petObj[i].breeds.primary}, ${petObj[i].gender}, ${petObj[i].organization_id}` })  
+                                $('<p />', {text: `${petObj[i].gender}, ${petObj[i].breeds.primary}` }),
+                                $('<p />', {text: `${petObj[i].contact.address.city}, ${petObj[i].contact.address.country}`, class: 'pet-location'}) 
+
+                                
                             ])
                         ])
                     ])

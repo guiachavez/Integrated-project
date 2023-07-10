@@ -6,74 +6,102 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
         <title>Profile Account</title>
+
+        <link rel="stylesheet" href="./../assets/stylesheet/style.css">
     </head>
 
     <body>
-        <div id="profile-pic">
-            <img class="card-img-top" id="photo" width="250" height="300">
-        </div>
+        <header></header>
+
+        <main class="user-profile-main">
+            <section>
+                <ul class="nav nav-tabs" id="section-tab">
+                    <li class="nav-item current" data-nav="section-1">
+                      <a class="nav-link active" aria-current="page" href="#">Account</a>
+                    </li>
+                    <li class="nav-item" data-nav="section-2">
+                      <a class="nav-link" href="#">Rehome Pet List</a>
+                    </li>
+                    <li class="nav-item" data-nav="section-3">
+                      <a class="nav-link" href="#">Inquired Pet List</a>
+                    </li>
+                </ul>
+            </section>
+
+            <section id="section-1" class="content current about">
+                <div id="profile-pic">
+                    <img class="card-img-top" id="photo" width="250" height="300">
+                </div>
+                
+                <div>
+                    <table class="table is-striped is-narrow is-hoverable is-fullwidth">
+                        <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Contact Number</th>
+                            <th>Address</th>
+                        </tr>
+                        </thead>
+                        <tbody id="ownerDetails">
+                        </tbody>
+                    </table>
+                </div>
+                
+                <button type="submit" class="logout">logout</button>
+            </section>
+
+            <section id="section-2" class="content">
+                <h1> ACTIVITIES </h1>
+                <h2> Animals posted </h2>
+
+                <table class="table is-striped is-narrow is-hoverable is-fullwidth">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Size</th>
+                        <th>Gender</th>
+                        <th>Type</th>
+                        <th>Breed</th>
+                        <th>Color</th>
+                        <th>Description</th>
+                        <th>Activities</th> 
+                    </tr>
+                    
+                    </thead>
+                    <tbody id="result">
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="section-3" class="content">
+                <h2> Animals inquired </h2>
+
+                <table class="table is-striped is-narrow is-hoverable is-fullwidth">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Size</th>
+                        <th>Gender</th>
+                        <th>Type</th>
+                        <th>Breed</th>
+                        <th>Color</th>
+                        <th>Description</th>
+                        <th>Status</th> 
+                    </tr>
+                    
+                    </thead>
+                    <tbody id="result_inq">
+                    </tbody>
+                </table>
+            </section>
+        </main>
+        <footer></footer>
         
-        <table class="table is-striped is-narrow is-hoverable is-fullwidth">
-            <thead>
-            <tr>
-                <th>Email</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Contact Number</th>
-                <th>Address</th>
-            </tr>
-            </thead>
-            <tbody id="ownerDetails">
-            </tbody>
-        </table>
-
-        <h1> ACTIVITIES </h1>
-        <h2> Animals posted </h2>
-
-
-        <table class="table is-striped is-narrow is-hoverable is-fullwidth">
-            <thead>
-            <tr>
-                <th>Name</th>
-                <th>Age</th>
-                <th>Size</th>
-                <th>Gender</th>
-                <th>Type</th>
-                <th>Breed</th>
-                <th>Color</th>
-                <th>Description</th>
-                <th>Activities</th> 
-            </tr>
-            
-            </thead>
-            <tbody id="result">
-            </tbody>
-        </table>
-
-        <h2> Animals inquired </h2>
-
-
-        <table class="table is-striped is-narrow is-hoverable is-fullwidth">
-            <thead>
-            <tr>
-                <th>Name</th>
-                <th>Age</th>
-                <th>Size</th>
-                <th>Gender</th>
-                <th>Type</th>
-                <th>Breed</th>
-                <th>Color</th>
-                <th>Description</th>
-                <th>Status</th> 
-            </tr>
-            
-            </thead>
-            <tbody id="result_inq">
-            </tbody>
-        </table>
-
-        <button type="submit" class="logout">logout</button>
-        
+        <script type="module" src="./../assets/js/global-functions.js" defer></script>
         <script type="module" src="./../assets/js/profile.js" defer></script>
     </body>
 </html>

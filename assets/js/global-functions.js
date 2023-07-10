@@ -1,3 +1,9 @@
+import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js';
+import { app } from './config.js'
+
+
+const auth = getAuth(app)
+
 $("header").load("header.html"); 
 $("footer").load("footer.html");
 
@@ -16,9 +22,28 @@ window.onload = function() {
         })
         
 
-   
+    onAuthStateChanged(auth, (user) => {
+        let login = document.getElementById("login") 
+        let profile = document.getElementById("login_profile")   
+        if (user) {
 
-    // const subNav = document.querySelector(".dd-pet")
+            // profile.innerText = "Profile"
+            // profile.href = "./profile.html" 
+            // profile.setAttribute("data-path", "profile");
+            $('#login').closest('li').css('display', 'none')
+            $('#profile').closest('li').css('display', 'block')
+            // login.style.display = 'none'
+            // profile.style.display = 'block'
+        } else {
+            $('#login').closest('li').css('display', 'block')
+            $('#profile').closest('li').css('display', 'none')
+            // login.style.display = 'block'
+            // profile.style.display = 'none'
+        }
+    })
+}
+
+// const subNav = document.querySelector(".dd-pet")
     // const subNavList = document.querySelector(".find-pet-dd")
 
     // const hamMenu = document.querySelector(".hamburger-menu")
@@ -50,5 +75,4 @@ window.onload = function() {
     //     menu.classList.toggle("menu-nav")
     //     menu.classList.toggle("menu-mob")
     //     hamMenuValue = !hamMenuValue
-    // })
-}
+    // 

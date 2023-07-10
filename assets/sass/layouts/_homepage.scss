@@ -3,6 +3,7 @@
 @use "./../abstracts/variables/media_queries" as query;
 @use "./../base/typography" as typo;
 @use "./../abstracts/variables/typography" as generaltypo;
+@use '../abstracts/mixins/mixins' as mx;
 
 /* HOMEPAGE STYLING ========================== */
 
@@ -12,16 +13,11 @@
   font-family: generaltypo.$font-raleway;
 }
 
-img {
-  width: 100%;
-  height: auto;
-}
-
-/* Hero Section ================================= */
+/* Hero Section ============================== */
 .home_hero {
   background: center / cover no-repeat url("/assets/images/bg_mobile.png")
     colors.$primary-color-10;
-  padding: 5% 5% 0;
+  padding: 0 5%;
   text-align: center;
 
   h1 {
@@ -36,17 +32,17 @@ img {
     max-width: 90%;
     margin: auto;
     margin-bottom: 50px;
+    font-weight: 500;
   }
 
   img {
     display: block;
-    max-width: 80%;
+    width: 100%;
     margin: auto;
   }
 
   @media screen and (min-width: query.$media-tablet-width) {
-    background: center / cover no-repeat url("/assets/images/bg_web.png")
-      colors.$primary-color-10;
+    background: center / cover no-repeat url("/assets/images/bg_web.png") colors.$primary-color-10;
     display: grid;
     grid-template-columns: 3fr 2fr;
     padding-top: 0;
@@ -73,6 +69,8 @@ img {
   @media screen and (min-width: 1200px) {
     h1 {
       font-size: 54px;
+      letter-spacing: 0.5px;
+      padding: 1rem 0;
     }
 
     h3 {
@@ -81,10 +79,11 @@ img {
   }
 }
 
-/* Search section =============================== */
+/* Search section ============================ */
 .home_searchbox {
   padding: 10% 5%;
   box-shadow: 0px 4px 6px colors.$neutral-color-grey-l;
+  background-color: colors.$neutral-color-white;
 
   .home-search {
     display: grid;
@@ -111,14 +110,12 @@ img {
     width: 50%;
     justify-self: center;
 
-    input {
-      width: 100%;
-      height: 52px;
-      background-color: colors.$primary-color-main;
-      color: white;
-      border: none;
-      border-radius: 44px;
-      box-shadow: 0px 4px 6px colors.$neutral-color-grey-l;
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      float: right;
     }
   }
 
@@ -126,29 +123,30 @@ img {
     max-width: 80%;
     margin: auto;
     border-radius: 22px;
-    padding: 3% 5%;
+    padding: 3%;
     transform: translateY(-20px);
     z-index: 100;
     /* Pending position */
 
     .home-search {
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: 1fr 1fr 1fr 0.5fr;
     }
 
     .home_search-btn {
       grid-column: span 1;
       width: 100%;
+      text-align: right;
     }
   }
 
-  @media screen and (min-width: 1200px) {
-    .home-search {
-      grid-template-columns: 2fr 2fr 1fr 3fr;
-    }
-  }
+  // @media screen and (min-width: 1200px) {
+  //   .home-search {
+  //     grid-template-columns: 2fr 2fr 1fr 3fr;
+  //   }
+  // }
 }
 
-/* Featured Section ============================= */
+/* Featured Section ========================== */
 .home_featured {
   padding: 8% 5%;
 
@@ -216,7 +214,7 @@ img {
   }
 }
 
-/* Map Section ================================== */
+/* Map Section =============================== */
 .home_map-box {
   padding: 0 5% 8%;
   display: none;
@@ -288,7 +286,7 @@ img {
   }
 }
 
-/* Prepare to Adopt Section ===================== */
+/* Prepare to Adopt Section ================== */
 .home_prepare-to-adopt {
   padding: 0 5%;
 
@@ -300,6 +298,7 @@ img {
   h3 {
     text-align: center;
     margin: 25px 0;
+    font-weight: 500;
   }
 
   .home_prepare-grid {
@@ -315,7 +314,7 @@ img {
     display: grid;
     grid-template-columns: 1fr 8fr;
     gap: 20px;
-    padding-bottom: 30px;
+    padding-bottom: 3rem;
 
     h4 {
       margin: 0;
@@ -324,7 +323,7 @@ img {
     }
 
     p {
-      font-size: 18px;
+      font-size: 16px;
     }
   }
 
@@ -334,7 +333,7 @@ img {
     }
 
     h3 {
-      font-size: 22px;
+      font-size: 20px;
       max-width: 80%;
       margin: auto;
       margin-top: 25px;
@@ -363,13 +362,13 @@ img {
       }
 
       p {
-        font-size: 20px;
+        font-size: 18px;
       }
     }
   }
 }
 
-/* CTA Rehome Section =========================== */
+/* CTA Rehome Section ======================== */
 .home_cta-rehome {
   background-color: colors.$accent-color-10;
   text-align: center;
@@ -382,9 +381,9 @@ img {
   }
 
   h3 {
-    color: colors.$neutral-color-grey;
     max-width: 90%;
     margin: auto;
+    font-weight: 500;
   }
 
   button {
@@ -405,7 +404,7 @@ img {
     }
 
     h3 {
-      font-size: 22px;
+      font-size: 20px;
     }
   }
 
@@ -414,7 +413,13 @@ img {
   }
 }
 
-/* Adoption Stories Section ===================== */
+.home-prepare-grid-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Adoption Stories Section ================== */
 .home_adopt-stories {
   padding: 10% 5%;
 
@@ -624,4 +629,33 @@ ul {
 .custom-option.selected {
   color: #ffffff;
   background-color: #305c91;
+}
+
+/* TOMTOM SEARCH ============================= */
+.tt-search-box {
+  margin: 0;
+}
+
+.tt-search-box-input-container {
+  height: 52px;
+  padding: 0 8px;
+  background-color: white;
+  border: 1.5px solid colors.$primary-color-main;
+  border-radius: 8px;
+}
+
+.tt-search-box-input-container.-focused {
+  border: 1.5px solid colors.$primary-color-main;
+}
+
+.tt-search-box-input::placeholder,
+.home_searchbox .petSelector option, .home_searchbox .where-from-selector option {
+  font-family: "Raleway";
+  font-size: 16px;
+  color: colors.$neutral-color-grey-l;
+}
+
+.tt-search-box-input {
+  font-size: 18px;
+  @include mx.raleway-typography(18);
 }

@@ -11,12 +11,12 @@
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
-    <script src="./../assets/js/global-functions.js" defer></script>
+    <script type="module" src="./../assets/js/global-functions.js" defer></script>
     <title>Post for rehome</title>
 </head>
 <body>
   <header></header>
-  <main>
+  <main class="rehome-main">
     <div class="modal success-modal rehome">
       <div class="modal-content">
         <h2>Post Completed!</h2>
@@ -133,7 +133,7 @@
 
         <div class="animal-selector">
           <label for="type">
-            TYPE OF PET
+            Type of Pet
             <select name="ptype" id="ptype" required>
               <option disabled selected value> -- select an option -- </option>
               <option value="Dog">Dog</option>
