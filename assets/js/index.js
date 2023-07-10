@@ -85,7 +85,7 @@ var searchBoxOptions = {
 };
 
 var ttSearchBox = new tt.plugins.SearchBox(tt.services, searchBoxOptions)
-document.querySelector('form').appendChild(ttSearchBox.getSearchBoxHTML());
+document.querySelector('form').prepend(ttSearchBox.getSearchBoxHTML());
 
 ttSearchBox.on('tomtom.searchbox.resultselected', function(event) {
     console.log(event.data.result.address)
@@ -94,7 +94,15 @@ ttSearchBox.on('tomtom.searchbox.resultselected', function(event) {
     localStorage.setItem('position', JSON.stringify(event.data.result.position))
 })
 
+$('.tt-search-box-input').attr('placeholder', 'Country/City')
 
 $(document).ready(function() {
     homeSearch.addEventListener('click', search);
 })
+
+$('.featured-pet-slider').slick({
+    infinite: true,
+    dots: true,
+    slidesToShow: 1,
+    slidesToScroll: 1
+});

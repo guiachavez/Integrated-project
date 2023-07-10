@@ -215,8 +215,8 @@ const addButtons = (inquiries) => {
                         if($(this).closest('tr').find('td[data-id]')[0].attributes[0].value == inquiries[el].petId) {
                             $(this).closest('tr').find('.response-buttons').append([
                                 $('<p />', {'text': `Applicant: ${inquiries[el].applicant.app_firstName} ${inquiries[el].applicant.app_lastName}`}),
-                                $('<button />', {'text': 'Accept', 'class': 'accept', 'data-accept': `${inquiries[el].inquiryId}`}),
-                                $('<button />', {'text': 'Decline', 'class': 'decline', 'data-decline': `${inquiries[el].inquiryId}`})
+                                $('<button />', {'text': 'Accept', 'class': 'accept outline-next-btn font', 'data-accept': `${inquiries[el].inquiryId}`}),
+                                $('<button />', {'text': 'Decline', 'class': 'decline outline-btn-gray font', 'data-decline': `${inquiries[el].inquiryId}`})
                             ])
                         }
                     } else if (inquiries[el].isAccepted == true) {
@@ -225,19 +225,19 @@ const addButtons = (inquiries) => {
                                 $(this).closest('tr').find('.response-buttons').append([
                                     $(this).closest('tr').find('.response-buttons').append([
                                         $('<p />', {'text': `Applicant: ${inquiries[el].applicant.app_firstName} ${inquiries[el].applicant.app_lastName}`}),
-                                        $('<button />', {'text': 'Successful Adoption', 'id': `Success-${inquiries[el].inquiryId}`, 'class': 'success', 'data-success': `${inquiries[el].inquiryId}`, 'disabled': 'disabled'}),
+                                        $('<button />', {'text': 'Successful Adoption', 'id': `Success-${inquiries[el].inquiryId}`, 'class': 'success outline-btn', 'data-success': `${inquiries[el].inquiryId}`, 'disabled': 'disabled'}),
                                     ])
                                 ])
                             } else if (inquiries[el].adoptionSuccess == false) {
                                 $(this).closest('tr').find('.response-buttons').append([
                                     $('<p />', {'text': `Applicant: ${inquiries[el].applicant.app_firstName} ${inquiries[el].applicant.app_lastName}`}),
-                                    $('<button />', {'text': 'Rejected', 'id': `Reject-${inquiries[el].inquiryId}`, 'class': 'reject', 'data-reject': `${inquiries[el].inquiryId}`, 'disabled': 'disabled'})
+                                    $('<button />', {'text': 'Rejected', 'id': `Reject-${inquiries[el].inquiryId}`, 'class': 'reject outline-btn-gray', 'data-reject': `${inquiries[el].inquiryId}`, 'disabled': 'disabled'})
                                 ])
                             } else {
                                 $(this).closest('tr').find('.response-buttons').append([
                                     $('<p />', {'text': `Applicant: ${inquiries[el].applicant.app_firstName} ${inquiries[el].applicant.app_lastName}`}),
-                                    $('<button />', {'text': 'Close', 'id': `Close-${inquiries[el].inquiryId}`, 'class': 'close', 'data-close': `${inquiries[el].inquiryId}`}),
-                                    $('<button />', {'text': 'Decline', 'id': `Decline-${inquiries[el].inquiryId}`, 'class': 'decline', 'data-decline': `${inquiries[el].inquiryId}`, 'disabled': 'disabled'})
+                                    $('<button />', {'text': 'Close', 'id': `Close-${inquiries[el].inquiryId}`, 'class': 'close outline-btn', 'data-close': `${inquiries[el].inquiryId}`}),
+                                    $('<button />', {'text': 'Decline', 'id': `Decline-${inquiries[el].inquiryId}`, 'class': 'decline outline-btn-gray', 'data-decline': `${inquiries[el].inquiryId}`, 'disabled': 'disabled'})
                                 ])
                             }
                         }
@@ -278,7 +278,7 @@ function changingAcceptToClose(id) {
     $('button.accept').each(function() {
         if($(this).data('accept') == id) {
             $(this).closest('.response-buttons').append([
-                $('<button />', {'text': 'Close', 'class': 'close', 'data-close': `${id}`})
+                $('<button />', {'text': 'Close', 'class': 'close outline-btn', 'data-close': `${id}`})
             ])
             $(this).closest('.response-buttons').find('.decline').attr('disabled', 'disabled')
             $(this).remove();
@@ -372,3 +372,23 @@ logoutButton.addEventListener('click', () => {
             console.log(err.message)
         })
 })
+
+$('ul.nav-tabs li').click(function(){
+
+
+    let section_id = $(this).attr('data-nav');
+
+    $('ul.nav-tabs li').removeClass('current');
+    $('.content').removeClass('current');
+
+    $(this).addClass('current');
+    $("#"+section_id).addClass('current');
+
+    // if(section_id == 'section-1'){
+    //   $('.specs .top').css('background', '#eff0f0');
+    // }
+    // else{
+    //    $('.specs .top').css('background', 'white');
+    // }
+
+  });
