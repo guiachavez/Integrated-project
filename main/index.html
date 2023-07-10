@@ -46,12 +46,8 @@
       <!-- Hero section -->
       <section class="home_hero">
         <div class="home_hero-text">
-          <h1 class="hero-section-title-mob">
-            Your Companion Awaits, Find the <span>Pawfect Match</span>
-          </h1>
-          <h3 class="sub-heading-mob">
-            Over a thousand rescue pets need a home and a second chance.
-          </h3>
+          <h1 class="hero-section-title-mob">Your Companion Awaits, Find your <span>Pawfect Match</span></h1>
+          <h3 class="sub-heading-mob">Over a thousand rescue pets need a home and a second chance.</h3>
         </div>
         <div>
           <img src="/assets/images/frontdog.svg" alt="happy dog" />
@@ -62,17 +58,6 @@
       <section class="home_searchbox">
         <!-- ./../main/animals.html -->
         <form action="#" class="home-search">
-          <div>
-            <label for="query">
-              <input
-                type="text"
-                name="location"
-                id="query"
-                placeholder="City/Postal Code"
-              />
-            </label>
-          </div>
-          
           <div class="animal-selector">
             <select name="type" id="type" class="petSelector sub-heading-mob">
               <option disabled selected value class="selectedPet">
@@ -97,12 +82,7 @@
           </div>
 
           <div class="home_search-btn">
-            <input
-              type="submit"
-              value="Search"
-              id="submit"
-              class="sub-heading-mob"
-            />
+            <button type="submit" value="Search" id="submit" class="filled-mob-btn font"><img src="./../assets/icons/search.png">Search</button>
           </div>
         </form>
       </section>
@@ -111,8 +91,37 @@
       <section class="home_featured">
         <h2 class="card-heading-mob">Featured Pets</h2>
 
+        <div class="featured-pet-1">
+          <div class="featured-pet-image featured-pet-slider">
+            <a href=""><img src="" alt="">
+              <img src="" alt="">
+            </a>
+          </div>
+          <div class="featured-pet-details">
+
+          </div>
+        </div>
+
+        <div class="featured-pet-1">
+          <div class="featured-pet-image featured-pet-slider">
+
+          </div>
+          <div class="featured-pet-details">
+
+          </div>
+        </div>
+
+        <div class="featured-pet-1">
+          <div class="featured-pet-image featured-pet-slider">
+
+          </div>
+          <div class="featured-pet-details">
+
+          </div>
+        </div>
+
         <!-- Carousel mobile -->
-        <section aria-label="photos" class="home_small-carousel">
+        <!-- <section aria-label="photos" class="home_small-carousel">
           <div class="carousel" data-carousel>
             <button class="carousel-button prev" data-carousel-button="prev">
               <img
@@ -173,10 +182,10 @@
               </ul>
             </div>
           </div>
-        </section>
+        </section> -->
 
         <!-- Carousel tablet & web -->
-        <section aria-label="photos" class="home_big-carousel">
+        <!-- <section aria-label="photos" class="home_big-carousel">
           <div class="carousel" data-carousel>
             <button class="carousel-button prev" data-carousel-button="prev">
               <img
@@ -267,7 +276,7 @@
               </ul>
             </div>
           </div>
-        </section>
+        </section> -->
       </section>
 
       <!-- Map Section -->
@@ -288,9 +297,7 @@
           need to thrive.
         </h3>
         <div class="home_prepare-grid">
-          <div>
-            <img src="/assets/images/prepare4adopt.png" alt="dog and family" />
-          </div>
+          <img src="/assets/images/prepare4adopt.png" alt="dog and family" class="home-prepare-grid-img"/>
           <div>
             <div class="home_prepare-list">
               <div class="home_paw-list">
@@ -336,14 +343,10 @@
 
       <!-- CTA Rehome -->
       <section class="home_cta-rehome">
-        <h2 class="card-heading-mob">
-          Do you want to find a home for your pet?
-        </h2>
-        <h3 class="sub-heading-mob">
-          Paving a path to happiness, finding a new home for your paws.
-        </h3>
+        <h2 class="card-heading-mob">Do you want to find a home for your pet?</h2>
+        <h3 class="sub-heading-mob">Paving a path to happiness, finding a new home for your paws.</h3>
         <form action="/main/rehome.html">
-          <button class="filled-btn sub-heading-mob">Rehome</button>
+          <button class="filled-mob-btn font sub-heading-mob">Rehome</button>
         </form>
       </section>
 
@@ -352,19 +355,14 @@
         <div>
           <h2>Want to share your Adoption Story?</h2>
           <form action="/main/adoption-journey.html">
-            <button class="filled-btn sub-heading-mob home_post-now">
-              Post now
-            </button>
+            <button class="filled-mob-btn font sub-heading-mob home_post-now">Post now</button>
           </form>
         </div>
 
         <section aria-label="photos" class="home_small-carousel">
           <div class="carousel" data-carousel>
             <button class="carousel-button prev" data-carousel-button="prev">
-              <img
-                src="./../assets/images/ChevronLeft-1.svg"
-                alt="previous image"
-              />
+              <img src="./../assets/images/ChevronLeft-1.svg" alt="previous image"/>
             </button>
             <button class="carousel-button next" data-carousel-button="next">
               <img src="./../assets/images/ChevronLeft.svg" alt="next image" />
@@ -406,5 +404,5 @@
   </body>
 </html>
 
-<script src="./../assets/js/global-functions.js" defer></script>
+<script type="module" src="./../assets/js/global-functions.js" defer></script>
 <script type="module" src="./../assets/js/index.js" defer></script>

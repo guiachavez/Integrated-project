@@ -11,44 +11,64 @@
       <!-- Add the slick-theme.css if you want default styling -->
       <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 
-      <title>Firebase 9</title>
+      <link rel="stylesheet" href="./../assets/stylesheet/style.css">
+
+      <title>Application for Adoption</title>
   </head>
   <body>
-    <section>
+    <header></header>
+    <main class="inquiry-main">
+      <section>
         <h2>Applicant Details</h2>
         <form action="" class="inquire-pet">
           
-          <label for="afname">First Name</label>
-          <input type="text" name="afname" id="app-first-name">
+          <label for="afname">First Name
+            <input type="text" name="afname" id="app-first-name" class="text-input">
+          </label>
+          
   
-          <label for="alname">Last Name</label>
-          <input type="text" name="alname" id="app-last-name">
+          <label for="alname">Last Name
+            <input type="text" name="alname" id="app-last-name" class="text-input">
+          </label>
   
-          <label for="email">E-mail</label>
-          <input type="email" name="email" id="app-email">
+          <label for="email">E-mail
+            <input type="email" name="email" id="app-email" class="text-input">
+          </label>
   
-          <label for="ownerphone">Phone Number</label>
-          <input type="tel" name="ownerphone" id="app-phone">
+          <label for="ownerphone">Phone Number
+            <input type="tel" name="ownerphone" id="app-phone" class="text-input">
+          </label>
   
-          <label for="country">Country</label>
-          <input type="text" name="country" id="app-country">
+          <label for="country">Country
+            <input type="text" name="country" id="app-country" class="text-input">
+          </label>
   
-          <label for="city">City</label>
-          <input type="text" name="city" id="app-city">
+          <label for="city">City
+            <input type="text" name="city" id="app-city" class="text-input">
+          </label>
   
-          <label for="state">State</label>
-          <input type="text" name="state" id="app-state">
+          <label for="state">State
+            <input type="text" name="state" id="app-state" class="text-input">
+          </label>
   
-          <label for="pcode">Postal Code</label>
-          <input type="text" name="pcode" id="app-pcode">
+          <label for="pcode">Postal Code
+            <input type="text" name="pcode" id="app-pcode" class="text-input">
+          </label>
   
-          <label for="street">Street</label>
-          <input type="text" name="street" id="app-street">
-  
-          <button type="submit" id="inquire-now">Submit</button>
+          <label for="street">Street
+            <input type="text" name="street" id="app-street" class="text-input">
+          </label>
+          
+          <div>
+            <button type="submit" id="inquire-now" class="filled-mob-btn font">Submit</button>
+          </div>
+         
         </form>
       </section>
+    </main>
+    <footer></footer>
 
-  <script type="module" src="./../assets/js/inquire.js" defer></script>
+    <script type="module" src="./../assets/js/inquire.js" defer></script>
+    <script type="module" src="./../assets/js/global-functions.js" defer></script>
   </body>
 </html>
