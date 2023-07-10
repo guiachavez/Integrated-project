@@ -169,9 +169,11 @@ async function searchOwner(color, breed, type, ageArr, sizeArr, genderArr, goodW
 
     onAuthStateChanged(auth, (user) => {
         if (user) {
-        userId = user.uid
-            }
-        })
+            userId = user.uid
+        } else {
+            userId = ''   
+        }
+    })
         
         let breedArr = []; 
         
