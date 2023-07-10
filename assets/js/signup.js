@@ -1,5 +1,5 @@
 import { getFirestore, setDoc, doc, getDoc } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js'
-import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithRedirect, getRedirectResult } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js';
+import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js';
 import { app } from './config.js'
  
 
@@ -55,22 +55,19 @@ function handleForm(e) {
 }
 
 
-const provider = new GoogleAuthProvider(app);
+
 
 const googleButton = document.querySelector('.google-sign-in');
 
-googleButton.addEventListener('click', (e) => {
+googleButton.addEventListener('click', async (e) => {
     e.preventDefault();
 
-    signInWithRedirect(auth, provider);
+    const provider = new GoogleAuthProvider(app);
+    let result = await signInWithPopup(auth, provider);
 
-    getRedirectResult(auth)
-        .then((result) => {
-            // This gives you a Google Access Token. You can use it to access Google APIs.
-            const credential = GoogleAuthProvider.credentialFromResult(result);
-            const token = credential.accessToken;
+    // console.log(result);
 
-            const user = result.user;
+    const user = result.user;
 
             onAuthStateChanged(auth, (user) => {
                 if (user) {
@@ -78,12 +75,14 @@ googleButton.addEventListener('click', (e) => {
                     console.log('User logged in:', user);
 
                     // Check if user signed in with Google
-                    if (user.providerData && user.providerData[0].providerId === 'google.com') {
-                        // Check Firestore for existing user information
+                    // if (user.providerData && user.providerData[0].providerId === 'google.com') 
+                        
+                    // Check Firestore for existing user information
                         const docRef = doc(db, 'accounts', user.uid);
                         getDoc(docRef)
-                            .then((doc) => {
-                                if (doc.exists()) {
+                            .then((document) => {
+                                // console.log(document);  
+                                if (document.exists()) {
                                     
                                     // If information already exists in Firestore, pre-fill the fields
                                     const userData = doc.data();
@@ -91,6 +90,8 @@ googleButton.addEventListener('click', (e) => {
                                     fname.value = userData.firstName;
                                     lname.value = userData.lastName;
                                     signuppw.value = userData.password;
+                                    // console.log("heyy");
+                                    window.location.href="../main/index.html";
 
                                 } else {
 
@@ -115,13 +116,16 @@ googleButton.addEventListener('click', (e) => {
                                     const isOwner = false;
                                     const petOwner = new accountSignup(uid, googleFirstName, googleLastName, googleEmail, isOwner);
 
+                                    console.log(petOwner);
                                     const docRef = doc(db, 'accounts', uid);
-                                    setDoc(docRef, Object.assign({}, petOwner))
-                                        .then(() => {
+
+                                    
+                                    setDoc(docRef, Object.assign({}, petOwner)).then(() => {
+                                            console.log("hiiii")
                                             // Document successfully stored
                                             addAccount.reset();
-
-                                            window.location.href = "./../main/index.html";
+                                            console.log("hey");
+                                            window.location.href = "../../assets/main/index.html";
                                         })
                                         .catch((error) => {
                                             console.log(error.message);
@@ -131,13 +135,8 @@ googleButton.addEventListener('click', (e) => {
                             .catch((error) => {
                                 console.log(error.message);
                             });
-                    }
+                    
                 }
             });
-        })
-        .catch((error) => {
-            console.log(error.message);
         });
-});
-
-/* to show the password ============= */
+        
