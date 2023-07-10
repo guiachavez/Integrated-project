@@ -60,6 +60,20 @@ button.outline-next-btn:hover {
     @include mx.button-style(colors.$primary-color-main, colors.$neutral-color-white, colors.$primary-color-main);
 }
 
+button.outline-btn-gray {
+    @include mx.button-style(colors.$neutral-color-white, colors.$neutral-color-grey-l, colors.$neutral-color-grey-l);
+}
+
+button.outline-btn-gray:disabled,
+button.outline-btn:disabled {
+    @include mx.button-style(colors.$neutral-color-grey-l, colors.$neutral-color-grey, colors.$neutral-color-grey-l);
+    cursor: default;
+}
+
+button.outline-btn-gray:hover {
+    @include mx.button-style(colors.$neutral-color-grey-l, colors.$neutral-color-grey, colors.$neutral-color-grey-l);
+}
+
 button.filled-mob-btn:hover {
     @include mx.button-style(colors.$primary-color-75, colors.$neutral-color-white, colors.$primary-color-75);
 }

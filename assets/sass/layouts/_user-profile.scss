@@ -1,0 +1,45 @@
+@use '../abstracts/mixins/mixins' as mx;
+@use '../abstracts/variables/colors' as colors;
+
+/* User Profile =========================== */
+.user-profile-main {
+    padding: 2rem 0;
+}
+
+#section-tab {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 1rem;
+    width: 70%;
+    margin: auto;
+
+    border-bottom: 1px solid colors.$neutral-color-grey-l;
+}
+
+.user-profile-main .content {
+    display: none;
+
+    margin: 2rem 0;
+}
+
+.user-profile-main .content.current {
+    display: block;
+}
+
+.nav-item.current {
+    border-bottom: 2px solid colors.$primary-color-main;
+}
+
+.nav-item {
+    padding: 1rem;
+}
+
+.about {
+    display: flex;
+}
+
+@media screen and (min-width: 1200px) {
+    .user-profile-main {
+        @include mx.maxwidth;
+    }
+}

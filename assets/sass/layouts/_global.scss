@@ -1,0 +1,36 @@
+@use '../abstracts/variables/colors' as colors;
+@use '../abstracts/mixins/mixins' as mx;
+
+/* Global Styling ============================ */
+
+body, h1, h2, p {
+    margin: 0;
+}
+
+img {
+    max-width: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: colors.$neutral-color-black;
+    display: block;
+}
+
+h2 {
+    @include mx.raleway-typography(18);
+}
+
+h3 {
+    @include mx.raleway-typography(16);
+}
+
+p, td, ul a {
+    @include mx.raleway-typography(16);
+    font-weight: 300
+}
+
+label, legend, tr {
+    @include mx.raleway-typography(16);
+    font-weight: 600;
+}

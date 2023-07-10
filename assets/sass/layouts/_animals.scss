@@ -1,0 +1,101 @@
+@use '../abstracts/variables/colors' as colors;
+/* Pet Application =========================== */
+
+.animals-main {
+    padding: 3rem 0;;
+}
+
+#filtered-pets {
+    display: grid;
+    /* grid-template-columns: minmax(100px, min-content) calc(100vw - 463px); */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+  
+.pet {
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+  
+.organization {
+    display: none;
+}
+  
+.search-container {
+    display: flex;
+}
+  
+.search-filter {
+    box-sizing: border-box;
+    -webkit-box-flex: 0;
+    -ms-flex-positive: 0;
+    flex: 1 0 auto;
+    flex-grow: 0;
+    width: 280px;
+    padding-right: 30px;
+
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+}
+  
+.animals-main form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+}
+  
+.search-filter select {
+    width: 250px;
+}
+  
+.animals-main .slick-slide img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+}
+  
+.animals-main .slick-dots  {
+    bottom: 0;
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 0 0 0.5rem 0.5rem;
+}
+  
+.animals-main select {
+    height: 2rem;
+    border-color: lightgray;
+}
+  
+fieldset {
+    border: 0;
+    padding: 0;
+    margin: 0;
+
+    > div {
+        display: flex;
+    }
+}
+
+.animals-main label,
+.animals-main legend {
+    font-weight: 300;
+    gap: 0.2rem;
+}
+.pet-location {
+    text-transform: capitalize;
+    color: colors.$primary-color-main;
+}
+.pet-name {
+    font-weight: 600;
+}
+
+.slick-dotted.slick-slider {
+    margin-bottom: 1rem;
+}
+@media screen and (min-width: 1200px) {
+    .animals-main {
+        width: 1200px;
+        margin: auto;
+    }
+}

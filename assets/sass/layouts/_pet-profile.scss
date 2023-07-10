@@ -1,3 +1,6 @@
+@use '../abstracts/mixins/mixins' as mx;
+@use '../abstracts/variables/colors' as colors;
+
 .pet-profile {
     display: flex;
     gap: 1rem;
@@ -72,18 +75,39 @@
 }
 
 .slider-nav .slick-slide.slick-current {
-    border: 1px solid blue;
+    border: 1px solid colors.$primary-color-main;
 }
 
 .other-details {
     display: flex;
     justify-content: space-between;
+    margin: 1rem 0;
+
+    > div {
+        display: grid;
+        gap: 1rem;
+    }
 }
 
 .pet-details {
-    padding: 0 1rem;
+    padding: 0 2rem;
 }
 
 .slick-prev:before, .slick-next:before {
     font-size: 30px;
+}
+
+.pet-profile-main {
+    padding: 2rem 0;
+}
+
+.pet-profile-main .pet-name {
+    font-size: 22px;
+    margin-bottom: 1rem;
+}
+
+@media screen and (min-width: 1200px) {
+    .pet-profile-main {
+        @include mx.maxwidth;
+    }
 }

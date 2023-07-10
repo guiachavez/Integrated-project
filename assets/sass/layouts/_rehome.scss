@@ -8,9 +8,24 @@
     justify-content: center;
 }
 
+.rehome-main {
+    h2 {
+        color: colors.$accent-color-main;
+        margin-bottom: 1rem;
+    }
+
+    .text-input {
+        width: 360px;
+    }
+}
+
+#tab-2, #tab-3 {
+    margin-bottom: 2rem;
+}
+
 .rehome-container {
     display: flex;
-    gap: 1rem;
+    gap: 2rem;
 
     > div {
         width: 50%;
@@ -35,11 +50,16 @@
     h2 {
         @include mx.raleway-typography(20);
         font-weight: bold;
+        margin-bottom: 2rem
     }
 
     p {
         @include mx.raleway-typography(18);
-    }    
+    }  
+    
+    .col-right {
+        padding: 3rem 0;
+    }
 }
 .col-left {
     position: relative;
@@ -101,6 +121,11 @@
 
 label {
     display: grid;
+    gap: 0.5rem;
+}
+
+.rehome-pet {
+    margin: 2rem 0;
 }
 
 select,
@@ -213,6 +238,7 @@ input:checked + .radio-slider:before {
     gap: 2rem;
     width: 100%;
     justify-self: center;
+    padding: 2rem 0;
 }
 
 
