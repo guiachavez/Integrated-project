@@ -26,19 +26,12 @@ window.onload = function() {
         let login = document.getElementById("login") 
         let profile = document.getElementById("login_profile")   
         if (user) {
-
-            // profile.innerText = "Profile"
-            // profile.href = "./profile.html" 
-            // profile.setAttribute("data-path", "profile");
             $('#login').closest('li').css('display', 'none')
             $('#profile').closest('li').css('display', 'block')
-            // login.style.display = 'none'
-            // profile.style.display = 'block'
+
         } else {
             $('#login').closest('li').css('display', 'block')
             $('#profile').closest('li').css('display', 'none')
-            // login.style.display = 'block'
-            // profile.style.display = 'none'
         }
     })
 }

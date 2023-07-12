@@ -28,26 +28,25 @@ getDocs(adoptJourney).then((posts) => {
                 petphoto.push({...doc.data(), id: doc.id })
                 let petphotodata = doc.data()
 
-        let photo = petphotodata.photo[0];
-        let table = document.getElementById('postDetails');
+                let photo = petphotodata.photo[0];
+                let table = document.getElementById('postDetails');
 
-        // document.querySelector('#petphoto').src = photo;
+                // document.querySelector('#petphoto').src = photo;
 
-        let row  = `<tr>
-        <td>${postsdata.title}</td>
-        <td>${postsdata.body}</td>
-        <td>${petphotodata.photo[0]}</td>
-        <td>${postsdata.petDetails.petName}</td>
-        <td>${postsdata.authorDetails.firstName}</td>
-        <td>${postsdata.petDetails.ownerLname}</td>
-        <td>${postsdata.authorDetails.city}</td>
-        <td>${postsdata.authorDetails.state}</td>
-
+                let row  = `<tr>
+                    <td>${postsdata.title}</td>
+                    <td>${postsdata.body}</td>
+                    <td>${petphotodata.photo[0]}</td>
+                    <td>${postsdata.petDetails.petName}</td>
+                    <td>${postsdata.authorDetails.firstName}</td>
+                    <td>${postsdata.petDetails.ownerLname}</td>
+                    <td>${postsdata.authorDetails.city}</td>
+                    <td>${postsdata.authorDetails.state}</td>
                 </tr>`;
   
-        table.innerHTML += row
+                table.innerHTML += row
 
-})
-})
+            })
+        })
     })
 })

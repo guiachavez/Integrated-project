@@ -83,34 +83,32 @@ onAuthStateChanged(auth, (adoptuser) => {
 
                 fullnamesArr = fullnames.split(",")
 
-            for(const ow in fullnamesArr) {
-                const namesObj = fullnamesArr[ow]
+                for(const ow in fullnamesArr) {
+                    const namesObj = fullnamesArr[ow]
 
-                let namesArr = []
-                
-                namesArr.push(namesObj)
-    
-                for(const el of namesArr) {
-                    newOption = new Option(el, oIds);
-                    ownerList.add(newOption,undefined); 
+                    let namesArr = []
+                    
+                    namesArr.push(namesObj)
+        
+                    for(const el of namesArr) {
+                        newOption = new Option(el, oIds);
+                        ownerList.add(newOption,undefined); 
+                    }
+                    
                 }
-                
-            }
-        })
+            })
         })
 
 
         ownerList.addEventListener('change', (e) => {
             e.preventDefault()
-
             let ownerId = ownerList.value
         
-            getownerPets(ownerId)
-                 
+            getownerPets(ownerId)              
         })
     
-            petList.addEventListener('change', (e) => {
-                e.preventDefault()
+        petList.addEventListener('change', (e) => {
+            e.preventDefault()
 
 
             let ownerFname = ownerList.selectedOptions[0].text.split(" ")[0]
@@ -119,17 +117,18 @@ onAuthStateChanged(auth, (adoptuser) => {
             let petName = petList.selectedOptions[0].text
             let petId = petList.value
 
-                addStory.addEventListener('submit', handleForm)
-                function handleForm(e) {
+            addStory.addEventListener('submit', handleForm)
+            
+            function handleForm(e) {
                 e.preventDefault();
 
-                    handleAdoptStory(petName, petId, ownerId, ownerFname, ownerLname, userId, firstName, lastName, city, state)
-    }
+                handleAdoptStory(petName, petId, ownerId, ownerFname, ownerLname, userId, firstName, lastName, city, state)
+            }
             
         })
 
 
-}
+    }
 })
 
 
@@ -153,32 +152,32 @@ function handleAdoptStory(petName, petId, ownerId, ownerFname, ownerLname, userI
 
 
 function getownerPets(ownerId) {
+    const qPets = query(aniRef, where("owner_id", "==", ownerId))
+                                            
+    getDocs(qPets).then((petname) => { 
+        let petnames = []
+        let petslistArr = []
 
-const qPets = query(aniRef, where("owner_id", "==", ownerId))
-                                        
-getDocs(qPets).then((petname) => { 
-    let petnames = []
-    let petslistArr = []
+        petname.docs.forEach( (doc) => {
+            petnames.push({...doc.data(), id: doc.id })
 
-    petname.docs.forEach( (doc) => {
-        petnames.push({...doc.data(), id: doc.id })
-
-       let names = doc.data().name
-       petslistArr = names.split(",")
-        
-
-        for(const pl in petslistArr) {
-            const petsObj = petslistArr[pl]
-            // .split(" ").reverse().slice(1).reverse().join(" ")
-            let petnamesArr = []
+            let names = doc.data().name
+            petslistArr = names.split(",")
             
-            petnamesArr.push(petsObj)
-            console.log(petnamesArr)
 
-            for(const el of petnamesArr) {
-                newOption = new Option(el, doc.id);
-                petList.add(newOption,undefined); 
+            for(const pl in petslistArr) {
+                const petsObj = petslistArr[pl]
+                // .split(" ").reverse().slice(1).reverse().join(" ")
+                let petnamesArr = []
+                
+                petnamesArr.push(petsObj)
+                console.log(petnamesArr)
+
+                for(const el of petnamesArr) {
+                    newOption = new Option(el, doc.id);
+                    petList.add(newOption,undefined); 
                 }   
+                
             }
         })
     })
