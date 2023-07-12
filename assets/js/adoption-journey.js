@@ -1,133 +1,185 @@
-import { getFirestore, getDoc, setDoc, doc, updateDoc, arrayUnion, addDoc, collection } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js'
-import { getStorage, ref, uploadBytes, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-storage.js";
+import { getFirestore, getDoc, query, where, doc, getDocs, addDoc, collection, serverTimestamp } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js'
 import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js';
 import { app } from './config.js'
 
 
 // init the firestore and storage
 const db = getFirestore(app)
-const storage = getStorage(app);
 
 // Initialize Authentication
 const auth = getAuth(app)
 
 //references
 const adoptJourney = collection(db, 'adoptionJourney')
+const aniRef = collection(db, "animals")
+const accRef = collection(db, "accounts")
 
-// class for user
-class userDetails{
-    constructor(phone, street, city, country, pcode, state) {
-        this.phone = phone;
-        this.address = {
-            street: street,
+
+// adoption journey class
+class adoptStory{
+    constructor(title, body, posted_at, petName, petId, ownerId, ownerFname, ownerLname, userId, firstName, lastName, city, state){
+        this.title = title;
+        this.body = body; 
+        this.posted_at = posted_at;
+        this.petDetails = {
+            petName: petName,
+            petId: petId,
+            ownerId: ownerId,
+            ownerFname: ownerFname,
+            ownerLname: ownerLname
+        }
+        this.authorDetails = {
+            userId: userId,
+            firstName: firstName,
+            lastName: lastName,
             city: city,
-            country: country,
-            postcode: pcode,
             state: state
         }
     }
 }
 
-// adoption journey class
-class adoptStory{
-    constructor(title, desciption, ownerId){
-        this.title = title;
-        this.desciption = desciption;
-        this.userID = ownerId;
-    }
-}
+let newOption = new Option('Option Text','Option Value');
 
-// adopt owner form
-const adoptUserForm = document.querySelector(".adopted-user");
-
-// submit button for adopt form
-const adoptUserBtn = document.getElementById("story-owner");
-
-// adoption story form
-const addStoryForm = document.querySelector(".adopted-story");
-
+const addStory = document.querySelector('.adopted-story')
 // add story button
 const addStoryBtn = document.getElementById("add-story");
 
+const ownerList = document.getElementById('owners');
+const petList = document.getElementById('ownerspets');
+
 // adopt user form inputs
-let fname = document.getElementById('user-fname');
-let lname = document.getElementById('user-lname');
-let email = document.getElementById('user-email');
-let phone = document.getElementById('phone');
-let country = document.getElementById('country');
+let firstName = document.getElementById('user-fname');
+let lastName = document.getElementById('user-lname');
 let city = document.getElementById('city');
 let state = document.getElementById('state');
-let pcode = document.getElementById('postal-code');
-let street = document.getElementById('street');
 
 onAuthStateChanged(auth, (adoptuser) => {
     if (adoptuser) {
+
         const uidRef = doc(db, "accounts", adoptuser.uid); 
-        const userid = adoptuser.uid;
+        let userId = adoptuser.uid;
 
         getDoc(uidRef).then(userDoc => {
             let data = userDoc.data();
-            console.log(data)
-            fname.value = data.firstName;
-            lname.value = data.lastName;
-            email.value = data.email;
+            
+            firstName.value = data.firstName;
+            lastName.value = data.lastName;
+            city.value = data.address.city;
+            state.value = data.address.state;
 
-            let checkAddress = data.hasOwnProperty('address');
-            console.log(checkAddress)
-            let isOwner = data.isOwner;
-
-            if(checkAddress) {
-                street.value = data.address.street
-                city.value = data.address.city
-                state.value = data.address.state
-                pcode.value = data.address.postcode
-                country.value = data.address.country
-            }
-
-            console.log(isOwner)
-
-            adoptUserBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                console.log('called')
-                handleAdoptUserForm(adoptuser, phone, street, city, country, pcode, state)
-            })
-
-            addStoryBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                handleAdoptStory(userid)
-            })
         })
+              
+        getDocs(accRef).then((owners) => { 
+            let petowners = []
+            let fullnamesArr = []
+        
+            owners.docs.forEach( (doc) => {
+                petowners.push({...doc.data(), id: doc.id })
+
+                let ofnames = doc.data().firstName
+                let olnames = doc.data().lastName               
+                let oIds = doc.id
+                let fullnames = ofnames + ' ' + olnames
+
+                fullnamesArr = fullnames.split(",")
+
+            for(const ow in fullnamesArr) {
+                const namesObj = fullnamesArr[ow]
+
+                let namesArr = []
+                
+                namesArr.push(namesObj)
+    
+                for(const el of namesArr) {
+                    newOption = new Option(el, oIds);
+                    ownerList.add(newOption,undefined); 
+                }
+                
+            }
+        })
+        })
+
+
+        ownerList.addEventListener('change', (e) => {
+            e.preventDefault()
+
+            let ownerId = ownerList.value
+        
+            getownerPets(ownerId)
+                 
+        })
+    
+            petList.addEventListener('change', (e) => {
+                e.preventDefault()
+
+
+            let ownerFname = ownerList.selectedOptions[0].text.split(" ")[0]
+            let ownerLname = ownerList.selectedOptions[0].text.split(" ")[1]
+            let ownerId = ownerList.value
+            let petName = petList.selectedOptions[0].text
+            let petId = petList.value
+
+                addStory.addEventListener('submit', handleForm)
+                function handleForm(e) {
+                e.preventDefault();
+
+                    handleAdoptStory(petName, petId, ownerId, ownerFname, ownerLname, userId, firstName, lastName, city, state)
     }
+            
+        })
+
+
+}
 })
 
-function handleAdoptUserForm(user, phone, street, city, country, pcode, state) {
-    const userdetails = new userDetails(phone.value, street.value, city.value, country.value, pcode.value, state.value)
 
-    const docAdopt = doc(db, 'accounts', user.uid)
-    setDoc(docAdopt, Object.assign({}, userdetails,),  { merge: true })
-        .then(() => {
-            adoptUserForm.reset()
-        })
-    .catch((err) => {
-        console.log(err.message)
-        //add frontend display here for error message
-    })
-}
+function handleAdoptStory(petName, petId, ownerId, ownerFname, ownerLname, userId, firstName, lastName, city, state){
 
-function handleAdoptStory(userid){
-    const docStory = doc(db, 'adoptionJourney', userid);
-
-    console.log(docStory);
+    console.log(firstName);
 
     let storytitle = document.getElementById("story-title");
-    let storydesc = document.getElementById("desc");
+    let storybody = document.getElementById("body");
+    let posted_at = new serverTimestamp();
 
     setTimeout(() => {
-        const adopt = new adoptStory(storytitle.value, storydesc.value, userid);
+        const adopt = new adoptStory(storytitle.value, storybody.value, posted_at, petName, petId, ownerId, ownerFname, ownerLname, userId, firstName.value, lastName.value, city.value, state.value);
 
         addDoc(adoptJourney, Object.assign({}, adopt))
         .then(() => {
-            addStoryForm.reset();
+            addStory.reset();
         })
     }, 5000)
+}
+
+
+function getownerPets(ownerId) {
+
+const qPets = query(aniRef, where("owner_id", "==", ownerId))
+                                        
+getDocs(qPets).then((petname) => { 
+    let petnames = []
+    let petslistArr = []
+
+    petname.docs.forEach( (doc) => {
+        petnames.push({...doc.data(), id: doc.id })
+
+       let names = doc.data().name
+       petslistArr = names.split(",")
+        
+
+        for(const pl in petslistArr) {
+            const petsObj = petslistArr[pl]
+            // .split(" ").reverse().slice(1).reverse().join(" ")
+            let petnamesArr = []
+            
+            petnamesArr.push(petsObj)
+            console.log(petnamesArr)
+
+            for(const el of petnamesArr) {
+                newOption = new Option(el, doc.id);
+                petList.add(newOption,undefined); 
+                }   
+            }
+        })
+    })
 }
