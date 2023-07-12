@@ -263,7 +263,7 @@ input:checked + .radio-slider:before {
 }
 
 .modal.modal-active {
-    opacity: 1;
+    opacity: 1 !important;
     visibility: visible;
 }
 

@@ -34,6 +34,10 @@ window.onload = function() {
             $('#profile').closest('li').css('display', 'none')
         }
     })
+
+    $('.go-home').on('click', function() {
+        window.location.href = './index.html'
+    })
 }
 
 // const subNav = document.querySelector(".dd-pet")
