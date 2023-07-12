@@ -371,7 +371,3 @@ $('#back-pet-form').on('click', () => {
     hash()
 })
 
-$('.go-home').on('click', function() {
-    window.location.href = './index.html'
-})
-

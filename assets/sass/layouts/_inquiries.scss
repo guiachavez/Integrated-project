@@ -8,6 +8,10 @@
 
 .inquiry-main {
     padding: 3rem 2rem;
+
+    .modal-content h2 {
+        color: colors.$accent-color-main;
+    }
 }
 
 @media screen and (min-width: 1200px) {

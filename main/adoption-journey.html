@@ -8,53 +8,51 @@
 <body>
     <h1>Adoption Journey</h1>
     <section>
-        <h2>User Details</h2>
+        <h2>Author Details</h2>
         <form action="" class="adopted-user">
             <label for="fname">First Name</label>
-        <input type="text" name="fname" id="user-fname">
+            <input type="text" name="fname" id="user-fname">
 
-        <label for="lname">Last Name</label>
-        <input type="text" name="lname" id="user-lname">
+            <label for="lname">Last Name</label>
+            <input type="text" name="lname" id="user-lname">
 
-        <label for="email">E-mail</label>
-        <input type="email" name="email" id="user-email">
+            <label for="city">City</label>
+            <input type="text" name="city" id="city">
 
-        <label for="ownerphone">Phone Number</label>
-        <input type="tel" name="ownerphone" id="phone">
-
-        <label for="country">Country</label>
-        <input type="text" name="country" id="country">
-
-        <label for="city">City</label>
-        <input type="text" name="city" id="city">
-
-        <label for="state">State</label>
-        <input type="text" name="state" id="state">
-
-        <label for="pcode">Postal Code</label>
-        <input type="text" name="pcode" id="postal-code">
-
-        <label for="street">Street</label>
-        <input type="text" name="street" id="street">
-
-        <button type="submit" id="story-owner">Submit</button>
+            <label for="state">State</label>
+            <input type="text" name="state" id="state">
         </form>
     </section>
 
     <section>
-        <h2>Adoption Stories</h2>
+        <h2>Share your adoption story now!</h2>
         <form action="" class="adopted-story">
-            <div class="title">
-                <label for="title">Title</label>
-                <input type="text" name="title" id="story-title">
-            </div>
+            <p>Choose your adopted pet from below</p>
+            <div class="content-container">
+                <!-- <form action="" onsubmit="return false" class="petlist"> -->
+                <label for="owners">Pet Owners
+                    <select name="owners" id="owners">
+                        <option value></option>
+                    </select>
+                </label>
+                <label for="ownerspets">Pets
+                    <select name="ownerspets" id="ownerspets">
+                        <option value></option>
+                    </select>
+                </label>
 
-            <div class="desc">
-                <label for="desc">Description</label>
-                <textarea name="desc" id="desc" cols="30" rows="10"></textarea>
-            </div>
+                <div class="title">
+                    <label for="title">Title</label>
+                    <input type="text" name="title" id="story-title">
+                </div>
 
-            <button type="submit" id="add-story">Add Story</button>
+                <div class="desc">
+                    <label for="desc">Body</label>
+                    <textarea name="body" id="body" cols="30" rows="10"></textarea>
+                </div>
+
+                <button type="submit" id="add-story">Add Story</button>
+            </div>
         </form>
     </section>
 
