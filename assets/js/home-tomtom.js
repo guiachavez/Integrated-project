@@ -17,7 +17,6 @@ import { tomtomAPI } from "./config.js";
 
 // Variables to display on the list on the left
 const orgList = document.getElementById("orgList");
-let orgListArr = [];
 
 // MARK: - TomTom (Map View) functions ==========================================================================
 
@@ -72,45 +71,13 @@ function showAddressOnMap(address, organization) {
     address
   )}.json?key=${tomtomAPI}`;
 
-  //To display on the div (popup)
-  const orgInfo = document.createElement("div");
-  orgInfo.className = "orgInfo";
-
-  //Variables to be appended:
-  const orgName = document.createElement("p");
-  orgName.className = "orgName";
-  orgName.textContent = organization.name;
-  orgInfo.appendChild(orgName);
-
-  const orgPhone = document.createElement("p");
-  orgPhone.textContent = `Phone: ${organization.phone}`;
-  if (organization.phone !== null) {
-    orgInfo.appendChild(orgPhone);
-  }
-
-  const orgEmail = document.createElement("p");
-  orgEmail.textContent = `Email: ${organization.email}`;
-  if (organization.email !== null) {
-    orgInfo.appendChild(orgEmail);
-  }
-
-  const orgWebsite = document.createElement("p");
-  orgWebsite.textContent = `Website: ${organization.website}`;
-  if (organization.website !== null) {
-    orgInfo.appendChild(orgWebsite);
-  }
-
-  const orgAddress = document.createElement("p");
-  orgAddress.textContent = `Address: ${address}`;
-  orgInfo.appendChild(orgAddress);
-
-  //Display the list
-  orgListArr.push(orgInfo);
-
   fetch(geocodingAPIUrl)
     .then((response) => response.json())
     .then((data) => {
       const results = data.results;
+      //To display on the div (popup) & list
+      const orgInfo = document.createElement("div");
+      orgInfo.className = "orgInfo";
 
       if (results && results.length > 0) {
         const position = results[0].position;
@@ -132,10 +99,62 @@ function showAddressOnMap(address, organization) {
       } else {
         console.log("No results found");
       }
+
+      //Variables to be appended for the popup:
+      const orgName = document.createElement("p");
+      orgName.className = "orgName";
+      orgName.textContent = organization.name;
+      orgInfo.appendChild(orgName);
+
+      const orgPhone = document.createElement("p");
+      orgPhone.textContent = `Phone: ${organization.phone}`;
+      if (organization.phone !== null) {
+        orgInfo.appendChild(orgPhone);
+      }
+
+      const orgEmail = document.createElement("p");
+      orgEmail.textContent = `Email: ${organization.email}`;
+      if (organization.email !== null) {
+        orgInfo.appendChild(orgEmail);
+      }
+
+      const orgWebsite = document.createElement("p");
+      orgWebsite.textContent = `Website: ${organization.website}`;
+      if (organization.website !== null) {
+        orgInfo.appendChild(orgWebsite);
+      }
+
+      const orgAddress = document.createElement("p");
+      orgAddress.textContent = `Address: ${address}`;
+      orgInfo.appendChild(orgAddress);
+
+      const orgId = document.createElement("p");
+      orgId.className = "orgId";
+      orgId.textContent = organization.id;
+      orgInfo.appendChild(orgId);
+
+      // Button to go to the results
+      const goToOrg = document.createElement("a");
+      goToOrg.className = "goToOrg";
+      var link = document.createTextNode("See pets");
+      goToOrg.appendChild(link);
+      goToOrg.title = "See the pets available in this shelter";
+      goToOrg.href = "./animals.html";
+      goToOrg.target = "_blank";
+      orgInfo.append(goToOrg);
+
+      //Display the list
+      orgList.innerHTML += outerHTML(orgInfo);
     })
+
     .catch((error) => {
       console.error("Error:", error);
     });
+}
+
+//Converts the HTML Object into a string so that it can be seen in the list on the left
+function outerHTML(node) {
+  return node.outerHTML || new XMLSerializer().serializeToString(node);
 }
 
 // Converts the address of the Petfinder API architecture to a string
@@ -173,6 +192,8 @@ function loadLocationOfCenter() {
   petfinderClient.organization
     .search({
       location: userLocationString,
+      //NEED TO SET THIS TO USER ENTER
+      //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       distance: 10,
     })
     .then(async (resp) => {
@@ -198,10 +219,3 @@ function main() {
 }
 
 window.addEventListener("load", main);
-
-//Displays the list of shelters on the left
-setTimeout(() => {
-  for (let i = 0; i < orgListArr.length; i++) {
-    orgList.append(orgListArr[i]);
-  }
-}, 15000);
