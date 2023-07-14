@@ -21,11 +21,12 @@ const petRef = doc(db, 'animals', pet_id)
 
 console.log(own_id, pet_id)
 class appDetails {
-    constructor(appId, afname, alname, petownerId, pofname, polname, petId, petname, inquired_at, inquiryId, isAccepted, declineReason) {
+    constructor(appId, afname, alname, email, petownerId, pofname, polname, petId, petname, inquired_at, inquiryId, isAccepted, declineReason) {
         this.applicant = {
             applicantId: appId,
             app_firstName: afname,
-            app_lastName: alname
+            app_lastName: alname,
+            app_email: email
         };
         this.petowner = {
             petownerId: petownerId,
@@ -83,7 +84,7 @@ const getUserDetails = (petownerId, pofname, polname, petId, petname) => {
                 e.preventDefault();
                 
                 if(localStorage.getItem('source') == 'owner') {
-                    const appdetails = new appDetails(appId, afname.value, alname.value, petownerId, pofname, polname, petId, petname, inquired_at, inquiryId, isAccepted, declineReason)
+                    const appdetails = new appDetails(appId, afname.value, alname.value, email.value, petownerId, pofname, polname, petId, petname, inquired_at, inquiryId, isAccepted, declineReason)
                     console.log(appdetails)
         
                     setTimeout(() => {
