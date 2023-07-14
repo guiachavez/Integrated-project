@@ -1657,7 +1657,7 @@ input:checked + .radio-slider:before {
 }
 
 .modal.modal-active {
-  opacity: 1;
+  opacity: 1 !important;
   visibility: visible;
 }
 
@@ -1851,6 +1851,9 @@ fieldset > div {
 
 .inquiry-main {
   padding: 3rem 2rem;
+}
+.inquiry-main .modal-content h2 {
+  color: #DE6B35;
 }
 
 @media screen and (min-width: 1200px) {

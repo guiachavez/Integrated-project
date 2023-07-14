@@ -84,11 +84,20 @@ const getUserDetails = (petownerId, pofname, polname, petId, petname) => {
                 if(localStorage.getItem('source') == 'owner') {
                     const appdetails = new appDetails(appId, afname.value, alname.value, petownerId, pofname, polname, petId, petname, inquired_at, inquiryId, isAccepted)
                     console.log(appdetails)
-        
-                    setDoc(inqRef, Object.assign({}, appdetails))
-                        .then(() => {
-                            inquirePet.reset();
-                        })
+                    
+                    setTimeout(() => {
+                        setDoc(inqRef, Object.assign({}, appdetails))
+                            .then(() => {
+
+                                inquirePet.reset();
+                                $('.modal.spinner').removeClass('modal-active')
+                                
+                                $('.success-modal').addClass('modal-active');
+                            })
+                    }, 2000)
+
+                    $('.modal.spinner').addClass('modal-active')
+                   
                 } else {
                     let outputObj = JSON.parse(localStorage.getItem('outputObj'));
                     console.log(outputObj)

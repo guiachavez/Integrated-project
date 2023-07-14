@@ -233,41 +233,43 @@ async function searchOwner(color, breed, type, ageArr, sizeArr, genderArr, goodW
                 })
 
                 for(const i in results) {
-                    if (genderArr.indexOf(results[i][1].gender) > -1) {                  
-                        if (breedArr.indexOf(results[i][1].breed) > -1) {
-                            if (colorArr.indexOf(results[i][1].color) > -1) {
-                                let petPhoto = results[i][1].photo
-                                let isArr = Array.isArray(petPhoto)
-
-                                $('#filtered-pets').append([
-                                    $('<div />', {'class': `pet pet-${i}`, 'data-id': `${results[i][0]}`}).append([
-                                        $('<div />', {'class': 'pet-photos slider'})
-                                    ]).append([
-                                        $('<div />', {'class': 'pet-details'}).append([
-                                            $('<p />', {text: `${results[i][1].name}`, class: 'pet-name'}),
-                                            $('<p />', {text: `${results[i][1].gender}, ${results[i][1].breed}` }),
-                                            $('<p />', {text: `${results[i][1].location.city}, ${results[i][1].location.country}`, class: 'pet-location'}) 
-                                        ])
-                                    ])        
-                                ])
-
-                                if(!isArr) {
-                                    $(`.pet-${i} .pet-photos`).append([
-                                        $('<div />', {'class': 'pet-img'}).append([
-                                            $('<a />', {'href': `./../main/pet-profile.html?id=${results[i][0]}`}).append([
-                                                $('<img>', {'src': `${results[i][1].photo}`})
+                    if(results[i][1].isAdopted != true) {
+                        if (genderArr.indexOf(results[i][1].gender) > -1) {                  
+                            if (breedArr.indexOf(results[i][1].breed) > -1) {
+                                if (colorArr.indexOf(results[i][1].color) > -1) {
+                                    let petPhoto = results[i][1].photo
+                                    let isArr = Array.isArray(petPhoto)
+    
+                                    $('#filtered-pets').append([
+                                        $('<div />', {'class': `pet pet-${i}`, 'data-id': `${results[i][0]}`}).append([
+                                            $('<div />', {'class': 'pet-photos slider'})
+                                        ]).append([
+                                            $('<div />', {'class': 'pet-details'}).append([
+                                                $('<p />', {text: `${results[i][1].name}`, class: 'pet-name'}),
+                                                $('<p />', {text: `${results[i][1].gender}, ${results[i][1].breed}` }),
+                                                $('<p />', {text: `${results[i][1].location.city}, ${results[i][1].location.country}`, class: 'pet-location'}) 
                                             ])
-                                        ])
+                                        ])        
                                     ])
-                                } else {
-                                    for(const key in petPhoto) {
+    
+                                    if(!isArr) {
                                         $(`.pet-${i} .pet-photos`).append([
-                                            $('<div />', {'class': `pet-img`}).append([
+                                            $('<div />', {'class': 'pet-img'}).append([
                                                 $('<a />', {'href': `./../main/pet-profile.html?id=${results[i][0]}`}).append([
-                                                    $('<img>', {'src': petPhoto[key]})
+                                                    $('<img>', {'src': `${results[i][1].photo}`})
                                                 ])
                                             ])
                                         ])
+                                    } else {
+                                        for(const key in petPhoto) {
+                                            $(`.pet-${i} .pet-photos`).append([
+                                                $('<div />', {'class': `pet-img`}).append([
+                                                    $('<a />', {'href': `./../main/pet-profile.html?id=${results[i][0]}`}).append([
+                                                        $('<img>', {'src': petPhoto[key]})
+                                                    ])
+                                                ])
+                                            ])
+                                        }
                                     }
                                 }
                             }

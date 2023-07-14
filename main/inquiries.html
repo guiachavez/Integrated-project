@@ -11,6 +11,7 @@
       <!-- Add the slick-theme.css if you want default styling -->
       <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 
+      <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
       <link rel="stylesheet" href="./../assets/stylesheet/style.css">
 
       <title>Application for Adoption</title>
@@ -18,6 +19,22 @@
   <body>
     <header></header>
     <main class="inquiry-main">
+      <div class="modal success-modal inquiry" style="opacity: 0;">
+        <div class="modal-content">
+          <h2>Adoption Inquiry Completed!</h2>
+          <p>Your <span>adoption inquiry</span> was sent to the owner!</p>
+  
+          <div class="controls">
+            <button class="filled-default-mob font go-home">Home</button>
+            <a href="./../main/profile.html">Take me to my Profile</a>
+          </div>
+        
+        </div>
+      </div>
+  
+      <div class="modal spinner" style="opacity: 0">
+          <lottie-player class="lottie" src="https://assets2.lottiefiles.com/packages/lf20_EzXPcIqk02.json"  background="transparent"  speed="1"  style="width: 200px; height: 200px;"  loop autoplay></lottie-player>
+      </div>
       <section>
         <h2>Applicant Details</h2>
         <form action="" class="inquire-pet">
