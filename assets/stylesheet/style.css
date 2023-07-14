@@ -905,33 +905,49 @@ footer h2 {
   }
   .home_map-box .orgName {
     font-weight: bold;
-    font-size: 17px;
+    font-size: 15px !important;
   }
   .home_map-box .orgInfo {
     margin: 0;
     padding: 0;
-    font-size: 14px;
     width: auto;
+    overflow-wrap: break-word;
   }
   .home_map-box .orgInfo p {
     margin: 0;
     padding: 2px;
-  }
-  .home_map-box .orgInfo p span {
-    font-weight: bold;
-  }
-  .home_map-box .orgList .orgName {
-    font-size: 15px;
+    font-size: 14px;
   }
   .home_map-box .orgList .orgInfo {
     border-bottom: 1.5px solid #0293A7;
     padding: 2% 2% 4%;
     margin-bottom: 10px;
-    font-size: 13px;
   }
   .home_map-box .orgList .orgInfo:hover {
     background-color: #E6F4F6;
     border-radius: 8px 8px 0 0;
+  }
+  .home_map-box .orgId {
+    display: none;
+  }
+  .home_map-box .goToOrg {
+    font-size: 13px;
+    font-weight: bold;
+    width: 120px;
+    height: 35px;
+    background-color: #FFFFFF;
+    border: 2px solid #0293A7;
+    color: #0293A7;
+    border-radius: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+  }
+  .home_map-box .goToOrg:hover {
+    background-color: #0293A7;
+    border: none;
+    color: #FFFFFF;
   }
 }
 @media screen and (min-width: 1200px) {
@@ -1271,7 +1287,8 @@ ul {
 }
 
 .tt-search-box-input::placeholder,
-.home_searchbox .petSelector option, .home_searchbox .where-from-selector option {
+.home_searchbox .petSelector option,
+.home_searchbox .where-from-selector option {
   font-family: "Raleway";
   font-size: 16px;
   color: #C5C5C5;
