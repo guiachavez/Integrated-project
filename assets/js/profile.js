@@ -192,6 +192,7 @@ onAuthStateChanged(auth, (user) => {
                                 <td>${data2.color}</td>
                                 <td>${data2.desc}</td>
                                 <td>${inq_status}</td>
+                                <td>${data.declineReason}</td>
                             </tr>`;
                                         
                         table.innerHTML += row
@@ -245,7 +246,7 @@ const addButtons = (inquiries) => {
                         if($(this).closest('tr').find('td[data-id]')[0].attributes[0].value == inquiries[el].petId) {
                             $(this).closest('tr').find('.response-buttons').append([
                                 $('<p />', {'text': `Applicant: ${inquiries[el].applicant.app_firstName} ${inquiries[el].applicant.app_lastName}`}),
-                                $('<button />', {'text': 'Rejected', 'id': `Reject-${inquiries[el].inquiryId}`, 'class': 'reject', 'data-reject': `${inquiries[el].inquiryId}`, 'disabled': 'disabled'})
+                                $('<button />', {'text': 'Rejected', 'id': `Reject-${inquiries[el].inquiryId}`, 'class': 'reject  outline-btn-gray', 'data-reject': `${inquiries[el].inquiryId}`, 'disabled': 'disabled'})
                             ])
                         }
                     }
@@ -308,10 +309,15 @@ function declineInquiry(id) {
 
     $('button.decline').each(function() {
         if($(this).data('decline') == id) {
-            updateDoc(updateinqRef, {
-                isAccepted: false
-            });  
+            var reason = prompt("Please input reason for declining")
+            if (reason != null) {
+                // document.getElementById("reason").innerText = "Decline reason: " + reason
 
+                updateDoc(updateinqRef, {
+                    isAccepted: false,
+                    declineReason: reason
+                });
+            }   
             $(this).closest('.response-buttons').find('.decline').attr('disabled', 'disabled')
             $(this).closest('.response-buttons').find('.accept').attr('disabled', 'disabled')
         }
