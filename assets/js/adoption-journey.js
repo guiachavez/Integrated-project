@@ -17,17 +17,11 @@ const accRef = collection(db, "accounts")
 
 // adoption journey class
 class adoptStory{
-    constructor(title, body, posted_at, petName, petId, ownerId, ownerFname, ownerLname, userId, firstName, lastName, city, state, photo){
+    constructor(title, body, posted_at, petName, userId, firstName, lastName, city, state, photo){
         this.title = title;
         this.body = body; 
         this.posted_at = posted_at;
-        this.petDetails = {
-            petName: petName,
-            petId: petId,
-            ownerId: ownerId,
-            ownerFname: ownerFname,
-            ownerLname: ownerLname
-        }
+        this.petName = petName
         this.authorDetails = {
             userId: userId,
             firstName: firstName,
@@ -39,14 +33,12 @@ class adoptStory{
     }
 }
 
-let newOption = new Option('Option Text','Option Value');
+
 
 const addStory = document.querySelector('.adopted-story')
 // add story button
-const addStoryBtn = document.getElementById("add-story");
-
-const ownerList = document.getElementById('owners');
-const petList = document.getElementById('ownerspets');
+const addStoryBtn = document.getElementById('add-story');
+const adoptedUser = document.querySelector('.adopted-user')
 
 // adopt user form inputs
 let firstName = document.getElementById('user-fname');
@@ -69,77 +61,21 @@ onAuthStateChanged(auth, (adoptuser) => {
             state.value = data.address.state;
 
         })
-              
-        getDocs(accRef).then((owners) => { 
-            let petowners = []
-            let fullnamesArr = []
-        
-            owners.docs.forEach( (doc) => {
-                petowners.push({...doc.data(), id: doc.id })
 
-                let ofnames = doc.data().firstName
-                let olnames = doc.data().lastName               
-                let oIds = doc.id
-                let fullnames = ofnames + ' ' + olnames
-
-                fullnamesArr = fullnames.split(",")
-
-                for(const ow in fullnamesArr) {
-                    const namesObj = fullnamesArr[ow]
-
-                    let namesArr = []
-                    
-                    namesArr.push(namesObj)
-        
-                    for(const el of namesArr) {
-                        newOption = new Option(el, oIds);
-                        ownerList.add(newOption,undefined); 
-                    }
-                    
-                }
-            })
-        })
-
-
-        ownerList.addEventListener('change', (e) => {
+        addStoryBtn.addEventListener('click', (e) => {
             e.preventDefault()
-            let ownerId = ownerList.value
-        
-            getownerPets(ownerId)              
+            handleAdoptStory(userId, firstName, lastName, city, state)
         })
-    
-        petList.addEventListener('change', (e) => {
-            e.preventDefault()
-
-
-            let ownerFname = ownerList.selectedOptions[0].text.split(" ")[0]
-            let ownerLname = ownerList.selectedOptions[0].text.split(" ")[1]
-            let ownerId = ownerList.value
-            let petName = petList.selectedOptions[0].text
-            let petId = petList.value
-
-            addStory.addEventListener('submit', handleForm)
-            
-            function handleForm(e) {
-                e.preventDefault();
-
-                handleAdoptStory(petName, petId, ownerId, ownerFname, ownerLname, userId, firstName, lastName, city, state)
-            }
-            
-        })
-
 
     }
 })
 
 
 
-
-
-
-async function handleAdoptStory(petName, petId, ownerId, ownerFname, ownerLname, userId, firstName, lastName, city, state){
+async function handleAdoptStory(userId, firstName, lastName, city, state) {
     const docRef = doc(db, "accounts", userId); 
     const imagesArr = [];
+    let petName = document.getElementById('petname');
     let storytitle = document.getElementById("story-title");
     let storybody = document.getElementById("body");
     let posted_at = new serverTimestamp();
@@ -152,45 +88,19 @@ async function handleAdoptStory(petName, petId, ownerId, ownerFname, ownerLname,
             
 
     setTimeout(() => {
-        const adopt = new adoptStory(storytitle.value, storybody.value, posted_at, petName, petId, ownerId, ownerFname, ownerLname, userId, firstName.value, lastName.value, city.value, state.value, photos);
-        console.log(adopt)
+        const adopt = new adoptStory(storytitle.value, storybody.value, posted_at, petName.value, userId, firstName.value, lastName.value, city.value, state.value, photos);
+        
+        $('.modal.spinner').removeClass('modal-active')
         addDoc(adoptJourney, Object.assign({}, adopt))
         .then(() => {
             addStory.reset();
+            adoptedUser.reset();
+            document.querySelector('.displayImages').innerHTML = ''
+            $('.success-modal').addClass('modal-active');
         })
     }, 5000)
-}
 
-
-function getownerPets(ownerId) {
-    const qPets = query(aniRef, where("owner_id", "==", ownerId))
-                                            
-    getDocs(qPets).then((petname) => { 
-        let petnames = []
-        let petslistArr = []
-
-        petname.docs.forEach( (doc) => {
-            petnames.push({...doc.data(), id: doc.id })
-
-            let names = doc.data().name
-            petslistArr = names.split(",")
-            
-
-            for(const pl in petslistArr) {
-                const petsObj = petslistArr[pl]
-                // .split(" ").reverse().slice(1).reverse().join(" ")
-                let petnamesArr = []
-                
-                petnamesArr.push(petsObj)
-
-                for(const el of petnamesArr) {
-                    newOption = new Option(el, doc.id);
-                    petList.add(newOption,undefined); 
-                }   
-                
-            }
-        })
-    })
+    $('.modal.spinner').addClass('modal-active')
 }
 
 imageUpload()

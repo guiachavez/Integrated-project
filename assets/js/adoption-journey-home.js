@@ -25,9 +25,9 @@ getDocs(adoptJourney).then((posts) => {
                 $('<div />', {'class': 'story-details'}).append([
                     $('<div />', {'class': 'story-photos slider'}),
                     $('<div />').append([
-                        $('<p />', {text: `${adposts[i][1].petDetails.petName}`, class: 'pet-name'}),
+                        $('<p />', {text: `${adposts[i][1].petName}`, class: 'pet-name'}),
                         $('<p />', {text: 'Adopted by ', class: 'owner-name'}).append([
-                            $('<span />', {text: `${adposts[i][1].petDetails.ownerFname}`})
+                            $('<span />', {text: `${adposts[i][1].authorDetails.firstName}`})
                         ]),
                         $('<p />', {text: `${adposts[i][1].authorDetails.city}, ${adposts[i][1].authorDetails.state}`, class: 'owner-location'})
                     ])
