@@ -6,38 +6,101 @@
     <link rel="stylesheet" href="./../assets/stylesheet/style.css">
 
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 
     <title>Adoption Journey</title>
 </head>
 <body>
     <header></header>
-    <main style="height: 65vh; padding: 2rem;">
-        <h1>Adoption Journey</h1>
-  
-        <h2>Posts</h2>
+    <main class="adoption-journey-main">
+        <section class="adoption-journey-header-wrapper">
+            <div class="adoption-journey-header">
+                <div>
+                    <h1>Pet Adoption Journey</h1>
+                    <p>Heartwarming tales of pets finding<br>their pawfect match.</p>
+                </div>
+                <div>
+                    <button class="filled-mob-btn font" onclick="window.location.href='./adoption-journey.html';">New Post</button>
+                </div>
+            </div>
+        </section>
 
-        <table class="table is-striped is-narrow is-hoverable is-fullwidth">
-            <thead>
+        <section class="adoption-journey-content">
+            <aside>
+                <div>
+                    <h2>Help Articles</h2>
+                    <dl class="article-wrapper">
+                        <div class="article-container">
+                            <dt class="article">
+                                <p>How to reach out to shelters?</p>
+                                <!-- <button><span class="visually-hidden">arrows</span class="visually-hidden"></button> -->
+                                <button><img src="./../assets/icons/Back.svg" alt="" class="arrow-right"></button>
+                            </dt>
+                            <dd class="article-content">
+                                <p>Lorem ipsum dolor sit amet . The graphic and typographic operators know this well, in reality all the professions dealing with the universe of communication have a stable relationship with these words, but what is it? Lorem ipsum is a dummy text without any sense.</p>
+                            </dd>
+                        </div>
 
-            <tr>
-                <th>Title</th>
-                <th>Body</th>
-                <th>Photo</th>
-                <th>Pet Name</th>
-                <th>Adopted By</th>
-                <th>Adopted From</th>
-                <th>Location</th>
+                        <div class="article-container">
+                            <dt class="article">
+                                <p>How to reach out to adopt?</p>
+                                <!-- <button><span class="visually-hidden">arrows</span class="visually-hidden"></button> -->
+                                <button><img src="./../assets/icons/Back.svg" alt="" class="arrow-right"></button>
+                            </dt>
+                            <dd class="article-content">
+                                <p>Lorem ipsum dolor sit amet . The graphic and typographic operators know this well, in reality all the professions dealing with the universe of communication have a stable relationship with these words, but what is it? Lorem ipsum is a dummy text without any sense.</p>
+                            </dd>
+                        </div>
+
+                        <div class="article-container">
+                            <dt class="article">
+                                <p>How to reach out to adopt?</p>
+                                <!-- <button><span class="visually-hidden">arrows</span class="visually-hidden"></button> -->
+                                <button><img src="./../assets/icons/Back.svg" alt="" class="arrow-right"></button>
+                            </dt>
+                            <dd class="article-content">
+                                <p>Lorem ipsum dolor sit amet . The graphic and typographic operators know this well, in reality all the professions dealing with the universe of communication have a stable relationship with these words, but what is it? Lorem ipsum is a dummy text without any sense.</p>
+                            </dd>
+                        </div>
+                    </dl>
+                </div>
+
+                <div>
+                    <h2>Things you may want to check</h2>
+
+                    <div>
+                        <img src="" alt="">
+                        <h3>Vaccines</h3>
+                        <p>It is certainly the most famous placeholder text even if there are different versions distinguishable from the order in which the Latin words are repeated.</p>
+                        <a href="" class="read-more">Read More</a>
+                    </div>
+
+                    <div>
+                        <img src="" alt="">
+                        <h3>Adoption Checklist</h3>
+                        <p>It is certainly the most famous placeholder text even if there are different versions distinguishable from the order in which the Latin words are repeated.</p>
+                        <a href="" class="read-more">Read More</a>
+                    </div>
+                </div>
+            </aside>
+            <div class="stories-wrapper">
+                <div id="stories"></div>
+            </div>
             
-                
-            </tr>
-            </thead>
-            <tbody id="postDetails">
-            </tbody>
-        </table>
+        </section>
+        
+
+
+        
     </main>
     <footer></footer>
 
     <script type="module" src="../assets/js/global-functions.js" defer></script>
     <script type="module" src="../assets/js/adoption-journey-home.js" defer></script>  
+
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 </body>
 </html>
