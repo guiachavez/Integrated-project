@@ -9,27 +9,27 @@ $("header").load("header.html");
 $("footer").load("footer.html");
 
 window.onload = function() {
-
-        $('.header-link a').each(function() {
-            if (window.location.pathname.includes($(this).attr('data-path'))) {
-                console.log($(this).attr('data-path'))
-                $(this).closest('li').addClass('selected')
-            } else {
-                $(this).closest('li').removeClass('selected')
-            }
-        })
-        
-
     onAuthStateChanged(auth, (user) => {
         let login = document.getElementById("login") 
         let profile = document.getElementById("login_profile")   
         if (user) {
-            $('#login').closest('li').css('display', 'none')
-            $('#profile').closest('li').css('display', 'block')
+            //$('#login').closest('li').css('display', 'none')
+            $('#profile').text('Profile')
+            $('#profile').attr('href', './profile.html')
 
         } else {
-            $('#login').closest('li').css('display', 'block')
-            $('#profile').closest('li').css('display', 'none')
+            //$('#login').closest('li').css('display', 'block')
+            $('#profile').text('Log in')
+            $('#profile').attr('href', './login.html')
+        }
+    })
+
+    $('.header-link a').each(function() {
+        if (window.location.pathname.includes($(this).attr('data-path'))) {
+            console.log($(this).attr('data-path'))
+            $(this).closest('li').addClass('selected')
+        } else {
+            $(this).closest('li').removeClass('selected')
         }
     })
 
