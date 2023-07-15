@@ -1,3 +1,4 @@
+// console.log("hii")
 // MARK: - Variables ====================================================================
 
 // Contains two values: Longitude and Latitude
@@ -19,19 +20,42 @@ import { tomtomAPI } from "./config.js";
 const orgList = document.getElementById("orgList");
 let orgListArr = [];
 
+
 // MARK: - TomTom (Map View) functions ==========================================================================
 
 // Stores the users location in the variable at top
 function storeUserLocation(location) {
   userLocation = [location.coords.longitude, location.coords.latitude];
+  
   setupMap();
   loadLocationOfCenter();
+  /* reverse geocoding====================================== */
+  console.log(userLocation)
+
+    const latitude = userLocation[1];
+    const longitude = userLocation[0];
+    const apiUrl = `https://api.tomtom.com/search/2/reverseGeocode/${latitude},${longitude}.json?key=${tomtomAPI}`;
+  
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+        const address = data.addresses[0].address.freeformAddress;
+        console.log('Location:', address);
+        featuredPet(address);
+      })
+      .catch(error => {
+        console.log('Error during reverse geocoding:', error);
+      });  
+
+  /* function calling for feaured pet ================ */
+  
+
 }
 
 // Loads the users location and calls the presentUserLocationOnMap function
 function loadUserLocation() {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(storeUserLocation);
+  navigator.geolocation.getCurrentPosition(storeUserLocation);    
   }
 }
 
@@ -205,3 +229,97 @@ setTimeout(() => {
     orgList.append(orgListArr[i]);
   }
 }, 15000);
+
+
+
+import { getFirestore, collection, getDocs, getDoc, doc, query, where } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js'
+import { app } from './config.js'
+
+const db = getFirestore(app);
+
+/* featured pet using location =============================== */
+
+function featuredPet(checklocation) {
+  const petsCollection = collection(db, 'animals');
+
+  getDocs(petsCollection)
+    .then((querySnapshot) => {
+      const pets = [];
+
+      querySnapshot.forEach((doc) => {
+        const pet = doc.data();
+        pets.push(pet);
+      });
+
+      if (pets.length > 0) {
+        // Generate the carousel slides
+        const carouselContainer = document.querySelector('.carousel-container');
+        const carousel = document.querySelector('.carousel');
+
+        // Clear the existing carousel content
+        carousel.innerHTML = '';
+
+        // Generate slides for each pet
+        pets.forEach((pet) => {
+            const slide = document.createElement('div');
+            slide.classList.add('slide');
+  
+            // Create the image element and set its source
+            const image = document.createElement('img');
+            image.src = pet.photo;
+            slide.appendChild(image);
+  
+            // Create the pet information element
+            const info = document.createElement('div');
+            info.classList.add('info');
+  
+            // Create and populate the pet data elements
+            const name = document.createElement('h3');
+            name.textContent = pet.name;
+            info.appendChild(name);
+  
+            const type = document.createElement('p');
+            type.textContent = pet.type;
+            info.appendChild(type);
+  
+            const age = document.createElement('p');
+            age.textContent = `Age: ${pet.age}`;
+            info.appendChild(age);
+  
+            const gender = document.createElement('p');
+            gender.textContent = `Gender: ${pet.gender}`;
+            info.appendChild(gender);
+  
+            const location = document.createElement('p');
+            location.textContent = `Location: ${pet.location.city}`;
+            info.appendChild(location);
+  
+            slide.appendChild(info);
+  
+            // Append the slide to the carousel
+            carousel.appendChild(slide)
+
+            carouselContainer.style.display = 'block';
+         
+        });
+
+        // Initialize the Slick Carousel
+        $('.carousel').slick({
+          infinite: true,
+          slidesToShow: 3,
+          slidesToScroll: 1
+        });
+
+        // Make the carousel container visible
+        carouselContainer.style.display = 'block';
+      } else {
+        console.log('No pets available');
+      }
+    })
+    .catch((error) => {
+      console.error('Error getting pet data:', error);
+    });
+}
+
+ 
+

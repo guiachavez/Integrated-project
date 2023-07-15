@@ -11,6 +11,11 @@
     <link rel="stylesheet" type="text/css" href="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.12/SearchBox.css" />
 
 
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    
     <!-- Include JavaScript SDK for TomTom -->
     <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/maps/maps-web.min.js"></script>
     <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.12/SearchBox-web.js"></script>
@@ -24,14 +29,9 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/@petfinder/petfinder-js/dist/petfinder.min.js"></script>
 
-    <!-- JS for Carousel -->
-    <script src="./../assets/js/Carousel.js" defer></script>
-    <!-- CSS for Carousel -->
-    <link rel="stylesheet" href="./../assets/stylesheet/carousel.css" />
-
-
     <!-- CSS -->
     <link rel="stylesheet" href="./../assets/stylesheet/style.css" />
+    <!-- <link rel="stylesheet" href="./../assets/stylesheet/carousel.css"> -->
 
     <!-- Scripts -->
     
@@ -91,7 +91,7 @@
       <section class="home_featured">
         <h2 class="card-heading-mob">Featured Pets</h2>
 
-        <div class="carousel-container">
+        <div class="carousel-container" style="display: inline-block; margin: auto 0;">
           <div class="carousel"></div>
         </div>
       </section>
