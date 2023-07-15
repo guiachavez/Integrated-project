@@ -24,15 +24,18 @@ window.onload = function() {
         }
     })
 
-    $('.header-link a').each(function() {
-        if (window.location.pathname.includes($(this).attr('data-path'))) {
-            console.log($(this).attr('data-path'))
-            $(this).closest('li').addClass('selected')
-        } else {
-            $(this).closest('li').removeClass('selected')
-        }
-    })
+    setTimeout(() => {
+        $('.header-link a').each(function() {
+            if (window.location.pathname.includes($(this).attr('data-path'))) {
+                console.log($(this).attr('data-path'))
+                $(this).closest('li').addClass('selected')
+            } else {
+                $(this).closest('li').removeClass('selected')
+            }
+        })
+    }, 200)
 
+    
     $('.go-home').on('click', function() {
         window.location.href = './index.html'
     })
