@@ -34,24 +34,26 @@ onAuthStateChanged(auth, (user) => {
                         <td>${data.firstName}</td>
                         <td>${data.lastName}</td>
                         <td>${data.phone}</td>
-                        <td>${data.address.street}</td>
-                        <td>${data.address.city}</td>
-                        <td>${data.address.state}</td>
-                        <td>${data.address.postcode}</td>
-                        <td>${data.address.country}</td>
+                        <td>${data.address.street}, ${data.address.postcode}, ${data.address.city} ${data.address.city}, ${data.address.country}</td>
                     </tr>`;
                   
+                    // <td>${data.address.city}</td>
+                    // <td>${data.address.state}</td>
+                    // <td>${data.address.postcode}</td>
+                    // <td>${data.address.country}</td>
             table.innerHTML += row
+
+            $('.user-name').text(`${data.firstName}, ${data.lastName}`)
         })
 
         // query to count inquiries under user who is logged in
         const inq = query(inqRef, where("petowner.petownerId", "==", user.uid));
 
-        getCountFromServer(inq).then(inq_count => {
-            $('#profile-pic').append([
-                $('<p />', {'text': `You have ${inq_count.data().count} inquiries waiting for you!`})
-            ])
-        })
+        // getCountFromServer(inq).then(inq_count => {
+        //     $('#profile-pic').append([
+        //         $('<p />', {'text': `You have ${inq_count.data().count} inquiries waiting for you!`})
+        //     ])
+        // })
 
         // query for matching user uid on animals table to get pets posted/inquired by the user
         const q = query(aniRef, where("owner_id", "==", user.uid));

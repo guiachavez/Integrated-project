@@ -44,27 +44,32 @@
             </section>
 
             <section id="section-1" class="content current about">
-                <div id="profile-pic">
-                    <img class="card-img-top" id="photo" width="250" height="300">
+                <div class="profile-wrapper">
+                    <div class="profile-details">
+                        <div id="profile-pic">
+                            <img class="card-img-top" id="photo" width="250" height="300">
+                        </div>
+                        <p class="user-name"></p>
+                        <button type="submit" class="logout">Sign out</button>
+                    </div>
+                    
+                    
+                    <div>
+                        <table class="table is-striped is-narrow is-hoverable is-fullwidth">
+                            <thead>
+                            <tr>
+                                <th>Email:</th>
+                                <th>First Name:</th>
+                                <th>Last Name:</th>
+                                <th>Contact Number:</th>
+                                <th>Address:</th>
+                            </tr>
+                            </thead>
+                            <tbody id="ownerDetails">
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                
-                <div>
-                    <table class="table is-striped is-narrow is-hoverable is-fullwidth">
-                        <thead>
-                        <tr>
-                            <th>Email</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Contact Number</th>
-                            <th>Address</th>
-                        </tr>
-                        </thead>
-                        <tbody id="ownerDetails">
-                        </tbody>
-                    </table>
-                </div>
-                
-                <button type="submit" class="logout">logout</button>
             </section>
 
             <section id="section-2" class="content">
