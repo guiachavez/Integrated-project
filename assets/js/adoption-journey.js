@@ -1,7 +1,7 @@
 import { getFirestore, getDoc, query, where, doc, getDocs, addDoc, collection, serverTimestamp } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js'
 import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js';
 import { app } from './config.js'
-
+import { imageUpload, uploadToStorage } from './global-functions.js';
 
 // init the firestore and storage
 const db = getFirestore(app)
@@ -17,7 +17,7 @@ const accRef = collection(db, "accounts")
 
 // adoption journey class
 class adoptStory{
-    constructor(title, body, posted_at, petName, petId, ownerId, ownerFname, ownerLname, userId, firstName, lastName, city, state){
+    constructor(title, body, posted_at, petName, petId, ownerId, ownerFname, ownerLname, userId, firstName, lastName, city, state, photo){
         this.title = title;
         this.body = body; 
         this.posted_at = posted_at;
@@ -35,6 +35,7 @@ class adoptStory{
             city: city,
             state: state
         }
+        this.photo = photo;
     }
 }
 
@@ -132,17 +133,27 @@ onAuthStateChanged(auth, (adoptuser) => {
 })
 
 
-function handleAdoptStory(petName, petId, ownerId, ownerFname, ownerLname, userId, firstName, lastName, city, state){
 
-    console.log(firstName);
 
+
+
+async function handleAdoptStory(petName, petId, ownerId, ownerFname, ownerLname, userId, firstName, lastName, city, state){
+    const docRef = doc(db, "accounts", userId); 
+    const imagesArr = [];
     let storytitle = document.getElementById("story-title");
     let storybody = document.getElementById("body");
     let posted_at = new serverTimestamp();
+    let photo = myFile.files
+            
+    // for saving photos to firestore
+    uploadToStorage(photo, imagesArr, docRef)
+    const photos = await Promise.all(imagesArr);
+    console.log(photos);  
+            
 
     setTimeout(() => {
-        const adopt = new adoptStory(storytitle.value, storybody.value, posted_at, petName, petId, ownerId, ownerFname, ownerLname, userId, firstName.value, lastName.value, city.value, state.value);
-
+        const adopt = new adoptStory(storytitle.value, storybody.value, posted_at, petName, petId, ownerId, ownerFname, ownerLname, userId, firstName.value, lastName.value, city.value, state.value, photos);
+        console.log(adopt)
         addDoc(adoptJourney, Object.assign({}, adopt))
         .then(() => {
             addStory.reset();
@@ -171,7 +182,6 @@ function getownerPets(ownerId) {
                 let petnamesArr = []
                 
                 petnamesArr.push(petsObj)
-                console.log(petnamesArr)
 
                 for(const el of petnamesArr) {
                     newOption = new Option(el, doc.id);
@@ -182,3 +192,5 @@ function getownerPets(ownerId) {
         })
     })
 }
+
+imageUpload()
