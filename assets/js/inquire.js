@@ -21,11 +21,12 @@ const petRef = doc(db, 'animals', pet_id)
 
 console.log(own_id, pet_id)
 class appDetails {
-    constructor(appId, afname, alname, petownerId, pofname, polname, petId, petname, inquired_at, inquiryId, isAccepted) {
+    constructor(appId, afname, alname, email, petownerId, pofname, polname, petId, petname, inquired_at, inquiryId, isAccepted, declineReason) {
         this.applicant = {
             applicantId: appId,
             app_firstName: afname,
-            app_lastName: alname
+            app_lastName: alname,
+            app_email: email
         };
         this.petowner = {
             petownerId: petownerId,
@@ -37,6 +38,7 @@ class appDetails {
         this.inquired_at = inquired_at;
         this.inquiryId = inquiryId;
         this.isAccepted = isAccepted;
+        this.declineReason = declineReason;
     }
 }
 
@@ -76,15 +78,15 @@ const getUserDetails = (petownerId, pofname, polname, petId, petname) => {
             let inquired_at = new serverTimestamp();
             let inquiryId = inqRef.id
             let isAccepted = "init"
-            console.log(inquiryId)
+            let declineReason = ""
 
             submit.addEventListener('click', (e) => {
                 e.preventDefault();
                 
                 if(localStorage.getItem('source') == 'owner') {
-                    const appdetails = new appDetails(appId, afname.value, alname.value, petownerId, pofname, polname, petId, petname, inquired_at, inquiryId, isAccepted)
+                    const appdetails = new appDetails(appId, afname.value, alname.value, email.value, petownerId, pofname, polname, petId, petname, inquired_at, inquiryId, isAccepted, declineReason)
                     console.log(appdetails)
-                    
+        
                     setTimeout(() => {
                         setDoc(inqRef, Object.assign({}, appdetails))
                             .then(() => {
@@ -97,7 +99,6 @@ const getUserDetails = (petownerId, pofname, polname, petId, petname) => {
                     }, 2000)
 
                     $('.modal.spinner').addClass('modal-active')
-                   
                 } else {
                     let outputObj = JSON.parse(localStorage.getItem('outputObj'));
                     console.log(outputObj)

@@ -255,7 +255,7 @@ async function searchOwner(color, breed, type, ageArr, sizeArr, genderArr, goodW
                                     if(!isArr) {
                                         $(`.pet-${i} .pet-photos`).append([
                                             $('<div />', {'class': 'pet-img'}).append([
-                                                $('<a />', {'href': `./../main/pet-profile.html?id=${results[i][0]}`}).append([
+                                                $('<a />', {'href': `./../main/pet-details.html?id=${results[i][0]}`}).append([
                                                     $('<img>', {'src': `${results[i][1].photo}`})
                                                 ])
                                             ])
@@ -264,7 +264,7 @@ async function searchOwner(color, breed, type, ageArr, sizeArr, genderArr, goodW
                                         for(const key in petPhoto) {
                                             $(`.pet-${i} .pet-photos`).append([
                                                 $('<div />', {'class': `pet-img`}).append([
-                                                    $('<a />', {'href': `./../main/pet-profile.html?id=${results[i][0]}`}).append([
+                                                    $('<a />', {'href': `./../main/pet-details.html?id=${results[i][0]}`}).append([
                                                         $('<img>', {'src': petPhoto[key]})
                                                     ])
                                                 ])
@@ -335,7 +335,7 @@ var searchPetFinder = (type, breed, age, gender, size, color, goodWithChildren, 
                     for(const photo in petObj[i].photos) {
                         $(`.pet-${i} .pet-photos`).append([
                             $('<div />', {'class': `pet-img`}).append([
-                                $('<a />', {'href': `./../main/pet-profile.html?id=${petObj[i].id}`}).append([
+                                $('<a />', {'href': `./../main/pet-details.html?id=${petObj[i].id}`}).append([
                                     $('<img>', {'src': petObj[i].photos[photo].medium})
                                 ])
                             ])
@@ -351,7 +351,7 @@ var searchPetFinder = (type, breed, age, gender, size, color, goodWithChildren, 
                 });
             }
         }
-        // save the pet search result to local storage to access to pet-profile.html
+        // save the pet search result to local storage to access to pet-details.html
         localStorage.setItem('outputObj', JSON.stringify(petObj));
     }).catch((err) => {
         console.log(err)
