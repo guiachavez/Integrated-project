@@ -429,7 +429,15 @@ function addButtonsv2(inquiries) {
                             animals.push({...doc.data(), id: doc.id })
 
                             $('#animalDetails').append([
-                                $('<img />', {'src': `${animals[0].photo[0]}`, 'width': '20%'})
+                                $('<img />', {'src': `${animals[0].photo[0]}`, 'width': '20%'}),
+                                $('<div />').append([
+                                    $('<span />', {'text': 'Name: '}).append([
+                                        $('<p/>', {'text': `${animals[0].name}`})
+                                    ]),
+                                    $('<span />', {'text': 'Description: '}).append([
+                                        $('<p/>', {'text': `${animals[0].desc}`})
+                                    ])
+                                ])
                             ])
                         })
                     })
@@ -443,8 +451,12 @@ function addButtonsv2(inquiries) {
                         if(inquiries[el].petId == id) {
                             $('#responseButtonsModal').append([
                                 $('<div />').append([
-                                    $('<p />', {'text': `Applicant: ${inquiries[el].applicant.app_firstName} ${inquiries[el].applicant.app_lastName}`}),
-                                    $('<p />', {'text': `Email: ${inquiries[el].applicant.app_email}`})
+                                    $('<span />', {'text': 'Name: '}).append([
+                                        $('<p />', {'text': `${inquiries[el].applicant.app_firstName} ${inquiries[el].applicant.app_lastName}`})
+                                    ]),
+                                    $('<span />', {'text': 'Email: '}).append([
+                                        $('<p />', {'text': `${inquiries[el].applicant.app_email}`})
+                                    ])
                                 ])
                             ])
 
