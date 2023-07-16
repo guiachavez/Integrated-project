@@ -159,6 +159,7 @@ textarea {
     background-color: colors.$neutral-color-grey;
     -webkit-transition: .4s;
     transition: .4s;
+    width: 4rem;
 }
   
 .radio-slider:before {
@@ -302,6 +303,13 @@ input:checked + .radio-slider:before {
     }
 }
 
+@media screen and (max-width: mq.$media-mobile-width) {
+    .content-center{
+        display: block;
+        width: 100%;
+    }
+}
+
 @media screen and (max-width: mq.$media-tablet-width) {
     .rehome-container{
         .col-left{
@@ -325,6 +333,7 @@ input:checked + .radio-slider:before {
     #tab-2, #tab-3, #tab-progress.active{
         max-width: 600px;
         margin: auto;
+        padding: 2%;
     }
 }
 

@@ -95,12 +95,12 @@ const getUserDetails = (petownerId, pofname, polname, petId, petname) => {
                 e.preventDefault();
 
                 // radio button values
-                let adopt = document.querySelector('input[name="adopting"]:checked').value;
-                let owner = document.querySelector('input[name="owner"]:checked').value;
-                let restriction = document.querySelector('input[name="restriction"]:checked').value;
-                let children = document.querySelector('input[name="children"]:checked').value;
-                let sneeds = document.querySelector('input[name="splneeds"]:checked').value;
-                let vet = document.querySelector('input[name="vet"]:checked').value;
+                let adopt = document.querySelector('input[name="adopting"]:checked') != null ? document.querySelector('input[name="adopting"]:checked').value : "";
+                let owner = document.querySelector('input[name="owner"]:checked') != null ? document.querySelector('input[name="owner"]:checked').value : "";
+                let restriction = document.querySelector('input[name="restriction"]:checked') != null ? document.querySelector('input[name="restriction"]:checked').value : "";
+                let children = document.querySelector('input[name="children"]:checked') != null ? document.querySelector('input[name="children"]:checked').value : "";
+                let sneeds = document.querySelector('input[name="splneeds"]:checked') != null ? document.querySelector('input[name="splneeds"]:checked').value : "";
+                let vet = document.querySelector('input[name="vet"]:checked') != null ? document.querySelector('input[name="vet"]:checked').value : "";
 
                 // checkbox values
                 let petType = document.querySelectorAll('input[id="pettype"]:checked')
@@ -112,28 +112,40 @@ const getUserDetails = (petownerId, pofname, polname, petId, petname) => {
 
                 // array to store checkbox values
                 let typeArr = [];
-                for(let i=0; i<petType.length; i++){
-                    typeArr.push(petType[i].value)
+                if(petType.length > 0){
+                    for(let i=0; i<petType.length; i++){
+                        typeArr.push(petType[i].value)
+                    }
                 }
                 let houseArr = [];
-                for(let i=0; i<house.length; i++){
-                    houseArr.push(house[i].value)
+                if(house.length > 0){
+                    for(let i=0; i<house.length; i++){
+                        houseArr.push(house[i].value)
+                    }
                 }
                 let ageArr = [];
-                for(let i=0; i<petAge.length; i++){
-                    ageArr.push(petAge[i].value)
+                if(petAge.length > 0){
+                    for(let i=0; i<petAge.length; i++){
+                        ageArr.push(petAge[i].value)
+                    }
                 }
                 let genderArr = [];
-                for(let i=0; i<petGender.length; i++){
-                    genderArr.push(petGender[i].value)
+                if(petGender.length > 0){
+                    for(let i=0; i<petGender.length; i++){
+                        genderArr.push(petGender[i].value)
+                    }
                 }
                 let sizeArr = [];
-                for(let i=0; i<petSize.length; i++){
-                    sizeArr.push(petSize[i].value)
+                if(petSize/length > 0){
+                    for(let i=0; i<petSize.length; i++){
+                        sizeArr.push(petSize[i].value)
+                    }
                 }
                 let petactArr = [];
-                for(let i=0; i<petAct.length; i++){
-                    petactArr.push(petAct[i].value)
+                if(petAct.length > 0){
+                    for(let i=0; i<petAct.length; i++){
+                        petactArr.push(petAct[i].value)
+                    }
                 }
                 
                 if(localStorage.getItem('source') == 'owner') {
