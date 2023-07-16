@@ -35,7 +35,7 @@ function storeUserLocation(location) {
     const latitude = userLocation[1];
     const longitude = userLocation[0];
     const apiUrl = `https://api.tomtom.com/search/2/reverseGeocode/${latitude},${longitude}.json?key=${tomtomAPI}`;
-  
+
     fetch(apiUrl)
       .then(response => response.json())
       .then(data => {
@@ -158,7 +158,7 @@ function showAddressOnMap(address, organization) {
       }
     })
     .catch((error) => {
-      console.error("Error:", error);
+      console.log("Error:", error);
     });
 }
 
@@ -212,7 +212,7 @@ function loadLocationOfCenter() {
     })
     .catch((error) => {
       // Handle the error
-      console.error("Error:", error);
+      console.log("Error:", error);
     });
 }
 
@@ -304,7 +304,7 @@ function featuredPet(checklocation) {
         });
 
         // Initialize the Slick Carousel
-        $('.carousel').slick({
+        $('.carousel').not('.slick-initialized').slick({
           infinite: true,
           slidesToShow: 3,
           slidesToScroll: 1
@@ -317,7 +317,7 @@ function featuredPet(checklocation) {
       }
     })
     .catch((error) => {
-      console.error('Error getting pet data:', error);
+      console.log('Error getting pet data:', error);
     });
 }
 
