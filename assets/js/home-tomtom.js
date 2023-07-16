@@ -201,7 +201,7 @@ function loadLocationOfCenter() {
       for (let i = 0; i < organizations.length; i++) {
         let organization = organizations[i];
         let searchAddress = getAddressStringFor(organization);
-        //console.log(i, searchAddress);
+        console.log(i, searchAddress);
         showAddressOnMap(searchAddress, organization);
         await sleep(400);
       }
