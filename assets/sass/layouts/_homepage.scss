@@ -1,9 +1,8 @@
-
 @use "./../abstracts/variables/colors" as colors;
 @use "./../abstracts/variables/media_queries" as query;
 @use "./../base/typography" as typo;
 @use "./../abstracts/variables/typography" as generaltypo;
-@use '../abstracts/mixins/mixins' as mx;
+@use "../abstracts/mixins/mixins" as mx;
 
 /* HOMEPAGE STYLING ========================== */
 
@@ -42,7 +41,8 @@
   }
 
   @media screen and (min-width: query.$media-tablet-width) {
-    background: center / cover no-repeat url("/assets/images/bg_web.png") colors.$primary-color-10;
+    background: center / cover no-repeat url("/assets/images/bg_web.png")
+      colors.$primary-color-10;
     display: grid;
     grid-template-columns: 3fr 2fr;
     padding-top: 0;
@@ -245,39 +245,56 @@
 
     .orgName {
       font-weight: bold;
-      font-size: 17px;
+      font-size: 15px !important;
     }
 
     .orgInfo {
       margin: 0;
       padding: 0;
-      font-size: 14px;
       width: auto;
+      overflow-wrap: break-word;
     }
 
     .orgInfo p {
       margin: 0;
       padding: 2px;
-    }
-
-    .orgInfo p span {
-      font-weight: bold;
-    }
-
-    .orgList .orgName {
-      font-size: 15px;
+      font-size: 14px;
     }
 
     .orgList .orgInfo {
       border-bottom: 1.5px solid colors.$primary-color-main;
       padding: 2% 2% 4%;
       margin-bottom: 10px;
-      font-size: 13px;
     }
 
     .orgList .orgInfo:hover {
       background-color: colors.$primary-color-10;
       border-radius: 8px 8px 0 0;
+    }
+
+    .orgId {
+      display: none;
+    }
+
+    .goToOrg {
+      font-size: 13px;
+      font-weight: bold;
+      width: 120px;
+      height: 35px;
+      background-color: colors.$neutral-color-white;
+      border: 2px solid colors.$primary-color-main;
+      color: colors.$primary-color-main;
+      border-radius: 44px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .goToOrg:hover {
+      background-color: colors.$primary-color-main;
+      border: none;
+      color: colors.$neutral-color-white;
     }
   }
 
@@ -649,7 +666,8 @@ ul {
 }
 
 .tt-search-box-input::placeholder,
-.home_searchbox .petSelector option, .home_searchbox .where-from-selector option {
+.home_searchbox .petSelector option,
+.home_searchbox .where-from-selector option {
   font-family: "Raleway";
   font-size: 16px;
   color: colors.$neutral-color-grey-l;

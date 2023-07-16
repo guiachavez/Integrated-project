@@ -100,9 +100,9 @@ $(document).ready(function() {
     homeSearch.addEventListener('click', search);
 })
 
-$('.featured-pet-slider').slick({
-    infinite: true,
-    dots: true,
-    slidesToShow: 1,
-    slidesToScroll: 1
-});
+// $('.featured-pet-slider').slick({
+//     infinite: true,
+//     dots: true,
+//     slidesToShow: 1,
+//     slidesToScroll: 1
+// });

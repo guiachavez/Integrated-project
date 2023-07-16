@@ -4,58 +4,98 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adoption Journey</title>
+
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+
+    <link rel="stylesheet" href="./../assets/stylesheet/style.css">
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+    <script type="module" src="./../assets/js/global-functions.js" defer></script>
+
+    <title>Adoption Journey</title>
 </head>
+
 <body>
-    <h1>Adoption Journey</h1>
-    <section>
-        <h2>Author Details</h2>
-        <form action="" class="adopted-user">
-            <label for="fname">First Name</label>
-            <input type="text" name="fname" id="user-fname">
-
-            <label for="lname">Last Name</label>
-            <input type="text" name="lname" id="user-lname">
-
-            <label for="city">City</label>
-            <input type="text" name="city" id="city">
-
-            <label for="state">State</label>
-            <input type="text" name="state" id="state">
-        </form>
-    </section>
-
-    <section>
-        <h2>Share your adoption story now!</h2>
-        <form action="" class="adopted-story">
-            <p>Choose your adopted pet from below</p>
-            <div class="content-container">
-                <!-- <form action="" onsubmit="return false" class="petlist"> -->
-                <label for="owners">Pet Owners
-                    <select name="owners" id="owners">
-                        <option value></option>
-                    </select>
-                </label>
-                <label for="ownerspets">Pets
-                    <select name="ownerspets" id="ownerspets">
-                        <option value></option>
-                    </select>
-                </label>
-
-                <div class="title">
-                    <label for="title">Title</label>
-                    <input type="text" name="title" id="story-title">
-                </div>
-
-                <div class="desc">
-                    <label for="desc">Body</label>
-                    <textarea name="body" id="body" cols="30" rows="10"></textarea>
-                </div>
-
-                <button type="submit" id="add-story">Add Story</button>
+    <header></header>
+    <main class="adoption-journey-form">
+        <div class="modal success-modal">
+            <div class="modal-content">
+                <h2>Published!</h2>
+                <p>Your <span>Adoption Journey</span> was successfully posted!</p>
+      
+            <div class="controls">
+                <button class="filled-default-mob font go-home">Home</button>
+                <a href="./../main/profile.html">Take me to my Profile</a>
             </div>
-        </form>
-    </section>
+            
+            </div>
+        </div>
+      
+        <div class="modal spinner">
+            <lottie-player class="lottie" src="https://assets2.lottiefiles.com/packages/lf20_EzXPcIqk02.json"  background="transparent"  speed="1"  style="width: 200px; height: 200px;"  loop autoplay></lottie-player>
+        </div>
 
-    <script type="module" src="../assets/js/adoption-journey.js"></script>
+        <h1>Share Your Pet Adoption Story</h1>
+
+        <section>
+            <form action="" class="adopted-story">
+                <div class="content-container">
+                    <div>
+                        <label for="petname">Pet Name</label>
+                        <input type="text" name="petname" id="petname">
+                    </div>
+
+                    <div class="title">
+                        <label for="title">Title</label>
+                        <input type="text" name="title" id="story-title">
+                    </div>
+
+                    <div class="desc">
+                        <label for="desc">Body</label>
+                        <textarea name="body" id="body" cols="30" rows="10"></textarea>
+                    </div>
+
+                    <div class="upload-images">
+                        <label for="filename">Photos</label>
+                        <input type="file" id="myFile" name="filename" multiple required>
+                        <output class="displayImages"></output>
+                    </div>
+
+                    <div>
+                        <a href="./adoption-journey-home.html" class="back">Cancel</a>
+                        <button type="submit" id="add-story" class="outline-next-btn font">Publish</button>
+                    </div>
+                    
+                </div>
+            </form>
+        </section>
+
+        <section style="display: none;">
+            <h2>Author Details</h2>
+            <form action="" class="adopted-user">
+                <label for="fname">First Name</label>
+                <input type="text" name="fname" id="user-fname">
+
+                <label for="lname">Last Name</label>
+                <input type="text" name="lname" id="user-lname">
+
+                <label for="city">City</label>
+                <input type="text" name="city" id="city">
+
+                <label for="state">State</label>
+                <input type="text" name="state" id="state">
+            </form>
+        </section>
+
+        
+    </main>
+    <footer></footer>
+
+    <script type="module" src="../assets/js/adoption-journey.js" defer></script>
 </body>
 </html>

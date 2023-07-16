@@ -296,6 +296,16 @@ body, h1, h2, p {
   margin: 0;
 }
 
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
 img {
   max-width: 100%;
 }
@@ -326,6 +336,10 @@ label, legend, tr {
   font-family: "Raleway";
   font-size: 16px;
   font-weight: 600;
+}
+
+.modal-content .close {
+  text-align: right;
 }
 
 /* Header section ============================ */
@@ -532,16 +546,6 @@ footer h2 {
   }
 }
 /* login page ================================ */
-.visually-hidden {
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  height: 1px;
-  overflow: hidden;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
-}
-
 .login-main,
 .signup_main {
   padding: 3rem 1rem;
@@ -905,33 +909,49 @@ footer h2 {
   }
   .home_map-box .orgName {
     font-weight: bold;
-    font-size: 17px;
+    font-size: 15px !important;
   }
   .home_map-box .orgInfo {
     margin: 0;
     padding: 0;
-    font-size: 14px;
     width: auto;
+    overflow-wrap: break-word;
   }
   .home_map-box .orgInfo p {
     margin: 0;
     padding: 2px;
-  }
-  .home_map-box .orgInfo p span {
-    font-weight: bold;
-  }
-  .home_map-box .orgList .orgName {
-    font-size: 15px;
+    font-size: 14px;
   }
   .home_map-box .orgList .orgInfo {
     border-bottom: 1.5px solid #0293A7;
     padding: 2% 2% 4%;
     margin-bottom: 10px;
-    font-size: 13px;
   }
   .home_map-box .orgList .orgInfo:hover {
     background-color: #E6F4F6;
     border-radius: 8px 8px 0 0;
+  }
+  .home_map-box .orgId {
+    display: none;
+  }
+  .home_map-box .goToOrg {
+    font-size: 13px;
+    font-weight: bold;
+    width: 120px;
+    height: 35px;
+    background-color: #FFFFFF;
+    border: 2px solid #0293A7;
+    color: #0293A7;
+    border-radius: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+  }
+  .home_map-box .goToOrg:hover {
+    background-color: #0293A7;
+    border: none;
+    color: #FFFFFF;
   }
 }
 @media screen and (min-width: 1200px) {
@@ -1271,7 +1291,8 @@ ul {
 }
 
 .tt-search-box-input::placeholder,
-.home_searchbox .petSelector option, .home_searchbox .where-from-selector option {
+.home_searchbox .petSelector option,
+.home_searchbox .where-from-selector option {
   font-family: "Raleway";
   font-size: 16px;
   color: #C5C5C5;
@@ -1749,11 +1770,52 @@ input:checked + .radio-slider:before {
   display: flex;
 }
 
+#responseButtonsModal {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+#responseButtonsModal span {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+
+.response-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+#animalDetails {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+#animalDetails > div {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: left;
+  width: 50%;
+}
+
+#animalDetails > div span {
+  font-weight: 500;
+}
+
 @media screen and (min-width: 1200px) {
   .user-profile-main {
     margin: auto;
     position: relative;
     width: 1200px;
+  }
+  .modal-content {
+    max-width: 700px;
   }
 }
 /* Pet Application =========================== */
@@ -1908,6 +1970,231 @@ fieldset > div {
 }
 @media screen and (min-width: 1200px) {
   .inquiry-main {
+    margin: auto;
+    position: relative;
+    width: 1200px;
+  }
+}
+/* Adoption Journey ========================== */
+.adoption-journey-header-wrapper {
+  background-color: #FEF0E6;
+  padding: 5% 4%;
+}
+
+.adoption-journey-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.adoption-journey-header h1 {
+  font-family: "Baloo 2";
+  font-size: 54px;
+  color: #DE6B35;
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.adoption-journey-header p {
+  font-family: "Raleway";
+  font-size: 22px;
+}
+
+.adoption-journey-content {
+  display: flex;
+  gap: 8%;
+  padding: 5% 0;
+}
+
+.adoption-journey-content aside {
+  width: 40%;
+  gap: 5%;
+}
+.adoption-journey-content aside > div:first-of-type {
+  border: 1px solid #0293A7;
+  padding: 2rem;
+  border-radius: 0.5rem;
+}
+.adoption-journey-content aside h2 {
+  margin-bottom: 2rem;
+}
+.adoption-journey-content aside > div:last-of-type div {
+  border: 1px solid #0293A7;
+  padding: 2rem;
+  border-radius: 0.5rem;
+}
+
+.stories-wrapper {
+  width: 60%;
+}
+
+.story-details {
+  width: 40%;
+  background-color: #E6F4F6;
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+.story-details > div:last-of-type {
+  text-align: center;
+  padding-bottom: 1rem;
+}
+
+.story-content {
+  padding: 2rem 2rem 2rem 1rem;
+}
+
+.story-photos img {
+  border-radius: 0.5rem 0 0 0rem;
+  display: block;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+#stories, .article-wrapper, aside,
+aside > div:last-of-type {
+  display: flex;
+  flex-direction: column;
+}
+
+#stories,
+aside > div:last-of-type {
+  gap: 2rem;
+}
+
+.article-wrapper {
+  gap: 1rem;
+}
+
+.story {
+  display: flex;
+  gap: 1rem;
+  border: 1px solid #0293A7;
+  border-radius: 0.5rem;
+  z-index: 9999;
+}
+
+dt button {
+  background: transparent;
+  border: none;
+  padding: 0;
+  line-height: 0;
+}
+dt button::before {
+  content: "";
+  background-image: url("./../../icons/Back.svg");
+  width: 15px;
+  height: 15px;
+}
+
+dt.article {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.article-container {
+  border: 1px solid #818080;
+  border-radius: 0.5rem;
+}
+
+dd.article-content {
+  padding: 0 1rem;
+  margin: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+dd.article-content p {
+  margin: 1rem 0;
+}
+
+.read-more {
+  text-align: right;
+  color: #0293A7;
+  text-decoration: underline;
+  margin-top: 1rem;
+  font-weight: 900;
+}
+
+.story-title {
+  font-weight: 900;
+  margin-bottom: 1rem;
+}
+
+.adoption-journey-form {
+  padding: 3% 4%;
+}
+.adoption-journey-form h1 {
+  font-family: "Baloo 2";
+  font-size: 32px;
+  color: #DE6B35;
+}
+.adoption-journey-form .modal-content h2 {
+  color: #0293A7;
+}
+.adoption-journey-form .modal-content p span {
+  color: #DE6B35;
+}
+.adoption-journey-form .controls {
+  margin-top: 2rem;
+}
+
+.adopted-story .content-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  column-gap: 2rem;
+}
+.adopted-story .content-container .title, .adopted-story .content-container .desc {
+  grid-column: 1/2;
+}
+.adopted-story .content-container .upload-images {
+  grid-row: 1/4;
+  grid-column: 2/3;
+}
+.adopted-story .content-container > div:last-of-type {
+  grid-column: 2/3;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 2rem;
+  align-items: center;
+}
+.adopted-story .content-container > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.adopted-story .content-container > div a {
+  font-family: "Raleway";
+  font-size: 16px;
+  font-weight: 600;
+  color: #6a6a6a;
+}
+.adopted-story textarea {
+  width: 95%;
+  height: 400px;
+}
+.adopted-story input[type=text] {
+  border: 1px solid #C5C5C5;
+  width: 360px;
+  height: 35px;
+  outline: 0;
+  border-radius: 0.3rem;
+}
+
+.adopted-user input[type=text] {
+  border: 1px solid #C5C5C5;
+  width: 360px;
+  height: 35px;
+  outline: 0;
+  border-radius: 0.3rem;
+}
+
+@media screen and (min-width: 1200px) {
+  .adoption-journey-content,
+  .adoption-journey-header,
+  .adoption-journey-form {
     margin: auto;
     position: relative;
     width: 1200px;

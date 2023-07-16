@@ -21,11 +21,12 @@ const petRef = doc(db, 'animals', pet_id)
 
 console.log(own_id, pet_id)
 class appDetails {
-    constructor(appId, afname, alname, petownerId, pofname, polname, petId, petname, inquired_at, inquiryId, isAccepted, adopt, owner, restriction, children, sneeds, vet, typeArr, houseArr, ageArr, genderArr, sizeArr, petactArr) {
+    constructor(appId, afname, alname, email, petownerId, pofname, polname, petId, petname, inquired_at, inquiryId, isAccepted, declineReason, adopt, owner, restriction, children, sneeds, vet, typeArr, houseArr, ageArr, genderArr, sizeArr, petactArr) {
         this.applicant = {
             applicantId: appId,
             app_firstName: afname,
-            app_lastName: alname
+            app_lastName: alname,
+            app_email: email
         };
         this.petowner = {
             petownerId: petownerId,
@@ -37,6 +38,7 @@ class appDetails {
         this.inquired_at = inquired_at;
         this.inquiryId = inquiryId;
         this.isAccepted = isAccepted;
+        this.declineReason = declineReason;
         this.adopt = adopt;
         this.owner = owner;
         this.restriction = restriction;
@@ -89,7 +91,7 @@ const getUserDetails = (petownerId, pofname, polname, petId, petname) => {
             let inquired_at = new serverTimestamp();
             let inquiryId = inqRef.id
             let isAccepted = "init"
-            console.log(inquiryId)
+            let declineReason = ""
 
             submit.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -149,9 +151,9 @@ const getUserDetails = (petownerId, pofname, polname, petId, petname) => {
                 }
                 
                 if(localStorage.getItem('source') == 'owner') {
-                    const appdetails = new appDetails(appId, afname.value, alname.value, petownerId, pofname, polname, petId, petname, inquired_at, inquiryId, isAccepted, adopt, owner, restriction, children, sneeds, vet, typeArr, houseArr, ageArr, genderArr, sizeArr, petactArr)
+                    const appdetails = new appDetails(appId, afname.value, alname.value, email.value, petownerId, pofname, polname, petId, petname, inquired_at, inquiryId, isAccepted, declineReason, adopt, owner, restriction, children, sneeds, vet, typeArr, houseArr, ageArr, genderArr, sizeArr, petactArr)
                     console.log(appdetails)
-                    
+        
                     setTimeout(() => {
                         setDoc(inqRef, Object.assign({}, appdetails))
                             .then(() => {
@@ -164,7 +166,6 @@ const getUserDetails = (petownerId, pofname, polname, petId, petname) => {
                     }, 2000)
 
                     $('.modal.spinner').addClass('modal-active')
-                   
                 } else {
                     let outputObj = JSON.parse(localStorage.getItem('outputObj'));
                     console.log(outputObj)
