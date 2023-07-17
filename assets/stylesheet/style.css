@@ -880,7 +880,6 @@ footer h2 {
 /* Map Section =============================== */
 .home_map-box {
   padding: 0 5% 8%;
-  display: grid;
 }
 .home_map-box h2 {
   font-size: 30px;
@@ -889,20 +888,59 @@ footer h2 {
 }
 .home_map-box .home_change-location {
   display: grid;
-  grid-template-columns: 3fr 1fr;
-  gap: 1rem;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(2, 1fr);
+  gap: 0.8rem;
 }
 .home_map-box .home_change-location button {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 1rem;
+  margin: auto;
+}
+.home_map-box .home_radius {
+  margin: 2.5rem 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+.home_map-box .home_radius .home_radius-containder {
+  margin: auto;
+}
+.home_map-box .home_radius label {
+  display: inline;
+}
+.home_map-box .home_radius #home_apply-radius {
+  margin: auto;
+}
+.home_map-box .orgList {
+  display: none;
 }
 .home_map-box #map {
-  height: 80vh;
+  height: 70vh;
+}
+.home_map-box .orgName {
+  font-weight: bold;
+  font-size: 15px !important;
+}
+.home_map-box .orgInfo {
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow-wrap: break-word;
+}
+.home_map-box .orgInfo p {
+  margin: 0;
+  padding: 2px;
+  font-size: 14px;
+}
+.home_map-box .orgId {
+  display: none;
 }
 @media screen and (min-width: 820px) {
   .home_map-box {
+    display: grid;
     grid-template-columns: 2fr 4fr;
     gap: 20px;
   }
@@ -910,27 +948,38 @@ footer h2 {
     font-size: 36px;
     grid-column: span 2;
   }
+  .home_map-box .home_map-controls {
+    grid-column: span 2;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  .home_map-box .home_map-controls .home_change-location {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    gap: 0.8rem;
+  }
+  .home_map-box .home_map-controls .home_change-location button {
+    margin: 0;
+  }
+  .home_map-box .home_map-controls .home_radius {
+    margin: 0;
+    grid-template-columns: 2fr 1fr;
+    gap: 0.8rem;
+  }
+  .home_map-box .home_map-controls .home_radius .home_radius-containder {
+    margin-right: 0;
+  }
+  .home_map-box .home_map-controls .home_radius #home_apply-radius {
+    margin: 0;
+  }
   .home_map-box #map {
     height: 80vh;
   }
   .home_map-box .orgList {
+    display: block;
     height: 80vh;
     overflow-y: scroll;
-  }
-  .home_map-box .orgName {
-    font-weight: bold;
-    font-size: 15px !important;
-  }
-  .home_map-box .orgInfo {
-    margin: 0;
-    padding: 0;
-    width: auto;
-    overflow-wrap: break-word;
-  }
-  .home_map-box .orgInfo p {
-    margin: 0;
-    padding: 2px;
-    font-size: 14px;
   }
   .home_map-box .orgList .orgInfo {
     border-bottom: 1.5px solid #0293A7;
@@ -940,9 +989,6 @@ footer h2 {
   .home_map-box .orgList .orgInfo:hover {
     background-color: #E6F4F6;
     border-radius: 8px 8px 0 0;
-  }
-  .home_map-box .orgId {
-    display: none;
   }
   .home_map-box .goToOrg {
     font-size: 13px;
