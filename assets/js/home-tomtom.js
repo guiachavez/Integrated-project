@@ -44,11 +44,14 @@ function storeUserLocation(location) {
   const longitude = userLocation[0];
   const apiUrl = `https://api.tomtom.com/search/2/reverseGeocode/${latitude},${longitude}.json?key=${tomtomAPI}`;
 
+  localStorage.setItem('position', `{"lng":${longitude},"lat":${latitude}}`)
+  
   fetch(apiUrl)
     .then(response => response.json())
     .then(data => {
       address = data.addresses[0].address.freeformAddress;
-      localStorage.setItem('geoCode', address)
+
+      localStorage.setItem('location-query', JSON.stringify(data.addresses[0].address))
       
       // Extract the city from the address
       const city = extractCityFromAddress(address);

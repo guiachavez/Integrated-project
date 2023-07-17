@@ -93,9 +93,48 @@ fieldset {
 .slick-dotted.slick-slider {
     margin-bottom: 1rem;
 }
+
+.search-check {
+    .home_search-btn {
+        width: 100%;
+    }
+
+    h2 {
+        font-size: 22px;
+        margin-bottom: 0.5rem;
+        color: colors.$accent-color-main;
+    }
+
+    p {
+        font-size: 14px;
+        font-style: italic;
+        margin-bottom: 2rem;
+    }
+
+    .alert {
+        text-align: left;
+        font-size: 12px;
+        margin: 0;
+    }
+
+    button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        margin: 1rem auto 0;
+    }
+}
+
 @media screen and (min-width: 1200px) {
     .animals-main {
         width: 1200px;
         margin: auto;
+    }
+
+    .search-check {
+        .modal-content {
+            max-width: fit-content;
+        }   
     }
 }

@@ -70,27 +70,32 @@ const homeSearch = () => {
 
     let latlong = `${position.lat},${position.lng}`
 
-    document.getElementById('pet-type').value = type
-    document.getElementById('source').value = source
-    //document.getElementById('location').value = locationText.freeformAddress
+    if (source && type) {
+        console.log('if')
+        document.getElementById('pet-type').value = type
+        document.getElementById('source').value = source
+        //document.getElementById('location').value = locationText.freeformAddress
+        document.querySelector('.tt-search-box-input').value = locationText.freeformAddress
+      
+        $('#filtered-pets').empty()
 
-    document.querySelector('.tt-search-box-input').value = locationText.freeformAddress
-    $('#filtered-pets').empty()
+        if (source == 'owner') {
+            let ageArr = age.split(",");
+            let sizeArr = size.split(",");
+            let genderArr = gender.split(",");
 
-    if (source == 'owner') {
-        let ageArr = age.split(",");
-        let sizeArr = size.split(",");
-        let genderArr = gender.split(",");
+            searchOwner(color, breed, type, ageArr, sizeArr, genderArr, goodWithChildren, houseTrained)
+            ownerDropdown()
+            $('.organization').css('display', 'none')
+        } else {
+            searchPetFinder(type, breed, age, gender, size, color, goodWithChildren, houseTrained, orgId, latlong)
+            changeAttr(latlong)
+            $('.organization').css('display', 'block')
 
-        searchOwner(color, breed, type, ageArr, sizeArr, genderArr, goodWithChildren, houseTrained)
-        ownerDropdown()
-        $('.organization').css('display', 'none')
+        }
     } else {
-        searchPetFinder(type, breed, age, gender, size, color, goodWithChildren, houseTrained, orgId, latlong)
-        changeAttr(latlong)
-        $('.organization').css('display', 'block')
-
-    }
+        $('.search-check').addClass('modal-active')
+    } 
     
 }
 
@@ -375,12 +380,18 @@ export {userLocationString, userLocation}
 
 $(document).ready(function() {
     const displayOrg = () => {
-        $('#source').on('change', function() {
+        $('.where-from-selector').on('change', function() {
+            localStorage.setItem('source', $(this).val())
+
             if($(this).val() == 'shelter') {
                 $('.organization').css('display', 'block')
             } else {
                 $('.organization').css('display', 'none')
             }
+        })
+
+        $('.petSelector').on('change', function() {
+            localStorage.setItem('type', $(this).val())
         })
     }
     displayOrg()
@@ -397,6 +408,16 @@ $(document).ready(function() {
     //     }
     //     reLoadFilter()
     // }
+
+    $('.home-search button').on('click', function(e) {
+        e.preventDefault();
+        if($('#form-type').val() == null || $('#form-source').val() == null) {
+            $('.alert').css('display', 'block')
+        } else {
+            $('.search-check').removeClass('modal-active')
+            homeSearch()
+        }
+    })
 
     homeSearch()
 })

@@ -27,6 +27,51 @@
   <body>
     <header></header>
     <main class="animals-main">
+      <section>
+        <div class="modal search-check">
+          <div class="modal-content">
+            <h2>Let's get you started!</h2>
+            <p>Please specify your preferences to personalize your search.</p>
+            <form action="#" class="home-search">
+              <div class="animal-selector">
+                <select name="type" id="form-type" class="petSelector sub-heading-mob">
+                  <option disabled selected value class="selectedPet">
+                    Type of Pet
+                  </option>
+                  <option value="Dog">Dog</option>
+                  <option value="Cat">Cat</option>
+                  <option value="Rabbit">Rabbit</option>
+                  <option value="Bird">Bird</option>
+                  <option value="Horse">Horse</option>
+                  <option value="Scales, Fins & Other">Scales, Fins & Other</option>
+                  <option value="Barnyard">Barnyard</option>
+                </select>
+              </div>
+    
+              <div class="adopt-from-selector">
+                <select id="form-source" class="where-from-selector sub-heading-mob">
+                  <option disabled selected value>Where from</option>
+                  <option value="shelter">Shelter</option>
+                  <option value="owner">Pet Owner</option>
+                </select>
+              </div>
+
+              <p class="alert">**Please complete input fields.</p>
+              <div class="home_search-btn">
+                <button
+                  type="submit"
+                  value="Search"
+                  id="submit"
+                  class="filled-mob-btn font"
+                >
+                  <img src="./../assets/icons/search.png" />Search
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
       <section class="search-wrapper">
         <div class="search-container">
           <div class="search-filter">
@@ -42,7 +87,7 @@
             <div class="animal-selector">
               <label for="type">
                 Which Pet Type?
-                <select name="type" id="pet-type">
+                <select name="type" id="pet-type" class="petSelector">
                   <option disabled selected value> -- select an option -- </option>
                   <option value="Dog">Dog</option>
                   <option value="Cat">Cat</option>
@@ -58,7 +103,7 @@
             <div class="adopt-from-selector">
               <label>
                 Where to Adopt?
-                <select id="source">
+                <select id="source" class="where-from-selector">
                   <option disabled selected value> -- select an option -- </option>
                   <option value="shelter">Shelter</option>
                   <option value="owner">Pet Owner</option>
