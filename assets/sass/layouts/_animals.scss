@@ -1,4 +1,5 @@
 @use '../abstracts/variables/colors' as colors;
+@use '../abstracts/mixins/mixins' as mx;
 /* Pet Application =========================== */
 
 .animals-main {
@@ -123,6 +124,24 @@ fieldset {
         justify-content: center;
         gap: 1rem;
         margin: 1rem auto 0;
+    }
+}
+
+.no-results {
+    position: absolute;
+    text-align: center;
+    margin-top: 5rem;
+    transform: translateX(50%);
+
+    img {
+        rotate: 270deg;
+        width: 200px;
+    }
+
+    h2 {
+        color: colors.$semantic-red-error;
+        @include mx.raleway-typography(22);
+        margin-bottom: 0.5rem;
     }
 }
 

@@ -218,7 +218,7 @@ async function searchOwner(color, breed, type, ageArr, sizeArr, genderArr, goodW
         let location = JSON.parse(localStorage.getItem('location-query'))
         let city = location.municipality
         let country = location.country
-        console.log(userId)
+        //console.log(userId)
         const q = query(aniRef,
             where("type", "==", type), 
             where("age", "in", ageArr), 
@@ -233,6 +233,7 @@ async function searchOwner(color, breed, type, ageArr, sizeArr, genderArr, goodW
                 const querySnapshot = await getDocs(q);
                 const results = []
 
+                console.log(querySnapshot)
                 querySnapshot.forEach((doc) => {
                     results.push([doc.id,doc.data()])
                 })
@@ -281,6 +282,17 @@ async function searchOwner(color, breed, type, ageArr, sizeArr, genderArr, goodW
                         }
                     }
                 }
+
+                if (document.getElementById('filtered-pets').hasChildNodes() == false) {
+                    $('#filtered-pets').append([
+                        $('<div />', {'class': 'no-results'}).append([
+                            $('<h2 />', {'text': 'No results found'}),
+                            $('<p />', {'text': "Try adjusting your search or filter to find what you're looking for."}),
+                            $('<img />', {'src': './../assets/images/cat-404.png'})
+                        ])
+                    ])
+                }
+                
                 $('.slider').slick({
                     infinite: true,
                     dots: true,
@@ -355,6 +367,16 @@ var searchPetFinder = (type, breed, age, gender, size, color, goodWithChildren, 
                     slidesToScroll: 1
                 });
             }
+        }
+
+        if (document.getElementById('filtered-pets').hasChildNodes() == false) {
+            $('#filtered-pets').append([
+                $('<div />', {'class': 'no-results'}).append([
+                    $('<h2 />', {'text': 'No results found'}),
+                    $('<p />', {'text': "Try adjusting your search or filter to find what you're looking for."}),
+                    $('<img />', {'src': './../assets/images/cat-404.png'})
+                ])
+            ])
         }
         // save the pet search result to local storage to access to pet-details.html
         localStorage.setItem('outputObj', JSON.stringify(petObj));
