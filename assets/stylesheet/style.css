@@ -828,19 +828,18 @@ footer h2 {
 
 /* Featured Section ========================== */
 .home_featured {
-  padding: 8% 5%;
+  padding: 4% 2% 0 2%;
 }
 .home_featured h2 {
   font-size: 30px;
   text-align: center;
-  margin-bottom: 15px;
+  margin-bottom: 2rem;
 }
 .home_featured .home_big-carousel {
   display: none;
 }
 .home_featured .carousel {
   width: 100%;
-  height: 50vh;
   margin: auto;
 }
 .home_featured .slide img {
@@ -867,6 +866,32 @@ footer h2 {
 }
 .home_featured .slide .home_pet-location {
   color: #0293A7;
+}
+.home_featured .carousel-container button::before,
+.home_featured .carousel-container button::after {
+  color: #000000;
+}
+.home_featured .carousel-container .slick-slide img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+.home_featured .carousel-container .slick-prev, .home_featured .carousel-container .slick-next {
+  top: 150px;
+}
+.home_featured .carousel-container .slick-prev {
+  left: -5rem;
+}
+.home_featured .carousel-container .slick-next {
+  right: -5rem;
+}
+.home_featured .carousel-container .slick-track {
+  gap: 2rem;
+}
+.home_featured .carousel-container .slick-slider {
+  max-width: 70vw !important;
+  max-height: 480px !important;
 }
 @media screen and (min-width: 820px) {
   .home_featured h2 {
@@ -957,6 +982,7 @@ footer h2 {
 @media screen and (min-width: 1200px) {
   .home_map-box {
     grid-template-columns: 1fr 3fr;
+    row-gap: 2rem;
   }
 }
 
@@ -1925,10 +1951,56 @@ fieldset > div {
   margin-bottom: 1rem;
 }
 
+.search-check .home_search-btn {
+  width: 100%;
+}
+.search-check h2 {
+  font-size: 22px;
+  margin-bottom: 0.5rem;
+  color: #DE6B35;
+}
+.search-check p {
+  font-size: 14px;
+  font-style: italic;
+  margin-bottom: 2rem;
+}
+.search-check .alert {
+  text-align: left;
+  font-size: 12px;
+  margin: 0;
+}
+.search-check button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem auto 0;
+}
+
+.no-results {
+  position: absolute;
+  text-align: center;
+  margin-top: 5rem;
+  transform: translateX(50%);
+}
+.no-results img {
+  rotate: 270deg;
+  width: 200px;
+}
+.no-results h2 {
+  color: #DE3535;
+  font-family: "Raleway";
+  font-size: 22px;
+  margin-bottom: 0.5rem;
+}
+
 @media screen and (min-width: 1200px) {
   .animals-main {
     width: 1200px;
     margin: auto;
+  }
+  .search-check .modal-content {
+    max-width: fit-content;
   }
 }
 /* Adoption/Inquiry =========================== */
