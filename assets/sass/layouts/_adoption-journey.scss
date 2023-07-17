@@ -97,6 +97,7 @@ aside > div:last-of-type {
 }
 
 .story {
+    position: relative;
     display: flex;
     gap: 1rem;
     border: 1px solid colors.$primary-color-main;
@@ -251,6 +252,19 @@ dd.article-content {
     padding: 0.5rem;
     @include mx.raleway-typography(12);
     font-weight: 600;
+}
+
+.posted-date {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    font-size: 12px;
+    color: colors.$neutral-color-grey;
+    font-weight: 700;
+    font-style: italic;
+    padding-bottom: 1rem;
+    padding-right: 2rem;
 }
 
 

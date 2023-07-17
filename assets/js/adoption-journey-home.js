@@ -58,7 +58,7 @@ function showPosts(sortedQuery) {
                         $('<p />', {text: `${adposts[i][1].title}`, class: 'story-title'}),
                         $('<p />', {text: `${adposts[i][1].body}` }),
                         $('<br />'),
-                        $('<i />', {text: `Posted ${diffDays} day(s) ago.` })
+                        $('<p />', {text: `Posted ${diffDays} day(s) ago.`, class: 'posted-date' })
                     ])
                 ])
             ])

@@ -2080,6 +2080,7 @@ aside > div:last-of-type {
 }
 
 .story {
+  position: relative;
   display: flex;
   gap: 1rem;
   border: 1px solid #0293A7;
@@ -2217,6 +2218,18 @@ dd.article-content p {
   font-family: "Raleway";
   font-size: 12px;
   font-weight: 600;
+}
+
+.posted-date {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 12px;
+  color: #818080;
+  font-weight: 700;
+  font-style: italic;
+  padding-bottom: 1rem;
+  padding-right: 2rem;
 }
 
 @media screen and (min-width: 1200px) {
