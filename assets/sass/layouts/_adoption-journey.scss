@@ -28,12 +28,13 @@
 .adoption-journey-content {
     display: flex;
     gap: 8%;
-    padding: 5% 0;
+    padding: 3% 0;
 }
 
 .adoption-journey-content aside {
     width: 40%;
     gap: 5%;
+    margin-top: calc(40px + 1rem);
 
     > div:first-of-type {
         border: 1px solid colors.$primary-color-main;
@@ -96,6 +97,7 @@ aside > div:last-of-type {
 }
 
 .story {
+    position: relative;
     display: flex;
     gap: 1rem;
     border: 1px solid colors.$primary-color-main;
@@ -239,7 +241,31 @@ dd.article-content {
     }
 }
 
+.sort-wrapper {
+    text-align: right;
+    margin-bottom: 1rem;
+}
 
+.sort-wrapper select {
+    width: 9rem;
+    color: colors.$accent-color-main;
+    padding: 0.5rem;
+    @include mx.raleway-typography(12);
+    font-weight: 600;
+}
+
+.posted-date {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    font-size: 12px;
+    color: colors.$neutral-color-grey;
+    font-weight: 700;
+    font-style: italic;
+    padding-bottom: 1rem;
+    padding-right: 2rem;
+}
 
 
 
