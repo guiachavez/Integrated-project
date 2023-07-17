@@ -7,6 +7,16 @@ body, h1, h2, p {
     margin: 0;
 }
 
+.visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
 img {
     max-width: 100%;
 }
@@ -33,4 +43,8 @@ p, td, ul a {
 label, legend, tr {
     @include mx.raleway-typography(16);
     font-weight: 600;
+}
+
+.modal-content .close {
+    text-align: right;
 }

@@ -1,43 +1,224 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./../assets/stylesheet/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./../assets/stylesheet/style.css" />
 
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+    />
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"
+    />
 
     <title>Adoption Journey</title>
-</head>
-<body>
+  </head>
+  <body>
     <header></header>
-    <main style="height: 65vh; padding: 2rem;">
-        <h1>Adoption Journey</h1>
-  
-        <h2>Posts</h2>
+    <main class="adoption-journey-main">
+      <section class="adoption-journey-header-wrapper">
+        <div class="adoption-journey-header">
+          <div>
+            <h1>Pet Adoption Journey</h1>
+            <p>Heartwarming tales of pets finding<br />their pawfect match.</p>
+          </div>
+          <div>
+            <button
+              class="filled-mob-btn font"
+              onclick="window.location.href='./adoption-journey.html';"
+            >
+              New Post
+            </button>
+          </div>
+        </div>
+      </section>
 
-        <table class="table is-striped is-narrow is-hoverable is-fullwidth">
-            <thead>
+      <section class="adoption-journey-content">
+        <aside>
+          <div>
+            <h2>Help Articles</h2>
+            <dl class="article-wrapper">
+              <div class="article-container">
+                <dt class="article">
+                  <p>How to reach out to the shelter?</p>
+                  <!-- <button><span class="visually-hidden">arrows</span class="visually-hidden"></button> -->
+                  <button>
+                    <img
+                      src="./../assets/icons/Back.svg"
+                      alt=""
+                      class="arrow-right"
+                    />
+                  </button>
+                </dt>
+                <dd class="article-content">
+                  <p>
+                    To reach out to a shelter, you can contact them by phone,
+                    email, or visit their website for more information about
+                    their available pets.
+                  </p>
+                </dd>
+              </div>
 
-            <tr>
-                <th>Title</th>
-                <th>Body</th>
-                <th>Photo</th>
-                <th>Pet Name</th>
-                <th>Adopted By</th>
-                <th>Adopted From</th>
-                <th>Location</th>
-            
-                
-            </tr>
-            </thead>
-            <tbody id="postDetails">
-            </tbody>
-        </table>
+              <div class="article-container">
+                <dt class="article">
+                  <p>What are the adoption policies and fees?</p>
+                  <!-- <button><span class="visually-hidden">arrows</span class="visually-hidden"></button> -->
+                  <button>
+                    <img
+                      src="./../assets/icons/Back.svg"
+                      alt=""
+                      class="arrow-right"
+                    />
+                  </button>
+                </dt>
+                <dd class="article-content">
+                  <p>
+                    Our adoption policies and fees vary depending on the
+                    shelter. Please check our website for specific details and
+                    requirements.
+                  </p>
+                </dd>
+              </div>
+
+              <div class="article-container">
+                <dt class="article">
+                  <p>What are the steps to adopt a pet from our website?</p>
+                  <!-- <button><span class="visually-hidden">arrows</span class="visually-hidden"></button> -->
+                  <button>
+                    <img
+                      src="./../assets/icons/Back.svg"
+                      alt=""
+                      class="arrow-right"
+                    />
+                  </button>
+                </dt>
+                <dd class="article-content">
+                  <p>
+                    To adopt a pet from our website, you need to follow a few
+                    simple steps: submit an application, undergo a screening
+                    process, meet the pet in person, and finalize the adoption
+                    process.
+                  </p>
+                </dd>
+              </div>
+
+              <div class="article-container">
+                <dt class="article">
+                  <p>How to find the perfect pet for adoption?</p>
+                  <!-- <button><span class="visually-hidden">arrows</span class="visually-hidden"></button> -->
+                  <button>
+                    <img
+                      src="./../assets/icons/Back.svg"
+                      alt=""
+                      class="arrow-right"
+                    />
+                  </button>
+                </dt>
+                <dd class="article-content">
+                  <p>
+                    Finding the perfect pet for adoption is an exciting journey!
+                    You can browse our website and use filters such as species,
+                    age, and location to help you find your ideal furry
+                    companion.
+                  </p>
+                </dd>
+              </div>
+
+              <div class="article-container">
+                <dt class="article">
+                  <p>
+                    What documentation do I need to provide for the adoption?
+                  </p>
+                  <!-- <button><span class="visually-hidden">arrows</span class="visually-hidden"></button> -->
+                  <button>
+                    <img
+                      src="./../assets/icons/Back.svg"
+                      alt=""
+                      class="arrow-right"
+                    />
+                  </button>
+                </dt>
+                <dd class="article-content">
+                  <p>
+                    To complete the adoption process, you will generally need to
+                    provide identification, personal references, and any
+                    relevant veterinary records for the pet.
+                  </p>
+                </dd>
+              </div>
+            </dl>
+          </div>
+
+          <div>
+            <h2>Things you may want to check</h2>
+
+            <div>
+              <img src="./../assets/images/vaccines.jpg" alt="cat vaccinated" />
+              <h3>Vaccines</h3>
+              <p>
+                Preventative care is an important aspect in maintaining your
+                pet's health. Proper vaccination is vital in protecting them
+                against harmful diseases.
+              </p>
+              <a
+                href="https://www.westviewvet.com/services/vaccinations"
+                target="_blank"
+                class="read-more"
+                >Read More</a
+              >
+            </div>
+
+            <div>
+              <img
+                src="./../assets/images/adoption-checklist.jpg"
+                alt="happy dog"
+              />
+              <h3>Adoption Checklist</h3>
+              <p>
+                Adding a new pet to a household is exciting, but there's also a
+                lot that first-time dog and cat owners should consider before
+                bringing a new furry friend home.
+              </p>
+              <a
+                href="https://www.caasco.com/CAA-Magazine/Your-Home/tips-for-first-time-pet-owners"
+                target="_blank"
+                class="read-more"
+                >Read More</a
+              >
+            </div>
+          </div>
+        </aside>
+        <div class="stories-wrapper">
+          <div class="sort-wrapper">
+            <select id="sort">
+              <option value="ascending">Oldest to Newest</option>
+              <option value="descending">Newest to Oldest</option>
+            </select>
+          </div>
+          <div id="stories"></div>
+        </div>
+      </section>
     </main>
     <footer></footer>
 
     <script type="module" src="../assets/js/global-functions.js" defer></script>
-    <script type="module" src="../assets/js/adoption-journey-home.js" defer></script>  
-</body>
+    <script
+      type="module"
+      src="../assets/js/adoption-journey-home.js"
+      defer
+    ></script>
+
+    <script
+      type="text/javascript"
+      src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
+    ></script>
+  </body>
 </html>

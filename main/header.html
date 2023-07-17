@@ -10,7 +10,7 @@
                 <ul class="header-link">
                     <li><a href="./index.html" data-path="index">Home</a></li>
                     <li class="dd-pet">
-                        <a href="./animals.html" data-path="animals">Find a pet</a>
+                        <a href="./pet.html" data-path="pet">Find a pet</a>
                         <!-- <ul class="find-pet-dd sub-nav-link">
                             <li><a href="#">Find a Dog</a></li>
                             <li><a href="#">Find a Cat</a></li>
@@ -19,9 +19,9 @@
                         </ul> -->
                     </li>
                     <li><a href="./rehome.html" data-path="rehome">Rehome</a></li>
-                    <li><a href="./adoption-journey-home.html" data-path="adoption-journey-home">Resources</a></li>
-                    <li style="display: none;"><a id = "login" href="./login.html" data-path="login">Login</a></li>
-                    <li style="display: none;"><a id = "profile" href="./profile.html" data-path="profile">Profile</a></li>
+                    <li><a href="./adoption-journey-home.html" data-path="adoption-journey">Resources</a></li>
+                    <!-- <li style="display: none;"><a id = "login" href="./login.html" data-path="login">Login</a></li> -->
+                    <li><a id="profile" href="./profile.html" data-path="profile">Profile</a></li>
                 </ul>
             </nav>
         </div>
@@ -34,3 +34,18 @@
         <a href="#"><img src="../assets/icons/Hamburger.svg" alt="hamburger icon"></a>
     </div> -->
 </div>
+
+<script>
+    $('.header-link a').each(function() {
+        if (window.location.pathname.includes($(this).attr('data-path'))) {
+            console.log($(this).attr('data-path'))
+            $(this).closest('li').addClass('selected')
+        } else {
+            $(this).closest('li').removeClass('selected')
+        }
+    })
+
+    $('.go-home').on('click', function() {
+        window.location.href = './index.html'
+    })
+</script>

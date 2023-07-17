@@ -2,6 +2,7 @@ import { getFirestore, getDoc, setDoc, doc, updateDoc, arrayUnion, addDoc, colle
 import { getStorage, ref, uploadBytes, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-storage.js";
 import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js';
 import { app } from './config.js'
+import { imageUpload, uploadToStorage } from './global-functions.js'
 
 
 // init the firestore and storage
@@ -221,21 +222,8 @@ async function handlePetForm(userid, street, city, country, pcode, state) {
     let isAdopted = "init";
 
     // loop through uploaded photos and upload to FIRESTORAGE
-    for (var i = 0; i < petphoto.length; i++) {
-        const file = petphoto[i];
-        const storage = getStorage();
-        const metadata = {
-            contentType: "image/jpeg"
-        };
-        const storageRef = ref(storage, "images/" + docRef.id + "/" + file.name);
-
-        imagesArr.push(uploadBytes(storageRef, file, metadata)
-            .then(uploadResult => {
-                return getDownloadURL(uploadResult.ref)
-            })
-        )
-    }
-
+    uploadToStorage(petphoto, imagesArr, docRef)
+    
     const photos = await Promise.all(imagesArr);
     console.log(photos);
 
@@ -294,39 +282,7 @@ function handleUserForm(user, phone, street, city, country, pcode, state) {
 }
 
 // For displaying uploaded images
-let imageInput = document.getElementById('myFile');
-let imageOutput = document.querySelector('.displayImages')
-let imageArr = []
-
-imageInput.addEventListener("change", () => {
-    let uploadedImages = imageInput.files
-
-    for(let i=0; i<uploadedImages.length; i++) {
-        imageArr.push(uploadedImages[i])
-    }
-
-    displayImages()
-})
-
-const displayImages = () => {
-    let images = ''
-
-    imageArr.forEach((img, i) => {
-        images += `<div class="upload-image">
-                        <img src="${URL.createObjectURL(img)}" alt="image">
-                        <div class="close">&times;</div>
-                    </div>`
-    })
-
-    imageOutput.innerHTML = images   
-    console.log(imageArr)
-
-    $('.close').each(function() {
-        $(this).on('click', () => {
-            $(this).closest('.upload-image').remove()
-        })
-    })
-}
+imageUpload()
 
 
 // check if fields have values

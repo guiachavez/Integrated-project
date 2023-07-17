@@ -1,3 +1,10 @@
+
+import { getFirestore, collection, getDocs, getDoc, doc, query, where, limit } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js'
+import { app } from './config.js'
+
+const db = getFirestore(app);
+
+// console.log("hii")
 // MARK: - Variables ====================================================================
 
 // Contains two values: Longitude and Latitude
@@ -22,17 +29,64 @@ let radius = 10;
 
 // MARK: - TomTom (Map View) functions ==========================================================================
 
+let address;
+
 // Stores the users location in the variable at top
 function storeUserLocation(location) {
   userLocation = [location.coords.longitude, location.coords.latitude];
+  
   setupMap();
   loadLocationOfCenter();
+
+  /* reverse geocoding====================================== */
+  console.log(userLocation)
+
+  const latitude = userLocation[1];
+  const longitude = userLocation[0];
+  const apiUrl = `https://api.tomtom.com/search/2/reverseGeocode/${latitude},${longitude}.json?key=${tomtomAPI}`;
+
+  localStorage.setItem('position', `{"lng":${longitude},"lat":${latitude}}`)
+  
+  fetch(apiUrl)
+    .then(response => response.json())
+    .then(data => {
+      address = data.addresses[0].address.freeformAddress;
+
+      localStorage.setItem('location-query', JSON.stringify(data.addresses[0].address))
+      
+      // Extract the city from the address
+      const city = extractCityFromAddress(address);
+
+      // calling featuredPet function
+      featuredPet(city);
+    })
+    .catch(error => {
+      console.log('Error during reverse geocoding:', error);
+    });  
+}
+
+/* extract city from the address function definition */
+function extractCityFromAddress(address) {
+  // Extract city from address
+  let city = '';
+  const parts = address.split(',');
+
+  if (parts.length > 1) {
+    const secondHalf = parts[1].trim();
+    const secondHalfParts = secondHalf.split(' ');
+
+    if (secondHalfParts.length > 0) {
+      city = secondHalfParts[0].trim();
+    }
+
+    return city;
+  }
 }
 
 // Loads the users location and calls the presentUserLocationOnMap function
 function loadUserLocation() {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(storeUserLocation);
+  navigator.geolocation.getCurrentPosition(storeUserLocation);    
   }
 }
 
@@ -150,7 +204,7 @@ function showAddressOnMap(address, organization) {
     })
 
     .catch((error) => {
-      console.error("Error:", error);
+      console.log("Error:", error);
     });
 }
 
@@ -204,7 +258,7 @@ function loadLocationOfCenter() {
       for (let i = 0; i < organizations.length; i++) {
         let organization = organizations[i];
         let searchAddress = getAddressStringFor(organization);
-        //console.log(i, searchAddress);
+
         showAddressOnMap(searchAddress, organization);
         await sleep(400);
       }
@@ -212,9 +266,45 @@ function loadLocationOfCenter() {
     })
     .catch((error) => {
       // Handle the error
-      console.error("Error:", error);
+      console.log("Error:", error);
     });
 }
+
+/* featured pet using location =============================== */
+const pets = [];
+
+function featuredPet(checklocation) {
+  const petsCollection = collection(db, 'animals');
+  const queryRef = query(petsCollection, where('location.city', '==', checklocation), limit(6));
+  
+  getDocs(queryRef)
+    .then((querySnapshot) => {
+      
+      for (let i = 0; i < querySnapshot.size; i++) {
+        const doc = querySnapshot.docs[i];
+        const pet = doc.data();
+
+        const petObj = {
+          photo: pet.photo,
+          name: pet.name,
+          type: pet.type,
+          age: pet.age,
+          gender: pet.gender,
+          location: pet.location
+        };
+
+        pets.push(petObj);
+
+        // Call the createCarousel function with the pets array
+      }
+      
+      createCarousel(pets);
+        
+    }).catch((error) => {
+      console.log('Error getting pet data:', error);
+    });
+}
+
 
 // Set Radius
 const setRadius = document.getElementById("setRadius");
@@ -232,6 +322,90 @@ applyRadius.addEventListener("click", () => {
   setupMap();
   loadLocationOfCenter();
 });
+
+function createCarousel(pets) {
+  const carouselContainer = document.querySelector('.carousel-container');
+  const carousel = document.querySelector('.carousel');
+    
+  // Store unique identifiers of added pets
+  const uniqueIdentifiers = [];
+
+
+  pets.forEach((pet) => {
+    // Create a div element for the pet
+    const petDiv = document.createElement('div');
+    petDiv.classList.add('carousel-item');
+    
+    // Create elements for pet details
+    const petPhoto = document.createElement('img');
+    petPhoto.src= pet.photo; 
+
+    const petName = document.createElement('h3');
+    petName.textContent = pet.name;
+    
+    const petAttributes = document.createElement('p');
+    petAttributes.textContent = `${pet.gender}, ${pet.age}, ${pet.size} `;
+    
+    const petLocation = document.createElement('p');
+    petLocation.classList = 'pet-location';
+    petLocation.textContent = `${pet.location.city}, ${pet.location.state}`;
+    
+    // Append pet details to the pet div
+    petDiv.appendChild(petPhoto);
+    petDiv.appendChild(petName);
+    petDiv.appendChild(petAttributes);
+    petDiv.appendChild(petLocation);
+    
+    // Append pet div to the carousel container
+    carousel.appendChild(petDiv);
+    carousel.style.maxWidth = "700px";
+    carousel.style.maxHeight = "700px";
+
+    carouselContainer.appendChild(carousel);
+
+    carouselContainer.style.display = 'inline-block';
+    carouselContainer.style.margin = "auto 0";
+  }); 
+
+    // Initialize the Slick Carousel
+  $('.carousel').not('.slick-initialized').slick({
+    arrows: true,
+    infinite: true,
+    speed: 300,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    respondTo: 'slider',
+    adaptiveHeight: true,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  });
+
+  // Make the carousel container visible
+  carouselContainer.style.display = 'block';
+}
+         
 
 // __main__
 function main() {
