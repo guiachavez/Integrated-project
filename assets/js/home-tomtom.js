@@ -260,12 +260,12 @@ var searchBoxOptions = {
   distanceFromPoint: [15.4, 53.0],
 };
 
-var ttSearchBox = new tt.plugins.SearchBox(tt.services, searchBoxOptions);
+var ttSearchBoxLoc = new tt.plugins.SearchBox(tt.services, searchBoxOptions);
 document
   .querySelector(".home_change-location")
-  .prepend(ttSearchBox.getSearchBoxHTML());
+  .prepend(ttSearchBoxLoc.getSearchBoxHTML());
 
-ttSearchBox.on("tomtom.searchbox.resultselected", function (event) {
+ttSearchBoxLoc.on("tomtom.searchbox.resultselected", function (event) {
   console.log(event.data.result.address);
   console.log(event.data.result.position);
   localStorage.setItem(
@@ -276,7 +276,7 @@ ttSearchBox.on("tomtom.searchbox.resultselected", function (event) {
   newPosition = event.data.result.position;
 });
 
-$(".tt-search-box-input").attr("placeholder", "Change location");
+$(".tt-search-box2-input").attr("placeholder", "Change location");
 
 $(document).ready(function () {
   changeLocSearch.addEventListener("click", change);
