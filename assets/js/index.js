@@ -1,3 +1,4 @@
+
 import { tomtomAPI } from './config.js'
 
 const homeSearch = document.getElementById('submit')
@@ -88,8 +89,8 @@ var ttSearchBox = new tt.plugins.SearchBox(tt.services, searchBoxOptions)
 document.querySelector('form').prepend(ttSearchBox.getSearchBoxHTML());
 
 ttSearchBox.on('tomtom.searchbox.resultselected', function(event) {
-    console.log(event.data.result.address)
-    console.log(event.data.result.position)
+    // console.log(event.data.result.address)
+    // console.log(event.data.result.position)
     localStorage.setItem('location-query', JSON.stringify(event.data.result.address))
     localStorage.setItem('position', JSON.stringify(event.data.result.position))
 })

@@ -1,3 +1,5 @@
+
+// console.log("hii")
 // MARK: - Variables ====================================================================
 
 // Contains two values: Longitude and Latitude
@@ -18,19 +20,63 @@ import { tomtomAPI } from "./config.js";
 // Variables to display on the list on the left
 const orgList = document.getElementById("orgList");
 
+
 // MARK: - TomTom (Map View) functions ==========================================================================
+
+let address;
 
 // Stores the users location in the variable at top
 function storeUserLocation(location) {
   userLocation = [location.coords.longitude, location.coords.latitude];
+  
   setupMap();
   loadLocationOfCenter();
+  /* reverse geocoding====================================== */
+  console.log(userLocation)
+
+    const latitude = userLocation[1];
+    const longitude = userLocation[0];
+    const apiUrl = `https://api.tomtom.com/search/2/reverseGeocode/${latitude},${longitude}.json?key=${tomtomAPI}`;
+
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+        address = data.addresses[0].address.freeformAddress;
+        // console.log('Location:', address);
+        
+        // Extract the city from the address
+        const city = extractCityFromAddress(address);
+        console.log('City:', city);
+
+        // calling featuredPet function
+        featuredPet(city);
+      })
+      .catch(error => {
+        console.log('Error during reverse geocoding:', error);
+      });  
+
+}
+
+/* extract city from the address function definition */
+function extractCityFromAddress(address){
+  let city = '';
+  // Extract city from address
+  const parts = address.split(',');
+  if (parts.length > 1) {
+    const secondHalf = parts[1].trim();
+    const secondHalfParts = secondHalf.split(' ');
+    if (secondHalfParts.length > 0) {
+      city = secondHalfParts[0].trim();
+    }
+
+  return city;}
+  
 }
 
 // Loads the users location and calls the presentUserLocationOnMap function
 function loadUserLocation() {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(storeUserLocation);
+  navigator.geolocation.getCurrentPosition(storeUserLocation);    
   }
 }
 
@@ -148,7 +194,7 @@ function showAddressOnMap(address, organization) {
     })
 
     .catch((error) => {
-      console.error("Error:", error);
+      console.log("Error:", error);
     });
 }
 
@@ -209,7 +255,7 @@ function loadLocationOfCenter() {
     })
     .catch((error) => {
       // Handle the error
-      console.error("Error:", error);
+      console.log("Error:", error);
     });
 }
 
@@ -219,3 +265,113 @@ function main() {
 }
 
 window.addEventListener("load", main);
+
+
+import { getFirestore, collection, getDocs, getDoc, doc, query, where } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js'
+import { app } from './config.js'
+
+const db = getFirestore(app);
+
+const pets = [];
+/* featured pet using location =============================== */
+
+function featuredPet(checklocation) {
+  const petsCollection = collection(db, 'animals');
+  const queryRef = query(petsCollection, where('location.city', 'in', [checklocation, 'Vancouver']));
+  
+  console.log(queryRef);
+  getDocs(queryRef)
+    .then((querySnapshot) => {
+      
+      for (let i = 0; i < querySnapshot.size; i++) {
+        const doc = querySnapshot.docs[i];
+        const pet = doc.data();
+
+        console.log('Retrieved pet:', pet);
+
+        const petObj = {
+          photo: pet.photo,
+          name: pet.name,
+          type: pet.type,
+          age: pet.age,
+          gender: pet.gender,
+          location: pet.location
+        };
+
+        pets.push(petObj);
+
+        // Call the createCarousel function with the pets array
+        
+      }
+        createCarousel(pets);
+        // console.log(pets);
+      })
+      .catch((error) => {
+        console.error('Error getting pet data:', error);
+      });
+    }
+      function createCarousel(pets) {
+        const carouselContainer = document.querySelector('.carousel-container');
+        const carousel = document.querySelector('.carousel');
+          
+        // Store unique identifiers of added pets
+        const uniqueIdentifiers = [];
+
+
+        pets.forEach((pet) => {
+          // Create a div element for the pet
+          const petDiv = document.createElement('div');
+          petDiv.classList.add('carousel-item');
+          
+           // Check if pet's photo or unique identifier already exists in carousel
+              /* if (uniqueIdentifiers.includes(pet.photo) || uniqueIdentifiers.includes(pet.owner_id)) {
+                return; // Skip adding the slide
+              } */
+
+
+          // Create elements for pet details
+          const petPhoto = document.createElement('img');
+          petPhoto.src= pet.photo; 
+
+          const petName = document.createElement('h3');
+          petName.textContent = pet.name;
+          
+          const petAttributes = document.createElement('p');
+          petAttributes.textContent = ` ${pet.type} , ${pet.age}, ${pet.gender}`;
+          
+          const petLocation = document.createElement('p');
+          petLocation.textContent = `${pet.location.city},${pet.location.state}`;
+          
+          // Append pet details to the pet div
+          petDiv.appendChild(petPhoto);
+          petDiv.appendChild(petName);
+          petDiv.appendChild(petAttributes);
+          petDiv.appendChild(petLocation);
+          
+          // Append pet div to the carousel container
+          carousel.appendChild(petDiv);
+          carousel.style.maxWidth = "700px";
+          carousel.style.maxHeight = "700px";
+    
+          carouselContainer.appendChild(carousel);
+
+          // Add pet's photo or unique identifier to the list of added pets
+       /* uniqueIdentifiers.push(pet.photo);
+          uniqueIdentifiers.push(pet.uniqueIdentifier); */
+
+          carouselContainer.style.display = 'inline-block';
+          carouselContainer.style.margin = "auto 0";
+        }); 
+         // Initialize the Slick Carousel
+         $('.carousel').not('.slick-initialized').slick({
+          dots: true,
+          infinite: true,
+          speed: 300,
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        });
+      
+        // Make the carousel container visible
+          carouselContainer.style.display = 'block';
+      }
+         

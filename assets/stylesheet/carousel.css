@@ -69,3 +69,20 @@ body{
 .carousel-button.next{
     right:1rem;
 }
+
+
+
+/* for the featured pet ================================================ */
+
+.carousel-container {
+    display: inline-block; /* Set the display property to inline-block */
+    /* max-width: 800px; */
+    margin: 0 auto;
+  }
+  
+  .carousel {
+    width: 100%;
+    max-width: 100%;
+    /* background-color: #f2f2f2; */
+  }
+  
