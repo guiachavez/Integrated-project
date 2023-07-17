@@ -18,6 +18,8 @@ import { tomtomAPI } from "./config.js";
 // Variables to display on the list on the left
 const orgList = document.getElementById("orgList");
 
+let radius = 10;
+
 // MARK: - TomTom (Map View) functions ==========================================================================
 
 // Stores the users location in the variable at top
@@ -217,12 +219,17 @@ function loadLocationOfCenter() {
 // Set Radius
 const setRadius = document.getElementById("setRadius");
 const radiusValue = document.getElementById("radiusValue");
-let radius = 10;
+const applyRadius = document.getElementById("home_apply-radius");
 
 setRadius.addEventListener("input", () => {
   radiusValue.innerHTML = setRadius.value;
   radius = setRadius.value;
   console.log(radius);
+});
+
+applyRadius.addEventListener("click", () => {
+  orgList.innerHTML = "";
+  setupMap();
   loadLocationOfCenter();
 });
 
