@@ -648,6 +648,14 @@ ul {
   background-color: #305c91;
 }
 
+.alert {
+  display: none;
+  color: colors.$semantic-red-100;
+  font-size: 12px;
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+
 /* TOMTOM SEARCH ============================= */
 .tt-search-box {
   margin: 0;
@@ -670,10 +678,15 @@ ul {
 .home_searchbox .where-from-selector option {
   font-family: "Raleway";
   font-size: 16px;
-  color: colors.$neutral-color-grey-l;
+  color: colors.$neutral-color-black !important;
 }
 
 .tt-search-box-input {
   font-size: 18px;
   @include mx.raleway-typography(18);
+  color: colors.$neutral-color-black !important;
+}
+
+.tt-search-box-input-container.-focused {
+  box-shadow: unset;
 }
