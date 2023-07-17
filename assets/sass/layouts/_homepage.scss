@@ -252,11 +252,75 @@
 /* Map Section =============================== */
 .home_map-box {
   padding: 0 5% 8%;
-  display: none;
 
   h2 {
     font-size: 30px;
     text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .home_change-location {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    gap: 0.8rem;
+  }
+
+  .home_change-location button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin: auto;
+  }
+
+  .home_radius {
+    margin: 2.5rem 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+
+    .home_radius-containder {
+      margin: auto;
+    }
+
+    label {
+      display: inline;
+    }
+
+    #home_apply-radius {
+      margin: auto;
+    }
+  }
+
+  .orgList {
+    display: none;
+  }
+
+  #map {
+    height: 70vh;
+  }
+
+  .orgName {
+    font-weight: bold;
+    font-size: 15px !important;
+  }
+
+  .orgInfo {
+    margin: 0;
+    padding: 0;
+    width: auto;
+    overflow-wrap: break-word;
+  }
+
+  .orgInfo p {
+    margin: 0;
+    padding: 2px;
+    font-size: 14px;
+  }
+
+  .orgId {
+    display: none;
   }
 
   @media screen and (min-width: query.$media-tablet-width) {
@@ -269,31 +333,46 @@
       grid-column: span 2;
     }
 
+    .home_map-controls {
+      grid-column: span 2;
+
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+
+      .home_change-location {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: 1fr;
+        gap: 0.8rem;
+
+        button {
+          margin: 0;
+        }
+      }
+
+      .home_radius {
+        margin: 0;
+        grid-template-columns: 2fr 1fr;
+        gap: 0.8rem;
+
+        .home_radius-containder {
+          margin-right: 0;
+        }
+
+        #home_apply-radius {
+          margin: 0;
+        }
+      }
+    }
+
     #map {
       height: 80vh;
     }
 
     .orgList {
+      display: block;
       height: 80vh;
       overflow-y: scroll;
-    }
-
-    .orgName {
-      font-weight: bold;
-      font-size: 15px !important;
-    }
-
-    .orgInfo {
-      margin: 0;
-      padding: 0;
-      width: auto;
-      overflow-wrap: break-word;
-    }
-
-    .orgInfo p {
-      margin: 0;
-      padding: 2px;
-      font-size: 14px;
     }
 
     .orgList .orgInfo {
@@ -305,10 +384,6 @@
     .orgList .orgInfo:hover {
       background-color: colors.$primary-color-10;
       border-radius: 8px 8px 0 0;
-    }
-
-    .orgId {
-      display: none;
     }
 
     .goToOrg {
