@@ -217,15 +217,32 @@
 /* Map Section =============================== */
 .home_map-box {
   padding: 0 5% 8%;
-  display: none;
+  display: grid;
 
   h2 {
     font-size: 30px;
     text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .home_change-location {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 1rem;
+  }
+
+  .home_change-location button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  #map {
+    height: 80vh;
   }
 
   @media screen and (min-width: query.$media-tablet-width) {
-    display: grid;
     grid-template-columns: 2fr 4fr;
     gap: 20px;
 

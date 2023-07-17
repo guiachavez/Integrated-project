@@ -194,7 +194,8 @@ function loadLocationOfCenter() {
       location: userLocationString,
       //NEED TO SET THIS TO USER ENTER
       //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      distance: 10,
+      // distance: 10,
+      distance: radius,
     })
     .then(async (resp) => {
       let organizations = resp.data.organizations;
@@ -213,9 +214,70 @@ function loadLocationOfCenter() {
     });
 }
 
+// Set Radius
+const setRadius = document.getElementById("setRadius");
+const radiusValue = document.getElementById("radiusValue");
+let radius = 10;
+
+setRadius.addEventListener("input", () => {
+  radiusValue.innerHTML = setRadius.value;
+  radius = setRadius.value;
+  console.log(radius);
+  loadLocationOfCenter();
+});
+
 // __main__
 function main() {
   loadUserLocation();
 }
 
 window.addEventListener("load", main);
+
+//To change location on map
+let newPosition = "";
+const changeLocSearch = document.getElementById("home_submit-change-location");
+
+const change = (e) => {
+  console.log(e);
+  console.log(newPosition);
+};
+
+var searchOptions = {
+  key: tomtomAPI,
+  language: "en-Gb",
+  limit: 20,
+};
+
+var autocompleteOptions = {
+  key: tomtomAPI,
+  language: "en-GB",
+};
+
+var searchBoxOptions = {
+  minNumberOfCharacters: 3,
+  searchOptions: searchOptions,
+  autocompleteOptions: autocompleteOptions,
+  distanceFromPoint: [15.4, 53.0],
+};
+
+var ttSearchBox = new tt.plugins.SearchBox(tt.services, searchBoxOptions);
+document
+  .querySelector(".home_change-location")
+  .prepend(ttSearchBox.getSearchBoxHTML());
+
+ttSearchBox.on("tomtom.searchbox.resultselected", function (event) {
+  console.log(event.data.result.address);
+  console.log(event.data.result.position);
+  localStorage.setItem(
+    "location-query",
+    JSON.stringify(event.data.result.address)
+  );
+  localStorage.setItem("position", JSON.stringify(event.data.result.position));
+  newPosition = event.data.result.position;
+});
+
+$(".tt-search-box-input").attr("placeholder", "Change location");
+
+$(document).ready(function () {
+  changeLocSearch.addEventListener("click", change);
+});

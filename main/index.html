@@ -288,6 +288,22 @@
       <!-- Map Section -->
       <section class="home_map-box">
         <h2 class="card-heading-mob">Find a Shelter</h2>
+        <div class="home_change-location">
+          <!-- Mody. Location -->
+          <button
+            type="submit"
+            value="Search"
+            id="home_submit-change-location"
+            class="filled-mob-btn font"
+          >
+            <img src="./../assets/icons/search.png" />Search
+          </button>
+        </div>
+        <div id="home_radius" class="home_radius">
+          <!-- Radius -->
+          <input type="range" id="setRadius" min="1" max="25" value="10" />
+          <span class="radius-value" id="radiusValue">10</span><span>km</span>
+        </div>
         <div id="orgList" class="orgList"></div>
         <div id="map" class="map"></div>
       </section>
