@@ -1,4 +1,9 @@
 
+import { getFirestore, collection, getDocs, getDoc, doc, query, where, limit } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js'
+import { app } from './config.js'
+
+const db = getFirestore(app);
+
 // console.log("hii")
 // MARK: - Variables ====================================================================
 
@@ -31,46 +36,50 @@ function storeUserLocation(location) {
   
   setupMap();
   loadLocationOfCenter();
+
   /* reverse geocoding====================================== */
   console.log(userLocation)
 
-    const latitude = userLocation[1];
-    const longitude = userLocation[0];
-    const apiUrl = `https://api.tomtom.com/search/2/reverseGeocode/${latitude},${longitude}.json?key=${tomtomAPI}`;
+  const latitude = userLocation[1];
+  const longitude = userLocation[0];
+  const apiUrl = `https://api.tomtom.com/search/2/reverseGeocode/${latitude},${longitude}.json?key=${tomtomAPI}`;
 
-    fetch(apiUrl)
-      .then(response => response.json())
-      .then(data => {
-        address = data.addresses[0].address.freeformAddress;
-        // console.log('Location:', address);
-        
-        // Extract the city from the address
-        const city = extractCityFromAddress(address);
-        console.log('City:', city);
+  localStorage.setItem('position', `{"lng":${longitude},"lat":${latitude}}`)
+  
+  fetch(apiUrl)
+    .then(response => response.json())
+    .then(data => {
+      address = data.addresses[0].address.freeformAddress;
 
-        // calling featuredPet function
-        featuredPet(city);
-      })
-      .catch(error => {
-        console.log('Error during reverse geocoding:', error);
-      });  
+      localStorage.setItem('location-query', JSON.stringify(data.addresses[0].address))
+      
+      // Extract the city from the address
+      const city = extractCityFromAddress(address);
 
+      // calling featuredPet function
+      featuredPet(city);
+    })
+    .catch(error => {
+      console.log('Error during reverse geocoding:', error);
+    });  
 }
 
 /* extract city from the address function definition */
-function extractCityFromAddress(address){
-  let city = '';
+function extractCityFromAddress(address) {
   // Extract city from address
+  let city = '';
   const parts = address.split(',');
+
   if (parts.length > 1) {
     const secondHalf = parts[1].trim();
     const secondHalfParts = secondHalf.split(' ');
+
     if (secondHalfParts.length > 0) {
       city = secondHalfParts[0].trim();
     }
 
-  return city;}
-  
+    return city;
+  }
 }
 
 // Loads the users location and calls the presentUserLocationOnMap function
@@ -247,7 +256,7 @@ function loadLocationOfCenter() {
       for (let i = 0; i < organizations.length; i++) {
         let organization = organizations[i];
         let searchAddress = getAddressStringFor(organization);
-        //console.log(i, searchAddress);
+
         showAddressOnMap(searchAddress, organization);
         await sleep(400);
       }
@@ -259,35 +268,19 @@ function loadLocationOfCenter() {
     });
 }
 
-// __main__
-function main() {
-  loadUserLocation();
-}
-
-window.addEventListener("load", main);
-
-
-import { getFirestore, collection, getDocs, getDoc, doc, query, where } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js'
-import { app } from './config.js'
-
-const db = getFirestore(app);
-
-const pets = [];
 /* featured pet using location =============================== */
+const pets = [];
 
 function featuredPet(checklocation) {
   const petsCollection = collection(db, 'animals');
-  const queryRef = query(petsCollection, where('location.city', 'in', [checklocation, 'Vancouver']));
+  const queryRef = query(petsCollection, where('location.city', '==', checklocation), limit(6));
   
-  console.log(queryRef);
   getDocs(queryRef)
     .then((querySnapshot) => {
       
       for (let i = 0; i < querySnapshot.size; i++) {
         const doc = querySnapshot.docs[i];
         const pet = doc.data();
-
-        console.log('Retrieved pet:', pet);
 
         const petObj = {
           photo: pet.photo,
@@ -301,77 +294,109 @@ function featuredPet(checklocation) {
         pets.push(petObj);
 
         // Call the createCarousel function with the pets array
-        
       }
-        createCarousel(pets);
-        // console.log(pets);
-      })
-      .catch((error) => {
-        console.error('Error getting pet data:', error);
-      });
-    }
-      function createCarousel(pets) {
-        const carouselContainer = document.querySelector('.carousel-container');
-        const carousel = document.querySelector('.carousel');
-          
-        // Store unique identifiers of added pets
-        const uniqueIdentifiers = [];
-
-
-        pets.forEach((pet) => {
-          // Create a div element for the pet
-          const petDiv = document.createElement('div');
-          petDiv.classList.add('carousel-item');
-          
-           // Check if pet's photo or unique identifier already exists in carousel
-              /* if (uniqueIdentifiers.includes(pet.photo) || uniqueIdentifiers.includes(pet.owner_id)) {
-                return; // Skip adding the slide
-              } */
-
-
-          // Create elements for pet details
-          const petPhoto = document.createElement('img');
-          petPhoto.src= pet.photo; 
-
-          const petName = document.createElement('h3');
-          petName.textContent = pet.name;
-          
-          const petAttributes = document.createElement('p');
-          petAttributes.textContent = ` ${pet.type} , ${pet.age}, ${pet.gender}`;
-          
-          const petLocation = document.createElement('p');
-          petLocation.textContent = `${pet.location.city},${pet.location.state}`;
-          
-          // Append pet details to the pet div
-          petDiv.appendChild(petPhoto);
-          petDiv.appendChild(petName);
-          petDiv.appendChild(petAttributes);
-          petDiv.appendChild(petLocation);
-          
-          // Append pet div to the carousel container
-          carousel.appendChild(petDiv);
-          carousel.style.maxWidth = "700px";
-          carousel.style.maxHeight = "700px";
-    
-          carouselContainer.appendChild(carousel);
-
-          // Add pet's photo or unique identifier to the list of added pets
-       /* uniqueIdentifiers.push(pet.photo);
-          uniqueIdentifiers.push(pet.uniqueIdentifier); */
-
-          carouselContainer.style.display = 'inline-block';
-          carouselContainer.style.margin = "auto 0";
-        }); 
-         // Initialize the Slick Carousel
-         $('.carousel').not('.slick-initialized').slick({
-          dots: true,
-          infinite: true,
-          speed: 300,
-          slidesToShow: 3,
-          slidesToScroll: 1,
-        });
       
-        // Make the carousel container visible
-          carouselContainer.style.display = 'block';
+      createCarousel(pets);
+        
+    }).catch((error) => {
+      console.log('Error getting pet data:', error);
+    });
+}
+
+function createCarousel(pets) {
+  const carouselContainer = document.querySelector('.carousel-container');
+  const carousel = document.querySelector('.carousel');
+    
+  // Store unique identifiers of added pets
+  const uniqueIdentifiers = [];
+
+
+  pets.forEach((pet) => {
+    // Create a div element for the pet
+    const petDiv = document.createElement('div');
+    petDiv.classList.add('carousel-item');
+    
+    // Create elements for pet details
+    const petPhoto = document.createElement('img');
+    petPhoto.src= pet.photo; 
+
+    const petName = document.createElement('h3');
+    petName.textContent = pet.name;
+    
+    const petAttributes = document.createElement('p');
+    petAttributes.textContent = `${pet.gender}, ${pet.age}, ${pet.size} `;
+    
+    const petLocation = document.createElement('p');
+    petLocation.classList = 'pet-location';
+    petLocation.textContent = `${pet.location.city}, ${pet.location.state}`;
+    
+    // Append pet details to the pet div
+    petDiv.appendChild(petPhoto);
+    petDiv.appendChild(petName);
+    petDiv.appendChild(petAttributes);
+    petDiv.appendChild(petLocation);
+    
+    // Append pet div to the carousel container
+    carousel.appendChild(petDiv);
+    carousel.style.maxWidth = "700px";
+    carousel.style.maxHeight = "700px";
+
+    carouselContainer.appendChild(carousel);
+
+    carouselContainer.style.display = 'inline-block';
+    carouselContainer.style.margin = "auto 0";
+  }); 
+
+    // Initialize the Slick Carousel
+  $('.carousel').not('.slick-initialized').slick({
+    arrows: true,
+    infinite: true,
+    speed: 300,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    respondTo: 'slider',
+    adaptiveHeight: true,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
       }
+    ]
+  });
+
+  // Make the carousel container visible
+  carouselContainer.style.display = 'block';
+}
          
+
+// __main__
+function main() {
+  loadUserLocation();
+}
+
+window.addEventListener("load", main);
+
+
+
+
+
+
+
