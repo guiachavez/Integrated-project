@@ -23,19 +23,6 @@ window.onload = function() {
             $('#profile').attr('href', './login.html')
         }
     })
-
-    $('.header-link a').each(function() {
-        if (window.location.pathname.includes($(this).attr('data-path'))) {
-            console.log($(this).attr('data-path'))
-            $(this).closest('li').addClass('selected')
-        } else {
-            $(this).closest('li').removeClass('selected')
-        }
-    })
-
-    $('.go-home').on('click', function() {
-        window.location.href = './index.html'
-    })
 }
 
 // For displaying uploaded images

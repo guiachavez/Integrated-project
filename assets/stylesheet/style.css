@@ -1273,6 +1273,14 @@ ul {
   background-color: #305c91;
 }
 
+.alert {
+  display: none;
+  color: #991F1F;
+  font-size: 12px;
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+
 /* TOMTOM SEARCH ============================= */
 .tt-search-box {
   margin: 0;
@@ -1295,13 +1303,18 @@ ul {
 .home_searchbox .where-from-selector option {
   font-family: "Raleway";
   font-size: 16px;
-  color: #C5C5C5;
+  color: #000000 !important;
 }
 
 .tt-search-box-input {
   font-size: 18px;
   font-family: "Raleway";
   font-size: 18px;
+  color: #000000 !important;
+}
+
+.tt-search-box-input-container.-focused {
+  box-shadow: unset;
 }
 
 .pet-profile {
