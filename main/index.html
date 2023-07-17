@@ -7,9 +7,16 @@
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 
     <!-- This link tag is required by the TomTom API -->
-    <link rel="stylesheet" type="text/css" href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/maps/maps.css"/>
-    <link rel="stylesheet" type="text/css" href="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.12/SearchBox.css" />
-
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/maps/maps.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.12/SearchBox.css"
+    />
 
     <!-- Add the slick-theme.css if you want default styling -->
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
@@ -23,7 +30,6 @@
     <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.12/SearchBox-web.js"></script>
     <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/services/services-web.min.js"></script>
 
-
     <!-- Our TomTom JS -->
     <script type="module" src="./../assets/js/home-tomtom.js" defer></script>
 
@@ -31,12 +37,15 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/@petfinder/petfinder-js/dist/petfinder.min.js"></script>
 
+
+    <!-- CSS for Carousel -->
+    <link rel="stylesheet" href="./../assets/stylesheet/carousel.css" />
+
     <!-- CSS -->
     <link rel="stylesheet" href="./../assets/stylesheet/style.css" />
     <!-- <link rel="stylesheet" href="./../assets/stylesheet/carousel.css"> -->
 
     <!-- Scripts -->
-    
 
     <title>Pawfect Match</title>
   </head>
@@ -48,8 +57,12 @@
       <!-- Hero section -->
       <section class="home_hero">
         <div class="home_hero-text">
-          <h1 class="hero-section-title-mob">Your Companion Awaits, Find your <span>Pawfect Match</span></h1>
-          <h3 class="sub-heading-mob">Over a thousand rescue pets need a home and a second chance.</h3>
+          <h1 class="hero-section-title-mob">
+            Your Companion Awaits, Find your <span>Pawfect Match</span>
+          </h1>
+          <h3 class="sub-heading-mob">
+            Over a thousand rescue pets need a home and a second chance.
+          </h3>
         </div>
         <div>
           <img src="/assets/images/frontdog.svg" alt="happy dog" />
@@ -84,7 +97,14 @@
           </div>
 
           <div class="home_search-btn">
-            <button type="submit" value="Search" id="submit" class="filled-mob-btn font"><img src="./../assets/icons/search.png">Search</button>
+            <button
+              type="submit"
+              value="Search"
+              id="submit"
+              class="filled-mob-btn font"
+            >
+              <img src="./../assets/icons/search.png" />Search
+            </button>
           </div>
         </form>
       </section>
@@ -116,7 +136,11 @@
           need to thrive.
         </h3>
         <div class="home_prepare-grid">
-          <img src="/assets/images/prepare4adopt.png" alt="dog and family" class="home-prepare-grid-img"/>
+          <img
+            src="/assets/images/prepare4adopt.png"
+            alt="dog and family"
+            class="home-prepare-grid-img"
+          />
           <div>
             <div class="home_prepare-list">
               <div class="home_paw-list">
@@ -162,8 +186,12 @@
 
       <!-- CTA Rehome -->
       <section class="home_cta-rehome">
-        <h2 class="card-heading-mob">Do you want to find a home for your pet?</h2>
-        <h3 class="sub-heading-mob">Paving a path to happiness, finding a new home for your paws.</h3>
+        <h2 class="card-heading-mob">
+          Do you want to find a home for your pet?
+        </h2>
+        <h3 class="sub-heading-mob">
+          Paving a path to happiness, finding a new home for your paws.
+        </h3>
         <form action="/main/rehome.html">
           <button class="filled-mob-btn font sub-heading-mob">Rehome</button>
         </form>
@@ -174,14 +202,19 @@
         <div>
           <h2>Want to share your Adoption Story?</h2>
           <form action="/main/adoption-journey.html">
-            <button class="filled-mob-btn font sub-heading-mob home_post-now">Post now</button>
+            <button class="filled-mob-btn font sub-heading-mob home_post-now">
+              Post now
+            </button>
           </form>
         </div>
 
         <section aria-label="photos" class="home_small-carousel">
           <div class="carousel" data-carousel>
             <button class="carousel-button prev" data-carousel-button="prev">
-              <img src="./../assets/images/ChevronLeft-1.svg" alt="previous image"/>
+              <img
+                src="./../assets/images/ChevronLeft-1.svg"
+                alt="previous image"
+              />
             </button>
             <button class="carousel-button next" data-carousel-button="next">
               <img src="./../assets/images/ChevronLeft.svg" alt="next image" />
@@ -219,7 +252,6 @@
     </main>
 
     <footer></footer>
-
   </body>
 </html>
 

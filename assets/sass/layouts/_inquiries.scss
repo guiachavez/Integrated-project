@@ -1,5 +1,6 @@
 @use '../abstracts/mixins/mixins' as mx;
 @use '../abstracts/variables/colors' as colors;
+@use '../abstracts/variables/media_queries' as mq;
 
 /* Adoption/Inquiry =========================== */
 .inquire-pet label {
@@ -11,6 +12,46 @@
 
     .modal-content h2 {
         color: colors.$accent-color-main;
+    }
+}
+
+.app-details, .pet-preference{
+    border: 1px solid colors.$neutral-color-grey-l;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin: 1rem 0;
+}
+
+.input-format{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.input-format div{
+    display: flex;
+}
+
+.input-format>label{
+    flex: 0 0 100%;
+}
+
+#input-format{
+    padding-right: 1rem;
+}
+
+#input-format label{
+    font-weight: normal;
+}
+
+@media screen and (min-width: mq.$media-tablet-width) {
+    .app-details{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .input-format{
+        grid-column: 1/-1;
     }
 }
 
