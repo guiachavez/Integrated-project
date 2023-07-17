@@ -39,42 +39,238 @@
         <h2>Applicant Details</h2>
         <form action="" class="inquire-pet">
           
-          <label for="afname">First Name
-            <input type="text" name="afname" id="app-first-name" class="text-input">
-          </label>
+          <div class="app-details">
+            <label for="afname">First Name
+              <input type="text" name="afname" id="app-first-name" class="text-input">
+            </label>
+            
+            <label for="alname">Last Name
+              <input type="text" name="alname" id="app-last-name" class="text-input">
+            </label>
+            <label for="email">E-mail
+              <input type="email" name="email" id="app-email" class="text-input">
+            </label>
+            <label for="ownerphone">Phone Number
+              <input type="tel" name="ownerphone" id="app-phone" class="text-input">
+            </label>
+            <label for="country">Country
+              <input type="text" name="country" id="app-country" class="text-input">
+            </label>
+            <label for="city">City
+              <input type="text" name="city" id="app-city" class="text-input">
+            </label>
+            <label for="state">State
+              <input type="text" name="state" id="app-state" class="text-input">
+            </label>
+            <label for="pcode">Postal Code
+              <input type="text" name="pcode" id="app-pcode" class="text-input">
+            </label>
+            <label for="street">Street
+              <input type="text" name="street" id="app-street" class="text-input">
+            </label>
+
+            <div class="adopting input-format">
+              <label for="adopting">You are looking to adopt for...</label>
+              <div id="input-format">
+                <input type="radio" name="adopting" id="adopting" value="Yourself">
+                <label for="self">Yourself</label>
+              </div>
+              <div id="input-format">
+                <input type="radio" name="adopting" id="adopting" value="Family">
+                <label for="fam">Family</label>
+              </div>
+              <div id="input-format">
+                <input type="radio" name="adopting" id="adopting" value="Other">
+                <label for="other">Other</label>
+              </div>
+            </div>
+
+            <div class="owner input-format">
+              <label for="owner">You are a ... owner</label>
+              <div id="input-format">
+                <input type="radio" name="owner" id="owner" value="First-time">
+                <label for="ft">First-time</label>
+              </div>
+              <div id="input-format">
+                <input type="radio" name="owner" id="owner" value="Previous">
+                <label for="prev">Previous</label>
+              </div>
+              <div id="input-format">
+                <input type="radio" name="owner" id="owner" value="Current">
+                <label for="current">Current</label>
+              </div>
+            </div>
+            
+            <div class="pettype input-format">
+              <label for="pettype">You currently have ...</label>
+              <div id="input-format">
+                <input type="checkbox" name="dog" id="pettype" value="Dog(s)">
+                <label for="dog">Dog(s)</label>
+              </div>
+              <div id="input-format">
+                <input type="checkbox" name="cat" id="pettype" value="Cat(s)">
+                <label for="cat">Cat(s)</label>
+              </div>
+              <div id="input-format">
+                <input type="checkbox" name="none" id="pettype" value="None">
+                <label for="none">None</label>
+              </div>
+              <div id="input-format">
+                <input type="checkbox" name="other" id="pettype" value="Other">
+                <label for="other">Other</label>
+              </div>
+            </div>
+            
+            <div class="house input-format">
+              <label for="house">Your home has a...</label>
+              <div id="input-format">
+                <input type="checkbox" name="yard" id="house" value="Yard">
+                <label for="yard">Yard</label>
+              </div>
+              <div id="input-format">
+                <input type="checkbox" name="fence" id="house" value="Fenced yard">
+                <label for="fyard">Fenced yard</label>
+              </div>
+              <div id="input-format">
+                <input type="checkbox" name="park" id="house" value="Nearby park">
+                <label for="park">Nearby park</label>
+              </div>
+              <div id="input-format">
+                <input type="checkbox" name="none" id="house" value="None">
+                <label for="none">None</label>
+              </div>
+            </div>
+
+            <div class="restriction input-format">
+              <label for="restriction">Any pet restrictions where you live?</label>
+              <div id="input-format">
+                <input type="radio" name="restriction" id="restriction" value="Yes">
+                <label for="yes">Yes</label>
+              </div>
+              <div id="input-format">
+                <input type="radio" name="restriction" id="restriction" value="No">
+                <label for="no">No</label>
+              </div>
+            </div>
+            
+            <div class="children input-format">
+              <label for="children">Any children at home?</label>
+              <div id="input-format">
+                <input type="radio" name="children" id="children" value="Yes">
+                <label for="yes">Yes</label>
+              </div>
+              <div id="input-format">
+                <input type="radio" name="children" id="children" value="No">
+                <label for="no">No</label>
+              </div>
+            </div>
+          </div>
           
-  
-          <label for="alname">Last Name
-            <input type="text" name="alname" id="app-last-name" class="text-input">
-          </label>
-  
-          <label for="email">E-mail
-            <input type="email" name="email" id="app-email" class="text-input">
-          </label>
-  
-          <label for="ownerphone">Phone Number
-            <input type="tel" name="ownerphone" id="app-phone" class="text-input">
-          </label>
-  
-          <label for="country">Country
-            <input type="text" name="country" id="app-country" class="text-input">
-          </label>
-  
-          <label for="city">City
-            <input type="text" name="city" id="app-city" class="text-input">
-          </label>
-  
-          <label for="state">State
-            <input type="text" name="state" id="app-state" class="text-input">
-          </label>
-  
-          <label for="pcode">Postal Code
-            <input type="text" name="pcode" id="app-pcode" class="text-input">
-          </label>
-  
-          <label for="street">Street
-            <input type="text" name="street" id="app-street" class="text-input">
-          </label>
+          <div class="pet-preference">
+            <div class="petage input-format">
+              <label for="petage">Your ideal pet is...</label>
+              <div id="input-format">
+                <input type="checkbox" name="junior" id="petage" value="Junior">
+                <label for="jun">Junior</label>
+              </div>
+              <div id="input-format">
+                <input type="checkbox" name="young" id="petage" value="Young">
+                <label for="young">Young</label>
+              </div>
+              <div id="input-format">
+                <input type="checkbox" name="adult" id="petage" value="Adult">
+                <label for="adult">Adult</label>
+              </div>
+              <div id="input-format">
+                <input type="checkbox" name="senior" id="petage" value="Senior">
+                <label for="senior">Senior</label>
+              </div>
+            </div>
+            
+            <div class="petgender input-format">
+              <label for="petgender">You would prefer...</label>
+              <div id="input-format">
+                <input type="checkbox" name="female" id="petgender" value="Female">
+                <label for="female">Female</label>
+              </div>
+              <div id="input-format">
+                <input type="checkbox" name="male" id="petgender" value="Male">
+                <label for="male">Male</label>
+              </div>
+              <div id="input-format">
+                <input type="checkbox" name="no" id="petgender" value="No preference">
+                <label for="nopref">No preference</label>
+              </div>
+            </div>
+            
+            <div class="petsize input-format">
+              <label for="petsize">You would like for it to be...</label>
+              <div id="input-format">
+                <input type="checkbox" name="small" id="petsize" value="Small(0-25 lbs)">
+                <label for="small">Small(0-25 lbs)</label>
+              </div>
+              <div id="input-format">
+                <input type="checkbox" name="medium" id="petsize" value="Medium(26-60 lbs)">
+                <label for="medium">Medium(26-60 lbs)</label>
+              </div>
+              <div id="input-format">
+                <input type="checkbox" name="large" id="petsize" value="Large(61-100 lbs)">
+                <label for="large">Large(61-100 lbs)</label>
+              </div>
+              <div id="input-format">
+                <input type="checkbox" name="xlarge" id="petsize" value="Extra large(+101 lbs)">
+                <label for="xlarge">Extra large(+101 lbs)</label>
+              </div>
+            </div>
+
+            <div class="petactivity input-format">
+              <label for="petactivity">Your pet activity should be...</label>
+              <div id="input-format">
+                <input type="checkbox" name="yes" id="petactivity" value="Very Active">
+                <label for="vactive">Very Active</label>
+              </div>
+              <div id="input-format">
+                <input type="checkbox" name="no" id="petactivity" value="Active">
+                <label for="active">Active</label>
+              </div>
+              <div id="input-format">
+                <input type="checkbox" name="yes" id="petactivity" value="Laid-back">
+                <label for="lb">Laid-back</label>
+              </div>
+              <div id="input-format">
+                <input type="checkbox" name="no" id="petactivity" value="Lap-pet">
+                <label for="lp">Lap-pet</label>
+              </div>
+              <div id="input-format">
+                <input type="checkbox" name="no" id="petactivity" value="No preference">
+                <label for="nopref">No preference</label>
+              </div>
+            </div>
+
+            <div class="splneeds input-format">
+              <label for="splneeds">What do you think about adopting a special needs pet?</label>
+              <div id="input-format">
+                <input type="radio" name="splneeds" id="splneeds" value="Open">
+                <label for="open">Open</label>
+              </div>
+              <div id="input-format">
+                <input type="radio" name="splneeds" id="splneeds" value="Not open">
+                <label for="nopen">Not open</label>
+              </div>
+            </div>
+            
+            <div class="vet input-format">
+              <label for="vet">Do you know a vet?</label>
+              <div id="input-format">
+                <input type="radio" name="vet" id="vet" value="Yes">
+                <label for="yes">Yes</label>
+              </div>
+              <div id="input-format">
+                <input type="radio" name="vet" id="vet" value="No">
+                <label for="no">No</label>
+              </div>
+            </div>
+          </div>
           
           <div>
             <button type="submit" id="inquire-now" class="filled-mob-btn font">Submit</button>

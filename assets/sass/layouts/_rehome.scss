@@ -2,10 +2,12 @@
 @use '../abstracts/variables/colors' as colors;
 @use '../abstracts/mixins/mixins' as mx;
 @use '../abstracts/variables/typography' as t;
+@use '../abstracts/variables/media_queries' as mq;
 
 .content-center {
     display: grid;
     justify-content: center;
+    padding: 0 5%;
 }
 
 .rehome-main {
@@ -34,7 +36,7 @@
 
     > div:nth-child(2) > div:first-of-type {
         display: flex;
-        gap: 1rem;
+        gap: 0.5rem;
         flex-wrap: wrap;
         justify-content: space-between;
     }
@@ -58,7 +60,7 @@
     }  
     
     .col-right {
-        padding: 3rem 0;
+        padding: 3rem 2%;
     }
 }
 .col-left {
@@ -131,8 +133,8 @@ label {
 select,
 textarea {
     border: 1px solid colors.$neutral-color-grey-l;
-    width: 360px;
-    height: 35px;
+    width: 395px;
+    height: 40px;
     outline: 0;
     border-radius: 0.3rem;
 }
@@ -157,6 +159,7 @@ textarea {
     background-color: colors.$neutral-color-grey;
     -webkit-transition: .4s;
     transition: .4s;
+    width: 4rem;
 }
   
 .radio-slider:before {
@@ -238,8 +241,11 @@ input:checked + .radio-slider:before {
     gap: 2rem;
     width: 100%;
     justify-self: center;
+    align-items: end;
     padding: 2rem 0;
 }
+
+
 
 
 .progress-holder {
@@ -294,6 +300,40 @@ input:checked + .radio-slider:before {
         color: colors.$neutral-color-grey-l;
         text-decoration: underline;
         margin-top: 1rem;
+    }
+}
+
+@media screen and (max-width: mq.$media-mobile-width) {
+    .content-center{
+        display: block;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: mq.$media-tablet-width) {
+    .rehome-container{
+        .col-left{
+            display: none;
+        }
+
+        >div{
+            width: 100%;
+        }
+
+        > div:nth-child(2) > div:first-of-type {
+            gap: 0.5rem;
+        }
+    }
+
+    .form-fields{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    #tab-2, #tab-3, #tab-progress.active{
+        max-width: 600px;
+        margin: auto;
+        padding: 2%;
     }
 }
 
