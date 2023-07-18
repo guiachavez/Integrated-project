@@ -851,21 +851,9 @@ footer h2 {
   object-position: center;
   border-radius: 8px;
 }
-.home_featured .slide .home_pet-card {
-  width: 65%;
-  height: auto;
-  margin: auto;
-}
-.home_featured .slide .home_pet-name {
-  font-size: 26px;
-  margin: 10px 0 5px;
-}
 .home_featured .slide p {
   margin: 7px 0;
   font-weight: bold;
-}
-.home_featured .slide .home_pet-location {
-  color: #0293A7;
 }
 .home_featured .carousel-container button::before,
 .home_featured .carousel-container button::after {
@@ -896,13 +884,6 @@ footer h2 {
 @media screen and (min-width: 820px) {
   .home_featured h2 {
     font-size: 36px;
-  }
-  .home_featured .home_small-carousel {
-    display: none;
-  }
-  .home_featured .home_big-carousel {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -1162,6 +1143,12 @@ footer h2 {
 /* Adoption Stories Section ================== */
 .home_adopt-stories {
   padding: 10% 5%;
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+}
+.home_adopt-stories > div:first-of-type {
+  width: 40%;
 }
 .home_adopt-stories h2 {
   text-align: center;
@@ -1172,107 +1159,44 @@ footer h2 {
   margin-top: 25px;
   box-shadow: 0px 4px 6px #C5C5C5;
 }
-.home_adopt-stories .carousel {
-  width: 100%;
-  height: 100vh;
-  margin: auto;
-  margin-top: 50px;
+.home_adopt-stories .story {
+  display: flex;
 }
-.home_adopt-stories .slide img {
-  display: block;
-  width: 65%;
-  height: 40%;
-  margin: auto;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 8px 8px 0 0;
-  border-right: 1.5px solid #0293A7;
-  border-left: 1.5px solid #0293A7;
-  border-top: 1.5px solid #0293A7;
+.home_adopt-stories .stories-wrapper {
+  width: 60%;
 }
-.home_adopt-stories .slide .home_pet-card {
-  width: 65%;
-  height: auto;
-  margin: auto;
-  background-color: #E6F4F6;
-  padding: 10px;
-  border-right: 1.5px solid #0293A7;
-  border-left: 1.5px solid #0293A7;
-  text-align: center;
+.home_adopt-stories .sort-wrapper {
+  width: 75%;
+  margin-right: 4rem;
+  float: right;
 }
-.home_adopt-stories .slide .home_pet-name {
-  font-size: 26px;
-  margin: 0;
-  padding: 10px 0 5px;
+.home_adopt-stories .slick-arrow,
+.home_adopt-stories .slick-arrow::before {
+  color: black;
 }
-.home_adopt-stories .slide p {
-  margin: 7px 0;
-  font-weight: bold;
+.home_adopt-stories .slick-prev {
+  left: -65px;
 }
-.home_adopt-stories .slide .home_pet-location {
-  color: #0293A7;
+.home_adopt-stories .slick-next {
+  right: -50px;
 }
-.home_adopt-stories .slide .home_pet-story {
-  width: 65%;
-  height: auto;
-  margin: auto;
-  background-color: #FFFFFF;
-  padding: 10px;
-  border-radius: 0 0 8px 8px;
-  border-right: 1.5px solid #0293A7;
-  border-left: 1.5px solid #0293A7;
-  border-bottom: 1.5px solid #0293A7;
+.home_adopt-stories .story-details > div:last-of-type {
+  padding: 1rem;
+}
+.home_adopt-stories .owner-location {
+  font-size: 14px;
+  color: #026E7D;
 }
 @media screen and (min-width: 820px) {
-  .home_adopt-stories {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    align-items: center;
-  }
   .home_adopt-stories h2 {
     text-align: left;
+    font-family: "Raleway";
+    font-size: 36px;
   }
   .home_adopt-stories .home_post-now {
     display: block;
     margin: 0;
     margin-top: 15px;
-  }
-  .home_adopt-stories .carousel {
-    height: 50vh;
-    margin-top: 0;
-  }
-  .home_adopt-stories .slide {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .home_adopt-stories .slide img {
-    width: 80%;
-    height: 65%;
-    margin-left: 20%;
-    margin-right: 0;
-    border-radius: 8px 0 0 0;
-    border: none;
-    border-left: 1.5px solid #0293A7;
-    border-top: 1.5px solid #0293A7;
-  }
-  .home_adopt-stories .slide .home_pet-card {
-    width: 80%;
-    margin-left: 20%;
-    margin-right: 0;
-    border-radius: 0 0 0 8px;
-    border: none;
-    border-left: 1.5px solid #0293A7;
-    border-bottom: 1.5px solid #0293A7;
-  }
-  .home_adopt-stories .slide .home_pet-story {
-    width: 80%;
-    margin: 0;
-    margin-right: 10%;
-    border-radius: 0 8px 8px 0;
-    border: none;
-    border-right: 1.5px solid #0293A7;
-    border-bottom: 1.5px solid #0293A7;
-    border-top: 1.5px solid #0293A7;
   }
 }
 

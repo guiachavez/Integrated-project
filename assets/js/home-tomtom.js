@@ -1,6 +1,7 @@
 
 import { getFirestore, collection, getDocs, getDoc, doc, query, where, limit } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js'
 import { app } from './config.js'
+import { globalShowPosts } from './global-functions.js'
 
 const db = getFirestore(app);
 
@@ -270,6 +271,25 @@ function loadLocationOfCenter() {
     });
 }
 
+
+// Set Radius
+const setRadius = document.getElementById("setRadius");
+const radiusValue = document.getElementById("radiusValue");
+const applyRadius = document.getElementById("home_apply-radius");
+
+setRadius.addEventListener("input", () => {
+  radiusValue.innerHTML = setRadius.value;
+  radius = setRadius.value;
+  console.log(radius);
+});
+
+applyRadius.addEventListener("click", () => {
+  orgList.innerHTML = "";
+  setupMap();
+  loadLocationOfCenter();
+});
+
+
 /* featured pet using location =============================== */
 const pets = [];
 
@@ -304,24 +324,6 @@ function featuredPet(checklocation) {
       console.log('Error getting pet data:', error);
     });
 }
-
-
-// Set Radius
-const setRadius = document.getElementById("setRadius");
-const radiusValue = document.getElementById("radiusValue");
-const applyRadius = document.getElementById("home_apply-radius");
-
-setRadius.addEventListener("input", () => {
-  radiusValue.innerHTML = setRadius.value;
-  radius = setRadius.value;
-  console.log(radius);
-});
-
-applyRadius.addEventListener("click", () => {
-  orgList.innerHTML = "";
-  setupMap();
-  loadLocationOfCenter();
-});
 
 function createCarousel(pets) {
   const carouselContainer = document.querySelector('.carousel-container');
@@ -358,13 +360,13 @@ function createCarousel(pets) {
     
     // Append pet div to the carousel container
     carousel.appendChild(petDiv);
-    carousel.style.maxWidth = "700px";
-    carousel.style.maxHeight = "700px";
+    // carousel.style.maxWidth = "700px";
+    // carousel.style.maxHeight = "700px";
 
     carouselContainer.appendChild(carousel);
 
-    carouselContainer.style.display = 'inline-block';
-    carouselContainer.style.margin = "auto 0";
+    // carouselContainer.style.display = 'inline-block';
+    // carouselContainer.style.margin = "auto 0";
   }); 
 
     // Initialize the Slick Carousel
@@ -406,6 +408,24 @@ function createCarousel(pets) {
   carouselContainer.style.display = 'block';
 }
          
+/* featured user story ======================= */
+
+const journeyArr = [];
+const adoptionJourneyCollection = collection(db, 'adoptionJourney');
+const q = query(adoptionJourneyCollection, limit(4));
+
+globalShowPosts(q)
+
+setTimeout(function() {
+  $('.home_adopt-stories #stories').not('.slick-initialized').slick({
+    infinite: true,
+    arrows: true,
+    slidesToShow: 1,
+    slidesToScroll: 1
+  });
+}, 1000)
+
+
 
 // __main__
 function main() {
