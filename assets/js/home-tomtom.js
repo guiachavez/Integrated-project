@@ -40,7 +40,6 @@ function storeUserLocation(location) {
   loadLocationOfCenter();
 
   /* reverse geocoding====================================== */
-  console.log(userLocation)
 
   const latitude = userLocation[1];
   const longitude = userLocation[0];
@@ -272,6 +271,7 @@ function loadLocationOfCenter() {
     secret: token,
   });
 
+  console.log(userLocation)
   let userLocationString =
     userLocation[1].toString() + ", " + userLocation[0].toString();
 
@@ -492,9 +492,7 @@ var searchBoxOptions = {
 };
 
 var ttSearchBoxLoc = new tt.plugins.SearchBox(tt.services, searchBoxOptions);
-document
-  .querySelector(".home_change-location")
-  .prepend(ttSearchBoxLoc.getSearchBoxHTML());
+document.querySelector(".home_change-location").prepend(ttSearchBoxLoc.getSearchBoxHTML());
 
 ttSearchBoxLoc.on("tomtom.searchbox.resultselected", function (event) {
   console.log(event.data.result.address);
@@ -505,7 +503,31 @@ ttSearchBoxLoc.on("tomtom.searchbox.resultselected", function (event) {
   );
   localStorage.setItem("position", JSON.stringify(event.data.result.position));
   newPosition = event.data.result.position;
+
+  handleResult(JSON.parse(localStorage.getItem('position')))
 });
+
+var handleResult = function(response) {
+      moveMap(response)
+
+      marker = new tt.Marker()
+        .setLngLat(position)
+        .addTo(map)
+}
+
+var moveMap = function(lnglat) {
+    map.flyTo({
+        center: lnglat,
+        zoom: 14
+    })
+
+    userLocation = []
+    userLocation.push(lnglat.lng)
+    userLocation.push(lnglat.lat)
+
+    orgList.innerHTML = '';
+    loadLocationOfCenter()
+}
 
 $(".tt-search-box2-input").attr("placeholder", "Change location");
 
