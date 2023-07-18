@@ -1,4 +1,5 @@
 import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js';
+import { getFirestore, collection, getDocs, getDoc, doc, query, where } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js'
 import { getStorage, ref, uploadBytes, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-storage.js";
 import { app } from './config.js'
 
@@ -77,6 +78,62 @@ export function uploadToStorage(photo, imagesArr, docRef) {
             })
         )
     }  
+}
+
+export function globalShowPosts(sortedQuery) {
+    getDocs(sortedQuery).then((posts) => { 
+        let adposts = []
+        posts.docs.forEach( (doc) => {
+            adposts.push([doc.id, {...doc.data()}])
+        })
+
+        for(const i in adposts) {
+            let petPhoto = adposts[i][1].photo
+            
+            // for date computation
+            let datePosted = adposts[i][1].posted_at.toDate()
+            const oneDay = 24 * 60 * 60 * 1000;
+            const date = new Date();
+            const diffDays = Math.round(Math.abs((date - datePosted) / oneDay));
+            
+            $('#stories').append([
+                $('<div />', {'class': `story story-${i}`, 'data-id': `${adposts[i][0]}`}).append([
+                    $('<div />', {'class': 'story-details'}).append([
+                        $('<div />', {'class': 'story-photos slider'}),
+                        $('<div />').append([
+                            $('<p />', {text: `${adposts[i][1].petName}`, class: 'pet-name'}),
+                            $('<p />', {text: 'Adopted by ', class: 'owner-name'}).append([
+                                $('<span />', {text: `${adposts[i][1].authorDetails.firstName}`})
+                            ]),
+                            $('<p />', {text: `${adposts[i][1].authorDetails.city}, ${adposts[i][1].authorDetails.state}`, class: 'owner-location'})
+                        ])
+                    ]),
+                    $('<div />', {'class': 'story-content'}).append([
+                        $('<p />', {text: `${adposts[i][1].title}`, class: 'story-title'}),
+                        $('<p />', {text: `${adposts[i][1].body}` }),
+                        $('<br />'),
+                        $('<p />', {text: `Posted ${diffDays} day(s) ago.`, class: 'posted-date' })
+                    ])
+                ])
+            ])
+
+            for(const key in petPhoto) {
+                $(`.story-${i} .story-photos`).append([
+                    $('<div />', {'class': `story-img`}).append([
+                        $('<img>', {'src': petPhoto[key]})
+                    ])
+                ])
+            }
+
+            $('.story-photos').not('.slick-initialized').slick({
+                infinite: true,
+                dots: true,
+                arrows: false,
+                slidesToShow: 1,
+                slidesToScroll: 1
+            });
+        }
+    })
 }
 
 // const subNav = document.querySelector(".dd-pet")
