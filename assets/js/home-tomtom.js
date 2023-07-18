@@ -87,7 +87,7 @@ function extractCityFromAddress(address) {
 // Loads the users location and calls the presentUserLocationOnMap function
 function loadUserLocation() {
   if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition(storeUserLocation);    
+    navigator.geolocation.getCurrentPosition(storeUserLocation);   
   }
 }
 
@@ -182,7 +182,9 @@ function showAddressOnMap(address, organization) {
       }
 
       const orgAddress = document.createElement("p");
+      orgAddress.className = "orgAddress"
       orgAddress.textContent = `Address: ${address}`;
+      orgAddress.setAttribute('data-add', `${address}`)
       orgInfo.appendChild(orgAddress);
 
       const orgId = document.createElement("p");
@@ -191,13 +193,13 @@ function showAddressOnMap(address, organization) {
       orgInfo.appendChild(orgId);
 
       // Button to go to the results
-      const goToOrg = document.createElement("a");
+      const goToOrg = document.createElement("button");
       goToOrg.className = "goToOrg";
       var link = document.createTextNode("See pets");
       goToOrg.appendChild(link);
       goToOrg.title = "See the pets available in this shelter";
-      goToOrg.href = "./animals.html";
       goToOrg.target = "_blank";
+      goToOrg.setAttribute('data-org', `${organization.id}`)
       orgInfo.append(goToOrg);
 
       //Display the list
@@ -207,6 +209,33 @@ function showAddressOnMap(address, organization) {
     .catch((error) => {
       console.log("Error:", error);
     });
+}
+
+function passOrg() {
+  $('.goToOrg').on('click', function() {
+    localStorage.setItem('orgId', $(this).data('org'))
+    localStorage.setItem('source', 'shelter')
+
+    let address = $(this).closest('.orgInfo').find('.orgAddress').data('add')
+    const getAdd = `https://api.tomtom.com/search/2/geocode/${address}.json?key=${tomtomAPI}`
+    
+    fetch(getAdd)
+    .then(response => response.json())
+    .then(data => {
+      console.log(data)
+      
+      let locatedAddress = data.results[0].address;
+      let position = data.results[0].position;
+      localStorage.setItem('location-query', JSON.stringify(locatedAddress))
+      localStorage.setItem('position', JSON.stringify(position))
+      localStorage.setItem('type', '')
+
+      window.location.href = 'http://127.0.0.1:5500/main/pet.html'
+    })
+    .catch(error => {
+      console.log(error);
+    }); 
+  })
 }
 
 //Converts the HTML Object into a string so that it can be seen in the list on the left
@@ -262,6 +291,7 @@ function loadLocationOfCenter() {
 
         showAddressOnMap(searchAddress, organization);
         await sleep(400);
+        passOrg()
       }
       setZoomToFit();
     })
