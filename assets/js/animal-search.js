@@ -66,12 +66,17 @@ const homeSearch = () => {
     let color = document.getElementById('color').value;
     let goodWithChildren = JSON.parse(document.querySelector('input[name="children"]:checked').value);
     let houseTrained = JSON.parse(document.querySelector('input[name="trained"]:checked').value);
-    let orgId = document.getElementById('orgId').value;
+    let orgId = localStorage.getItem('orgId')
+    let latlong
 
-    let latlong = `${position.lat},${position.lng}`
+    if (position.lng == undefined) {
+        latlong = `${position.lat},${position.lon}`
+    } else {
+        latlong = `${position.lat},${position.lng}`
+    }
 
-    if (source && type) {
-        console.log('if')
+    if (source || type) {
+
         document.getElementById('pet-type').value = type
         document.getElementById('source').value = source
         //document.getElementById('location').value = locationText.freeformAddress
@@ -88,6 +93,7 @@ const homeSearch = () => {
             ownerDropdown()
             $('.organization').css('display', 'none')
         } else {
+            console.log(orgId)
             searchPetFinder(type, breed, age, gender, size, color, goodWithChildren, houseTrained, orgId, latlong)
             changeAttr(latlong)
             $('.organization').css('display', 'block')
@@ -113,7 +119,13 @@ const loadFilter = ()=> {
     let orgId = document.getElementById('orgId').value;
 
     let position = JSON.parse(localStorage.getItem('position'))
-    let latlong = `${position.lat},${position.lng}`
+    let latlong
+
+    if (position.lng == undefined) {
+        latlong = `${position.lat},${position.lon}`
+    } else {
+        latlong = `${position.lat},${position.lng}`
+    }
     
     //convert values to array
     let ageArr = age.split(",");
@@ -418,6 +430,10 @@ $(document).ready(function() {
     }
     displayOrg()
     loadUserLocation();
+
+    $('#orgId').on('change', function() {
+        localStorage.setItem('orgId', $(this).val())
+    })
 
     searchAnimals.addEventListener('submit', loadFilter)
 
