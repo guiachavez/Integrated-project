@@ -25,7 +25,7 @@ const token = "xyCskdF4PT4wSsvBXXlMdsqrAe3HWuLayJpXmfSn"
 export { petfinderAPI, token }
 
 // Tomtom API
-const tomtomAPI = "4NGblFt1cWFjRxqAPtg7qW4jUfUYjzS1"
+const tomtomAPI = "YZ5FH87G1Ft3YEQLSufyNr44ZQRz4wpc"
 
 export { tomtomAPI }
  
