@@ -21,7 +21,7 @@ const petRef = doc(db, 'animals', pet_id)
 
 console.log(own_id, pet_id)
 class appDetails {
-    constructor(appId, afname, alname, email, petownerId, pofname, polname, poemail, petId, petname, inquired_at, inquiryId, isAccepted, declineReason, adopt, owner, restriction, children, sneeds, vet, typeArr, houseArr, ageArr, genderArr, sizeArr, petactArr) {
+    constructor(appId, afname, alname, email, petownerId, pofname, polname, poemail, petId, petname, inquired_at, inquiryId, isAccepted, declineReason, adopt, owner, restriction, children, sneeds, vet, typeArr, houseArr, ageArr, genderArr, sizeArr, petactArr, adoptionSuccess) {
         this.applicant = {
             applicantId: appId,
             app_firstName: afname,
@@ -52,6 +52,7 @@ class appDetails {
         this.petgender = genderArr;
         this.petsize = sizeArr;
         this.petactivity = petactArr;
+        this.adoptionSuccess = adoptionSuccess;
     }
 }
 
@@ -112,6 +113,7 @@ const getUserDetails = (petownerId, pofname, polname, poemail, petId, petname) =
                 let petGender = document.querySelectorAll('input[id="petgender"]:checked')
                 let petSize = document.querySelectorAll('input[id="petsize"]:checked')
                 let petAct = document.querySelectorAll('input[id="petactivity"]:checked')
+                let adoptionSuccess = 'init'
 
                 // array to store checkbox values
                 let typeArr = [];
@@ -152,7 +154,7 @@ const getUserDetails = (petownerId, pofname, polname, poemail, petId, petname) =
                 }
                 
                 if(localStorage.getItem('source') == 'owner') {
-                    const appdetails = new appDetails(appId, afname.value, alname.value, email.value, petownerId, pofname, polname, poemail, petId, petname, inquired_at, inquiryId, isAccepted, declineReason, adopt, owner, restriction, children, sneeds, vet, typeArr, houseArr, ageArr, genderArr, sizeArr, petactArr)
+                    const appdetails = new appDetails(appId, afname.value, alname.value, email.value, petownerId, pofname, polname, poemail, petId, petname, inquired_at, inquiryId, isAccepted, declineReason, adopt, owner, restriction, children, sneeds, vet, typeArr, houseArr, ageArr, genderArr, sizeArr, petactArr, adoptionSuccess)                        
                     console.log(appdetails)
         
                     setTimeout(() => {
