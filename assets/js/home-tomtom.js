@@ -322,6 +322,7 @@ setRadius.addEventListener("input", () => {
 
 applyRadius.addEventListener("click", () => {
   orgList.innerHTML = "";
+  locationOfAnimalCenter = [];
   setupMap();
   loadLocationOfCenter();
 });
@@ -465,13 +466,6 @@ setTimeout(function () {
   });
 }, 1000);
 
-// __main__
-function main() {
-  loadUserLocation();
-}
-
-window.addEventListener("load", main);
-
 //To change location on map
 
 var searchOptions = {
@@ -505,6 +499,7 @@ ttSearchBoxLoc.on("tomtom.searchbox.resultselected", function (event) {
     JSON.stringify(event.data.result.address)
   );
   localStorage.setItem("position", JSON.stringify(event.data.result.position));
+
   handleResult(JSON.parse(localStorage.getItem("position")));
 });
 
@@ -517,16 +512,25 @@ var handleResult = function (response) {
 };
 
 var moveMap = function (lnglat) {
-  /* map.flyTo({
+  map.flyTo({
     center: lnglat,
     zoom: 14,
-  }); */
+  });
+
+  locationOfAnimalCenter = [];
 
   userLocation = [];
   userLocation.push(lnglat.lng);
   userLocation.push(lnglat.lat);
 
   orgList.innerHTML = "";
-  setupMap();
+  // setupMap();
   loadLocationOfCenter();
 };
+
+// __main__
+function main() {
+  loadUserLocation();
+}
+
+window.addEventListener("load", main);
