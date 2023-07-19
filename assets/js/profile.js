@@ -28,30 +28,26 @@ onAuthStateChanged(auth, (user) => {
             let table = document.getElementById('ownerDetails');
 
             document.querySelector('#photo').src = photo;
-              
-            let row  = `<tr>
-                        <td>${data.email}</td>
-                        <td>${data.firstName}</td>
-                        <td>${data.lastName}</td>
-                        <td>${data.phone}</td>
-                        <td>${data.address.street}</td>
-                        <td>${data.address.city}</td>
-                        <td>${data.address.state}</td>
-                        <td>${data.address.postcode}</td>
-                        <td>${data.address.country}</td>
-                    </tr>`;
-                  
-            table.innerHTML += row
+            document.querySelector('.owner-name').innerHTML = `${data.firstName} ${data.lastName}`
+
+            document.querySelector('.fName').innerHTML = `: ${data.firstName}`
+            document.querySelector('.number').innerHTML = `: ${data.phone}`
+            document.querySelector('.country').innerHTML = `: ${data.address.country}`
+            document.querySelector('.city').innerHTML = `: ${data.address.city}`
+            document.querySelector('.lName').innerHTML = `: ${data.lastName}`
+            document.querySelector('.email').innerHTML = `: ${data.email}`
+            document.querySelector('.postal').innerHTML = `: ${data.address.postcode}`
+            document.querySelector('.address').innerHTML = `: ${data.address.street}, ${data.address.city}`
         })
 
         // query to count inquiries under user who is logged in
         const inq = query(inqRef, where("petowner.petownerId", "==", user.uid));
 
-        getCountFromServer(inq).then(inq_count => {
-            $('#profile-pic').append([
-                $('<p />', {'text': `You have ${inq_count.data().count} inquiries waiting for you!`})
-            ])
-        })
+        // getCountFromServer(inq).then(inq_count => {
+        //     $('#profile-pic').append([
+        //         $('<p />', {'text': `You have ${inq_count.data().count} inquiries waiting for you!`})
+        //     ])
+        // })
 
         // query for matching user uid on animals table to get pets posted/inquired by the user
         const q = query(aniRef, where("owner_id", "==", user.uid));
@@ -60,31 +56,48 @@ onAuthStateChanged(auth, (user) => {
         getDocs(q)
         .then((snapshot) => {
             let animals = []
-    
+            let ctr = 0
             snapshot.docs.forEach( (doc) => {
                 animals.push({...doc.data(), id: doc.id })
 
-                let table = document.getElementById('result');
+                //let table = document.getElementById('result');
                 let data = doc.data();
                 
                 // query to count inquiries for each pet under user logged in
                 const q2 = query(inqRef, where("petId", "==", doc.id), 
-                                            where("petowner.petownerId", "==", user.uid));
+                                        where("petowner.petownerId", "==", user.uid),
+                                        where("isAccepted", "!=", false),
+                                        where("adoptionSuccess", "==", "init"));
 
+                console.log(data)
+
+                
                 getCountFromServer(q2).then(pet_inq_cnt => {
-                    let row  = `<tr>
-                            <td data-id="${doc.id}">${data.name}</td>
-                            <td>${data.age}</td>
-                            <td>${data.size}</td>
-                            <td>${data.gender}</td>
-                            <td>${data.type}</td>
-                            <td>${data.breed}</td>
-                            <td>${data.color}</td>
-                            <td>${data.desc}</td>
-                            <td data-count="${pet_inq_cnt.data().count}" data-id="${doc.id}"><button class="go-to-inquiries">${pet_inq_cnt.data().count}</button></td>
-                        </tr>`;
-                                    
-                    table.innerHTML += row
+                    $('.rehome-pet-wrapper').append([
+                        $('<div />', {'class': `rehome-pet-${ctr++} list`}).append([
+                            $('<div />', {class: 'rehome-pet-list'}).append([
+                                $('<div />', {'class': 'pet-image'}).append([
+                                    $('<img />', {src:  `${data.photo[0]}`})
+                                ]),
+                                $('<div />', {'class': 'description'}).append([
+                                    $('<p />', {text:  `${data.desc}`}),
+                                    $('<div />').append([
+                                        $('<ul />').append([
+                                            $('<li />', {text: `${data.breed}`}),
+                                            $('<li />', {text: `${data.gender}`}),
+                                            $('<li />', {text: `${data.age}`}),
+                                            $('<li />', {text: `${data.size}`}),
+                                            $('<li />', {text: `${data.color}`})
+                                        ])
+                                    ]),
+                                    $('<div />', {'data-count': `${pet_inq_cnt.data().count}`, 'data-id': `${doc.id}`}).append([
+                                        $('<button />', {class: 'go-to-inquiries', text: `${pet_inq_cnt.data().count} Active Inquiries`})
+                                    ])
+                                ])
+                            ]),
+                            $('<div />', {class: 'responseButtonsModal'})
+                        ])
+                    ])
                 })
                 
                 // push the inquiries into array
@@ -100,7 +113,7 @@ onAuthStateChanged(auth, (user) => {
         }).then(() => {
             setTimeout(() => {
                 addButtonsv2(inquiries)
-                addButtons(inquiries)
+                //addButtons(inquiries)
                 
             }, 1000)
         }).catch(err => {
@@ -159,14 +172,11 @@ onAuthStateChanged(auth, (user) => {
                         }
                     
                         let row  = `<tr>
+                                <td>${data.petowner.po_firstName}, ${data.petowner.po_lastName}</td>
+                                <td>${data.petowner.po_email}</td>
                                 <td data-id="${doc.id}">${data2.name}</td>
-                                <td>${data2.age}</td>
-                                <td>${data2.size}</td>
-                                <td>${data2.gender}</td>
                                 <td>${data2.type}</td>
                                 <td>${data2.breed}</td>
-                                <td>${data2.color}</td>
-                                <td>${data2.desc}</td>
                                 <td>${inq_status}</td>
                                 <td>${data.declineReason}</td>
                             </tr>`;
@@ -181,8 +191,8 @@ onAuthStateChanged(auth, (user) => {
 })
 
 // add accept and decline buttons on user profile, by looping through inquiries array
-const addButtons = (inquiries) => { 
-    const resp = document.querySelectorAll('#result tr')
+//const addButtons = (inquiries) => { 
+    // const resp = document.querySelectorAll('#result tr')
 
     // $('#result tr').each(function(){
     //     $(this).find('td[data-count]').each(function(){
@@ -231,7 +241,7 @@ const addButtons = (inquiries) => {
     //         }
     //     })
     // })
-}
+//}
 
 function passId(id) {
     const updateinqRef = doc(db, "inquiries", id);
@@ -240,7 +250,6 @@ function passId(id) {
 
 
 function acceptInquiry(id) {
-    console.log('called')
     const updateinqRef = doc(db, "inquiries", id);
 
     updateDoc(updateinqRef, {
@@ -253,14 +262,13 @@ function acceptInquiry(id) {
 
 // changing button from accept to close
 function changingAcceptToClose(id) {
-    $('button.accept').each(function() {
+    $('p.accept').each(function() {
         if($(this).data('accept') == id) {
             $(this).closest('.response-buttons').append([
-                $('<button />', {'text': 'Close', 'class': 'close outline-btn', 'data-close': `${id}`})
+                $('<p />', {'text': 'Close', 'class': 'close outline-btn', 'data-close': `${id}`})
             ])
-            $(this).closest('.response-buttons').find('.decline').attr('disabled', 'disabled')
+            $(this).closest('.response-buttons').find('.decline').remove();
             $(this).remove();
-            
         }
     })
 
@@ -269,7 +277,7 @@ function changingAcceptToClose(id) {
 
 // call function when close button is clicked
 function closeButton() {
-    $('button.close').each(function() {
+    $('p.close').each(function() {
         $(this).on('click', () => {
             for(let el in inquiries) {
                 if($(this).data('close') == inquiries[el].inquiryId) {
@@ -284,7 +292,7 @@ function closeButton() {
 function declineInquiry(id) {
     const updateinqRef = doc(db, "inquiries", id);
 
-    $('button.decline').each(function() {
+    $('p.decline').each(function() {
         if($(this).data('decline') == id) {
             var reason = prompt("Please input reason for declining")
             if (reason != null) {
@@ -295,8 +303,8 @@ function declineInquiry(id) {
                     declineReason: reason
                 });
 
-                $(this).closest('.response-buttons').find('.decline').attr('disabled', 'disabled')
-                $(this).closest('.response-buttons').find('.accept').attr('disabled', 'disabled')
+                $(this).closest('.response-buttons').find('.decline').html('Declined')
+                $(this).closest('.response-buttons').find('.accept').remove()
             }   
         }
     })
@@ -330,14 +338,14 @@ function closeInquiry(inqId, petId) {
 
 // Updating buttons text to successful or rejected adoption
 function changingToStatus(adoptAsk, inqId) {
-    $('button.close').each(function() {
+    $('p.close').each(function() {
         if($(this).data('close') == inqId) {
             if (adoptAsk == true) {
                 $(this).html('Successful Adoption')
-                $(this).attr('disabled', 'disabled')
+                $(this).removeClass('close')
             } else {
                 $(this).html('Rejected')
-                $(this).attr('disabled', 'disabled')
+                $(this).removeClass('close')
             }
         }
     }) 
@@ -383,12 +391,9 @@ function clickInquiry(petId) {
 }
 
 function loopButtons() {
-    console.log($('.accept').length > 0)
     if($('.accept').length > 0) {
-        console.log($('.accept').length)
-        $('button.accept').each(function() {
+        $('p.accept').each(function() {
             $(this).on('click', () => {
-                console.log($(this))
                 for(let el in inquiries) {
                     if($(this).data('accept') == inquiries[el].inquiryId) {
                         acceptInquiry(inquiries[el].inquiryId)
@@ -399,7 +404,7 @@ function loopButtons() {
     }
 
     if($('.decline').length > 0) {
-        $('button.decline').each(function() {
+        $('p.decline').each(function() {
             $(this).on('click', () => {
                 for(let el in inquiries) {
                     if($(this).data('decline') == inquiries[el].inquiryId) {
@@ -414,107 +419,141 @@ function loopButtons() {
 }
 
 function addButtonsv2(inquiries) {
-    
-
     $('.go-to-inquiries').each(function() {
-        $(this).closest('td[data-count]').each(function(){
+        $(this).closest('[data-count]').each(function(){
             if($(this)[0].attributes[0].value != 0) {
-                $(this).on('click', function() {
-                    let id = $(this).closest('td').attr('data-id')
+                    let id = $(this).closest('div').attr('data-id')
                     const q = query(aniRef, where(documentId(), "==", id));
-                    
-                    getDocs(q).then((snapshot) => {  
-                        let animals = []      
-                        snapshot.docs.forEach( (doc) => {
-                            animals.push({...doc.data(), id: doc.id })
 
-                            $('#animalDetails').append([
-                                $('<img />', {'src': `${animals[0].photo[0]}`, 'width': '20%'}),
-                                $('<div />').append([
-                                    $('<span />', {'text': 'Name: '}).append([
-                                        $('<p/>', {'text': `${animals[0].name}`})
-                                    ]),
-                                    $('<span />', {'text': 'Description: '}).append([
-                                        $('<p/>', {'text': `${animals[0].desc}`})
-                                    ])
-                                ])
-                            ])
-                        })
-                    })
+                    //animalDetails.innerHTML = ''
+                    //responseButtonsModal.innerHTML = ''
 
-                    animalDetails.innerHTML = ''
-                    responseButtonsModal.innerHTML = ''
-
-                    $('.modal').addClass('modal-active')
                     
                     for(let el in inquiries) {
                         if(inquiries[el].petId == id) {
-                            $('#responseButtonsModal').append([
-                                $('<div />').append([
-                                    $('<span />', {'text': 'Name: '}).append([
-                                        $('<p />', {'text': `${inquiries[el].applicant.app_firstName} ${inquiries[el].applicant.app_lastName}`})
-                                    ]),
-                                    $('<span />', {'text': 'Email: '}).append([
-                                        $('<p />', {'text': `${inquiries[el].applicant.app_email}`})
-                                    ])
-                                ])
-                            ])
-
                             if(inquiries[el].isAccepted == 'init') {
-                                $('#responseButtonsModal').append([
-                                    $('<div />', {'class': 'response-buttons'}).append([
-                                        $('<button />', {'text': 'Accept', 'class': 'accept outline-next-btn font', 'data-accept': `${inquiries[el].inquiryId}`}),
-                                        $('<button />', {'text': 'Decline', 'class': 'decline outline-btn-gray font', 'data-decline': `${inquiries[el].inquiryId}`})
+                                $(this).closest('.list').find('.responseButtonsModal').append([
+                                    $('<div />', {class: 'inquiry-list'}).append([
+                                        $('<div />').append([
+                                            $('<span />', {'text': 'Name: '}).append([
+                                                $('<p />', {'text': `${inquiries[el].applicant.app_firstName} ${inquiries[el].applicant.app_lastName}`})
+                                            ]),
+                                            $('<span />', {'text': 'Email: '}).append([
+                                                $('<p />', {'text': `${inquiries[el].applicant.app_email}`})
+                                            ])
+                                        ]),
+                                        $('<div />', {'class': 'response-buttons'}).append([
+                                            $('<p />', {'text': 'Accept', 'class': 'accept outline-next-btn font', 'data-accept': `${inquiries[el].inquiryId}`}),
+                                            $('<p />', {'text': 'Decline', 'class': 'decline outline-btn-gray font', 'data-decline': `${inquiries[el].inquiryId}`})
+                                        ])
                                     ])
-                                    
                                 ])
                             } else if (inquiries[el].isAccepted == true) {
-                                if ($(this).closest('tr').find('td[data-id]')[0].attributes[0].value == inquiries[el].petId) {
+                                if ($(this).closest('div').attr('[data-id]') == inquiries[el].petId) {
                                     if (inquiries[el].adoptionSuccess == true) {
-                                        $('#responseButtonsModal').append([
-                                            $('<div />', {'class': 'response-buttons'}).append([
-                                                $('<button />', {'text': 'Successful Adoption', 'id': `Success-${inquiries[el].inquiryId}`, 'class': 'success outline-btn', 'data-success': `${inquiries[el].inquiryId}`, 'disabled': 'disabled'}),
-                                        
+                                        $(this).closest('.list').find('.responseButtonsModal').append([
+                                            $(this).closest('.list').find('.responseButtonsModal').append([
+                                                $(this).closest('.list').find('.responseButtonsModal').append([
+                                                    $('<div />', {class: 'inquiry-list'}).append([
+                                                        $('<div />').append([
+                                                            $('<span />', {'text': 'Name: '}).append([
+                                                                $('<p />', {'text': `${inquiries[el].applicant.app_firstName} ${inquiries[el].applicant.app_lastName}`})
+                                                            ]),
+                                                            $('<span />', {'text': 'Email: '}).append([
+                                                                $('<p />', {'text': `${inquiries[el].applicant.app_email}`})
+                                                            ])
+                                                        ]),
+                                                        $('<div />', {'class': 'response-buttons'}).append([
+                                                            $('<p />', {'text': 'Successful Adoption', 'id': `Success-${inquiries[el].inquiryId}`, 'class': 'success outline-btn', 'data-success': `${inquiries[el].inquiryId}`, 'disabled': 'disabled'}),
+                                                        ])
+                                                    ])
+                                                ])
                                             ])
                                         ])
                                     } else if (inquiries[el].adoptionSuccess == false) {
-                                        $('#responseButtonsModal').append([
-                                            $('<div />', {'class': 'response-buttons'}).append([
-                                                $('<button />', {'text': 'Rejected', 'id': `Reject-${inquiries[el].inquiryId}`, 'class': 'reject outline-btn-gray', 'data-reject': `${inquiries[el].inquiryId}`, 'disabled': 'disabled'})
-                                        
+                                        $(this).closest('.list').find('.responseButtonsModal').append([
+                                            $(this).closest('.list').find('.responseButtonsModal').append([
+                                                $('<div />', {class: 'inquiry-list'}).append([
+                                                    $('<div />').append([
+                                                        $('<span />', {'text': 'Name: '}).append([
+                                                            $('<p />', {'text': `${inquiries[el].applicant.app_firstName} ${inquiries[el].applicant.app_lastName}`})
+                                                        ]),
+                                                        $('<span />', {'text': 'Email: '}).append([
+                                                            $('<p />', {'text': `${inquiries[el].applicant.app_email}`})
+                                                        ])
+                                                    ]),
+                                                    $(this).closest('.list').find('.responseButtonsModal').append([
+                                                        $('<div />', {'class': 'response-buttons'}).append([
+                                                            $('<p />', {'text': 'Rejected', 'id': `Reject-${inquiries[el].inquiryId}`, 'class': 'reject outline-btn-gray', 'data-reject': `${inquiries[el].inquiryId}`})
+                                                        ])
+                                                    ])
+                                                ])
                                             ])
                                         ])
-                                    } else {
-                                        $('#responseButtonsModal').append([
-                                            $('<div />', {'class': 'response-buttons'}).append([
-                                                $('<button />', {'text': 'Close', 'id': `Close-${inquiries[el].inquiryId}`, 'class': 'close outline-btn', 'data-close': `${inquiries[el].inquiryId}`}),
-                                                $('<button />', {'text': 'Decline', 'id': `Decline-${inquiries[el].inquiryId}`, 'class': 'decline outline-btn-gray', 'data-decline': `${inquiries[el].inquiryId}`, 'disabled': 'disabled'})
                                         
+                                    } else {
+                                        $(this).closest('.list').find('.responseButtonsModal').append([
+                                            $(this).closest('.list').find('.responseButtonsModal').append([
+                                                $('<div />', {class: 'inquiry-list'}).append([
+                                                    $('<div />').append([
+                                                        $('<span />', {'text': 'Name: '}).append([
+                                                            $('<p />', {'text': `${inquiries[el].applicant.app_firstName} ${inquiries[el].applicant.app_lastName}`})
+                                                        ]),
+                                                        $('<span />', {'text': 'Email: '}).append([
+                                                            $('<p />', {'text': `${inquiries[el].applicant.app_email}`})
+                                                        ])
+                                                    ]),
+                                                    $('<div />', {'class': 'response-buttons'}).append([
+                                                        $('<p />', {'text': 'Close', 'id': `Close-${inquiries[el].inquiryId}`, 'class': 'close outline-btn', 'data-close': `${inquiries[el].inquiryId}`})
+                                                    ])
+                                                ])
                                             ])
                                         ])
                                     }
                                 }
-                            } else if(inquiries[el].isAccepted == false) {
-                                $('#responseButtonsModal').append([
-                                    $('<div />', {'class': 'response-buttons'}).append([
-                                        $('<button />', {'text': 'Rejected', 'id': `Reject-${inquiries[el].inquiryId}`, 'class': 'reject  outline-btn-gray', 'data-reject': `${inquiries[el].inquiryId}`, 'disabled': 'disabled'})
-                                
-                                    ])
-                                ])
                             }
                         }
                     }
 
                     loopButtons()
-                })
             }
         })
     })
 
-    
+    showInquiry()
 }
 
 $('.close').on('click', function() {
     $('.modal').removeClass('modal-active')
 })
 
+$('.go-to-inquiries').each(function() {
+    $(this).on('click', function() {
+
+    })
+})
+
+function showInquiry() {
+    var inqButton = document.getElementsByClassName('go-to-inquiries');
+
+    for (let i = 0; i < inqButton.length; i++) {
+        inqButton[i].addEventListener('click', function() {
+            console.log('sdfghj')
+            this.classList.toggle('active');
+
+            // if ($(this).hasClass("active")) {
+            //     $(this).find('img').css('transform', 'rotate(90deg)')
+            // } else {
+            //     $(this).find('img').css('transform', 'rotate(0deg)')
+            // }
+
+            var content = this.closest('.rehome-pet-list').nextElementSibling;
+
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            } 
+        });
+    }
+}
