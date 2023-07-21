@@ -192,32 +192,28 @@ dd.article-content {
 
     .content-container {
         display: grid;
-        grid-template-columns: 1fr 1fr;
         gap: 1rem;
-        column-gap: 2rem;
+        // column-gap: 2rem;
 
         .title, .desc {
             grid-column: 1/2;
         }
-        .upload-images {
-            grid-row: 1/4;
-            grid-column: 2/3;
-        }
-        > div:last-of-type {
+        
+        /* > div:last-of-type {
             grid-column: 2/3;
             flex-direction: row;
             justify-content: flex-end;
             gap: 2rem;
             align-items: center;
-        }
+        } */
 
-        > div {
+        /* > div {
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
-        }
+        } */
 
-        > div a {
+        > div.btn_a a {
             @include mx.raleway-typography(16);
             font-weight: 600;
             color: colors.$neutral-color-grey-d;
@@ -225,7 +221,7 @@ dd.article-content {
     }
 
     textarea {
-        width: 95%;
+        // width: 95%;
         height: 400px;
     }
 
@@ -316,7 +312,45 @@ dd.article-content {
         width:100%;
         box-sizing: border-box;
     }
+
+    /* adoption journey form ========================== */
+    .content-container{
+        box-sizing: border-box;
+        width: 100%;
+    }
+    .content-container .name,
+    .content-container .title,
+    .content-container .desc{
+        box-sizing: border-box;
+        width:100%;
+    }
+
+    .content-container div input[type="text"],
+    .content-container div.desc textarea{
+        box-sizing: border-box;
+        width: 100%;
+    }
+
+    .adopted-story .content-container .btn_a{
+        display: flex;
+        flex-flow: column-reverse !important;
+        align-items: center;
+        justify-items: center;
+        grid-row: 5/6;
+        grid-column: 1/2;
+    }
+    .adopted-story .content-container .btn_a a{
+        margin:1rem 0;
+        align-items: center;
+        
+    }
+    .content-container .btn_a button{
+        margin-bottom: 1rem;
+    }
 }
+
+
+
 
 @media screen and (min-width: mq.$media-mobile-width){
     .adoption-journey-header {
@@ -354,7 +388,37 @@ dd.article-content {
         width:100%;
         box-sizing: border-box;
     }
+
+    /* adoption journey form ========================== */
+
+    
+    .content-container .name,
+    .content-container .title,
+    .content-container .desc{
+        box-sizing: border-box;
+        width:100%;
+    }
+
+    .content-container div input,
+    .content-container div.desc textarea{
+        box-sizing: border-box;
+        width: 100% !important;
+    }
+    
+    .adopted-story .content-container .btn_a{
+        display: flex;
+        gap:1rem;
+        flex-direction: column-reverse !important;
+        grid-row: 5/6;
+        grid-column: 1/2;
+        align-items: center;
+    }
+    .adopted-story .content-container .btn_a a{
+        align-items: center;
+    }
 }
+    
+
 
 
 @media screen and (min-width : mq.$media-tablet-width){
@@ -386,6 +450,50 @@ dd.article-content {
         flex-direction: row;
         gap: 8%;
         padding: 5% 4%
+    }
+
+    /* adoption journey form ========================= */
+
+    .adopted-story .content-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            column-gap: 2rem;
+    }
+    .adopted-story .content-container .btn_a {
+        grid-column: -2/-1;
+        grid-row: 5/6;
+        flex-direction: row !important;
+        justify-content: flex-end;
+        gap: 2rem;
+        align-items: center;
+    }
+         
+    .adopted-story .content-container .upload-images{
+        grid-column: 2/3;
+        grid-row: 1/2 !important;
+        
+    }
+    .adopted-story .content-container .btn_a{
+        flex-flow: row wrap;
+        align-items: center;
+        justify-content: end;
+        
+    }    
+}
+
+
+
+@media screen and (max-width: mq.$media-tablet-width){
+    
+    .adopted-story .content-container .upload-images{
+        grid-row: 4;
+    }
+    .adopted-story .content-container .btn_a{
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        justify-content: center;
     }
 }
 

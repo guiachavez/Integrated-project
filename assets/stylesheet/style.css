@@ -2468,37 +2468,30 @@ dd.article-content p {
 
 .adopted-story .content-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
   gap: 1rem;
-  column-gap: 2rem;
+  /* > div:last-of-type {
+      grid-column: 2/3;
+      flex-direction: row;
+      justify-content: flex-end;
+      gap: 2rem;
+      align-items: center;
+  } */
+  /* > div {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+  } */
 }
 .adopted-story .content-container .title, .adopted-story .content-container .desc {
   grid-column: 1/2;
 }
-.adopted-story .content-container .upload-images {
-  grid-row: 1/4;
-  grid-column: 2/3;
-}
-.adopted-story .content-container > div:last-of-type {
-  grid-column: 2/3;
-  flex-direction: row;
-  justify-content: flex-end;
-  gap: 2rem;
-  align-items: center;
-}
-.adopted-story .content-container > div {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-.adopted-story .content-container > div a {
+.adopted-story .content-container > div.btn_a a {
   font-family: "Raleway";
   font-size: 16px;
   font-weight: 600;
   color: #6a6a6a;
 }
 .adopted-story textarea {
-  width: 95%;
   height: 400px;
 }
 .adopted-story input[type=text] {
@@ -2577,6 +2570,37 @@ dd.article-content p {
     width: 100%;
     box-sizing: border-box;
   }
+  /* adoption journey form ========================== */
+  .content-container {
+    box-sizing: border-box;
+    width: 100%;
+  }
+  .content-container .name,
+  .content-container .title,
+  .content-container .desc {
+    box-sizing: border-box;
+    width: 100%;
+  }
+  .content-container div input[type=text],
+  .content-container div.desc textarea {
+    box-sizing: border-box;
+    width: 100%;
+  }
+  .adopted-story .content-container .btn_a {
+    display: flex;
+    flex-flow: column-reverse !important;
+    align-items: center;
+    justify-items: center;
+    grid-row: 5/6;
+    grid-column: 1/2;
+  }
+  .adopted-story .content-container .btn_a a {
+    margin: 1rem 0;
+    align-items: center;
+  }
+  .content-container .btn_a button {
+    margin-bottom: 1rem;
+  }
 }
 @media screen and (min-width: 460px) {
   .adoption-journey-header {
@@ -2609,6 +2633,29 @@ dd.article-content p {
     width: 100%;
     box-sizing: border-box;
   }
+  /* adoption journey form ========================== */
+  .content-container .name,
+  .content-container .title,
+  .content-container .desc {
+    box-sizing: border-box;
+    width: 100%;
+  }
+  .content-container div input,
+  .content-container div.desc textarea {
+    box-sizing: border-box;
+    width: 100% !important;
+  }
+  .adopted-story .content-container .btn_a {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column-reverse !important;
+    grid-row: 5/6;
+    grid-column: 1/2;
+    align-items: center;
+  }
+  .adopted-story .content-container .btn_a a {
+    align-items: center;
+  }
 }
 @media screen and (min-width: 820px) {
   .adoption-journey-header {
@@ -2637,6 +2684,41 @@ dd.article-content p {
     flex-direction: row;
     gap: 8%;
     padding: 5% 4%;
+  }
+  /* adoption journey form ========================= */
+  .adopted-story .content-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    column-gap: 2rem;
+  }
+  .adopted-story .content-container .btn_a {
+    grid-column: -2/-1;
+    grid-row: 5/6;
+    flex-direction: row !important;
+    justify-content: flex-end;
+    gap: 2rem;
+    align-items: center;
+  }
+  .adopted-story .content-container .upload-images {
+    grid-column: 2/3;
+    grid-row: 1/2 !important;
+  }
+  .adopted-story .content-container .btn_a {
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: end;
+  }
+}
+@media screen and (max-width: 820px) {
+  .adopted-story .content-container .upload-images {
+    grid-row: 4;
+  }
+  .adopted-story .content-container .btn_a {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
   }
 }
 @media screen and (min-width: 1200px) {
