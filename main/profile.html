@@ -17,15 +17,7 @@
         <main class="user-profile-main">
             <section class="modal">
                 <div class="modal-content">
-                    <div class="close">
-                        <img src="./../assets/icons/exit.png" alt="">
-                    </div>
-
-                    <div id="animalDetails"></div>
-                    <div id="responseButtonsModal" ></div>
                 </div>
-                
-               
             </section>
             <section>
                 <ul class="nav nav-tabs" id="section-tab">
@@ -42,34 +34,41 @@
             </section>
 
             <section id="section-1" class="content current about">
-                <div id="profile-pic">
-                    <img class="card-img-top" id="photo" width="250" height="300">
+                <div class="section-wrapper">
+                    <div class="owner-main-images">
+                        <div id="profile-pic">
+                            <img class="card-img-top" id="photo">
+                        </div>
+
+                        <p class="owner-name"></p>
+                        
+                        <button type="submit" class="logout">Sign Out</button>
+                    </div>
+                    
+
+                    <div class="owner-details-wrapper">
+                        <div class="owner-details">
+                            <div>
+                                <p><span>First Name</span><span class="fName"></span></p>
+                                <p><span>Phone Number</span><span class="number"></span></p>
+                                <p><span>Country</span><span class="country"></span></p>
+                                <p><span>City</span><span class="city"></span></p>
+                            </div>
+
+                            <div>
+                                <p><span>Last Name</span><span class="lName"></span></p>
+                                <p><span>E-mail</span> <span class="email"></span></p>
+                                <p><span>Postal Code</span><span class="postal"></span></p>
+                                <p><span>Address</span><span class="address"></span></p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                
-                <div>
-                    <table class="table is-striped is-narrow is-hoverable is-fullwidth">
-                        <thead>
-                        <tr>
-                            <th>Email</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Contact Number</th>
-                            <th>Address</th>
-                        </tr>
-                        </thead>
-                        <tbody id="ownerDetails">
-                        </tbody>
-                    </table>
-                </div>
-                
-                <button type="submit" class="logout">logout</button>
             </section>
 
             <section id="section-2" class="content">
-                <h1> ACTIVITIES </h1>
-                <h2> Animals posted </h2>
-
-                <table class="table is-striped is-narrow is-hoverable is-fullwidth">
+                <div class="rehome-pet-wrapper"></div>
+                <!-- <table class="table is-striped is-narrow is-hoverable is-fullwidth">
                     <thead>
                     <tr>
                         <th>Name</th>
@@ -86,24 +85,19 @@
                     </thead>
                     <tbody id="result">
                     </tbody>
-                </table>
+                </table> -->
             </section>
 
             <section id="section-3" class="content">
-                <h2> Animals inquired </h2>
-
                 <table class="table is-striped is-narrow is-hoverable is-fullwidth">
                     <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Age</th>
-                        <th>Size</th>
-                        <th>Gender</th>
+                        <th>Owner Name</th>
+                        <th>Owner E-mail</th>
+                        <th>Pet Name</th>
                         <th>Type</th>
                         <th>Breed</th>
-                        <th>Color</th>
-                        <th>Description</th>
-                        <th>Status</th> 
+                        <th>Inquiry Status</th> 
                         <th>Decline Reason</th> 
                     </tr>
                     

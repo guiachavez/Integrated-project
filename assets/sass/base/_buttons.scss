@@ -47,6 +47,14 @@ button.filled-next-btn:disabled{
     @include mx.button-style(colors.$neutral-color-grey-l, colors.$neutral-color-grey, colors.$neutral-color-grey-l);
 }
 
+button.grayscale-outline-btn {
+    @include mx.button-style(colors.$neutral-color-white, colors.$neutral-color-grey-d, colors.$neutral-color-grey-d);
+}
+
+button.grayscale-outline-btn:hover {
+    @include mx.button-style(colors.$neutral-color-grey-d, colors.$neutral-color-white, colors.$neutral-color-grey-d);
+}
+
 // Outline button
 button.outline-btn,
 button.outline-next-btn,

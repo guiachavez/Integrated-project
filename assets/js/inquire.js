@@ -21,7 +21,7 @@ const petRef = doc(db, 'animals', pet_id)
 
 console.log(own_id, pet_id)
 class appDetails {
-    constructor(appId, afname, alname, email, petownerId, pofname, polname, petId, petname, inquired_at, inquiryId, isAccepted, declineReason, adopt, owner, restriction, children, sneeds, vet, typeArr, houseArr, ageArr, genderArr, sizeArr, petactArr) {
+    constructor(appId, afname, alname, email, petownerId, pofname, polname, poemail, petId, petname, inquired_at, inquiryId, isAccepted, declineReason, adopt, owner, restriction, children, sneeds, vet, typeArr, houseArr, ageArr, genderArr, sizeArr, petactArr, adoptionSuccess) {
         this.applicant = {
             applicantId: appId,
             app_firstName: afname,
@@ -31,7 +31,8 @@ class appDetails {
         this.petowner = {
             petownerId: petownerId,
             po_firstName: pofname,
-            po_lastName: polname
+            po_lastName: polname,
+            po_email: poemail
         };
         this.petId = petId;
         this.petname = petname;
@@ -51,6 +52,7 @@ class appDetails {
         this.petgender = genderArr;
         this.petsize = sizeArr;
         this.petactivity = petactArr;
+        this.adoptionSuccess = adoptionSuccess;
     }
 }
 
@@ -69,7 +71,7 @@ let pcode = document.getElementById('app-pcode');
 let street = document.getElementById('app-street');
 
 
-const getUserDetails = (petownerId, pofname, polname, petId, petname) => {
+const getUserDetails = (petownerId, pofname, polname, poemail, petId, petname) => {
     onAuthStateChanged(auth, (user) => {
         if (user) {
             const appRef = doc(db, "accounts", user.uid); 
@@ -111,6 +113,7 @@ const getUserDetails = (petownerId, pofname, polname, petId, petname) => {
                 let petGender = document.querySelectorAll('input[id="petgender"]:checked')
                 let petSize = document.querySelectorAll('input[id="petsize"]:checked')
                 let petAct = document.querySelectorAll('input[id="petactivity"]:checked')
+                let adoptionSuccess = 'init'
 
                 // array to store checkbox values
                 let typeArr = [];
@@ -151,7 +154,7 @@ const getUserDetails = (petownerId, pofname, polname, petId, petname) => {
                 }
                 
                 if(localStorage.getItem('source') == 'owner') {
-                    const appdetails = new appDetails(appId, afname.value, alname.value, email.value, petownerId, pofname, polname, petId, petname, inquired_at, inquiryId, isAccepted, declineReason, adopt, owner, restriction, children, sneeds, vet, typeArr, houseArr, ageArr, genderArr, sizeArr, petactArr)
+                    const appdetails = new appDetails(appId, afname.value, alname.value, email.value, petownerId, pofname, polname, poemail, petId, petname, inquired_at, inquiryId, isAccepted, declineReason, adopt, owner, restriction, children, sneeds, vet, typeArr, houseArr, ageArr, genderArr, sizeArr, petactArr, adoptionSuccess)                        
                     console.log(appdetails)
         
                     setTimeout(() => {
@@ -184,6 +187,7 @@ if(localStorage.getItem('source') == 'owner') {
         let petownerId = owndata.uid;
         let pofname = owndata.firstName;
         let polname = owndata.lastName;
+        let poemail = owndata.email
 
 
         getDoc(petRef).then(petSnap => {
@@ -193,7 +197,7 @@ if(localStorage.getItem('source') == 'owner') {
             let petId = petSnap.id;
             let petname = petdata.name;
 
-            getUserDetails(petownerId, pofname, polname, petId, petname)
+            getUserDetails(petownerId, pofname, polname, poemail, petId, petname)
         })
     })
 } else if (localStorage.getItem('source') == 'shelter') {
