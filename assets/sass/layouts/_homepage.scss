@@ -196,18 +196,19 @@
       border-radius: 0.5rem;
     }
 
-    .slick-prev, .slick-next {
+    .slick-prev,
+    .slick-next {
       top: 150px;
     }
-  
+
     .slick-prev {
       left: -5rem;
     }
-  
+
     .slick-next {
       right: -5rem;
     }
-  
+
     .slick-track {
       gap: 2rem;
     }
@@ -296,7 +297,7 @@
   }
 
   .orgId {
-    display: none;
+    display: block;
   }
 
   @media screen and (min-width: query.$media-tablet-width) {
@@ -360,6 +361,10 @@
     .orgList .orgInfo:hover {
       background-color: colors.$primary-color-10;
       border-radius: 8px 8px 0 0;
+    }
+
+    .orgList .orgInfo:active {
+      background-color: orange;
     }
 
     .goToOrg {
