@@ -33,7 +33,7 @@ import { tomtomAPI } from "./config.js";
 // Variables to display on the list on the left
 const orgList = document.getElementById("orgList");
 
-let radius = 10;
+let radius = 5;
 
 // MARK: - TomTom (Map View) functions ==========================================================================
 
