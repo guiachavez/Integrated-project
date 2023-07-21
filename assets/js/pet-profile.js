@@ -44,12 +44,20 @@ if(localStorage.getItem('source') == 'owner') {
             document.querySelector('.pet-age').innerHTML = `${data.age}`
             document.querySelector('.pet-size').innerHTML = `${data.size}`
             document.querySelector('.pet-organization').innerHTML = `${ofname}, ${olname}`
-            document.querySelector('.pet-breed').innerHTML = `${data.species}`
+            document.querySelector('.pet-breed').innerHTML = `${data.breed}`
             document.querySelector('.pet-gender').innerHTML = `${data.gender}`
 
-            $('.pet-details').append([
-                $('<button />', {'text': 'Apply to Adopt', 'class': 'filled-default font','onclick': `window.location.href='pet-inquiries.html?pet_id=${id}&own_id=${owndata.uid}'`})
-            ])
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    $('.pet-details').append([
+                        $('<button />', {'text': 'Apply to Adopt', 'class': 'filled-default font','onclick': `window.location.href='pet-inquiries.html?pet_id=${id}&own_id=${owndata.uid}'`})
+                    ])
+                } else {
+                    $('.pet-details').append([
+                        $('<button />', {'text': 'Apply to Adopt', 'class': 'filled-default font','onclick': `window.location.href='login.html'`})
+                    ])
+                }
+            })
         })
 
         for(let x in photoArr) {

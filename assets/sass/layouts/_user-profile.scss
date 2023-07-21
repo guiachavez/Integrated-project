@@ -77,7 +77,79 @@
         }
     }
 
-    
+    .modal-content {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .adoption-confirmation {
+        display: flex;
+        flex-direction: column;
+        row-gap: 1rem;
+
+        label {
+            display: flex;
+        }
+
+        button {
+            display: block;
+            margin: auto;
+        }
+
+        textarea {
+
+        }
+    }
+
+    .radio-response {
+        display: flex;
+        justify-content: center;
+        gap: 2em;
+    }
+
+    .reason {
+        visibility: hidden;
+        transition: visibility 0.5s ease, max-height 0.5s ease;
+        max-height: 0;
+        overflow: hidden;
+
+        position: relative;
+        left: 50%;
+        transform: translate(-50%);
+    }
+
+    .reason.display {
+        visibility: visible;
+        max-height: 10rem;
+    }
+
+    button.reject {
+        color: colors.$accent-color-75;
+    }
+
+    button.success {
+        color: colors.$semantic-green-100;
+    }
+
+    .decline-modal h2 {
+        color: colors.$accent-color-75;
+    }
+    .decline-confirmation {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 1rem;
+
+        textarea {
+            display: block;
+            visibility: visible;
+            max-height: 10rem;
+        }
+    }
+    button.decline[disabled=disabled]:hover {
+        cursor: auto;
+    }
 }
 
 .rehome-pet-wrapper {
@@ -112,6 +184,7 @@
         .description {
             flex-wrap: wrap;
             padding: 0 1rem;
+            width: 100%;
 
             > div:last-of-type {
                 position: relative;
@@ -139,36 +212,36 @@
     }
 
     .responseButtonsModal {
-        p.accept, p.decline, p.close {
+        button.accept, button.decline, button.close {
             font-weight: 900;
             cursor: pointer;
         }
 
-        p.accept {
+        button.accept {
             color: colors.$semantic-green-100;
         }
 
-        p.close {
+        button.close {
             color: colors.$primary-color-main;
         }
 
-        p.accept:hover {
+        button.accept:hover {
             text-decoration: underline;
             text-decoration-color: colors.$semantic-green-100;
             text-decoration-thickness: 2px;
         }
 
-        p.close:hover {
+        button.close:hover {
             text-decoration: underline;
             text-decoration-color: colors.$primary-color-main;
             text-decoration-thickness: 2px;
         }
 
-        p.decline {
+        button.decline {
             color: colors.$semantic-red-100;
         }
 
-        p.decline:hover {
+        button.decline:hover:not([disabled="disabled"]) {
             text-decoration: underline;
             text-decoration-color: colors.$semantic-red-100;
             text-decoration-thickness: 2px;
@@ -182,6 +255,13 @@
             gap: 2rem;
             width: 55%;
             margin-left: auto;
+        }
+
+        .response-buttons button {
+            background-color: transparent;
+            border: none;
+            outline: none;
+            width: fit-content;
         }
     }
 
