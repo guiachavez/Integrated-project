@@ -162,9 +162,9 @@ function showAddressOnMap(address, organization) {
         const newMarker = new tt.Marker()
           .setLngLat([longitude, latitude])
           .setPopup(popup)
-          .addTo(map)
-          .getElement()
-          .setAttribute("data-org", organization.id);
+          .addTo(map);
+
+        newMarker.getElement().setAttribute("data-org", organization.id);
 
         //Adds marker and popup to map
         animalCenterMarker.push(newMarker);
@@ -216,13 +216,6 @@ function showAddressOnMap(address, organization) {
       goToOrg.target = "_blank";
       goToOrg.setAttribute("data-org", `${organization.id}`);
       orgInfo.append(goToOrg);
-
-      /* const seeOnMap = document.createElement("button");
-      seeOnMap.className = "seeOnMap";
-      seeOnMap.textContent = "See on map";
-      seeOnMap.setAttribute("data-org", organization.id);
-      seeOnMap.addEventListener("click", handleClickToPopup);
-      orgInfo.append(seeOnMap);*/
 
       //Display the list
       orgList.innerHTML += outerHTML(orgInfo);

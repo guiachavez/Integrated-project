@@ -1001,9 +1001,6 @@ footer h2 {
     background-color: #E6F4F6;
     border-radius: 8px 8px 0 0;
   }
-  .home_map-box .orgList .orgInfo:active {
-    background-color: orange;
-  }
   .home_map-box .goToOrg {
     font-size: 13px;
     font-weight: bold;
