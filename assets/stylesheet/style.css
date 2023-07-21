@@ -2543,6 +2543,102 @@ dd.article-content p {
   padding-right: 2rem;
 }
 
+@media screen and (max-width: 460px) {
+  .adoption-journey-header {
+    flex-flow: column nowrap;
+    gap: 1rem;
+  }
+  #text_div {
+    text-align: center;
+  }
+  .adoption-journey-content {
+    flex-flow: column-reverse nowrap;
+    justify-items: center;
+    align-items: center;
+  }
+  .stories-wrapper {
+    align-items: center;
+    justify-content: center;
+  }
+  /*  #stories{
+       align-content: center;
+       align-items: center;
+   } */
+  .story {
+    flex-direction: column;
+  }
+  .adoption-journey-content aside {
+    width: 60%;
+  }
+  .adoption-journey-content aside h2 {
+    text-align: center;
+  }
+  .story-details {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+@media screen and (min-width: 460px) {
+  .adoption-journey-header {
+    flex-flow: column nowrap;
+    gap: 1rem;
+  }
+  #text_div {
+    text-align: center;
+  }
+  .adoption-journey-content {
+    flex-flow: column-reverse nowrap;
+    justify-items: center;
+    align-items: center;
+  }
+  .stories-wrapper {
+    align-items: center;
+    justify-content: center;
+  }
+  .story {
+    flex-direction: column;
+  }
+  .adoption-journey-content aside {
+    width: 60%;
+    margin-bottom: calc(40px + 1rem);
+  }
+  .adoption-journey-content aside h2 {
+    text-align: center;
+  }
+  .story-details {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+@media screen and (min-width: 820px) {
+  .adoption-journey-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  #text_div {
+    text-align: left;
+  }
+  #btn_div {
+    padding-right: 1rem;
+  }
+  aside {
+    padding-left: 1rem;
+  }
+  .adoption-journey-content aside h2 {
+    text-align: left;
+  }
+  .stories-wrapper {
+    padding-right: 1rem;
+  }
+  .adoption-journey-content {
+    display: flex;
+    flex-direction: row;
+    gap: 8%;
+    padding: 5% 4%;
+  }
+}
 @media screen and (min-width: 1200px) {
   .adoption-journey-content,
   .adoption-journey-header,

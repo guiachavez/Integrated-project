@@ -1,7 +1,11 @@
 @use '../abstracts/variables/colors' as colors;
 @use '../abstracts/mixins/mixins' as mx;
+@use '../abstracts/variables/media_queries' as mq;
 
 /* Adoption Journey ========================== */
+
+
+
 
 .adoption-journey-header-wrapper {
     background-color: colors.$accent-color-10;
@@ -272,6 +276,118 @@ dd.article-content {
 }
 
 
+@media screen and (max-width: mq.$media-mobile-width){
+    .adoption-journey-header {
+        flex-flow: column nowrap;
+        // align-items: start;
+        gap:1rem;
+    }
+    #text_div{
+        text-align: center;
+    }
+
+    .adoption-journey-content{
+        flex-flow: column-reverse nowrap;
+        justify-items: center;
+        align-items: center;
+    }
+
+    .stories-wrapper{
+        align-items: center;
+        justify-content: center;
+    }
+   /*  #stories{
+        align-content: center;
+        align-items: center;
+    } */
+    .story{
+        flex-direction: column;
+    
+    }
+
+    .adoption-journey-content
+    aside{
+        width: 60%;
+    }
+    .adoption-journey-content aside h2{
+        text-align: center;
+    }
+    .story-details{
+        width:100%;
+        box-sizing: border-box;
+    }
+}
+
+@media screen and (min-width: mq.$media-mobile-width){
+    .adoption-journey-header {
+        flex-flow: column nowrap;
+        gap:1rem;
+    }
+    #text_div{
+        text-align: center;
+    }
+
+    .adoption-journey-content{
+        flex-flow: column-reverse nowrap;
+        justify-items: center;
+        align-items: center;
+    }
+
+    .stories-wrapper{
+        align-items: center;
+        justify-content: center;
+    }
+    .story{
+        flex-direction: column;
+    
+    }
+
+    .adoption-journey-content
+    aside{
+        width: 60%;
+        margin-bottom: calc(40px + 1rem);
+    }
+    .adoption-journey-content aside h2{
+        text-align: center;
+    }
+    .story-details{
+        width:100%;
+        box-sizing: border-box;
+    }
+}
+
+
+@media screen and (min-width : mq.$media-tablet-width){
+    .adoption-journey-header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+    #text_div{
+        text-align: left;
+    }
+    #btn_div{
+        padding-right:1rem;
+    }
+
+    aside{
+        padding-left: 1rem;
+    }
+
+    .adoption-journey-content aside h2{
+        text-align: left;
+    }
+    .stories-wrapper{
+        padding-right: 1rem;
+    }
+    .adoption-journey-content {
+        display: flex;
+        flex-direction: row;
+        gap: 8%;
+        padding: 5% 4%
+    }
+}
 
 @media screen and (min-width: 1200px) {
     .adoption-journey-content,
@@ -279,4 +395,6 @@ dd.article-content {
     .adoption-journey-form {
         @include mx.maxwidth;
     }
+
+    
 }
