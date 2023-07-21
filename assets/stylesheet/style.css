@@ -61,6 +61,24 @@ button.filled-next-btn:disabled {
   border-radius: 3rem;
 }
 
+button.grayscale-outline-btn {
+  background-color: #FFFFFF;
+  color: #6a6a6a;
+  border: 2px solid #6a6a6a;
+  width: 172px;
+  height: 48px;
+  border-radius: 3rem;
+}
+
+button.grayscale-outline-btn:hover {
+  background-color: #6a6a6a;
+  color: #FFFFFF;
+  border: 2px solid #6a6a6a;
+  width: 172px;
+  height: 48px;
+  border-radius: 3rem;
+}
+
 button.outline-btn,
 button.outline-next-btn,
 button.outline-mob-btn,
@@ -1818,6 +1836,64 @@ input:checked + .radio-slider:before {
 .user-profile-main .owner-details-wrapper .owner-details p {
   display: flex;
 }
+.user-profile-main .modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.user-profile-main .adoption-confirmation {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+.user-profile-main .adoption-confirmation label {
+  display: flex;
+}
+.user-profile-main .adoption-confirmation button {
+  display: block;
+  margin: auto;
+}
+.user-profile-main .radio-response {
+  display: flex;
+  justify-content: center;
+  gap: 2em;
+}
+.user-profile-main .reason {
+  visibility: hidden;
+  transition: visibility 0.5s ease, max-height 0.5s ease;
+  max-height: 0;
+  overflow: hidden;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
+}
+.user-profile-main .reason.display {
+  visibility: visible;
+  max-height: 10rem;
+}
+.user-profile-main button.reject {
+  color: #94390F;
+}
+.user-profile-main button.success {
+  color: #398C1C;
+}
+.user-profile-main .decline-modal h2 {
+  color: #94390F;
+}
+.user-profile-main .decline-confirmation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1rem;
+}
+.user-profile-main .decline-confirmation textarea {
+  display: block;
+  visibility: visible;
+  max-height: 10rem;
+}
+.user-profile-main button.decline[disabled=disabled]:hover {
+  cursor: auto;
+}
 
 .rehome-pet-wrapper {
   display: flex;
@@ -1848,6 +1924,7 @@ input:checked + .radio-slider:before {
 .rehome-pet-wrapper .rehome-pet-list .description {
   flex-wrap: wrap;
   padding: 0 1rem;
+  width: 100%;
 }
 .rehome-pet-wrapper .rehome-pet-list .description > div:last-of-type {
   position: relative;
@@ -1868,30 +1945,30 @@ input:checked + .radio-slider:before {
 .rehome-pet-wrapper .rehome-pet-list ul li {
   padding: 0.3rem;
 }
-.rehome-pet-wrapper .responseButtonsModal p.accept, .rehome-pet-wrapper .responseButtonsModal p.decline, .rehome-pet-wrapper .responseButtonsModal p.close {
+.rehome-pet-wrapper .responseButtonsModal button.accept, .rehome-pet-wrapper .responseButtonsModal button.decline, .rehome-pet-wrapper .responseButtonsModal button.close {
   font-weight: 900;
   cursor: pointer;
 }
-.rehome-pet-wrapper .responseButtonsModal p.accept {
+.rehome-pet-wrapper .responseButtonsModal button.accept {
   color: #398C1C;
 }
-.rehome-pet-wrapper .responseButtonsModal p.close {
+.rehome-pet-wrapper .responseButtonsModal button.close {
   color: #0293A7;
 }
-.rehome-pet-wrapper .responseButtonsModal p.accept:hover {
+.rehome-pet-wrapper .responseButtonsModal button.accept:hover {
   text-decoration: underline;
   text-decoration-color: #398C1C;
   text-decoration-thickness: 2px;
 }
-.rehome-pet-wrapper .responseButtonsModal p.close:hover {
+.rehome-pet-wrapper .responseButtonsModal button.close:hover {
   text-decoration: underline;
   text-decoration-color: #0293A7;
   text-decoration-thickness: 2px;
 }
-.rehome-pet-wrapper .responseButtonsModal p.decline {
+.rehome-pet-wrapper .responseButtonsModal button.decline {
   color: #991F1F;
 }
-.rehome-pet-wrapper .responseButtonsModal p.decline:hover {
+.rehome-pet-wrapper .responseButtonsModal button.decline:hover:not([disabled=disabled]) {
   text-decoration: underline;
   text-decoration-color: #991F1F;
   text-decoration-thickness: 2px;
@@ -1904,6 +1981,12 @@ input:checked + .radio-slider:before {
   gap: 2rem;
   width: 55%;
   margin-left: auto;
+}
+.rehome-pet-wrapper .responseButtonsModal .response-buttons button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  width: fit-content;
 }
 .rehome-pet-wrapper .responseButtonsModal {
   max-height: 0;
