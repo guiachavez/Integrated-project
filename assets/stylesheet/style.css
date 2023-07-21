@@ -1436,9 +1436,8 @@ ul {
 }
 /* Rehome ==================================== */
 .content-center {
-  display: grid;
-  justify-content: center;
   padding: 0 5%;
+  box-sizing: border-box;
 }
 
 .rehome-main h2 {
@@ -1446,7 +1445,8 @@ ul {
   margin-bottom: 1rem;
 }
 .rehome-main .text-input {
-  width: 360px;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 #tab-2, #tab-3 {
@@ -1538,28 +1538,32 @@ ul {
   display: none;
 }
 
-.form-fields {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-}
-
 label {
   display: grid;
   gap: 0.5rem;
 }
 
+#tab-2 {
+  box-sizing: border-box;
+}
+
 .rehome-pet {
   margin: 2rem 0;
+  box-sizing: border-box;
+}
+
+#tab-progress div p span {
+  display: block;
 }
 
 select,
 textarea {
   border: 1px solid #C5C5C5;
-  width: 395px;
   height: 40px;
   outline: 0;
   border-radius: 0.3rem;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .switch {
@@ -1657,6 +1661,7 @@ input:checked + .radio-slider:before {
   justify-content: flex-end;
   gap: 2rem;
   align-items: center;
+  margin: 1rem 0;
 }
 
 #tab-progress.active {
@@ -1734,6 +1739,10 @@ input:checked + .radio-slider:before {
   text-align: center;
 }
 
+option {
+  box-sizing: border-box;
+}
+
 .controls {
   margin-top: 3rem;
 }
@@ -1743,30 +1752,41 @@ input:checked + .radio-slider:before {
   margin-top: 1rem;
 }
 
-@media screen and (max-width: 460px) {
-  .content-center {
-    display: block;
-    width: 100%;
+.rehome-container .col-left {
+  display: none;
+}
+.rehome-container > div {
+  width: 100%;
+}
+.rehome-container > div:nth-child(2) > div:first-of-type {
+  gap: 0.5rem;
+}
+
+.form-fields {
+  display: grid;
+  gap: 1rem;
+}
+
+#tab-2, #tab-3, #tab-progress.active {
+  margin: auto;
+  padding: 2%;
+}
+
+@media screen and (min-width: 460px) {
+  #tab-progress div p span {
+    display: unset;
   }
 }
-@media screen and (max-width: 820px) {
-  .rehome-container .col-left {
-    display: none;
-  }
-  .rehome-container > div {
-    width: 100%;
-  }
-  .rehome-container > div:nth-child(2) > div:first-of-type {
-    gap: 0.5rem;
-  }
+@media screen and (min-width: 820px) {
   .form-fields {
-    display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
   }
-  #tab-2, #tab-3, #tab-progress.active {
-    max-width: 600px;
-    margin: auto;
-    padding: 2%;
+  #ptype {
+    width: 48%;
+  }
+  .rehome-container .col-left {
+    display: unset;
   }
 }
 @media screen and (min-width: 1200px) {
