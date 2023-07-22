@@ -2330,7 +2330,6 @@ fieldset > div {
 .adoption-journey-content aside {
   width: 40%;
   gap: 5%;
-  margin-top: calc(40px + 1rem);
 }
 .adoption-journey-content aside > div:first-of-type {
   border: 1px solid #0293A7;
@@ -2548,15 +2547,23 @@ dd.article-content p {
     flex-flow: column-reverse nowrap;
     justify-items: center;
     align-items: center;
+    position: relative;
   }
   .stories-wrapper {
     align-items: center;
     justify-content: center;
+    margin-top: 3rem;
   }
-  /*  #stories{
-       align-content: center;
-       align-items: center;
-   } */
+  .sort-wrapper {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    margin: 0.5rem;
+  }
+  #stories {
+    margin-top: 3rem;
+  }
   .story {
     flex-direction: column;
   }
@@ -2614,10 +2621,22 @@ dd.article-content p {
     flex-flow: column-reverse nowrap;
     justify-items: center;
     align-items: center;
+    position: relative;
+  }
+  .sort-wrapper {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    margin: 0.5rem 1rem;
   }
   .stories-wrapper {
     align-items: center;
     justify-content: center;
+    margin-top: 3rem;
+  }
+  #stories {
+    margin-top: 3rem;
   }
   .story {
     flex-direction: column;
@@ -2670,18 +2689,29 @@ dd.article-content p {
   #btn_div {
     padding-right: 1rem;
   }
-  aside {
-    padding-left: 1rem;
-  }
+  /* aside{
+      // padding-left: 1rem;
+  } */
   .adoption-journey-content aside h2 {
     text-align: left;
   }
   .stories-wrapper {
     padding-right: 1rem;
+    position: relative;
+    margin: 0;
+  }
+  .sort-wrapper {
+    position: absolute;
+    top: 0;
+    margin-top: 0 !important;
+  }
+  #stories {
+    margin-top: 3.5rem;
   }
   .adoption-journey-content {
     display: flex;
     flex-direction: row;
+    align-items: flex-start !important;
     gap: 8%;
     padding: 5% 4%;
   }
