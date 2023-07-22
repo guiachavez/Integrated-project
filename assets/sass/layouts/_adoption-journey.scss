@@ -313,6 +313,7 @@ dd.article-content {
     .adoption-journey-content
     aside{
         width: 60%;
+        margin-top: 2rem;
     }
     .adoption-journey-content aside h2{
         text-align: center;
@@ -401,6 +402,7 @@ dd.article-content {
     aside{
         width: 60%;
         margin-bottom: calc(40px + 1rem);
+        margin-top: 2rem;
     }
     .adoption-journey-content aside h2{
         text-align: center;
@@ -456,9 +458,10 @@ dd.article-content {
         padding-right:1rem;
     }
 
-    /* aside{
-        // padding-left: 1rem;
-    } */
+    .adoption-journey-content
+    aside{
+        margin-top:0!important;
+    }
 
     .adoption-journey-content aside h2{
         text-align: left;
@@ -474,6 +477,18 @@ dd.article-content {
         margin-top: 0 !important;
         margin-right: 1rem !important;
     }
+
+    .story{
+        flex-flow: row !important;
+        align-items: center;
+    }
+    .story-details{
+        width: 40%;
+        object-fit: contain;
+    }
+   /*  .story-content{
+        width: 70%;
+    } */
     #stories{
         margin-top: 3.5rem;
     }
@@ -530,6 +545,9 @@ dd.article-content {
         justify-content: center;
     }
 }
+
+
+
 
 @media screen and (min-width: 1200px) {
     .adoption-journey-content,
