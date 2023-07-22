@@ -2,9 +2,14 @@
 @use '../abstracts/mixins/mixins' as mx;
 
 /* Global Styling ============================ */
-
 body, h1, h2, p {
     margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .visually-hidden {
