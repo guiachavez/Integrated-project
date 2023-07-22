@@ -227,6 +227,17 @@
             color: colors.$semantic-green-100;
         }
 
+        button.accept::before {
+            content: '';
+            background: url('./../../icons/check.svg');
+            background-repeat: no-repeat;
+            object-fit: cover;
+            width: 22px;
+            height: 22px;
+            display: inline-block;
+            position: relative;
+        }
+
         button.close {
             color: colors.$primary-color-main;
         }
@@ -276,8 +287,11 @@
         overflow: hidden;
         transition: max-height 0.2s ease-out;
 
-        .inquiry-list:first-of-type {
+        .inquiry-list {
             border-top: 1px solid colors.$neutral-color-grey-l;
+        }
+        .inquiry-list:first-of-type {
+            margin-top: 1rem;
         }
 
     }
@@ -396,6 +410,26 @@
     
 }
 
+@media screen and (max-width: 400px) {
+    .user-profile-main {
+        .rehome-pet-wrapper {
+            .responseButtonsModal {
+    
+                .inquiry-list {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 0.5rem;
+
+                    .response-buttons {
+                        width: 100%;
+                        justify-content: space-between;
+                    }
+                }
+            } 
+        }
+    }
+}
+
 @media screen and (max-width: 600px) {
     .user-profile-main {
         .section-wrapper {
@@ -434,7 +468,7 @@
     }
 }
 
-@media screen and (max-width: 1020px) {
+@media screen and (max-width: 1024px) {
     #section-3 table {
         display: block;
         max-width: fit-content;
@@ -446,4 +480,16 @@
             height: 100%;
         }
     }
+
+    .user-profile-main {
+        .rehome-pet-wrapper {
+            .responseButtonsModal {
+
+                .inquiry-list {
+                    width: calc(100% - 1rem);
+                }
+            } 
+        }
+    }
+    
 }

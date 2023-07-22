@@ -1988,6 +1988,16 @@ option {
 .rehome-pet-wrapper .responseButtonsModal button.accept {
   color: #398C1C;
 }
+.rehome-pet-wrapper .responseButtonsModal button.accept::before {
+  content: "";
+  background: url("./../../icons/check.svg");
+  background-repeat: no-repeat;
+  object-fit: cover;
+  width: 22px;
+  height: 22px;
+  display: inline-block;
+  position: relative;
+}
 .rehome-pet-wrapper .responseButtonsModal button.close {
   color: #0293A7;
 }
@@ -2029,8 +2039,11 @@ option {
   overflow: hidden;
   transition: max-height 0.2s ease-out;
 }
-.rehome-pet-wrapper .responseButtonsModal .inquiry-list:first-of-type {
+.rehome-pet-wrapper .responseButtonsModal .inquiry-list {
   border-top: 1px solid #C5C5C5;
+}
+.rehome-pet-wrapper .responseButtonsModal .inquiry-list:first-of-type {
+  margin-top: 1rem;
 }
 
 #section-3 {
@@ -2137,6 +2150,17 @@ option {
     height: fit-content;
   }
 }
+@media screen and (max-width: 400px) {
+  .user-profile-main .rehome-pet-wrapper .responseButtonsModal .inquiry-list {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .user-profile-main .rehome-pet-wrapper .responseButtonsModal .inquiry-list .response-buttons {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
 @media screen and (max-width: 600px) {
   .user-profile-main .section-wrapper {
     flex-direction: column;
@@ -2162,7 +2186,7 @@ option {
     height: 16rem;
   }
 }
-@media screen and (max-width: 1020px) {
+@media screen and (max-width: 1024px) {
   #section-3 table {
     display: block;
     max-width: fit-content;
@@ -2172,6 +2196,9 @@ option {
   }
   #section-3 table td img {
     height: 100%;
+  }
+  .user-profile-main .rehome-pet-wrapper .responseButtonsModal .inquiry-list {
+    width: calc(100% - 1rem);
   }
 }
 /* Pet Application =========================== */
