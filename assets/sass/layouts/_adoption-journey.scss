@@ -381,7 +381,7 @@ dd.article-content {
         z-index: 2;
         top:0;
         right: 0;
-        margin:.5rem 1rem;
+        margin:.5rem;
     }
     .stories-wrapper{
         align-items: center;
@@ -472,6 +472,7 @@ dd.article-content {
         position: absolute;
         top:0;
         margin-top: 0 !important;
+        margin-right: 1rem !important;
     }
     #stories{
         margin-top: 3.5rem;
