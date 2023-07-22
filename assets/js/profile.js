@@ -76,7 +76,8 @@ onAuthStateChanged(auth, (user) => {
                         $('<div />', {'class': `rehome-pet-${ctr++} list`}).append([
                             $('<div />', {class: 'rehome-pet-list'}).append([
                                 $('<div />', {'class': 'pet-image'}).append([
-                                    $('<img />', {src:  `${data.photo[0]}`})
+                                    $('<img />', {src:  `${data.photo[0]}`}),
+                                    $('<p />', {text:  `${data.name}`})
                                 ]),
                                 $('<div />', {'class': 'description'}).append([
                                     $('<p />', {text:  `${data.desc}`}),
@@ -171,9 +172,10 @@ onAuthStateChanged(auth, (user) => {
                         }
                     
                         let row  = `<tr>
+                                <td><img src=${data2.photo[0]}></td>
+                                <td data-id="${doc.id}">${data2.name}</td>
                                 <td>${data.petowner.po_firstName}, ${data.petowner.po_lastName}</td>
                                 <td>${data.petowner.po_email}</td>
-                                <td data-id="${doc.id}">${data2.name}</td>
                                 <td>${data2.type}</td>
                                 <td>${data2.breed}</td>
                                 <td>${inq_status}</td>
