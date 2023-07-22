@@ -2,7 +2,8 @@
 @use '../abstracts/mixins/mixins' as mx;
 
 /* Header section ============================ */
-header {
+header,
+.mobile-nav .mobile-logo {
     background-color: white;
     border-bottom: 1px solid #f0f0f0;
     box-shadow: 0 3px 7px -7px colors.$neutral-color-grey-l;
@@ -13,24 +14,15 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.5rem;
-}
-
-.logo img {
-    width: 170px;
+    padding: 0.5rem 0;
 }
 
 header a {
     padding: 0.5rem;
 }
 
-.hamburger-menu a{
-    display: block;
-}
-
 .main-menu ul.header-link{
     list-style-type: none;
-    display: none;
 }
 
 .main-menu ul li a:hover{
@@ -47,17 +39,6 @@ header a {
     color: colors.$primary-color-main;
     font-weight: 900;
 }
-
-// .login {
-//     display: none;
-//     text-align: center;
-//     border-top: 1px solid colors.$neutral-color-grey;
-//     margin: 2%;
-// }
-
-// .login a {
-//     color: colors.$primary-color-main;
-// }
 
 .find-pet-dd{
     display: none;
@@ -96,46 +77,118 @@ ul.find-pet a{
     background-color: colors.$neutral-color-white;
 }
 
-@media screen and (min-width: 460px) {
+.hamburger-menu {
+    display: none;
+}
 
-    .logo img{
-        width: 200px;
-    }
+.main-menu ul.header-link{
+    display: flex;
+    gap: 1rem;
+}
 
-    .find-pet-dd{
-        position: absolute;
-    }
+.logo img,
+.mobile-logo img {
+    width: 250px;
+}
 
-    .menu{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 3rem;
-        transform: none;
-    }
+.find-pet-dd{
+    position: absolute;
+}
 
-    .hamburger-menu a{
-        display: none;
-    }
+.menu{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3rem;
+    transform: none;
+}
+
+header.menu{
+    display: flex;
+    justify-content: space-between;
+}
+
+.mobile-nav {
+    @include mx.position('absolute');
+
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.3s all ease;
+    -webkit-transition-delay: 0.2s;
+    transition-delay: 0.2s;
     
-    header.menu{
-        display: flex;
-        justify-content: space-between;
+    height: 100vh;
+    padding: 0.5rem 0;
+    background-color: white;
+    z-index: 99999;
+}
+
+@media screen and (min-width: 1500px) {
+    .header-container {
+        max-width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
     }
 
-    .main-menu ul.header-link{
-        display: flex;
-        gap: 1rem;
-    }
-
-    // .login{
-    //     display: block;
-    //     border: unset;
+    // .home_main {
+    //     .home_searchbox, .home_featured, .home_map-box,
+    //     .home_prepare-to-adopt, .home_adopt-stories {
+    //         @include mx.maxwidth;
+    //     }
+        
     // }
 }
 
-@media screen and (min-width: 1200px) {
-    .header-container {
-        @include mx.maxwidth;
+@media screen and (max-width: 800px) {
+    .hamburger-menu {
+        display: block;
+    }
+
+    .main-menu {
+        display: none;
+    }
+
+    .mobile-nav {
+        .mobile-logo {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .close {
+                width: 1.5rem;
+            }
+        }
+
+        ul {
+            li {
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+            li:hover a,
+            li:active a {
+                background-color: colors.$primary-color-main;
+                color: colors.$neutral-color-white;
+                font-weight: 900;
+            }
+            a {
+                padding: 1.5rem;
+            }
+        }
+    }
+
+    .mobile-nav.open {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .logo img,
+    .mobile-logo img {
+        width: 200px;
     }
 }

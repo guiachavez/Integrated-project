@@ -25,7 +25,7 @@ footer {
 }
 
 .app-logo img {
-    width: 200px;
+    width: 250px;
 }
 
 .quick-link ul,
@@ -64,25 +64,88 @@ footer h2 {
     color: colors.$primary-color-75;
 }
 
-@media screen and (min-width: 820px) {
-    .footer-links{
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .quick-link ul{
-        display: flex;
-        gap: 1rem ;
-    }
-    
-    .copyright{
-        display: flex;
-        justify-content: space-between;
-    }  
+.app-logo-mobile {
+    visibility: hidden;
+    opacity: 0;
 }
 
-@media screen and (min-width: 1200px) {
+.footer-links{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.quick-link ul{
+    display: flex;
+    gap: 1rem ;
+}
+
+.copyright{
+    display: flex;
+    justify-content: space-between;
+}  
+
+.app-logo-mobile {
+    display: none;
+    img {
+        width: 100px;
+    }
+}
+
+@media screen and (max-width: 760px) {
+    footer {
+        .app-logo-mobile {
+            display: block;
+            visibility: visible;
+            opacity: 1;
+            align-self: center;
+    
+            img {
+                width: 70px;
+            }
+        }
+    
+        .app-logo {
+            display: none;
+        }
+
+        .copyright {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+    }
+    
+}
+
+@media screen and (max-width: 600px) {
+    .footer-links {
+        align-items: flex-start;
+
+        .about-us {
+            width: 30%;
+        }
+    }
+
+    .quick-link ul {
+        flex-direction: column;
+    }
+}
+
+@media screen and (min-width: 1500px) {
     .footer-container {
-        @include mx.maxwidth;
+        max-width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    footer {
+        .app-logo-mobile {
+            display: none;
+            visibility: hidden;
+            opacity: 0;
+        }
     }
 }

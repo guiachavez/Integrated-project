@@ -118,6 +118,15 @@
     display: none;
 }
 
+.active-pet {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.active-pet.barn {
+    margin-bottom: 1.2rem;
+}
+
 label {
     display: grid;
     gap: 0.5rem;
