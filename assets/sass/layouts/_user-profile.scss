@@ -226,18 +226,7 @@
         button.accept {
             color: colors.$semantic-green-100;
         }
-
-        button.accept::before {
-            content: '';
-            background: url('./../../icons/check.svg');
-            background-repeat: no-repeat;
-            object-fit: cover;
-            width: 22px;
-            height: 22px;
-            display: inline-block;
-            position: relative;
-        }
-
+        
         button.close {
             color: colors.$primary-color-main;
         }
