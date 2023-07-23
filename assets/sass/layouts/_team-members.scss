@@ -1,0 +1,280 @@
+@use '../abstracts/mixins/mixins' as m;
+@use '../abstracts/variables/media_queries' as mq;
+@use '../abstracts/variables/colors' as c;
+@use '../abstracts/variables/typography' as t;
+/* team member page========================== */
+
+
+main{
+    height: 2vh;
+}
+
+
+
+
+main h1 span:last-of-type{
+    display: block;
+}
+h2{
+    text-align: center;
+    margin:4rem 0;
+}
+
+img{
+    max-width: 50%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+}
+.container{
+    position: relative;
+}
+
+.slick-prev{
+    left:25px;
+    z-index: 1;
+}
+
+.slick-next{
+    right: 30px;
+    z-index: 1;
+}
+
+
+@media screen and (max-width:mq.$media-mobile-width) {
+
+    main h1 span:first-of-type{
+        color: c.$accent-color-main;
+    }
+    .group-1,
+    .group-2{
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        gap:2rem;
+    }
+
+    .ind-images{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .group-2 .ind-images{
+        flex-direction: column-reverse;
+    }
+
+    .grp_img_p span img{
+        display: none;
+    }
+    .grp_img_p p span{
+        display: block;
+        color: c.$accent-color-main;
+    }
+
+    .grp_img_p p{
+        text-align: center;
+    }
+}
+
+@media screen and (min-width:mq.$media-mobile-width) {
+    
+    main h1{
+        margin:.5rem;
+        font-size: 54px;
+    }
+    main h1 span:first-of-type{
+        color: c.$accent-color-main;
+    }
+
+    .section{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        margin: auto;
+        justify-content: center;
+        align-items: center;
+        gap:2rem;
+    }
+
+    .group-2{
+        margin-top: 2rem;
+        
+    }
+    .group-2 .ind-images{
+        flex-direction: column-reverse;
+    }
+
+    /* .second{
+        display: flex;
+    } */
+
+    .second p{
+        align-self: center;
+    }
+    .ind-images{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .ind-images img{
+        align-self: center;
+    }
+
+    .ind-images .grp_img_p{
+        text-align: center;
+    }
+
+    .grp_img_p span img{
+        display: none;
+    }
+    .grp_img_p p{
+        text-align: center;
+    }
+    .grp_img_p p span{
+        display: block;
+        color: c.$accent-color-main;
+    }
+    
+}
+
+
+@media screen and (min-width:mq.$media-tablet-width) {
+    main h1{
+        margin:2rem;
+        text-align: center;
+        font-size: 54px;
+    }
+    
+    /* indiviually images ======================== */
+    
+
+    section.wrapper{      
+        max-width: 70% !important;
+        margin: auto;
+        margin-top: 5rem;
+        display: flex;
+        gap: 3rem;
+    }
+    .group-1{
+        display: flex;
+        flex-flow: column wrap;
+        gap:6rem;
+        justify-content: space-between;   
+        flex-grow: 1;
+    }
+    .group-1 .ind-images p {
+        justify-self: right;
+        align-self: center;
+        margin-bottom: 5rem;
+        box-sizing: border-box;
+    }
+    .group-1 .ind-images:nth-child(2),
+    .group-1 .ind-images:last-of-type{
+        box-sizing: border-box;
+        width: 100%;
+    }
+    
+
+
+    .group-2{
+        margin-top: 10rem !important;
+        margin-bottom: 10rem;
+        display: flex;
+        flex-flow: column wrap;
+        gap:6rem;
+        justify-content: space-around;
+    }
+
+
+    .ind-images{
+        // flex-grow: 1;
+        display: flex;
+        flex-direction: row;
+        gap:1rem;
+    }
+
+    .group-2 .ind-images{
+        flex-flow: nowrap;
+    }
+    .ind-images img[alt*=picture]
+    {
+        border-radius: 5%;
+    }
+    .group-2 img{
+        align-self: start !important;
+    }
+
+
+    .ind-images .grp_img_p{
+        display: flex;
+        flex-flow: column nowrap; 
+        flex-grow: 1;   
+    }
+    .grp_img_p p span{
+        display: block;
+        color: c.$accent-color-main;
+    }
+    .grp_img_p{
+        margin-top: 2rem;
+    }
+
+    .grp_img_p p{
+        text-align:left !important;
+    }
+
+    .first span img{
+        display: block;
+        float: left;
+    }
+    .first p{
+        margin-left: 3rem;
+        margin-top: 1rem;
+        padding-left: 1rem;
+    }
+    .first .solve{
+        margin-left: 1.7rem;
+    }
+
+    .second .mar{
+        margin-top: 1rem;
+    }
+    .second span img{
+        display: block;
+        float: right;
+    }
+}
+
+
+@media screen and (min-width:1200) {
+    section.wrapper{
+        @include m.maxwidth;
+    }  
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
