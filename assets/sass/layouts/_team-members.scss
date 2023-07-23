@@ -60,6 +60,9 @@ img{
         justify-content: center;
         align-items: center;
     }
+    .group-2{
+        margin-top: 2rem !important;   
+    }
     .group-2 .ind-images{
         flex-direction: column-reverse;
     }
@@ -74,6 +77,8 @@ img{
 
     .grp_img_p p{
         text-align: center;
+        font-family: t.$font-raleway;
+        font-weight: 600;
     }
 }
 
@@ -97,8 +102,7 @@ img{
     }
 
     .group-2{
-        margin-top: 2rem;
-        
+        margin-top: 2rem !important;   
     }
     .group-2 .ind-images{
         flex-direction: column-reverse;
@@ -129,6 +133,7 @@ img{
     }
     .grp_img_p p{
         text-align: center;
+        font-weight: 600;
     }
     .grp_img_p p span{
         display: block;
@@ -161,15 +166,15 @@ img{
         gap:6rem;
         justify-content: space-between;   
         flex-grow: 1;
+        box-sizing: border-box;
     }
     .group-1 .ind-images p {
         justify-self: right;
         align-self: center;
         margin-bottom: 5rem;
-        box-sizing: border-box;
+        
     }
-    .group-1 .ind-images:nth-child(2),
-    .group-1 .ind-images:last-of-type{
+    .group-1 .ind-images{
         box-sizing: border-box;
         width: 100%;
     }
@@ -183,6 +188,7 @@ img{
         flex-flow: column wrap;
         gap:6rem;
         justify-content: space-around;
+        margin-top:0;
     }
 
 
@@ -195,6 +201,8 @@ img{
 
     .group-2 .ind-images{
         flex-flow: nowrap;
+        box-sizing: border-box;
+        width: 100%;
     }
     .ind-images img[alt*=picture]
     {
@@ -220,6 +228,7 @@ img{
 
     .grp_img_p p{
         text-align:left !important;
+        font-weight: 600;
     }
 
     .first span img{
