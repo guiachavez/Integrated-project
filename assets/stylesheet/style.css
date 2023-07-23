@@ -929,6 +929,9 @@ footer h2 {
   text-align: center;
   margin-bottom: 1rem;
 }
+.home_map-box .home_map-controls {
+  position: relative;
+}
 .home_map-box .home_radius {
   margin: 2.5rem 0;
   display: grid;
@@ -995,6 +998,13 @@ footer h2 {
   .home_map-box .home_map-controls .home_radius #home_apply-radius {
     margin: 0;
   }
+  .home_map-box .tt-search-box {
+    position: absolute;
+    right: 1%;
+    top: 170%;
+    z-index: 100;
+    width: 300px;
+  }
   .home_map-box #map {
     height: 80vh;
   }
@@ -1036,6 +1046,12 @@ footer h2 {
   .home_map-box {
     grid-template-columns: 1fr 3fr;
     row-gap: 2rem;
+  }
+  .home_map-box .tt-search-box {
+    position: absolute;
+    right: 1%;
+    top: 200%;
+    z-index: 100;
   }
 }
 
