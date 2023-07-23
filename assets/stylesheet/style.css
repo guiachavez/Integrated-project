@@ -759,6 +759,9 @@ footer h2 {
   margin-bottom: 50px;
   font-weight: 500;
 }
+.home_hero .home_hero-text {
+  padding-top: 10%;
+}
 .home_hero img {
   display: block;
   width: 100%;
@@ -785,6 +788,7 @@ footer h2 {
   }
   .home_hero .home_hero-text {
     align-self: center;
+    padding-top: 0;
   }
 }
 @media screen and (min-width: 1200px) {

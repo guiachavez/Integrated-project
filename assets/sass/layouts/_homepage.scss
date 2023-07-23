@@ -34,6 +34,10 @@
     font-weight: 500;
   }
 
+  .home_hero-text {
+    padding-top: 10%;
+  }
+
   img {
     display: block;
     width: 100%;
@@ -63,6 +67,7 @@
 
     .home_hero-text {
       align-self: center;
+      padding-top: 0;
     }
   }
 
