@@ -809,6 +809,9 @@ footer h2 {
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
 }
+.home_searchbox .tt-search-box {
+  grid-column: span 2;
+}
 .home_searchbox .petSelector,
 .home_searchbox .where-from-selector {
   width: 100%;
@@ -824,7 +827,6 @@ footer h2 {
 }
 .home_searchbox .home_search-btn {
   grid-column: span 2;
-  width: 50%;
   justify-self: center;
 }
 .home_searchbox .home_search-btn button {
@@ -842,10 +844,12 @@ footer h2 {
     padding: 3%;
     transform: translateY(-20px);
     z-index: 100;
-    /* Pending position */
   }
   .home_searchbox .home-search {
     grid-template-columns: 1fr 1fr 1fr 0.5fr;
+  }
+  .home_searchbox .tt-search-box {
+    grid-column: span 1;
   }
   .home_searchbox .home_search-btn {
     grid-column: span 1;
@@ -893,7 +897,8 @@ footer h2 {
   object-fit: cover;
   border-radius: 0.5rem;
 }
-.home_featured .carousel-container .slick-prev, .home_featured .carousel-container .slick-next {
+.home_featured .carousel-container .slick-prev,
+.home_featured .carousel-container .slick-next {
   top: 150px;
 }
 .home_featured .carousel-container .slick-prev {
@@ -923,19 +928,6 @@ footer h2 {
   font-size: 30px;
   text-align: center;
   margin-bottom: 1rem;
-}
-.home_map-box .home_change-location {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: repeat(2, 1fr);
-  gap: 0.8rem;
-}
-.home_map-box .home_change-location button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  margin: auto;
 }
 .home_map-box .home_radius {
   margin: 2.5rem 0;
@@ -974,7 +966,7 @@ footer h2 {
   font-size: 14px;
 }
 .home_map-box .orgId {
-  display: none;
+  display: block;
 }
 @media screen and (min-width: 820px) {
   .home_map-box {
@@ -991,14 +983,6 @@ footer h2 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
-  }
-  .home_map-box .home_map-controls .home_change-location {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 1fr;
-    gap: 0.8rem;
-  }
-  .home_map-box .home_map-controls .home_change-location button {
-    margin: 0;
   }
   .home_map-box .home_map-controls .home_radius {
     margin: 0;
@@ -1172,11 +1156,11 @@ footer h2 {
 .home_adopt-stories {
   padding: 10% 5%;
   display: flex;
-  justify-content: space-around;
-  gap: 1rem;
+  flex-flow: column;
+  justify-content: center;
 }
 .home_adopt-stories > div:first-of-type {
-  width: 40%;
+  margin-bottom: 2rem;
 }
 .home_adopt-stories h2 {
   text-align: center;
@@ -1189,14 +1173,14 @@ footer h2 {
 }
 .home_adopt-stories .story {
   display: flex;
+  flex-flow: column;
 }
 .home_adopt-stories .stories-wrapper {
-  width: 60%;
+  width: 100%;
 }
 .home_adopt-stories .sort-wrapper {
   width: 75%;
-  margin-right: 4rem;
-  float: right;
+  margin: auto;
 }
 .home_adopt-stories .slick-arrow,
 .home_adopt-stories .slick-arrow::before {
@@ -1208,14 +1192,31 @@ footer h2 {
 .home_adopt-stories .slick-next {
   right: -50px;
 }
+.home_adopt-stories .story-details {
+  width: 100%;
+}
 .home_adopt-stories .story-details > div:last-of-type {
   padding: 1rem;
+}
+.home_adopt-stories .story-img {
+  width: 100%;
+}
+.home_adopt-stories .story-content {
+  text-align: center;
 }
 .home_adopt-stories .owner-location {
   font-size: 14px;
   color: #026E7D;
 }
 @media screen and (min-width: 820px) {
+  .home_adopt-stories {
+    flex-flow: row;
+    justify-content: space-around;
+    gap: 1rem;
+  }
+  .home_adopt-stories > div:first-of-type {
+    width: 40%;
+  }
   .home_adopt-stories h2 {
     text-align: left;
     font-family: "Raleway";
@@ -1225,6 +1226,18 @@ footer h2 {
     display: block;
     margin: 0;
     margin-top: 15px;
+  }
+  .home_adopt-stories .story {
+    flex-flow: row;
+  }
+  .home_adopt-stories .stories-wrapper {
+    width: 70%;
+  }
+  .home_adopt-stories .story-details {
+    width: 40%;
+  }
+  .home_adopt-stories .story-content {
+    text-align: right;
   }
 }
 
