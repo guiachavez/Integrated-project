@@ -2770,10 +2770,9 @@ button.filled-default-next-mob {
 }
 
 /* team member page========================== */
-main {
-  height: 2vh;
-}
-
+/* main{
+    height: 2vh;
+} */
 main h1 span:last-of-type {
   display: block;
 }
@@ -2821,6 +2820,9 @@ img {
     justify-content: center;
     align-items: center;
   }
+  .ind-images img[alt*=picture] {
+    border-radius: 5%;
+  }
   .group-2 {
     margin-top: 2rem !important;
   }
@@ -2854,13 +2856,21 @@ img {
     margin: auto;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
+    gap: 4rem;
   }
   .group-2 {
     margin-top: 2rem !important;
   }
   .group-2 .ind-images {
     flex-direction: column-reverse;
+  }
+  .group-2 .ind-images:last-of-type {
+    grid-column: span 2;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
   }
   /* .second{
       display: flex;
@@ -2874,6 +2884,21 @@ img {
   }
   .ind-images img {
     align-self: center;
+  }
+  .ind-images img[alt*=picture] {
+    border-radius: 5%;
+  }
+  .justi_end {
+    align-items: end;
+  }
+  .justi_end img {
+    align-self: unset;
+  }
+  .justi_start {
+    align-items: start;
+  }
+  .justi_start img {
+    align-self: unset;
   }
   .ind-images .grp_img_p {
     text-align: center;
@@ -2912,7 +2937,7 @@ img {
     flex-grow: 1;
     box-sizing: border-box;
   }
-  .group-1 .ind-images p {
+  .group-1 .ind-images {
     justify-self: right;
     align-self: center;
     margin-bottom: 5rem;
@@ -2969,10 +2994,6 @@ img {
   .first p {
     margin-left: 3rem;
     margin-top: 1rem;
-    padding-left: 1rem;
-  }
-  .first .solve {
-    margin-left: 1.7rem;
   }
   .first .solve2 {
     padding-left: 0;
@@ -2982,15 +3003,12 @@ img {
     padding-left: 0;
     padding-right: 2rem;
   }
-  .second .mar {
+  .second {
+    gap: 1rem;
     margin-top: 1rem;
-  }
-  .second .mar2 {
-    padding-left: 2.2rem;
   }
   .second .mar3 {
-    margin-top: 1rem;
-    padding-left: 0.2rem;
+    padding-right: 2rem;
   }
   .second span img {
     display: block;
