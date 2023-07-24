@@ -5,9 +5,10 @@
 @use '../abstracts/variables/media_queries' as mq;
 
 .content-center {
-    display: grid;
-    justify-content: center;
+    // display: grid;
+    // justify-content: center;
     padding: 0 5%;
+    box-sizing: border-box;
 }
 
 .rehome-main {
@@ -17,7 +18,9 @@
     }
 
     .text-input {
-        width: 360px;
+        // width: 360px;
+        box-sizing: border-box;
+        width: 100%;
     }
 }
 
@@ -115,10 +118,13 @@
     display: none;
 }
 
-.form-fields {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+.active-pet {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.active-pet.barn {
+    margin-bottom: 1.2rem;
 }
 
 label {
@@ -126,17 +132,28 @@ label {
     gap: 0.5rem;
 }
 
+#tab-2{
+    box-sizing: border-box;
+}
+
 .rehome-pet {
     margin: 2rem 0;
+    box-sizing: border-box;
+}
+
+#tab-progress div p span{
+    display: block;
 }
 
 select,
 textarea {
     border: 1px solid colors.$neutral-color-grey-l;
-    width: 395px;
+    // width: 395px;
     height: 40px;
     outline: 0;
     border-radius: 0.3rem;
+    box-sizing: border-box;
+    width: 100%;
 }
 
 .switch {
@@ -230,6 +247,7 @@ input:checked + .radio-slider:before {
     justify-content: flex-end;
     gap: 2rem;
     align-items: center;
+    margin: 1rem 0;
 }
 
 #tab-progress.active {
@@ -293,6 +311,10 @@ input:checked + .radio-slider:before {
     text-align: center;
 }
 
+option{
+    box-sizing: border-box;
+}
+
 .controls {
     margin-top: 3rem;
 
@@ -303,37 +325,49 @@ input:checked + .radio-slider:before {
     }
 }
 
-@media screen and (max-width: mq.$media-mobile-width) {
-    .content-center{
-        display: block;
+.rehome-container{
+    .col-left{
+        display: none;
+    }
+
+    >div{
         width: 100%;
+    }
+
+    > div:nth-child(2) > div:first-of-type {
+        gap: 0.5rem;
     }
 }
 
-@media screen and (max-width: mq.$media-tablet-width) {
-    .rehome-container{
-        .col-left{
-            display: none;
-        }
+.form-fields{
+    display: grid;
+    gap: 1rem;
+}
 
-        >div{
-            width: 100%;
-        }
+#tab-2, #tab-3, #tab-progress.active{
+    // max-width: 600px;
+    margin: auto;
+    padding: 2%;
+}
 
-        > div:nth-child(2) > div:first-of-type {
-            gap: 0.5rem;
-        }
+@media screen and (min-width: mq.$media-mobile-width){
+    #tab-progress div p span{
+        display: unset;
+    }
+}
+
+@media screen and (min-width: mq.$media-tablet-width) {
+    .form-fields {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
     }
 
-    .form-fields{
-        display: grid;
-        grid-template-columns: 1fr;
+    #ptype{
+        width: 48%;
     }
 
-    #tab-2, #tab-3, #tab-progress.active{
-        max-width: 600px;
-        margin: auto;
-        padding: 2%;
+    .rehome-container .col-left{
+        display: unset;
     }
 }
 

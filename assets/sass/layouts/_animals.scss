@@ -4,7 +4,7 @@
 /* Pet Application =========================== */
 
 .animals-main {
-    padding: 3rem 2%;
+    padding: 3rem;
 }
 
 #filtered-pets {
@@ -228,7 +228,7 @@ fieldset {
     }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1300px) {
     .animals-main {
         width: 1200px;
         margin: auto;

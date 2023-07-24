@@ -13,7 +13,6 @@ import { globalShowPosts } from "./global-functions.js";
 
 const db = getFirestore(app);
 
-// console.log("hii")
 // MARK: - Variables ====================================================================
 
 // Contains two values: Longitude and Latitude
@@ -34,7 +33,7 @@ import { tomtomAPI } from "./config.js";
 // Variables to display on the list on the left
 const orgList = document.getElementById("orgList");
 
-let radius = 10;
+let radius = 5;
 
 // MARK: - TomTom (Map View) functions ==========================================================================
 
@@ -146,6 +145,7 @@ function showAddressOnMap(address, organization) {
       //To display on the div (popup) & list
       const orgInfo = document.createElement("div");
       orgInfo.className = "orgInfo";
+      orgInfo.setAttribute("data-org", organization.id);
 
       if (results && results.length > 0) {
         const position = results[0].position;
@@ -153,16 +153,20 @@ function showAddressOnMap(address, organization) {
         const longitude = position.lon;
         locationOfAnimalCenter.push([longitude, latitude]);
 
-        //Pop up tag to display the info.
-        const popup = new tt.Popup({ closeButton: false }).setDOMContent(
-          orgInfo
-        );
+        //Popup tag to display the info.
+        const popup = new tt.Popup({
+          closeButton: false,
+        }).setDOMContent(orgInfo);
+
         //Sets up marker with the pop up
         const newMarker = new tt.Marker()
           .setLngLat([longitude, latitude])
-          .setPopup(popup);
+          .setPopup(popup)
+          .addTo(map);
+
+        newMarker.getElement().setAttribute("data-org", organization.id);
+
         //Adds marker and popup to map
-        newMarker.addTo(map);
         animalCenterMarker.push(newMarker);
       } else {
         console.log("No results found");
@@ -222,6 +226,30 @@ function showAddressOnMap(address, organization) {
     });
 }
 
+//Converts the HTML Object into a string so that it can be seen in the list on the left
+function outerHTML(node) {
+  return node.outerHTML || new XMLSerializer().serializeToString(node);
+}
+
+//Create a function to handle the click event to open the popup
+function handleClickToPopup(event) {
+  console.log("click working");
+  const clickedItem = event.target.closest(".orgInfo");
+  if (!clickedItem) return;
+
+  const orgId = clickedItem.getAttribute("data-org");
+  const marker = animalCenterMarker.find(
+    (m) => m.getElement().getAttribute("data-org") === orgId
+  );
+
+  if (marker) {
+    //Open the popup associated with the marker
+    marker.togglePopup();
+  }
+}
+
+orgList.addEventListener("click", handleClickToPopup);
+
 function passOrg() {
   $(".goToOrg").on("click", function () {
     localStorage.setItem("orgId", $(this).data("org"));
@@ -247,11 +275,6 @@ function passOrg() {
         console.log(error);
       });
   });
-}
-
-//Converts the HTML Object into a string so that it can be seen in the list on the left
-function outerHTML(node) {
-  return node.outerHTML || new XMLSerializer().serializeToString(node);
 }
 
 // Converts the address of the Petfinder API architecture to a string
@@ -299,9 +322,9 @@ function loadLocationOfCenter() {
 
         showAddressOnMap(searchAddress, organization);
         await sleep(400);
-        passOrg();
       }
       setZoomToFit();
+      passOrg();
     })
     .catch((error) => {
       // Handle the error
@@ -466,7 +489,7 @@ setTimeout(function () {
   });
 }, 1000);
 
-//To change location on map
+/* To change location on map =================================== */
 
 var searchOptions = {
   key: tomtomAPI,
