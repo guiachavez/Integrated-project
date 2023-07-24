@@ -459,3 +459,37 @@ $(document).ready(function() {
 
     homeSearch()
 })
+
+const filters = document.querySelector('.filter-icon');
+const searchFilters = document.querySelector('.search-filter');
+const closeFilter = document.querySelector('.close-icon');
+let filterClicked = false;
+
+filters.addEventListener("click", function(){
+    searchFilters.style.display = 'block';
+    closeFilter.style.display = 'block';
+    filterClicked = true;
+});
+
+closeFilter.addEventListener("click", function(){
+    searchFilters.style.display = 'none';
+    closeFilter.style.display = 'none';
+    filterClicked = false;
+    console.log("close")
+});
+
+window.addEventListener('resize', function() {
+    let screenWidth = this.window.innerWidth;
+
+    if(screenWidth < 820 && !filterClicked){
+        searchFilters.style.display = 'none';
+        closeFilter.style.display = 'none';
+    }
+    else if(screenWidth > 820 && filterClicked){
+        filterClicked = false;
+    }
+    else{
+        searchFilters.style.display = 'block';
+        closeFilter.style.display = 'block';
+    }
+})

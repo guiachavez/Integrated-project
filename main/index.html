@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <link rel="icon" type="image/pawfectmatch-icon" href="./../assets/logo/pawfectmatch-logo-no-text.svg">
 
     <!-- This link tag is required by the TomTom API -->
     <link
@@ -19,12 +20,20 @@
     />
 
     <!-- Add the slick-theme.css if you want default styling -->
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+    />
     <!-- Add the slick-theme.css if you want default styling -->
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"
+    />
 
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    
+
     <!-- Include JavaScript SDK for TomTom -->
     <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/maps/maps-web.min.js"></script>
     <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.12/SearchBox-web.js"></script>
@@ -36,7 +45,6 @@
     <!-- Include JavaScript SDK for Petfinder -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/@petfinder/petfinder-js/dist/petfinder.min.js"></script>
-
 
     <!-- CSS for Carousel -->
     <link rel="stylesheet" href="./../assets/stylesheet/carousel.css" />
@@ -138,8 +146,8 @@
             <!-- Radius -->
             <div class="home_radius-containder">
               <label for="setRadius">Range: </label>
-              <input type="range" id="setRadius" min="1" max="20" value="10" />
-              <span class="radius-value" id="radiusValue">10</span
+              <input type="range" id="setRadius" min="1" max="20" value="5" />
+              <span class="radius-value" id="radiusValue">5</span
               ><span>km</span>
             </div>
             <button

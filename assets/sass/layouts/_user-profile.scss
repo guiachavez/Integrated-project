@@ -4,8 +4,6 @@
 /* User Profile =========================== */
 .user-profile-main {
     margin: 2rem 1rem;
-    padding: 1rem;
-    // background-color: #FEF0E6;
    
     .owner-main-images {
         margin: 2rem 1rem;
@@ -40,6 +38,7 @@
 
         #profile-pic {
             padding: 1rem 2rem;
+            text-align: center;
         }
         
     }
@@ -179,6 +178,14 @@
                 object-fit: cover;
                 border-radius: 0.5rem;
             }
+
+            p {
+                text-align: center;
+                color: colors.$accent-color-main;
+                font-weight: 700;
+                font-size: 18px;
+                margin-top: 0.5rem;
+            }
         }
 
         .description {
@@ -187,7 +194,6 @@
             width: 100%;
 
             > div:last-of-type {
-                position: relative;
 
                 button {
                     position: absolute;
@@ -220,7 +226,7 @@
         button.accept {
             color: colors.$semantic-green-100;
         }
-
+        
         button.close {
             color: colors.$primary-color-main;
         }
@@ -270,8 +276,11 @@
         overflow: hidden;
         transition: max-height 0.2s ease-out;
 
-        .inquiry-list:first-of-type {
+        .inquiry-list {
             border-top: 1px solid colors.$neutral-color-grey-l;
+        }
+        .inquiry-list:first-of-type {
+            margin-top: 1rem;
         }
 
     }
@@ -282,10 +291,18 @@
     table {
         margin: auto;
         text-align: left;
+        border-collapse: collapse;
     }
     
     td, th {
         padding: 0.5rem 1rem;
+        border: 1px solid colors.$neutral-color-grey-d;
+    }
+
+    td img {
+        width: 100%;
+        height: 15rem;
+        object-fit: cover;
     }
 }
 
@@ -352,4 +369,116 @@
     .modal-content {
         max-width: 700px;
     }
+}
+
+@media screen and (max-width: 900px) {
+    .user-profile-main {
+        .section-wrapper {
+            justify-content: center;
+        }
+
+        .owner-details-wrapper {
+            width: 50%;
+            .owner-details {
+                flex-direction: column;
+
+                div {
+                    width: 100%;
+                }
+
+                div:first-of-type {
+                    margin-bottom: 2rem;
+                }
+            }
+        } 
+
+        .owner-main-images {
+            height: fit-content;
+        }
+    }
+    
+}
+
+@media screen and (max-width: 400px) {
+    .user-profile-main {
+        .rehome-pet-wrapper {
+            .responseButtonsModal {
+    
+                .inquiry-list {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 0.5rem;
+
+                    .response-buttons {
+                        width: 100%;
+                        justify-content: space-between;
+                    }
+                }
+            } 
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .user-profile-main {
+        .section-wrapper {
+            flex-direction: column;
+        }
+
+        .owner-details-wrapper { 
+            width: auto;
+        }
+        
+        span:first-of-type  {
+            width: 36%;
+        }
+
+        #section-tab {
+            width: 100%;
+            text-align: center;
+        }
+    }
+
+    .user-profile-main {
+        .rehome-pet-wrapper {
+            .rehome-pet-list {
+                flex-direction: column;
+
+                .description {
+                    padding: 0;
+                }
+
+                .pet-image img {
+                    width: 100%;
+                    height: 16rem;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    #section-3 table {
+        display: block;
+        max-width: fit-content;
+        margin: 0 auto;
+        overflow-x: auto;
+        white-space: nowrap;
+
+        td img {
+            height: 100%;
+        }
+    }
+
+    .user-profile-main {
+        .rehome-pet-wrapper {
+            .responseButtonsModal {
+
+                .inquiry-list {
+                    width: calc(100% - 1rem);
+                }
+            } 
+        }
+    }
+    
 }

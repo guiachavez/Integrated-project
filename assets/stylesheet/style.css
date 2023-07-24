@@ -304,7 +304,8 @@ input[type=radio] :checked {
 }
 
 .container-2400 {
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
   position: relative;
   width: 1200px;
 }
@@ -312,6 +313,12 @@ input[type=radio] :checked {
 /* Global Styling ============================ */
 body, h1, h2, p {
   margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .visually-hidden {
@@ -361,7 +368,8 @@ label, legend, tr {
 }
 
 /* Header section ============================ */
-header {
+header,
+.mobile-nav .mobile-logo {
   background-color: white;
   border-bottom: 1px solid #f0f0f0;
   box-shadow: 0 3px 7px -7px #C5C5C5;
@@ -372,24 +380,15 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem;
-}
-
-.logo img {
-  width: 170px;
+  padding: 0.5rem 0;
 }
 
 header a {
   padding: 0.5rem;
 }
 
-.hamburger-menu a {
-  display: block;
-}
-
 .main-menu ul.header-link {
   list-style-type: none;
-  display: none;
 }
 
 .main-menu ul li a:hover {
@@ -444,43 +443,108 @@ ul.find-pet a {
   background-color: #FFFFFF;
 }
 
-@media screen and (min-width: 460px) {
-  .logo img {
-    width: 200px;
-  }
-  .find-pet-dd {
-    position: absolute;
-  }
-  .menu {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 3rem;
-    transform: none;
-  }
-  .hamburger-menu a {
-    display: none;
-  }
-  header.menu {
-    display: flex;
-    justify-content: space-between;
-  }
-  .main-menu ul.header-link {
-    display: flex;
-    gap: 1rem;
+.hamburger-menu {
+  display: none;
+}
+
+.main-menu ul.header-link {
+  display: flex;
+  gap: 1rem;
+}
+
+.logo img,
+.mobile-logo img {
+  width: 250px;
+}
+
+.find-pet-dd {
+  position: absolute;
+}
+
+.menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3rem;
+  transform: none;
+}
+
+header.menu {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mobile-nav {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.3s all ease;
+  -webkit-transition-delay: 0.2s;
+  transition-delay: 0.2s;
+  height: 100vh;
+  padding: 0.5rem 0;
+  background-color: white;
+  z-index: 99999;
+}
+
+@media screen and (min-width: 1500px) {
+  .header-container {
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
   }
 }
-@media screen and (min-width: 1200px) {
-  .header-container {
-    margin: auto;
-    position: relative;
-    width: 1200px;
+@media screen and (max-width: 800px) {
+  .hamburger-menu {
+    display: block;
+  }
+  .main-menu {
+    display: none;
+  }
+  .mobile-nav .mobile-logo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .mobile-nav .mobile-logo .close {
+    width: 1.5rem;
+  }
+  .mobile-nav ul li {
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .mobile-nav ul li:hover a,
+  .mobile-nav ul li:active a {
+    background-color: #0293A7;
+    color: #FFFFFF;
+    font-weight: 900;
+  }
+  .mobile-nav ul a {
+    padding: 1.5rem;
+  }
+  .mobile-nav.open {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+@media screen and (max-width: 900px) {
+  .logo img,
+  .mobile-logo img {
+    width: 200px;
   }
 }
 /*Footer section ------------*/
 footer {
   background-color: #FEF0E6;
   padding: 0 1rem;
+  margin-top: auto;
 }
 
 .footer-container {
@@ -500,7 +564,7 @@ footer {
 }
 
 .app-logo img {
-  width: 200px;
+  width: 250px;
 }
 
 .quick-link ul,
@@ -542,25 +606,76 @@ footer h2 {
   color: #026E7D;
 }
 
-@media screen and (min-width: 820px) {
-  .footer-links {
-    display: flex;
-    justify-content: space-between;
+.app-logo-mobile {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.quick-link ul {
+  display: flex;
+  gap: 1rem;
+}
+
+.copyright {
+  display: flex;
+  justify-content: space-between;
+}
+
+.app-logo-mobile {
+  display: none;
+}
+.app-logo-mobile img {
+  width: 100px;
+}
+
+@media screen and (max-width: 760px) {
+  footer .app-logo-mobile {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    align-self: center;
   }
-  .quick-link ul {
-    display: flex;
-    gap: 1rem;
+  footer .app-logo-mobile img {
+    width: 70px;
   }
-  .copyright {
-    display: flex;
-    justify-content: space-between;
+  footer .app-logo {
+    display: none;
+  }
+  footer .copyright {
+    flex-direction: column;
+    gap: 0.5rem;
   }
 }
-@media screen and (min-width: 1200px) {
+@media screen and (max-width: 600px) {
+  .footer-links {
+    align-items: flex-start;
+  }
+  .footer-links .about-us {
+    width: 30%;
+  }
+  .quick-link ul {
+    flex-direction: column;
+  }
+}
+@media screen and (min-width: 1500px) {
   .footer-container {
-    margin: auto;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
     position: relative;
-    width: 1200px;
+  }
+}
+@media screen and (max-width: 400px) {
+  footer .app-logo-mobile {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
   }
 }
 /* login page ================================ */
@@ -883,7 +998,8 @@ footer h2 {
   object-fit: cover;
   border-radius: 0.5rem;
 }
-.home_featured .carousel-container .slick-prev, .home_featured .carousel-container .slick-next {
+.home_featured .carousel-container .slick-prev,
+.home_featured .carousel-container .slick-next {
   top: 150px;
 }
 .home_featured .carousel-container .slick-prev {
@@ -964,7 +1080,7 @@ footer h2 {
   font-size: 14px;
 }
 .home_map-box .orgId {
-  display: none;
+  display: block;
 }
 @media screen and (min-width: 820px) {
   .home_map-box {
@@ -1348,13 +1464,14 @@ ul {
 .pet-profile {
   display: flex;
   gap: 1rem;
+  flex-flow: column;
 }
 
 .gallery-container {
   display: flex;
   flex-direction: column;
   row-gap: 1rem;
-  width: 50%;
+  width: 100%;
 }
 
 .js .slider-for > div:nth-child(1n+2) {
@@ -1369,12 +1486,14 @@ ul {
   width: 100%;
   height: 100px;
   object-fit: cover;
+  border-radius: 1rem;
 }
 
 .slider-for img {
   width: 100%;
   height: 400px;
   object-fit: cover;
+  border-radius: 2%;
 }
 
 .slider-for .slick-prev {
@@ -1400,6 +1519,10 @@ ul {
   border: 1px solid #0293A7;
 }
 
+.gallery .draggable .slick-track {
+  gap: 1%;
+}
+
 .other-details {
   display: flex;
   justify-content: space-between;
@@ -1407,6 +1530,11 @@ ul {
 }
 .other-details > div {
   display: grid;
+  gap: 1rem;
+}
+.other-details p {
+  display: flex;
+  align-items: center;
   gap: 1rem;
 }
 
@@ -1419,7 +1547,7 @@ ul {
 }
 
 .pet-profile-main {
-  padding: 2rem 0;
+  padding: 2rem 2%;
 }
 
 .pet-profile-main .pet-name {
@@ -1427,9 +1555,28 @@ ul {
   margin-bottom: 1rem;
 }
 
+.adopt-btn {
+  display: flex;
+  justify-content: center;
+}
+
+.pet-img-size img {
+  width: 1rem;
+  height: 1rem;
+}
+
+@media screen and (min-width: 820px) {
+  .pet-profile {
+    flex-flow: unset;
+  }
+  .gallery-container {
+    width: 50%;
+  }
+}
 @media screen and (min-width: 1200px) {
   .pet-profile-main {
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
     position: relative;
     width: 1200px;
   }
@@ -1536,6 +1683,15 @@ ul {
 #tab-2,
 #tab-3 {
   display: none;
+}
+
+.active-pet {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.active-pet.barn {
+  margin-bottom: 1.2rem;
 }
 
 label {
@@ -1791,7 +1947,8 @@ option {
 }
 @media screen and (min-width: 1200px) {
   .wrapper {
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
     position: relative;
     width: 1200px;
   }
@@ -1799,7 +1956,6 @@ option {
 /* User Profile =========================== */
 .user-profile-main {
   margin: 2rem 1rem;
-  padding: 1rem;
 }
 .user-profile-main .owner-main-images {
   margin: 2rem 1rem;
@@ -1829,6 +1985,7 @@ option {
 }
 .user-profile-main .owner-main-images #profile-pic {
   padding: 1rem 2rem;
+  text-align: center;
 }
 .user-profile-main .section-wrapper {
   display: flex;
@@ -1941,13 +2098,17 @@ option {
   object-fit: cover;
   border-radius: 0.5rem;
 }
+.rehome-pet-wrapper .rehome-pet-list .pet-image p {
+  text-align: center;
+  color: #DE6B35;
+  font-weight: 700;
+  font-size: 18px;
+  margin-top: 0.5rem;
+}
 .rehome-pet-wrapper .rehome-pet-list .description {
   flex-wrap: wrap;
   padding: 0 1rem;
   width: 100%;
-}
-.rehome-pet-wrapper .rehome-pet-list .description > div:last-of-type {
-  position: relative;
 }
 .rehome-pet-wrapper .rehome-pet-list .description > div:last-of-type button {
   position: absolute;
@@ -2013,8 +2174,11 @@ option {
   overflow: hidden;
   transition: max-height 0.2s ease-out;
 }
-.rehome-pet-wrapper .responseButtonsModal .inquiry-list:first-of-type {
+.rehome-pet-wrapper .responseButtonsModal .inquiry-list {
   border-top: 1px solid #C5C5C5;
+}
+.rehome-pet-wrapper .responseButtonsModal .inquiry-list:first-of-type {
+  margin-top: 1rem;
 }
 
 #section-3 {
@@ -2023,9 +2187,16 @@ option {
 #section-3 table {
   margin: auto;
   text-align: left;
+  border-collapse: collapse;
 }
 #section-3 td, #section-3 th {
   padding: 0.5rem 1rem;
+  border: 1px solid #6a6a6a;
+}
+#section-3 td img {
+  width: 100%;
+  height: 15rem;
+  object-fit: cover;
 }
 
 #section-tab {
@@ -2085,7 +2256,8 @@ option {
 
 @media screen and (min-width: 1200px) {
   .user-profile-main {
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
     position: relative;
     width: 1200px;
   }
@@ -2093,16 +2265,84 @@ option {
     max-width: 700px;
   }
 }
+@media screen and (max-width: 900px) {
+  .user-profile-main .section-wrapper {
+    justify-content: center;
+  }
+  .user-profile-main .owner-details-wrapper {
+    width: 50%;
+  }
+  .user-profile-main .owner-details-wrapper .owner-details {
+    flex-direction: column;
+  }
+  .user-profile-main .owner-details-wrapper .owner-details div {
+    width: 100%;
+  }
+  .user-profile-main .owner-details-wrapper .owner-details div:first-of-type {
+    margin-bottom: 2rem;
+  }
+  .user-profile-main .owner-main-images {
+    height: fit-content;
+  }
+}
+@media screen and (max-width: 400px) {
+  .user-profile-main .rehome-pet-wrapper .responseButtonsModal .inquiry-list {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .user-profile-main .rehome-pet-wrapper .responseButtonsModal .inquiry-list .response-buttons {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+@media screen and (max-width: 600px) {
+  .user-profile-main .section-wrapper {
+    flex-direction: column;
+  }
+  .user-profile-main .owner-details-wrapper {
+    width: auto;
+  }
+  .user-profile-main span:first-of-type {
+    width: 36%;
+  }
+  .user-profile-main #section-tab {
+    width: 100%;
+    text-align: center;
+  }
+  .user-profile-main .rehome-pet-wrapper .rehome-pet-list {
+    flex-direction: column;
+  }
+  .user-profile-main .rehome-pet-wrapper .rehome-pet-list .description {
+    padding: 0;
+  }
+  .user-profile-main .rehome-pet-wrapper .rehome-pet-list .pet-image img {
+    width: 100%;
+    height: 16rem;
+  }
+}
+@media screen and (max-width: 1024px) {
+  #section-3 table {
+    display: block;
+    max-width: fit-content;
+    margin: 0 auto;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  #section-3 table td img {
+    height: 100%;
+  }
+  .user-profile-main .rehome-pet-wrapper .responseButtonsModal .inquiry-list {
+    width: calc(100% - 1rem);
+  }
+}
 /* Pet Application =========================== */
 .animals-main {
-  padding: 3rem 0;
+  padding: 3rem;
 }
 
 #filtered-pets {
-  display: grid;
-  /* grid-template-columns: minmax(100px, min-content) calc(100vw - 463px); */
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  display: block;
 }
 
 .pet {
@@ -2116,6 +2356,35 @@ option {
 
 .search-container {
   display: flex;
+  flex-flow: column nowrap;
+  gap: 1rem;
+  position: relative;
+}
+
+.filter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #DE6B35;
+  gap: 0.5rem;
+  cursor: pointer;
+  width: 100%;
+  z-index: 10;
+  padding: 0 1%;
+}
+
+.filter label {
+  font-weight: 600 !important;
+  cursor: pointer;
+}
+
+.filter-icon {
+  display: flex;
+  align-items: center;
+}
+
+.close-icon {
+  display: none;
 }
 
 .search-filter {
@@ -2124,11 +2393,19 @@ option {
   -ms-flex-positive: 0;
   flex: 1 0 auto;
   flex-grow: 0;
-  width: 280px;
-  padding-right: 30px;
+  width: 100%;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   row-gap: 1rem;
+  display: none;
+  position: absolute;
+  background-color: white;
+  border-radius: 0.5rem;
+}
+
+.gap-search {
+  padding-top: 1rem;
 }
 
 .animals-main form {
@@ -2138,7 +2415,7 @@ option {
 }
 
 .search-filter select {
-  width: 250px;
+  width: 100%;
 }
 
 .animals-main .slick-slide img {
@@ -2187,6 +2464,18 @@ fieldset > div {
   margin-bottom: 1rem;
 }
 
+.filter-section {
+  position: relative;
+  z-index: 10;
+}
+
+.search-filter {
+  display: none;
+  position: absolute;
+  background-color: white;
+  border-radius: 0.5rem;
+}
+
 .search-check .home_search-btn {
   width: 100%;
 }
@@ -2230,7 +2519,39 @@ fieldset > div {
   margin-bottom: 0.5rem;
 }
 
-@media screen and (min-width: 1200px) {
+.d-radio {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+@media screen and (min-width: 460px) {
+  #filtered-pets {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1rem;
+  }
+}
+@media screen and (min-width: 820px) {
+  .search-filter {
+    display: flex;
+    position: relative;
+    padding-top: 0;
+    width: 280px;
+  }
+  .filter {
+    display: none;
+    width: 250px;
+  }
+  .search-container {
+    flex-flow: row nowrap;
+  }
+  .d-radio {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 1300px) {
   .animals-main {
     width: 1200px;
     margin: auto;
@@ -2291,7 +2612,8 @@ fieldset > div {
 }
 @media screen and (min-width: 1200px) {
   .inquiry-main {
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
     position: relative;
     width: 1200px;
   }
@@ -2769,7 +3091,8 @@ dd.article-content p {
   .adoption-journey-content,
   .adoption-journey-header,
   .adoption-journey-form {
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
     position: relative;
     width: 1200px;
   }
