@@ -9,30 +9,40 @@
             <nav>
                 <ul class="header-link">
                     <li><a href="./index.html" data-path="index">Home</a></li>
-                    <li class="dd-pet">
-                        <a href="./pet.html" data-path="pet">Find a pet</a>
-                        <!-- <ul class="find-pet-dd sub-nav-link">
-                            <li><a href="#">Find a Dog</a></li>
-                            <li><a href="#">Find a Cat</a></li>
-                            <li><a href="#">Find a Bird</a></li>
-                            <li><a href="#">Find Others</a></li>
-                        </ul> -->
-                    </li>
+                    <li class="dd-pet"><a href="./pet.html" data-path="pet">Find a pet</a></li>
                     <li><a href="./rehome.html" data-path="rehome">Rehome</a></li>
                     <li><a href="./adoption-journey-home.html" data-path="adoption-journey">Resources</a></li>
-                    <!-- <li style="display: none;"><a id = "login" href="./login.html" data-path="login">Login</a></li> -->
                     <li><a id="profile" href="./profile.html" data-path="profile">Profile</a></li>
                 </ul>
             </nav>
         </div>
-        <!-- <div class="login header-login">
-            <a href="./login.html">Login</a><a href="./signup.html">/Signup</a>
-        </div>
-        <div class="logged-user header-login"></div> -->
     </div>
-    <!-- <div class="hamburger-menu">
+    <div class="hamburger-menu">
         <a href="#"><img src="../assets/icons/Hamburger.svg" alt="hamburger icon"></a>
-    </div> -->
+    </div>
+</div>
+
+<div class="mobile-nav">
+    <div>
+        <div class="mobile-logo">
+            <a href="./index.html">
+                <img src="../assets/logo/pawfectmatch-logo-mobile.svg" alt="Pawfect match logo">
+            </a>
+            <div class="close">
+                <img src="../assets/icons/x.svg" alt="close-nav">
+            </div>
+        </div>
+        <ul>
+            <li><a href="./index.html" data-path="index">Home</a></li>
+            <li><a href="./pet.html" data-path="pet">Find a pet</a></li>
+            <li><a href="./rehome.html" data-path="rehome">Rehome</a></li>
+            <li><a href="./adoption-journey-home.html" data-path="adoption-journey">Resources</a></li>
+            <li><a id="profile" href="./profile.html" data-path="profile">Profile</a></li>
+        </ul>
+        <div class="mobile-nav-out">
+
+        </div>
+    </div>
 </div>
 
 <script>
@@ -47,5 +57,15 @@
 
     $('.go-home').on('click', function() {
         window.location.href = './index.html'
+    })
+
+    $('.hamburger-menu').on('click', function() {
+        $('.mobile-nav').addClass('open')
+        $('body').css('overflow', 'hidden')
+    })
+
+    $('.mobile-nav .close').on('click', function() {
+        $('.mobile-nav').removeClass('open') 
+        $('body').css('overflow', 'auto')
     })
 </script>

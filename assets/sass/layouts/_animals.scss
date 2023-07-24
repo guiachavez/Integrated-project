@@ -1,5 +1,6 @@
 @use '../abstracts/variables/colors' as colors;
 @use '../abstracts/mixins/mixins' as mx;
+@use '../abstracts/variables/media_queries' as mq;
 /* Pet Application =========================== */
 
 .animals-main {
@@ -7,10 +8,7 @@
 }
 
 #filtered-pets {
-    display: grid;
-    /* grid-template-columns: minmax(100px, min-content) calc(100vw - 463px); */
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
+    display: block;
 }
   
 .pet {
@@ -24,6 +22,35 @@
   
 .search-container {
     display: flex;
+    flex-flow: column nowrap;
+    gap: 1rem;
+    position: relative;
+}
+
+.filter{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: colors.$accent-color-main;
+    gap: 0.5rem;
+    cursor: pointer;
+    width: 100%;
+    z-index: 10;
+    padding: 0 1%;
+}
+
+.filter label{
+    font-weight: 600 !important;
+    cursor: pointer;
+}
+
+.filter-icon{
+    display: flex;
+    align-items: center;
+}
+
+.close-icon{
+    display: none;
 }
   
 .search-filter {
@@ -32,12 +59,20 @@
     -ms-flex-positive: 0;
     flex: 1 0 auto;
     flex-grow: 0;
-    width: 280px;
-    padding-right: 30px;
+    width: 100%;
+    padding: 1rem;
 
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
+
+    display: none;
+    position: absolute;
+    background-color: white;
+    border-radius: 0.5rem;
+}
+.gap-search{
+    padding-top: 1rem;
 }
   
 .animals-main form {
@@ -47,7 +82,7 @@
 }
   
 .search-filter select {
-    width: 250px;
+    width: 100%;
 }
   
 .animals-main .slick-slide img {
@@ -93,6 +128,18 @@ fieldset {
 
 .slick-dotted.slick-slider {
     margin-bottom: 1rem;
+}
+
+.filter-section{
+    position: relative;
+    z-index: 10;
+}
+
+.search-filter{
+    display: none;
+    position: absolute;
+    background-color: white;
+    border-radius: 0.5rem;
 }
 
 .search-check {
@@ -145,7 +192,43 @@ fieldset {
     }
 }
 
-@media screen and (min-width: 1200px) {
+.d-radio{
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+@media screen and (min-width: mq.$media-mobile-width) {
+    #filtered-pets {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 1rem;
+    }
+}
+
+@media screen and (min-width: mq.$media-tablet-width) {
+    .search-filter{
+        display: flex;
+        position: relative;
+        padding-top: 0;
+        width: 280px;
+    }
+
+    .filter{
+        display: none;
+        width: 250px;
+    }
+
+    .search-container{
+        flex-flow: row nowrap;
+    }
+
+    .d-radio{
+        display: block;
+    }
+}
+
+@media screen and (min-width: 1300px) {
     .animals-main {
         width: 1200px;
         margin: auto;
