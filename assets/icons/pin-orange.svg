@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="pin-orange" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 278">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #de6b35;
+        stroke-linecap: round;
+        stroke-miterlimit: 10;
+        stroke-width: 30px;
+      }
+
+      .cls-2 {
+        fill: #de6b35;
+      }
+    </style>
+  </defs>
+  <path class="cls-1" d="m211.33,46.58c-39.39-39.39-103.08-39.39-142.46,0-39.75,39.76-39.75,111.66-.36,151.05l46.1,52.91c13.99,13.92,36.61,13.89,50.56-.06l46.17-53.21c39.38-39.39,39.75-111.29,0-150.68h0Z"/>
+  <circle class="cls-2" cx="140" cy="125.64" r="32.51"/>
+</svg>

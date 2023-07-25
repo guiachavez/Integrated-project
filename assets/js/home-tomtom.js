@@ -335,7 +335,7 @@ function loadLocationOfCenter() {
 // Set Radius
 const setRadius = document.getElementById("setRadius");
 const radiusValue = document.getElementById("radiusValue");
-const applyRadius = document.getElementById("home_apply-radius");
+// const applyRadius = document.getElementById("home_apply-radius");
 
 setRadius.addEventListener("input", () => {
   radiusValue.innerHTML = setRadius.value;
@@ -343,12 +343,19 @@ setRadius.addEventListener("input", () => {
   console.log(radius);
 });
 
-applyRadius.addEventListener("click", () => {
+$("#setRadius").on("change", function() {
   orgList.innerHTML = "";
   locationOfAnimalCenter = [];
   setupMap();
   loadLocationOfCenter();
 });
+
+// applyRadius.addEventListener("click", () => {
+//   orgList.innerHTML = "";
+//   locationOfAnimalCenter = [];
+//   setupMap();
+//   loadLocationOfCenter();
+// });
 
 /* featured pet using location =============================== */
 const pets = [];
