@@ -64,9 +64,15 @@ submitForgot.addEventListener('submit', (e) => {
     
     sendPasswordResetEmail(auth, email)
         .then(() => {
-            alert("Password reset email sent!")
+            setTimeout(function() {
+                alert("Password reset email sent!")
+            }, 200)
+            
+            $('.modal').removeClass('modal-active')
         })
         .catch((err) => {
             console.log(err.message)
         });
+
+        
 })

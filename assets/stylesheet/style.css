@@ -808,8 +808,9 @@ footer h2 {
 
 .error-msg {
   display: none;
-  color: #DE3535;
-  font-weight: bold;
+  color: #991F1F;
+  font-size: 12px;
+  font-style: italic;
   text-align: left;
 }
 
@@ -819,6 +820,27 @@ footer h2 {
   bottom: 0;
   left: 0;
   right: 0;
+}
+#forgot-email p {
+  padding: 0 3rem;
+}
+
+.submit_forgot {
+  margin-top: 2rem;
+}
+.submit_forgot input {
+  width: 50%;
+}
+.submit_forgot span {
+  font-family: "Raleway";
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  gap: 0.2rem;
+  margin: 1rem;
+}
+.submit_forgot span a {
+  color: #991F1F;
 }
 
 @media screen and (min-width: 820px) {
@@ -844,6 +866,17 @@ footer h2 {
     height: 100%;
     width: auto;
     background: center/cover no-repeat url("/assets/images/Pet-img-2.svg");
+  }
+}
+@media screen and (max-width: 460px) {
+  #forgot-email p {
+    padding: 0;
+  }
+  #forgot-email input {
+    width: 100%;
+    position: relative;
+    transform: translateX(-50%);
+    left: 50%;
   }
 }
 /* HOMEPAGE STYLING ========================== */
