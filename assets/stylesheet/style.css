@@ -2999,6 +2999,10 @@ img {
     display: block;
     float: right;
   }
+  .short {
+    width: 100% !important;
+    margin: 0;
+  }
 }
 @media screen and (min-width: 1200) {
   section.wrapper {
