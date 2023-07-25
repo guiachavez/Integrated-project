@@ -245,117 +245,122 @@ dd.article-content {
     }
 }
 
-.sort-wrapper {
-    text-align: right;
-    margin-bottom: 1rem;
+.adoption-journey-main {
+    .sort-wrapper {
+        text-align: right;
+        margin-bottom: 1rem;
+    }
+    
+    .sort-wrapper select {
+        width: 9rem;
+        color: colors.$accent-color-main;
+        padding: 0.5rem;
+        @include mx.raleway-typography(12);
+        font-weight: 600;
+    }
+    
+    .posted-date {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    
+        font-size: 12px;
+        color: colors.$neutral-color-grey;
+        font-weight: 700;
+        font-style: italic;
+        padding-bottom: 1rem;
+        padding-right: 2rem;
+    }
 }
-
-.sort-wrapper select {
-    width: 9rem;
-    color: colors.$accent-color-main;
-    padding: 0.5rem;
-    @include mx.raleway-typography(12);
-    font-weight: 600;
-}
-
-.posted-date {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-
-    font-size: 12px;
-    color: colors.$neutral-color-grey;
-    font-weight: 700;
-    font-style: italic;
-    padding-bottom: 1rem;
-    padding-right: 2rem;
-}
-
 
 @media screen and (max-width: mq.$media-mobile-width){
-    .adoption-journey-header {
-        flex-flow: column nowrap;
-        // align-items: start;
-        gap:1rem;
-    }
-    #text_div{
-        text-align: center;
-    }
-
-    .adoption-journey-content{
-        flex-flow: column-reverse nowrap;
-        justify-items: center;
-        align-items: center;
-        position: relative;
-    }
-
-    .stories-wrapper{
-        align-items: center;
-        justify-content: center; 
-        margin-top: 3rem;  
-    }
-    .sort-wrapper{
-        position: absolute;
-        z-index: 2;
-        top:0;
-        right: 0;
-        margin:.5rem;
-    }
-
-    #stories{
-        margin-top: 3rem;
-    }
-    .story{
-        flex-direction: column;
+    .adoption-journey-main {
+        .adoption-journey-header {
+            flex-flow: column nowrap;
+            // align-items: start;
+            gap:1rem;
+        }
+        #text_div{
+            text-align: center;
+        }
     
-    }
-
-    .adoption-journey-content
-    aside{
-        width: 60%;
-        margin-top: 2rem;
-    }
-    .adoption-journey-content aside h2{
-        text-align: center;
-    }
-    .story-details{
-        width:100%;
-        box-sizing: border-box;
+        .adoption-journey-content{
+            flex-flow: column-reverse nowrap;
+            justify-items: center;
+            align-items: center;
+            position: relative;
+        }
+    
+        .stories-wrapper{
+            align-items: center;
+            justify-content: center; 
+            margin-top: 3rem;  
+        }
+        .sort-wrapper{
+            position: absolute;
+            z-index: 2;
+            top:0;
+            right: 0;
+            margin:.5rem;
+        }
+    
+        #stories{
+            margin-top: 3rem;
+        }
+        .story{
+            flex-direction: column;
+        
+        }
+    
+        .adoption-journey-content
+        aside{
+            width: 60%;
+            margin-top: 2rem;
+        }
+        .adoption-journey-content aside h2{
+            text-align: center;
+        }
+        .story-details{
+            width:100%;
+            box-sizing: border-box;
+        }
     }
 
     /* adoption journey form ========================== */
-    .content-container{
-        box-sizing: border-box;
-        width: 100%;
-    }
-    .content-container .name,
-    .content-container .title,
-    .content-container .desc{
-        box-sizing: border-box;
-        width:100%;
-    }
-
-    .content-container div input[type="text"],
-    .content-container div.desc textarea{
-        box-sizing: border-box;
-        width: 100%;
-    }
-
-    .adopted-story .content-container .btn_a{
-        display: flex;
-        flex-flow: column-reverse !important;
-        align-items: center;
-        justify-items: center;
-        grid-row: 5/6;
-        grid-column: 1/2;
-    }
-    .adopted-story .content-container .btn_a a{
-        margin:1rem 0;
-        align-items: center;
-        
-    }
-    .content-container .btn_a button{
-        margin-bottom: 1rem;
+    .adoption-journey-form {
+        .content-container{
+            box-sizing: border-box;
+            width: 100%;
+        }
+        .content-container .name,
+        .content-container .title,
+        .content-container .desc{
+            box-sizing: border-box;
+            width:100%;
+        }
+    
+        .content-container div input[type="text"],
+        .content-container div.desc textarea{
+            box-sizing: border-box;
+            width: 100%;
+        }
+    
+        .adopted-story .content-container .btn_a{
+            display: flex;
+            flex-flow: column-reverse !important;
+            align-items: center;
+            justify-items: center;
+            grid-row: 5/6;
+            grid-column: 1/2;
+        }
+        .adopted-story .content-container .btn_a a{
+            margin:1rem 0;
+            align-items: center;
+            
+        }
+        .content-container .btn_a button{
+            margin-bottom: 1rem;
+        }
     }
 }
 
@@ -363,81 +368,85 @@ dd.article-content {
 
 
 @media screen and (min-width: mq.$media-mobile-width){
-    .adoption-journey-header {
-        flex-flow: column nowrap;
-        gap:1rem;
-    }
-    #text_div{
-        text-align: center;
-    }
-
-    .adoption-journey-content{
-        flex-flow: column-reverse nowrap;
-        justify-items: center;
-        align-items: center;
-        position: relative;
-    }
-    .sort-wrapper{
-        position: absolute;
-        z-index: 2;
-        top:0;
-        right: 0;
-        margin:.5rem;
-    }
-    .stories-wrapper{
-        align-items: center;
-        justify-content: center;
-        margin-top: 3rem;
-    }
-
-    #stories{
-        margin-top: 3rem;
+    .adoption-journey-main {
+        .adoption-journey-header {
+            flex-flow: column nowrap;
+            gap:1rem;
+        }
+        #text_div{
+            text-align: center;
+        }
+    
+        .adoption-journey-content{
+            flex-flow: column-reverse nowrap;
+            justify-items: center;
+            align-items: center;
+            position: relative;
+        }
+        .sort-wrapper{
+            position: absolute;
+            z-index: 2;
+            top:0;
+            right: 0;
+            margin:.5rem;
+        }
+        .stories-wrapper{
+            align-items: center;
+            justify-content: center;
+            margin-top: 3rem;
+        }
+    
+        #stories{
+            margin-top: 3rem;
+        }
+        
+        .story{
+            flex-direction: column;
+        }
+    
+        .adoption-journey-content
+        aside{
+            width: 60%;
+            margin-bottom: calc(40px + 1rem);
+            margin-top: 2rem;
+        }
+        .adoption-journey-content aside h2{
+            text-align: center;
+        }
+        .story-details{
+            width:100%;
+            box-sizing: border-box;
+        }
     }
     
-    .story{
-        flex-direction: column;
-    }
-
-    .adoption-journey-content
-    aside{
-        width: 60%;
-        margin-bottom: calc(40px + 1rem);
-        margin-top: 2rem;
-    }
-    .adoption-journey-content aside h2{
-        text-align: center;
-    }
-    .story-details{
-        width:100%;
-        box-sizing: border-box;
-    }
 
     /* adoption journey form ========================== */
+    .adoption-journey-form {
+        .content-container .name,
+        .content-container .title,
+        .content-container .desc{
+            box-sizing: border-box;
+            width:100%;
+        }
 
-    
-    .content-container .name,
-    .content-container .title,
-    .content-container .desc{
-        box-sizing: border-box;
-        width:100%;
-    }
-
-    .content-container div input,
-    .content-container div.desc textarea{
-        box-sizing: border-box;
-        width: 100% !important;
-    }
-    
-    .adopted-story .content-container .btn_a{
-        display: flex;
-        gap:1rem;
-        flex-direction: column-reverse !important;
-        grid-row: 5/6;
-        grid-column: 1/2;
-        align-items: center;
-    }
-    .adopted-story .content-container .btn_a a{
-        align-items: center;
+        .content-container div input:not([type="radio"]),
+        .content-container div.desc textarea{
+            box-sizing: border-box;
+            width: 100% !important;
+        }
+        
+        .adopted-story .content-container .btn_a{
+            display: flex;
+            gap:1rem;
+            grid-row: 5/6;
+            grid-column: 1/-1;
+            align-items: center;
+            justify-content: end;
+            margin: 2rem 0;
+        }
+        .adopted-story .content-container .btn_a a{
+            align-items: center;
+        }
     }
 }
     
@@ -445,60 +454,62 @@ dd.article-content {
 
 
 @media screen and (min-width : mq.$media-tablet-width){
-    .adoption-journey-header {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-    }
-    #text_div{
-        text-align: left;
-    }
-    #btn_div{
-        padding-right:1rem;
-    }
-
-    .adoption-journey-content
-    aside{
-        margin-top:0!important;
-    }
-
-    .adoption-journey-content aside h2{
-        text-align: left;
-    }
-    .stories-wrapper{
-        padding-right: 1rem;
-        position: relative;
-        margin: 0;
-    }
-    .sort-wrapper{
-        position: absolute;
-        top:0;
-        margin-top: 0 !important;
-        margin-right: 1rem !important;
-    }
-
-    .story{
-        flex-flow: row !important;
-        align-items: center;
-    }
-    .story-details{
-        width: 40%;
-        object-fit: contain;
-    }
-   /*  .story-content{
-        width: 70%;
-    } */
-    #stories{
-        margin-top: 3.5rem;
-    }
-
-    .adoption-journey-content {
-        display: flex;
-        flex-direction: row;
-        align-items: flex-start !important;
-        gap: 8%;
-        padding: 5% 4%
+    .adoption-journey-main {
+        .adoption-journey-header {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+        #text_div{
+            text-align: left;
+        }
+        #btn_div{
+            padding-right:1rem;
+        }
+    
+        .adoption-journey-content
+        aside{
+            margin-top:0!important;
+        }
+    
+        .adoption-journey-content aside h2{
+            text-align: left;
+        }
+        .stories-wrapper{
+            padding-right: 1rem;
+            position: relative;
+            margin: 0;
+        }
+        .sort-wrapper{
+            position: absolute;
+            top:0;
+            margin-top: 0 !important;
+            margin-right: 1rem !important;
+        }
+    
+        .story{
+            flex-flow: row !important;
+            align-items: center;
+        }
+        .story-details{
+            width: 40%;
+            object-fit: contain;
+        }
+       /*  .story-content{
+            width: 70%;
+        } */
+        #stories{
+            margin-top: 3.5rem;
+        }
+    
+        .adoption-journey-content {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start !important;
+            gap: 8%;
+            padding: 5% 4%
+        }
     }
 
     /* adoption journey form ========================= */
@@ -532,29 +543,10 @@ dd.article-content {
 }
 
 
-
-@media screen and (max-width: mq.$media-tablet-width){
-    
-    .adopted-story .content-container .upload-images{
-        grid-row: 4;
-    }
-    .adopted-story .content-container .btn_a{
-        display: flex;
-        flex-flow: row wrap;
-        align-items: center;
-        justify-content: center;
-    }
-}
-
-
-
-
 @media screen and (min-width: 1200px) {
     .adoption-journey-content,
     .adoption-journey-header,
     .adoption-journey-form {
         @include mx.maxwidth;
     }
-
-    
 }
