@@ -18,7 +18,7 @@ workbox.routing.registerRoute(
 
 
 const cacheName = "v1";
-const urlsToCache = [ "/main/index.html", "/assets/stylesheet/style.css"];
+const urlsToCache = [ "./main/offline.html", "./assets/stylesheet/style.css"];
  // add offline.html to the cache only to show it when offline
 // NEVER cache service worker itself ( i.e. don't include sw.js in above array)
 // MAKE SURE THERE IS NO TYPO in the File names otherwise the cache.addAll fails in install
@@ -59,11 +59,13 @@ self.addEventListener('fetch', event => {
     // if the requested resource is in the local cache before going to the server to get it. 
     console.log(`[SW] Fetch event for ${event.request.url}`);
 
-    event.respondWith(
-      caches.match( event.request ).then( ( response ) => {
-        return response || fetch( event.request );
-      })
-    );
+    event.respondWith(NetworkFirstThenCacheStrategy(event) )
+
+    // event.respondWith(
+    //   caches.match( event.request ).then( ( response ) => {
+    //     return response || fetch( event.request );
+    //   })
+    // );
 });
 
 addEventListener("message", (event) => {
@@ -74,15 +76,15 @@ addEventListener("message", (event) => {
 });
 
 // CACHE FIRST, THEN NETWORK STRATEGY
-async function CacheFirstThenNetworkStrategy(event) {
-    const cachedResponse = await caches.match( event.request.url, {ignoreVary:true} ); // ignore vary header (useful for offline match)
-    if (cachedResponse) {
-      console.log("using catched "+event.request.url);
-      return cachedResponse
-    }
-    //not found in cache try to return from server (would be successfull if we are online)
-    return fetch( event.request );  // returns cachedResponse or server fetch  if no cachedResponse
-  }
+// async function CacheFirstThenNetworkStrategy(event) {
+//     const cachedResponse = await caches.match( event.request.url, {ignoreVary:true} ); // ignore vary header (useful for offline match)
+//     if (cachedResponse) {
+//       console.log("using catched "+event.request.url);
+//       return cachedResponse
+//     }
+//     //not found in cache try to return from server (would be successfull if we are online)
+//     return fetch( event.request );  // returns cachedResponse or server fetch  if no cachedResponse
+//   }
 
 
 // NETWORK FIRST, THEN CACHE STRATEGY
@@ -90,6 +92,6 @@ async function NetworkFirstThenCacheStrategy(event) {
   try {
       return await fetch( event.request );  // returns server fetch
   } catch(error) {
-      return caches.match( "offline.html",event.request.url , {ignoreVary:true} ); // returns cached response if server fetch fails (e.g. user is offline)
+      return caches.match( event.request.url + "offline.html" , {ignoreVary:true} ); // returns cached response if server fetch fails (e.g. user is offline)
   }
 }
