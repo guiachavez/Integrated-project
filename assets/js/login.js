@@ -7,6 +7,7 @@ const provider = new GoogleAuthProvider(app)
 
 //login method using email
 const loginButton = document.querySelector('.login')
+const errorMsg = document.querySelector('.error-msg')
 loginButton.addEventListener('submit', (e) => {
     e.preventDefault()
 
@@ -20,6 +21,8 @@ loginButton.addEventListener('submit', (e) => {
         })
         .catch((err) => {
             console.log(err.message)
+            errorMsg.style.display = 'block';
+            errorMsg.innerHTML = 'Incorrect username or password';
         })
 })
 
@@ -61,9 +64,15 @@ submitForgot.addEventListener('submit', (e) => {
     
     sendPasswordResetEmail(auth, email)
         .then(() => {
-            alert("Password reset email sent!")
+            setTimeout(function() {
+                alert("Password reset email sent!")
+            }, 200)
+            
+            $('.modal').removeClass('modal-active')
         })
         .catch((err) => {
             console.log(err.message)
         });
+
+        
 })
