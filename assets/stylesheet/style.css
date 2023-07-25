@@ -2823,9 +2823,9 @@ img {
   .ind-images img[alt*=picture] {
     border-radius: 5%;
   }
-  .group-2 {
-    margin-top: 2rem !important;
-  }
+  /* .group-2{
+      margin-top: 2rem !important;   
+  } */
   .group-2 .ind-images {
     flex-direction: column-reverse;
   }
@@ -2840,6 +2840,7 @@ img {
     text-align: center;
     font-family: "Raleway";
     font-weight: 600;
+    padding-top: 0.5rem;
   }
 }
 @media screen and (min-width: 460px) {
@@ -2850,55 +2851,38 @@ img {
   main h1 span:first-of-type {
     color: #DE6B35;
   }
-  .section {
+  .wrapper {
+    margin: 1rem;
+  }
+  .group-1,
+  .group-2 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     margin: auto;
     justify-content: center;
     align-items: center;
-    gap: 4rem;
-  }
-  .group-2 {
-    margin-top: 2rem !important;
   }
   .group-2 .ind-images {
     flex-direction: column-reverse;
   }
-  .group-2 .ind-images:last-of-type {
+  .short {
     grid-column: span 2;
     width: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    margin: auto;
   }
-  /* .second{
-      display: flex;
-  } */
   .second p {
     align-self: center;
   }
   .ind-images {
     display: flex;
     flex-direction: column;
+    margin-top: 1rem;
   }
   .ind-images img {
     align-self: center;
   }
   .ind-images img[alt*=picture] {
     border-radius: 5%;
-  }
-  .justi_end {
-    align-items: end;
-  }
-  .justi_end img {
-    align-self: unset;
-  }
-  .justi_start {
-    align-items: start;
-  }
-  .justi_start img {
-    align-self: unset;
   }
   .ind-images .grp_img_p {
     text-align: center;
@@ -2909,6 +2893,7 @@ img {
   .grp_img_p p {
     text-align: center;
     font-weight: 600;
+    padding-top: 0.5rem;
   }
   .grp_img_p p span {
     display: block;
