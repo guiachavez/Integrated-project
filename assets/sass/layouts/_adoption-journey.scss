@@ -81,7 +81,7 @@
 }
 
 .story-photos img {
-    border-radius: 0.5rem 0 0 0rem;   
+    border-radius: 0.5rem 0rem 0 0rem;   
     
     display: block;
     width: 100%;
@@ -104,7 +104,7 @@ aside > div:last-of-type {
     gap: 1rem;
 }
 
-.story {
+.adoption-journey-content .story {
     position: relative;
     display: flex;
     gap: 1rem;
@@ -509,6 +509,10 @@ dd.article-content {
             align-items: flex-start !important;
             gap: 8%;
             padding: 5% 4%
+        }
+
+        .story-photos img {
+            border-radius: 0.5rem 0.5rem 0 0rem;   
         }
     }
 

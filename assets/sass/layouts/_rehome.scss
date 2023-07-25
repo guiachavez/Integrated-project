@@ -250,9 +250,6 @@ input:checked + .radio-slider:before {
     margin: 1rem 0;
 }
 
-#tab-progress.active {
-    display: grid;
-}
 
 #tab-progress {
     grid-template-columns: repeat(3, 1fr);
@@ -262,8 +259,6 @@ input:checked + .radio-slider:before {
     align-items: end;
     padding: 2rem 0;
 }
-
-
 
 
 .progress-holder {
@@ -347,7 +342,11 @@ option{
 #tab-2, #tab-3, #tab-progress.active{
     // max-width: 600px;
     margin: auto;
-    padding: 2%;
+    padding: 50px 0 10px 0;
+}
+
+#tab-progress {
+    display: none;
 }
 
 @media screen and (min-width: mq.$media-mobile-width){
@@ -368,6 +367,14 @@ option{
 
     .rehome-container .col-left{
         display: unset;
+    }
+
+    #tab-progress {
+        display: block;
+    }
+
+    #tab-progress.active {
+        display: grid;
     }
 }
 

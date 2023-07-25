@@ -4,7 +4,11 @@
 /* Pet Application =========================== */
 
 .animals-main {
-    padding: 3rem;
+    padding: 3rem 1.5rem;
+
+    .pet-details {
+        padding: 0;
+    }
 }
 
 #filtered-pets {
@@ -23,7 +27,7 @@
 .search-container {
     display: flex;
     flex-flow: column nowrap;
-    gap: 1rem;
+    gap: 2rem;
     position: relative;
 }
 
@@ -36,7 +40,6 @@
     cursor: pointer;
     width: 100%;
     z-index: 10;
-    padding: 0 1%;
 }
 
 .filter label{
@@ -60,16 +63,15 @@
     flex: 1 0 auto;
     flex-grow: 0;
     width: 100%;
-    padding: 1rem;
 
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
 
     display: none;
-    position: absolute;
     background-color: white;
     border-radius: 0.5rem;
+    margin-top: 1.5rem;
 }
 .gap-search{
     padding-top: 1rem;
@@ -110,6 +112,7 @@ fieldset {
 
     > div {
         display: flex;
+        gap: 0.2rem;
     }
 }
 
@@ -137,7 +140,6 @@ fieldset {
 
 .search-filter{
     display: none;
-    position: absolute;
     background-color: white;
     border-radius: 0.5rem;
 }
@@ -196,6 +198,10 @@ fieldset {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
+    
+    legend {
+        margin-bottom: 0.2rem;
+    }
 }
 
 @media screen and (min-width: mq.$media-mobile-width) {
@@ -206,12 +212,21 @@ fieldset {
     }
 }
 
+@media screen and (max-width: 459px) {
+    .animals-main {
+        .pet {
+            margin-bottom: 2rem;
+        }
+    }
+}
+
 @media screen and (min-width: mq.$media-tablet-width) {
     .search-filter{
         display: flex;
         position: relative;
         padding-top: 0;
         width: 280px;
+        margin-top: 0;
     }
 
     .filter{
