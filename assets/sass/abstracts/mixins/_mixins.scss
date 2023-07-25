@@ -22,7 +22,8 @@
 }
 
 @mixin maxwidth{
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
     position: relative;
     width: 1200px;
 }

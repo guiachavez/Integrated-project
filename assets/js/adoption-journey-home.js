@@ -1,5 +1,6 @@
-import { getFirestore, documentId, query, where, doc, getDocs, addDoc, collection, serverTimestamp } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js'
+import { getFirestore, documentId, query, where, doc, getDocs, addDoc, collection, serverTimestamp, orderBy } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js'
 import { app } from './config.js'
+import { globalShowPosts } from './global-functions.js'
 
 
 // init the firestore and storage
@@ -9,44 +10,47 @@ const db = getFirestore(app)
 const adoptJourney = collection(db, 'adoptionJourney')
 const aniRef = collection(db, "animals")
 
-getDocs(adoptJourney).then((posts) => { 
-    let adposts = []
- 
-    posts.docs.forEach( (doc) => {
-        adposts.push({...doc.data(), id: doc.id })
+const sortedQuery = query(adoptJourney, orderBy("posted_at"))
+    showPosts(sortedQuery) 
 
-        let postsdata = doc.data()
-
-        const petPhoto = query(aniRef, where(documentId(), "==", postsdata.petDetails.petId))
-
-        getDocs(petPhoto).then((photo) => {
-        
-            let petphoto = []
-            console.log(petphoto)
-
-            photo.docs.forEach( (doc) => {
-                petphoto.push({...doc.data(), id: doc.id })
-                let petphotodata = doc.data()
-
-                let photo = petphotodata.photo[0];
-                let table = document.getElementById('postDetails');
-
-                // document.querySelector('#petphoto').src = photo;
-
-                let row  = `<tr>
-                    <td>${postsdata.title}</td>
-                    <td>${postsdata.body}</td>
-                    <td>${petphotodata.photo[0]}</td>
-                    <td>${postsdata.petDetails.petName}</td>
-                    <td>${postsdata.authorDetails.firstName}</td>
-                    <td>${postsdata.petDetails.ownerLname}</td>
-                    <td>${postsdata.authorDetails.city}</td>
-                    <td>${postsdata.authorDetails.state}</td>
-                </tr>`;
-  
-                table.innerHTML += row
-
-            })
-        })
-    })
+//for sorting using date posted
+const sortby = document.getElementById('sort')
+sortby.addEventListener('change', () => {
+    $('#stories').empty();
+    if (sortby.value == "descending") {
+        const sortedQuery = query(adoptJourney, orderBy("posted_at", "desc"))
+        showPosts(sortedQuery)
+    } else if (sortby.value == "ascending") {
+        const sortedQuery = query(adoptJourney, orderBy("posted_at"))
+        showPosts(sortedQuery)    
+    }
 })
+
+function showPosts(sortedQuery) {
+    globalShowPosts(sortedQuery)
+}
+
+
+$(document).ready(function() {  
+    var article = document.getElementsByClassName('article');
+    
+    for (let i = 0; i < article.length; i++) {
+        article[i].addEventListener('click', function() {
+            this.classList.toggle('active');
+
+            if ($(this).hasClass("active")) {
+                $(this).find('img').css('transform', 'rotate(90deg)')
+            } else {
+                $(this).find('img').css('transform', 'rotate(0deg)')
+            }
+
+            var content = this.nextElementSibling;
+
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            } 
+        });
+    }
+});

@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <link rel="icon" type="image/pawfectmatch-icon" href="./../assets/logo/pawfectmatch-logo-no-text.svg">
 
     <link rel="manifest" href="./../assets/json/app.webmanifest">
 
@@ -20,6 +21,21 @@
       href="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.12/SearchBox.css"
     />
 
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+    />
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
     <!-- Include JavaScript SDK for TomTom -->
     <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/maps/maps-web.min.js"></script>
     <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.12/SearchBox-web.js"></script>
@@ -32,13 +48,12 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/@petfinder/petfinder-js/dist/petfinder.min.js"></script>
 
-    <!-- JS for Carousel -->
-    <script src="./../assets/js/Carousel.js" defer></script>
     <!-- CSS for Carousel -->
     <link rel="stylesheet" href="./../assets/stylesheet/carousel.css" />
 
     <!-- CSS -->
     <link rel="stylesheet" href="./../assets/stylesheet/style.css" />
+    <!-- <link rel="stylesheet" href="./../assets/stylesheet/carousel.css"> -->
 
     <!-- Scripts -->
 
@@ -102,196 +117,49 @@
             </button>
           </div>
         </form>
+        <p class="alert">**Please complete input fields.</p>
       </section>
 
       <!-- Featured Pets Section -->
       <section class="home_featured">
         <h2 class="card-heading-mob">Featured Pets</h2>
 
-        <div class="featured-pet-1">
-          <div class="featured-pet-image featured-pet-slider">
-            <a href=""
-              ><img src="" alt="" />
-              <img src="" alt="" />
-            </a>
-          </div>
-          <div class="featured-pet-details"></div>
+        <div class="carousel-container">
+          <div class="carousel"></div>
         </div>
-
-        <div class="featured-pet-1">
-          <div class="featured-pet-image featured-pet-slider"></div>
-          <div class="featured-pet-details"></div>
-        </div>
-
-        <div class="featured-pet-1">
-          <div class="featured-pet-image featured-pet-slider"></div>
-          <div class="featured-pet-details"></div>
-        </div>
-
-        <!-- Carousel mobile -->
-        <!-- <section aria-label="photos" class="home_small-carousel">
-          <div class="carousel" data-carousel>
-            <button class="carousel-button prev" data-carousel-button="prev">
-              <img
-                src="./../assets/images/ChevronLeft-1.svg"
-                alt="previous image"
-              />
-            </button>
-            <button class="carousel-button next" data-carousel-button="next">
-              <img src="./../assets/images/ChevronLeft.svg" alt="next image" />
-            </button>
-            <div>
-              <ul data-slides>
-                <li class="slide" data-active>
-                  <img
-                    src="https://picsum.photos/800/800?/rand=431"
-                    alt="random pics"
-                  />
-                  <div class="home_pet-card">
-                    <h3 class="home_pet-name">Yuri</h3>
-                    <p class="home_pet-descr sub-heading-mob">
-                      1 year, Male, Dog
-                    </p>
-                    <p class="home_pet-location sub-heading-mob">
-                      Vancouver, Bc
-                    </p>
-                  </div>
-                </li>
-                <li class="slide">
-                  <img
-                    src="https://picsum.photos/800/800?/rand=432"
-                    alt="random pics"
-                  />
-                  <div class="home_pet-card">
-                    <h3 class="home_pet-name">Darcie</h3>
-                    <p class="home_pet-descr sub-heading-mob">
-                      1 year, Female, Cat
-                    </p>
-                    <p class="home_pet-location sub-heading-mob">
-                      Vancouver, Bc
-                    </p>
-                  </div>
-                </li>
-                <li class="slide">
-                  <img
-                    src="https://picsum.photos/800/800?/rand=433"
-                    alt="random pics"
-                  />
-                  <div class="home_pet-card">
-                    <h3 class="home_pet-name">Mochi</h3>
-                    <p class="home_pet-descr sub-heading-mob">
-                      2 years, Female, Dog
-                    </p>
-                    <p class="home_pet-location sub-heading-mob">
-                      Vancouver, Bc
-                    </p>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </section> -->
-
-        <!-- Carousel tablet & web -->
-        <!-- <section aria-label="photos" class="home_big-carousel">
-          <div class="carousel" data-carousel>
-            <button class="carousel-button prev" data-carousel-button="prev">
-              <img
-                src="./../assets/images/ChevronLeft-1.svg"
-                alt="previous image"
-              />
-            </button>
-            <button class="carousel-button next" data-carousel-button="next">
-              <img src="./../assets/images/ChevronLeft.svg" alt="next image" />
-            </button>
-            <div>
-              <ul data-slides>
-                <li class="slide" data-active>
-                  <img
-                    src="https://picsum.photos/800/800?/rand=431"
-                    alt="random pics"
-                  />
-                  <div class="home_pet-card">
-                    <h3 class="home_pet-name">Yuri</h3>
-                    <p class="home_pet-descr sub-heading-mob">
-                      1 year, Male, Dog
-                    </p>
-                    <p class="home_pet-location sub-heading-mob">
-                      Vancouver, Bc
-                    </p>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="carousel" data-carousel>
-            <button class="carousel-button prev" data-carousel-button="prev">
-              <img
-                src="./../assets/images/ChevronLeft-1.svg"
-                alt="previous image"
-              />
-            </button>
-            <button class="carousel-button next" data-carousel-button="next">
-              <img src="./../assets/images/ChevronLeft.svg" alt="next image" />
-            </button>
-            <div>
-              <ul data-slides>
-                <li class="slide" data-active>
-                  <img
-                    src="https://picsum.photos/800/800?/rand=431"
-                    alt="random pics"
-                  />
-                  <div class="home_pet-card">
-                    <h3 class="home_pet-name">Yuri</h3>
-                    <p class="home_pet-descr sub-heading-mob">
-                      1 year, Male, Dog
-                    </p>
-                    <p class="home_pet-location sub-heading-mob">
-                      Vancouver, Bc
-                    </p>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="carousel" data-carousel>
-            <button class="carousel-button prev" data-carousel-button="prev">
-              <img
-                src="./../assets/images/ChevronLeft-1.svg"
-                alt="previous image"
-              />
-            </button>
-            <button class="carousel-button next" data-carousel-button="next">
-              <img src="./../assets/images/ChevronLeft.svg" alt="next image" />
-            </button>
-            <div>
-              <ul data-slides>
-                <li class="slide" data-active>
-                  <img
-                    src="https://picsum.photos/800/800?/rand=431"
-                    alt="random pics"
-                  />
-                  <div class="home_pet-card">
-                    <h3 class="home_pet-name">Yuri</h3>
-                    <p class="home_pet-descr sub-heading-mob">
-                      1 year, Male, Dog
-                    </p>
-                    <p class="home_pet-location sub-heading-mob">
-                      Vancouver, Bc
-                    </p>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </section> -->
       </section>
 
       <!-- Map Section -->
       <section class="home_map-box">
         <h2 class="card-heading-mob">Find a Shelter</h2>
+
         <div id="orgList" class="orgList"></div>
-        <div id="map" class="map"></div>
+        <div id="map" class="map">
+          <div class="home_map-controls">
+            <div class="home_change-location">
+              <!-- Mody. Location -->
+            </div>
+            <div id="home_radius" class="home_radius">
+              <!-- Radius -->
+              <div class="home_radius-containder">
+                <label for="setRadius">Range: </label>
+                <input type="range" id="setRadius" min="1" max="20" value="5" />
+                <span class="radius-value" id="radiusValue">5</span
+                ><span>km</span>
+              </div>
+              <!-- <button
+                type="submit"
+                value="Apply"
+                id="home_apply-radius"
+                class="filled-mob-btn font"
+              >
+                Apply Radius
+              </button> -->
+            </div>
+          </div>
+        </div>
+
+        
       </section>
 
       <!-- Prepare to Adopt Section -->
@@ -313,7 +181,7 @@
           <div>
             <div class="home_prepare-list">
               <div class="home_paw-list">
-                <img src="/assets/images/Paw.svg" alt="paw list item" />
+                <img src="/assets/icons/donation.svg" alt="paw list item" />
               </div>
               <div>
                 <h4>Financial Planning for Pet Ownership</h4>
@@ -325,7 +193,7 @@
             </div>
             <div class="home_prepare-list">
               <div class="home_paw-list">
-                <img src="/assets/images/Paw.svg" alt="paw list item" />
+                <img src="/assets/icons/pet-dog.svg" alt="paw list item" />
               </div>
               <div>
                 <h4>Educating Yourself on Pet Care</h4>
@@ -338,7 +206,7 @@
             </div>
             <div class="home_prepare-list">
               <div class="home_paw-list">
-                <img src="/assets/images/Paw.svg" alt="paw list item" />
+                <img src="/assets/icons/pet-home.svg" alt="paw list item" />
               </div>
               <div>
                 <h4>Creating a Pet-Friendly Home</h4>
@@ -377,46 +245,11 @@
           </form>
         </div>
 
-        <section aria-label="photos" class="home_small-carousel">
-          <div class="carousel" data-carousel>
-            <button class="carousel-button prev" data-carousel-button="prev">
-              <img
-                src="./../assets/images/ChevronLeft-1.svg"
-                alt="previous image"
-              />
-            </button>
-            <button class="carousel-button next" data-carousel-button="next">
-              <img src="./../assets/images/ChevronLeft.svg" alt="next image" />
-            </button>
-            <ul data-slides>
-              <li class="slide" data-active>
-                <div>
-                  <img
-                    src="https://picsum.photos/800/800?/rand=431"
-                    alt="random pics"
-                  />
-                  <div class="home_pet-card">
-                    <h3 class="home_pet-name">Yuri</h3>
-                    <p class="home_pet-descr sub-heading-mob">
-                      1 year, Male, Dog
-                    </p>
-                    <p class="home_pet-location sub-heading-mob">
-                      Vancouver, Bc
-                    </p>
-                  </div>
-                </div>
-                <div class="home_pet-story">
-                  <p>
-                    My boyfriend and I adopted sweet Darcie two days after my
-                    birthday. It was a momentous day as I had waited over 8
-                    years to adopt a dog after my previous dogs, Hershey and
-                    Chelsea had passed...
-                  </p>
-                </div>
-              </li>
-            </ul>
+        <div class="stories-wrapper">
+          <div class="sort-wrapper">
+            <div id="stories"></div>
           </div>
-        </section>
+        </div>
       </section>
     </main>
 

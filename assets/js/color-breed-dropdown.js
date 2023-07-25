@@ -20,7 +20,13 @@ const source = document.getElementById('source');
 
 // access set location
 let position = JSON.parse(localStorage.getItem('position'))
-let latlong = `${position.lat},${position.lng}`
+let latlong
+
+if (position.lng == undefined) {
+    latlong = `${position.lat},${position.lon}`
+} else {
+    latlong = `${position.lat},${position.lng}`
+}
 
 source.addEventListener('change', (e) => {
     console.log(e.target.value)
@@ -117,6 +123,8 @@ export function changeAttr(latlong) {
                 orgList.add(newOption,undefined);
             }
         }
+
+        document.getElementById('orgId').value = localStorage.getItem('orgId')
 
         return fetch('https://api.petfinder.com/v2/types/' + typeSelected + '/breeds', {
             headers: {

@@ -1,3 +1,4 @@
+
 import { tomtomAPI } from './config.js'
 
 const homeSearch = document.getElementById('submit')
@@ -6,15 +7,24 @@ const search = (e) => {
     e.preventDefault()
     let type = document.getElementById('type').value
     let source = document.getElementById('source').value
-
+    let alert = document.querySelector('.alert')
     
     localStorage.setItem('type', type)
     localStorage.setItem('source', source)
 
-    // redirect to animals page
-    setTimeout(function() {
-        window.location.href = 'http://127.0.0.1:5500/main/animals.html';
-    }, 3000)
+    $('select').on('change', function() {
+        alert.style.display = 'none'
+    })
+
+    if(type && source) {
+        // redirect to animals page
+        setTimeout(function() {
+            window.location.href = 'http://127.0.0.1:5500/main/pet.html';
+        }, 1000)
+    } else {
+        alert.style.display = 'block'
+    }
+    
 }
 
 // COMMENT OUT THE MAP
@@ -88,8 +98,8 @@ var ttSearchBox = new tt.plugins.SearchBox(tt.services, searchBoxOptions)
 document.querySelector('form').prepend(ttSearchBox.getSearchBoxHTML());
 
 ttSearchBox.on('tomtom.searchbox.resultselected', function(event) {
-    console.log(event.data.result.address)
-    console.log(event.data.result.position)
+    // console.log(event.data.result.address)
+    // console.log(event.data.result.position)
     localStorage.setItem('location-query', JSON.stringify(event.data.result.address))
     localStorage.setItem('position', JSON.stringify(event.data.result.position))
 })

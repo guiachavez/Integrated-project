@@ -44,8 +44,6 @@ var ttSearchBox = new tt.plugins.SearchBox(tt.services, searchBoxOptions)
 document.querySelector('.search-location').appendChild(ttSearchBox.getSearchBoxHTML());
 
 ttSearchBox.on('tomtom.searchbox.resultselected', function(event) {
-    console.log(event.data.result.address)
-    console.log(event.data.result.position)
     localStorage.setItem('location-query', JSON.stringify(event.data.result.address))
     localStorage.setItem('position', JSON.stringify(event.data.result.position))
 
@@ -66,31 +64,41 @@ const homeSearch = () => {
     let color = document.getElementById('color').value;
     let goodWithChildren = JSON.parse(document.querySelector('input[name="children"]:checked').value);
     let houseTrained = JSON.parse(document.querySelector('input[name="trained"]:checked').value);
-    let orgId = document.getElementById('orgId').value;
+    let orgId = localStorage.getItem('orgId')
+    let latlong
 
-    let latlong = `${position.lat},${position.lng}`
-
-    document.getElementById('pet-type').value = type
-    document.getElementById('source').value = source
-    //document.getElementById('location').value = locationText.freeformAddress
-
-    document.querySelector('.tt-search-box-input').value = locationText.freeformAddress
-    $('#filtered-pets').empty()
-
-    if (source == 'owner') {
-        let ageArr = age.split(",");
-        let sizeArr = size.split(",");
-        let genderArr = gender.split(",");
-
-        searchOwner(color, breed, type, ageArr, sizeArr, genderArr, goodWithChildren, houseTrained)
-        ownerDropdown()
-        $('.organization').css('display', 'none')
+    if (position.lng == undefined) {
+        latlong = `${position.lat},${position.lon}`
     } else {
-        searchPetFinder(type, breed, age, gender, size, color, goodWithChildren, houseTrained, orgId, latlong)
-        changeAttr(latlong)
-        $('.organization').css('display', 'block')
-
+        latlong = `${position.lat},${position.lng}`
     }
+
+    if (source || type) {
+
+        document.getElementById('pet-type').value = type
+        document.getElementById('source').value = source
+        //document.getElementById('location').value = locationText.freeformAddress
+        document.querySelector('.tt-search-box-input').value = locationText.freeformAddress
+      
+        $('#filtered-pets').empty()
+
+        if (source == 'owner') {
+            let ageArr = age.split(",");
+            let sizeArr = size.split(",");
+            let genderArr = gender.split(",");
+
+            searchOwner(color, breed, type, ageArr, sizeArr, genderArr, goodWithChildren, houseTrained)
+            ownerDropdown()
+            $('.organization').css('display', 'none')
+        } else {
+            searchPetFinder(type, breed, age, gender, size, color, goodWithChildren, houseTrained, orgId, latlong)
+            changeAttr(latlong)
+            $('.organization').css('display', 'block')
+
+        }
+    } else {
+        $('.search-check').addClass('modal-active')
+    } 
     
 }
 
@@ -108,7 +116,13 @@ const loadFilter = ()=> {
     let orgId = document.getElementById('orgId').value;
 
     let position = JSON.parse(localStorage.getItem('position'))
-    let latlong = `${position.lat},${position.lng}`
+    let latlong
+
+    if (position.lng == undefined) {
+        latlong = `${position.lat},${position.lon}`
+    } else {
+        latlong = `${position.lat},${position.lng}`
+    }
     
     //convert values to array
     let ageArr = age.split(",");
@@ -139,6 +153,13 @@ const loadFilter = ()=> {
 
     // settingup local storage
     localStorage.setItem('searchParams', JSON.stringify(searchParamsObj));
+
+    if($('.filter').is(':visible') == true) {
+        searchFilters.style.display = 'none';
+        closeFilter.style.display = 'none';
+        searchResult.style.display = 'block'
+        filterClicked = false;
+    }
 }
 
 const reLoadFilter = ()=> {
@@ -213,7 +234,7 @@ async function searchOwner(color, breed, type, ageArr, sizeArr, genderArr, goodW
         let location = JSON.parse(localStorage.getItem('location-query'))
         let city = location.municipality
         let country = location.country
-        console.log(userId)
+
         const q = query(aniRef,
             where("type", "==", type), 
             where("age", "in", ageArr), 
@@ -228,6 +249,7 @@ async function searchOwner(color, breed, type, ageArr, sizeArr, genderArr, goodW
                 const querySnapshot = await getDocs(q);
                 const results = []
 
+                console.log(querySnapshot)
                 querySnapshot.forEach((doc) => {
                     results.push([doc.id,doc.data()])
                 })
@@ -255,7 +277,7 @@ async function searchOwner(color, breed, type, ageArr, sizeArr, genderArr, goodW
                                     if(!isArr) {
                                         $(`.pet-${i} .pet-photos`).append([
                                             $('<div />', {'class': 'pet-img'}).append([
-                                                $('<a />', {'href': `./../main/pet-profile.html?id=${results[i][0]}`}).append([
+                                                $('<a />', {'href': `./../main/pet-details.html?id=${results[i][0]}`}).append([
                                                     $('<img>', {'src': `${results[i][1].photo}`})
                                                 ])
                                             ])
@@ -264,7 +286,7 @@ async function searchOwner(color, breed, type, ageArr, sizeArr, genderArr, goodW
                                         for(const key in petPhoto) {
                                             $(`.pet-${i} .pet-photos`).append([
                                                 $('<div />', {'class': `pet-img`}).append([
-                                                    $('<a />', {'href': `./../main/pet-profile.html?id=${results[i][0]}`}).append([
+                                                    $('<a />', {'href': `./../main/pet-details.html?id=${results[i][0]}`}).append([
                                                         $('<img>', {'src': petPhoto[key]})
                                                     ])
                                                 ])
@@ -276,6 +298,17 @@ async function searchOwner(color, breed, type, ageArr, sizeArr, genderArr, goodW
                         }
                     }
                 }
+
+                if (document.getElementById('filtered-pets').hasChildNodes() == false) {
+                    $('#filtered-pets').append([
+                        $('<div />', {'class': 'no-results'}).append([
+                            $('<h2 />', {'text': 'No results found'}),
+                            $('<p />', {'text': "Try adjusting your search or filter to find what you're looking for."}),
+                            $('<img />', {'src': './../assets/images/cat-404.png'})
+                        ])
+                    ])
+                }
+                
                 $('.slider').slick({
                     infinite: true,
                     dots: true,
@@ -315,7 +348,6 @@ var searchPetFinder = (type, breed, age, gender, size, color, goodWithChildren, 
         for(const pet in data) {
             if(pet == 'animals') {
                 petObj = data[pet];
-                //console.log(petObj)
                 for(const i in petObj) {
                     $('#filtered-pets').append([
                         $('<div />', {'class': `pet pet-${i}`}).append([
@@ -335,7 +367,7 @@ var searchPetFinder = (type, breed, age, gender, size, color, goodWithChildren, 
                     for(const photo in petObj[i].photos) {
                         $(`.pet-${i} .pet-photos`).append([
                             $('<div />', {'class': `pet-img`}).append([
-                                $('<a />', {'href': `./../main/pet-profile.html?id=${petObj[i].id}`}).append([
+                                $('<a />', {'href': `./../main/pet-details.html?id=${petObj[i].id}`}).append([
                                     $('<img>', {'src': petObj[i].photos[photo].medium})
                                 ])
                             ])
@@ -351,7 +383,17 @@ var searchPetFinder = (type, breed, age, gender, size, color, goodWithChildren, 
                 });
             }
         }
-        // save the pet search result to local storage to access to pet-profile.html
+
+        if (document.getElementById('filtered-pets').hasChildNodes() == false) {
+            $('#filtered-pets').append([
+                $('<div />', {'class': 'no-results'}).append([
+                    $('<h2 />', {'text': 'No results found'}),
+                    $('<p />', {'text': "Try adjusting your search or filter to find what you're looking for."}),
+                    $('<img />', {'src': './../assets/images/cat-404.png'})
+                ])
+            ])
+        }
+        // save the pet search result to local storage to access to pet-details.html
         localStorage.setItem('outputObj', JSON.stringify(petObj));
     }).catch((err) => {
         console.log(err)
@@ -375,16 +417,26 @@ export {userLocationString, userLocation}
 
 $(document).ready(function() {
     const displayOrg = () => {
-        $('#source').on('change', function() {
+        $('.where-from-selector').on('change', function() {
+            localStorage.setItem('source', $(this).val())
+
             if($(this).val() == 'shelter') {
                 $('.organization').css('display', 'block')
             } else {
                 $('.organization').css('display', 'none')
             }
         })
+
+        $('.petSelector').on('change', function() {
+            localStorage.setItem('type', $(this).val())
+        })
     }
     displayOrg()
     loadUserLocation();
+
+    $('#orgId').on('change', function() {
+        localStorage.setItem('orgId', $(this).val())
+    })
 
     searchAnimals.addEventListener('submit', loadFilter)
 
@@ -398,5 +450,51 @@ $(document).ready(function() {
     //     reLoadFilter()
     // }
 
+    $('.home-search button').on('click', function(e) {
+        e.preventDefault();
+        if($('#form-type').val() == null || $('#form-source').val() == null) {
+            $('.alert').css('display', 'block')
+        } else {
+            $('.search-check').removeClass('modal-active')
+            homeSearch()
+        }
+    })
+
     homeSearch()
+})
+
+const filters = document.querySelector('.filter-icon');
+const searchFilters = document.querySelector('.search-filter');
+const closeFilter = document.querySelector('.close-icon');
+const searchResult = document.querySelector('.search-result')
+let filterClicked = false;
+
+filters.addEventListener("click", function(){
+    searchFilters.style.display = 'block';
+    closeFilter.style.display = 'block';
+    searchResult.style.display = 'none'
+    filterClicked = true;
+});
+
+closeFilter.addEventListener("click", function(){
+    searchFilters.style.display = 'none';
+    closeFilter.style.display = 'none';
+    searchResult.style.display = 'block'
+    filterClicked = false;
+});
+
+window.addEventListener('resize', function() {
+    let screenWidth = this.window.innerWidth;
+    if(screenWidth < 820 && !filterClicked){
+        searchFilters.style.display = 'none';
+        closeFilter.style.display = 'none';
+    }
+    else if(screenWidth > 820 && filterClicked){
+        filterClicked = false;
+        searchResult.style.display = 'block'
+    }
+    else{
+        searchFilters.style.display = 'block';
+        closeFilter.style.display = 'block';
+    }
 })

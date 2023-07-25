@@ -21,22 +21,38 @@ const petRef = doc(db, 'animals', pet_id)
 
 console.log(own_id, pet_id)
 class appDetails {
-    constructor(appId, afname, alname, petownerId, pofname, polname, petId, petname, inquired_at, inquiryId, isAccepted) {
+    constructor(appId, afname, alname, email, petownerId, pofname, polname, poemail, petId, petname, inquired_at, inquiryId, isAccepted, declineReason, adopt, owner, restriction, children, sneeds, vet, typeArr, houseArr, ageArr, genderArr, sizeArr, petactArr, adoptionSuccess) {
         this.applicant = {
             applicantId: appId,
             app_firstName: afname,
-            app_lastName: alname
+            app_lastName: alname,
+            app_email: email
         };
         this.petowner = {
             petownerId: petownerId,
             po_firstName: pofname,
-            po_lastName: polname
+            po_lastName: polname,
+            po_email: poemail
         };
         this.petId = petId;
         this.petname = petname;
         this.inquired_at = inquired_at;
         this.inquiryId = inquiryId;
         this.isAccepted = isAccepted;
+        this.declineReason = declineReason;
+        this.adopt = adopt;
+        this.owner = owner;
+        this.restriction = restriction;
+        this.children = children;
+        this.sneeds = sneeds;
+        this.vet = vet;
+        this.pettype = typeArr;
+        this.house = houseArr;
+        this.petage = ageArr;
+        this.petgender = genderArr;
+        this.petsize = sizeArr;
+        this.petactivity = petactArr;
+        this.adoptionSuccess = adoptionSuccess;
     }
 }
 
@@ -54,7 +70,8 @@ let state = document.getElementById('app-state');
 let pcode = document.getElementById('app-pcode');
 let street = document.getElementById('app-street');
 
-const getUserDetails = (petownerId, pofname, polname, petId, petname) => {
+
+const getUserDetails = (petownerId, pofname, polname, poemail, petId, petname) => {
     onAuthStateChanged(auth, (user) => {
         if (user) {
             const appRef = doc(db, "accounts", user.uid); 
@@ -76,15 +93,70 @@ const getUserDetails = (petownerId, pofname, polname, petId, petname) => {
             let inquired_at = new serverTimestamp();
             let inquiryId = inqRef.id
             let isAccepted = "init"
-            console.log(inquiryId)
+            let declineReason = ""
 
             submit.addEventListener('click', (e) => {
                 e.preventDefault();
+
+                // radio button values
+                let adopt = document.querySelector('input[name="adopting"]:checked') != null ? document.querySelector('input[name="adopting"]:checked').value : "";
+                let owner = document.querySelector('input[name="owner"]:checked') != null ? document.querySelector('input[name="owner"]:checked').value : "";
+                let restriction = document.querySelector('input[name="restriction"]:checked') != null ? document.querySelector('input[name="restriction"]:checked').value : "";
+                let children = document.querySelector('input[name="children"]:checked') != null ? document.querySelector('input[name="children"]:checked').value : "";
+                let sneeds = document.querySelector('input[name="splneeds"]:checked') != null ? document.querySelector('input[name="splneeds"]:checked').value : "";
+                let vet = document.querySelector('input[name="vet"]:checked') != null ? document.querySelector('input[name="vet"]:checked').value : "";
+
+                // checkbox values
+                let petType = document.querySelectorAll('input[id="pettype"]:checked')
+                let house = document.querySelectorAll('input[id="house"]:checked')
+                let petAge = document.querySelectorAll('input[id="petage"]:checked')
+                let petGender = document.querySelectorAll('input[id="petgender"]:checked')
+                let petSize = document.querySelectorAll('input[id="petsize"]:checked')
+                let petAct = document.querySelectorAll('input[id="petactivity"]:checked')
+                let adoptionSuccess = 'init'
+
+                // array to store checkbox values
+                let typeArr = [];
+                if(petType.length > 0){
+                    for(let i=0; i<petType.length; i++){
+                        typeArr.push(petType[i].value)
+                    }
+                }
+                let houseArr = [];
+                if(house.length > 0){
+                    for(let i=0; i<house.length; i++){
+                        houseArr.push(house[i].value)
+                    }
+                }
+                let ageArr = [];
+                if(petAge.length > 0){
+                    for(let i=0; i<petAge.length; i++){
+                        ageArr.push(petAge[i].value)
+                    }
+                }
+                let genderArr = [];
+                if(petGender.length > 0){
+                    for(let i=0; i<petGender.length; i++){
+                        genderArr.push(petGender[i].value)
+                    }
+                }
+                let sizeArr = [];
+                if(petSize/length > 0){
+                    for(let i=0; i<petSize.length; i++){
+                        sizeArr.push(petSize[i].value)
+                    }
+                }
+                let petactArr = [];
+                if(petAct.length > 0){
+                    for(let i=0; i<petAct.length; i++){
+                        petactArr.push(petAct[i].value)
+                    }
+                }
                 
                 if(localStorage.getItem('source') == 'owner') {
-                    const appdetails = new appDetails(appId, afname.value, alname.value, petownerId, pofname, polname, petId, petname, inquired_at, inquiryId, isAccepted)
+                    const appdetails = new appDetails(appId, afname.value, alname.value, email.value, petownerId, pofname, polname, poemail, petId, petname, inquired_at, inquiryId, isAccepted, declineReason, adopt, owner, restriction, children, sneeds, vet, typeArr, houseArr, ageArr, genderArr, sizeArr, petactArr, adoptionSuccess)                        
                     console.log(appdetails)
-                    
+        
                     setTimeout(() => {
                         setDoc(inqRef, Object.assign({}, appdetails))
                             .then(() => {
@@ -97,7 +169,6 @@ const getUserDetails = (petownerId, pofname, polname, petId, petname) => {
                     }, 2000)
 
                     $('.modal.spinner').addClass('modal-active')
-                   
                 } else {
                     let outputObj = JSON.parse(localStorage.getItem('outputObj'));
                     console.log(outputObj)
@@ -116,6 +187,7 @@ if(localStorage.getItem('source') == 'owner') {
         let petownerId = owndata.uid;
         let pofname = owndata.firstName;
         let polname = owndata.lastName;
+        let poemail = owndata.email
 
 
         getDoc(petRef).then(petSnap => {
@@ -125,10 +197,9 @@ if(localStorage.getItem('source') == 'owner') {
             let petId = petSnap.id;
             let petname = petdata.name;
 
-            getUserDetails(petownerId, pofname, polname, petId, petname)
+            getUserDetails(petownerId, pofname, polname, poemail, petId, petname)
         })
     })
 } else if (localStorage.getItem('source') == 'shelter') {
     getUserDetails();
 }
-

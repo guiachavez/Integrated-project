@@ -15,6 +15,8 @@ const auth = getAuth(app)
 const aniRef = collection(db, 'animals')
 const inqRef = collection(db, 'inquiries')
 
+const modalContent = document.querySelector('.user-profile-main .modal-content')
+
 let inquiries = []
 
 onAuthStateChanged(auth, (user) => {
@@ -28,30 +30,26 @@ onAuthStateChanged(auth, (user) => {
             let table = document.getElementById('ownerDetails');
 
             document.querySelector('#photo').src = photo;
-              
-            let row  = `<tr>
-                        <td>${data.email}</td>
-                        <td>${data.firstName}</td>
-                        <td>${data.lastName}</td>
-                        <td>${data.phone}</td>
-                        <td>${data.address.street}</td>
-                        <td>${data.address.city}</td>
-                        <td>${data.address.state}</td>
-                        <td>${data.address.postcode}</td>
-                        <td>${data.address.country}</td>
-                    </tr>`;
-                  
-            table.innerHTML += row
+            document.querySelector('.owner-name').innerHTML = `${data.firstName} ${data.lastName}`
+
+            document.querySelector('.fName').innerHTML = `: ${data.firstName}`
+            document.querySelector('.number').innerHTML = `: ${data.phone}`
+            document.querySelector('.country').innerHTML = `: ${data.address.country}`
+            document.querySelector('.city').innerHTML = `: ${data.address.city}`
+            document.querySelector('.lName').innerHTML = `: ${data.lastName}`
+            document.querySelector('.email').innerHTML = `: ${data.email}`
+            document.querySelector('.postal').innerHTML = `: ${data.address.postcode}`
+            document.querySelector('.address').innerHTML = `: ${data.address.street}, ${data.address.city}`
         })
 
         // query to count inquiries under user who is logged in
         const inq = query(inqRef, where("petowner.petownerId", "==", user.uid));
 
-        getCountFromServer(inq).then(inq_count => {
-            $('#profile-pic').append([
-                $('<p />', {'text': `You have ${inq_count.data().count} inquiries waiting for you!`})
-            ])
-        })
+        // getCountFromServer(inq).then(inq_count => {
+        //     $('#profile-pic').append([
+        //         $('<p />', {'text': `You have ${inq_count.data().count} inquiries waiting for you!`})
+        //     ])
+        // })
 
         // query for matching user uid on animals table to get pets posted/inquired by the user
         const q = query(aniRef, where("owner_id", "==", user.uid));
@@ -60,32 +58,46 @@ onAuthStateChanged(auth, (user) => {
         getDocs(q)
         .then((snapshot) => {
             let animals = []
-    
+            let ctr = 0
             snapshot.docs.forEach( (doc) => {
                 animals.push({...doc.data(), id: doc.id })
 
-                let table = document.getElementById('result');
+                //let table = document.getElementById('result');
                 let data = doc.data();
                 
                 // query to count inquiries for each pet under user logged in
                 const q2 = query(inqRef, where("petId", "==", doc.id), 
-                                            where("petowner.petownerId", "==", user.uid));
+                                        where("petowner.petownerId", "==", user.uid),
+                                        where("isAccepted", "!=", false),
+                                        where("adoptionSuccess", "==", "init"));
 
                 getCountFromServer(q2).then(pet_inq_cnt => {
-                    let row  = `<tr>
-                            <td data-id="${doc.id}">${data.name}</td>
-                            <td>${data.age}</td>
-                            <td>${data.size}</td>
-                            <td>${data.gender}</td>
-                            <td>${data.type}</td>
-                            <td>${data.breed}</td>
-                            <td>${data.color}</td>
-                            <td>${data.desc}</td>
-                            <td data-count="${pet_inq_cnt.data().count}">No. of Inquiries: ${pet_inq_cnt.data().count}</td>
-                            <td class="response-buttons"></td>
-                        </tr>`;
-                                    
-                    table.innerHTML += row
+                    $('.rehome-pet-wrapper').append([
+                        $('<div />', {'class': `rehome-pet-${ctr++} list`}).append([
+                            $('<div />', {class: 'rehome-pet-list'}).append([
+                                $('<div />', {'class': 'pet-image'}).append([
+                                    $('<img />', {src:  `${data.photo[0]}`}),
+                                    $('<p />', {text:  `${data.name}`})
+                                ]),
+                                $('<div />', {'class': 'description'}).append([
+                                    $('<p />', {text:  `${data.desc}`}),
+                                    $('<div />').append([
+                                        $('<ul />').append([
+                                            $('<li />', {text: `${data.breed}`}),
+                                            $('<li />', {text: `${data.gender}`}),
+                                            $('<li />', {text: `${data.age}`}),
+                                            $('<li />', {text: `${data.size}`}),
+                                            $('<li />', {text: `${data.color}`})
+                                        ])
+                                    ]),
+                                    $('<div />', {'data-count': `${pet_inq_cnt.data().count}`, 'data-id': `${doc.id}`}).append([
+                                        $('<button />', {class: 'go-to-inquiries', text: `${pet_inq_cnt.data().count} Active Inquiries`})
+                                    ])
+                                ])
+                            ]),
+                            $('<div />', {class: 'responseButtonsModal'})
+                        ])
+                    ])
                 })
                 
                 // push the inquiries into array
@@ -96,35 +108,12 @@ onAuthStateChanged(auth, (user) => {
                     })
                 })
             })
+
+            
         }).then(() => {
             setTimeout(() => {
-                addButtons(inquiries)
-
-                if($('.accept').length > 0) {
-                    $('button.accept').each(function() {
-                        $(this).on('click', () => {
-                            for(let el in inquiries) {
-                                if($(this).data('accept') == inquiries[el].inquiryId) {
-                                    acceptInquiry(inquiries[el].inquiryId)
-                                }
-                            }
-                        })
-                    })
-                }
-
-                if($('.decline').length > 0) {
-                    $('button.decline').each(function() {
-                        $(this).on('click', () => {
-                            for(let el in inquiries) {
-                                if($(this).data('decline') == inquiries[el].inquiryId) {
-                                    declineInquiry(inquiries[el].inquiryId)
-                                }
-                            }
-                        })
-                    })
-                }
-
-                closeButton()
+                addButtonsv2(inquiries)
+                //addButtons(inquiries)
                 
             }, 1000)
         }).catch(err => {
@@ -183,15 +172,14 @@ onAuthStateChanged(auth, (user) => {
                         }
                     
                         let row  = `<tr>
+                                <td><img src=${data2.photo[0]}></td>
                                 <td data-id="${doc.id}">${data2.name}</td>
-                                <td>${data2.age}</td>
-                                <td>${data2.size}</td>
-                                <td>${data2.gender}</td>
+                                <td>${data.petowner.po_firstName}, ${data.petowner.po_lastName}</td>
+                                <td>${data.petowner.po_email}</td>
                                 <td>${data2.type}</td>
                                 <td>${data2.breed}</td>
-                                <td>${data2.color}</td>
-                                <td>${data2.desc}</td>
                                 <td>${inq_status}</td>
+                                <td>${data.declineReason}</td>
                             </tr>`;
                                         
                         table.innerHTML += row
@@ -203,65 +191,7 @@ onAuthStateChanged(auth, (user) => {
 
 })
 
-// add accept and decline buttons on user profile, by looping through inquiries array
-const addButtons = (inquiries) => { 
-    const resp = document.querySelectorAll('#result tr')
-
-    $('#result tr').each(function(){
-        $(this).find('td[data-count]').each(function(){
-            if($(this)[0].attributes[0].value != 0) {
-                for(let el in inquiries) {
-                    if(inquiries[el].isAccepted == 'init') {
-                        if($(this).closest('tr').find('td[data-id]')[0].attributes[0].value == inquiries[el].petId) {
-                            $(this).closest('tr').find('.response-buttons').append([
-                                $('<p />', {'text': `Applicant: ${inquiries[el].applicant.app_firstName} ${inquiries[el].applicant.app_lastName}`}),
-                                $('<button />', {'text': 'Accept', 'class': 'accept outline-next-btn font', 'data-accept': `${inquiries[el].inquiryId}`}),
-                                $('<button />', {'text': 'Decline', 'class': 'decline outline-btn-gray font', 'data-decline': `${inquiries[el].inquiryId}`})
-                            ])
-                        }
-                    } else if (inquiries[el].isAccepted == true) {
-                        if ($(this).closest('tr').find('td[data-id]')[0].attributes[0].value == inquiries[el].petId) {
-                            if (inquiries[el].adoptionSuccess == true) {
-                                $(this).closest('tr').find('.response-buttons').append([
-                                    $(this).closest('tr').find('.response-buttons').append([
-                                        $('<p />', {'text': `Applicant: ${inquiries[el].applicant.app_firstName} ${inquiries[el].applicant.app_lastName}`}),
-                                        $('<button />', {'text': 'Successful Adoption', 'id': `Success-${inquiries[el].inquiryId}`, 'class': 'success outline-btn', 'data-success': `${inquiries[el].inquiryId}`, 'disabled': 'disabled'}),
-                                    ])
-                                ])
-                            } else if (inquiries[el].adoptionSuccess == false) {
-                                $(this).closest('tr').find('.response-buttons').append([
-                                    $('<p />', {'text': `Applicant: ${inquiries[el].applicant.app_firstName} ${inquiries[el].applicant.app_lastName}`}),
-                                    $('<button />', {'text': 'Rejected', 'id': `Reject-${inquiries[el].inquiryId}`, 'class': 'reject outline-btn-gray', 'data-reject': `${inquiries[el].inquiryId}`, 'disabled': 'disabled'})
-                                ])
-                            } else {
-                                $(this).closest('tr').find('.response-buttons').append([
-                                    $('<p />', {'text': `Applicant: ${inquiries[el].applicant.app_firstName} ${inquiries[el].applicant.app_lastName}`}),
-                                    $('<button />', {'text': 'Close', 'id': `Close-${inquiries[el].inquiryId}`, 'class': 'close outline-btn', 'data-close': `${inquiries[el].inquiryId}`}),
-                                    $('<button />', {'text': 'Decline', 'id': `Decline-${inquiries[el].inquiryId}`, 'class': 'decline outline-btn-gray', 'data-decline': `${inquiries[el].inquiryId}`, 'disabled': 'disabled'})
-                                ])
-                            }
-                        }
-                    } else if(inquiries[el].isAccepted == false) {
-                        if($(this).closest('tr').find('td[data-id]')[0].attributes[0].value == inquiries[el].petId) {
-                            $(this).closest('tr').find('.response-buttons').append([
-                                $('<p />', {'text': `Applicant: ${inquiries[el].applicant.app_firstName} ${inquiries[el].applicant.app_lastName}`}),
-                                $('<button />', {'text': 'Rejected', 'id': `Reject-${inquiries[el].inquiryId}`, 'class': 'reject', 'data-reject': `${inquiries[el].inquiryId}`, 'disabled': 'disabled'})
-                            ])
-                        }
-                    }
-                    
-                }             
-            }
-        })
-    })
-}
-
-function passId(id) {
-    const updateinqRef = doc(db, "inquiries", id);
-    const updateaniRef = doc(db, "animals", id);
-}
-
-
+// Accept Inquiry function
 function acceptInquiry(id) {
     const updateinqRef = doc(db, "inquiries", id);
 
@@ -278,11 +208,10 @@ function changingAcceptToClose(id) {
     $('button.accept').each(function() {
         if($(this).data('accept') == id) {
             $(this).closest('.response-buttons').append([
-                $('<button />', {'text': 'Close', 'class': 'close outline-btn', 'data-close': `${id}`})
+                $('<button />', {'text': 'Close', 'class': 'close outline-btn font', 'data-close': `${id}`})
             ])
-            $(this).closest('.response-buttons').find('.decline').attr('disabled', 'disabled')
+            $(this).closest('.response-buttons').find('.decline').remove();
             $(this).remove();
-            
         }
     })
 
@@ -292,7 +221,8 @@ function changingAcceptToClose(id) {
 // call function when close button is clicked
 function closeButton() {
     $('button.close').each(function() {
-        $(this).on('click', () => {
+        $(this).on('click', (e) => {
+            e.preventDefault()
             for(let el in inquiries) {
                 if($(this).data('close') == inquiries[el].inquiryId) {
                     closeInquiry(inquiries[el].inquiryId, inquiries[el].petId)
@@ -303,28 +233,139 @@ function closeButton() {
 }
 
 // declining the inquiry
-function declineInquiry(id) {
-    const updateinqRef = doc(db, "inquiries", id);
-
+function declineInquiry(id, petId) {
     $('button.decline').each(function() {
-        if($(this).data('decline') == id) {
-            updateDoc(updateinqRef, {
-                isAccepted: false
-            });  
+        if($(this).data('decline') == id) {            
+            if ($('.decline-modal').length == 0) {
+                $('.user-profile-main .modal-content').append([
+                    $('<div />', {class: 'decline-modal'}).append([
+                        $('<h2 />', {text: 'Decline Reason'}),
+                        $('<div />', {class: 'decline-confirmation'}).append([
+                            $('<p />', {text: 'Please include reason why you are declining the inquiry'}),
+                            $('<div />').append([
+                                $('<textarea />', {class: 'reason', placeholder: 'Give your reason'}),
+                                $('<p />', {class: 'alert', text: '**Please fill out the field.'})
+                            ]),
+                            $('<button />', {text: 'Submit', class: 'outline-next-btn font decline-first', value: 'reason'})
+                        ])
+                    ])
+                ])
+        
+                $('.user-profile-main .modal').addClass('modal-active')
 
-            $(this).closest('.response-buttons').find('.decline').attr('disabled', 'disabled')
-            $(this).closest('.response-buttons').find('.accept').attr('disabled', 'disabled')
+                submitDeclineReason(id)
+            }
         }
     })
 }
 
-// When close button is clicked show prompt if the adoption was a success or not
+function submitDeclineReason(id) {
+    const updateinqRef = doc(db, "inquiries", id);
+    let declineReason = document.querySelector('.user-profile-main .modal textarea')
+    let allInquiry = document.querySelectorAll('button[data-decline]')
+    let alert = document.querySelector('.decline-modal .alert')
+
+    $('.decline-first').on('click', function() {
+
+        if (declineReason.value != '') {
+            updateDoc(updateinqRef, {
+                isAccepted: false,
+                declineReason: declineReason.value
+            });
+
+            [...allInquiry].forEach(function(inq) {
+                if(inq.dataset.decline == id) {
+                    inq.innerHTML = 'Declined Application'
+                    inq.setAttribute('disabled', 'disabled')
+
+                    inq.closest('.response-buttons').querySelector('.accept').remove()
+                }
+            });
+
+            modalContent.parentElement.classList.remove('modal-active')
+            modalContent.innerHTML = ''
+        } else {
+            alert.style.display = 'block'
+        }
+    })
+}
+
+// When close button is clicked show modal if the adoption was a success or not
 function closeInquiry(inqId, petId) {
-    let adoptAsk = confirm('Is the adoption successful?');
+    if ($('.adoption-confirmation').length == 0) {
+        $('.user-profile-main .modal-content').append([
+            $('<div />').append([
+                $('<h2 />', {text: 'Adoption Confirmation'}),
+                $('<div />', {class: 'adoption-confirmation'}).append([
+                    $('<p />', {text: 'Is the adoption process Successful?'}),
+                    $('<div />', {class: 'radio-response'}).append([
+                        $('<label />', {text: 'Yes'}).append([
+                            $('<input />', {type: 'radio', text: 'Yes', name: 'response', value: 'yes', checked: 'checked'}),
+                        ]),
+                        $('<label />', {text: 'No'}).append([
+                            $('<input />', {type: 'radio', text: 'No', name: 'response', value: 'no'})
+                        ])
+                    ]),
+                    $('<textarea />', {class: 'reason', placeholder: 'Give your reason'}),
+                    $('<button />', {text: 'Submit', class: 'outline-next-btn font', value: 'reason'})
+                ])
+            ])
+        ])
+
+        $('.user-profile-main .modal').addClass('modal-active')
+    }
+
+    showModalConfirmation(inqId, petId) 
+}
+
+// show modal
+function showModalConfirmation(inqId, petId) {
+    const radioButton = document.querySelectorAll('input[name="response"]')
+    const reasonBox = document.querySelector('.reason')
+    const confirmationBtn = document.querySelector('.user-profile-main .modal button')
+    let answer;
+
+    radioButton.forEach(function(val) {
+        val.addEventListener('change', function(e) {
+            e.preventDefault();
+
+            answer = this.value
+
+            if(answer == 'no') {
+                reasonBox.classList.add('display')
+            } else {
+                reasonBox.classList.remove('display')
+            }
+        })
+    })
+    
+    confirmationBtn.addEventListener('click', function() {
+        answer = document.querySelector('input[name="response"]:checked').value;
+        submitAnswer(answer, inqId, petId)
+    })
+}
+
+// setting fields on database
+function submitAnswer(answer, inqId, petId) {
     const updateinqRef = doc(db, "inquiries", inqId);
     const updateaniRef = doc(db, "animals", petId);
+    const declineReason = document.querySelector('.user-profile-main .modal textarea')
 
-    if (adoptAsk == true) {
+
+    if(answer == 'no') {
+        updateDoc(updateinqRef, {
+            declineReason: declineReason.value
+        })
+
+        updateDoc(updateinqRef, {
+            adoptionSuccess: false
+        });
+
+        changingToStatus(answer, inqId)
+
+        $('.modal').removeClass('modal-active')
+        modalContent.innerHTML = ''
+    } else {
         updateDoc(updateaniRef, {
             isAdopted: true
         });
@@ -333,49 +374,187 @@ function closeInquiry(inqId, petId) {
             adoptionSuccess: true
         });
 
-        changingToStatus(adoptAsk, inqId)
+        changingToStatus(answer, inqId)
 
-    } else {
-        updateDoc(updateinqRef, {
-            adoptionSuccess: false
-        });
-
-        changingToStatus(adoptAsk, inqId)
+        $('.modal').removeClass('modal-active')
+        modalContent.innerHTML = ''
     }
 }
 
 // Updating buttons text to successful or rejected adoption
-function changingToStatus(adoptAsk, inqId) {
+function changingToStatus(answer, inqId) {
     $('button.close').each(function() {
         if($(this).data('close') == inqId) {
-            if (adoptAsk == true) {
+            if (answer == 'yes') {
                 $(this).html('Successful Adoption')
+                $(this).addClass('success')
                 $(this).attr('disabled', 'disabled')
+                $(this).removeClass('close')
             } else {
                 $(this).html('Rejected')
+                $(this).addClass('reject')
                 $(this).attr('disabled', 'disabled')
+                $(this).removeClass('close')
             }
         }
-    }) 
+    })
+    modalContent.innerHTML = ''
 }
 
+function loopButtons() {
+    if($('.accept').length > 0) {
+        $('button.accept').each(function() {
+            $(this).on('click', () => {
+                for(let el in inquiries) {
+                    if($(this).data('accept') == inquiries[el].inquiryId) {
+                        acceptInquiry(inquiries[el].inquiryId)
+                    }
+                }
+            })
+        })
+    }
 
-const logoutButton = document.querySelector('.logout')
-logoutButton.addEventListener('click', () => {
-    signOut(auth)
-        .then(() => {
-            console.log('user signed out')
-            alert("You are now logged out!")
-            window.location.href = './login.html'
+    if($('.decline').length > 0) {
+        $('button.decline').each(function() {
+            $(this).on('click', () => {
+                for(let el in inquiries) {
+                    if($(this).data('decline') == inquiries[el].inquiryId) {
+                        declineInquiry(inquiries[el].inquiryId, inquiries[el].petId)
+                    }
+                }
+            })
         })
-        .catch((err) => {
-            console.log(err.message)
+    }
+
+    closeButton()
+}
+
+// appending buttons
+function addButtonsv2(inquiries) {
+    $('.go-to-inquiries').each(function() {
+        $(this).closest('[data-count]').each(function(){
+            if($(this)[0].attributes[0].value != 0) {
+                let id = $(this).closest('div').attr('data-id')
+                const q = query(aniRef, where(documentId(), "==", id));
+
+                for(let el in inquiries) {
+                    if(inquiries[el].petId == id) {
+                        if(inquiries[el].isAccepted == 'init') {
+                            $(this).closest('.list').find('.responseButtonsModal').append([
+                                $('<div />', {class: 'inquiry-list'}).append([
+                                    $('<div />').append([
+                                        $('<span />', {'text': 'Name: '}).append([
+                                            $('<p />', {'text': `${inquiries[el].applicant.app_firstName} ${inquiries[el].applicant.app_lastName}`})
+                                        ]),
+                                        $('<span />', {'text': 'Email: '}).append([
+                                            $('<p />', {'text': `${inquiries[el].applicant.app_email}`})
+                                        ])
+                                    ]),
+                                    $('<div />', {'class': 'response-buttons'}).append([
+                                        $('<button />', {'text': 'Accept', 'class': 'accept outline-next-btn font', 'data-accept': `${inquiries[el].inquiryId}`}),
+                                        $('<button />', {'text': 'Decline', 'class': 'decline outline-btn-gray font', 'data-decline': `${inquiries[el].inquiryId}`})
+                                    ])
+                                ])
+                            ])
+                        } else if (inquiries[el].isAccepted == true) {                           
+                            if ($(this).closest('div').data('id') == inquiries[el].petId) {
+                                if (inquiries[el].adoptionSuccess == true) {
+                                    $(this).closest('.list').find('.responseButtonsModal').append([
+                                        $(this).closest('.list').find('.responseButtonsModal').append([
+                                            $(this).closest('.list').find('.responseButtonsModal').append([
+                                                $('<div />', {class: 'inquiry-list'}).append([
+                                                    $('<div />').append([
+                                                        $('<span />', {'text': 'Name: '}).append([
+                                                            $('<p />', {'text': `${inquiries[el].applicant.app_firstName} ${inquiries[el].applicant.app_lastName}`})
+                                                        ]),
+                                                        $('<span />', {'text': 'Email: '}).append([
+                                                            $('<p />', {'text': `${inquiries[el].applicant.app_email}`})
+                                                        ])
+                                                    ]),
+                                                    $('<div />', {'class': 'response-buttons'}).append([
+                                                        $('<button />', {'text': 'Successful Adoption', 'id': `Success-${inquiries[el].inquiryId}`, 'class': 'success outline-btn font', 'data-success': `${inquiries[el].inquiryId}`, 'disabled': 'disabled'}),
+                                                    ])
+                                                ])
+                                            ])
+                                        ])
+                                    ])
+                                } else if (inquiries[el].adoptionSuccess == false) {
+                                    $(this).closest('.list').find('.responseButtonsModal').append([
+                                        $(this).closest('.list').find('.responseButtonsModal').append([
+                                            $('<div />', {class: 'inquiry-list'}).append([
+                                                $('<div />').append([
+                                                    $('<span />', {'text': 'Name: '}).append([
+                                                        $('<p />', {'text': `${inquiries[el].applicant.app_firstName} ${inquiries[el].applicant.app_lastName}`})
+                                                    ]),
+                                                    $('<span />', {'text': 'Email: '}).append([
+                                                        $('<p />', {'text': `${inquiries[el].applicant.app_email}`})
+                                                    ])
+                                                ]),
+                                                $(this).closest('.list').find('.responseButtonsModal').append([
+                                                    $('<div />', {'class': 'response-buttons'}).append([
+                                                        $('<button />', {'text': 'Rejected', 'id': `Reject-${inquiries[el].inquiryId}`, 'class': 'reject outline-btn-gray font', 'data-reject': `${inquiries[el].inquiryId}`})
+                                                    ])
+                                                ])
+                                            ])
+                                        ])
+                                    ])
+                                    
+                                } else if (inquiries[el].adoptionSuccess == 'init') {
+                                    $(this).closest('.list').find('.responseButtonsModal').append([
+                                        $('<div />', {class: 'inquiry-list'}).append([
+                                            $('<div />').append([
+                                                $('<span />', {'text': 'Name: '}).append([
+                                                    $('<p />', {'text': `${inquiries[el].applicant.app_firstName} ${inquiries[el].applicant.app_lastName}`})
+                                                ]),
+                                                $('<span />', {'text': 'Email: '}).append([
+                                                    $('<p />', {'text': `${inquiries[el].applicant.app_email}`})
+                                                ])
+                                            ]),
+                                            $('<div />', {'class': 'response-buttons'}).append([
+                                                $('<button />', {'text': 'Close', 'id': `Close-${inquiries[el].inquiryId}`, 'class': 'close outline-btn font', 'data-close': `${inquiries[el].inquiryId}`})
+                                            ])
+                                        ])
+                                    ])
+                                }
+                            }
+                        }
+                    }
+                }
+
+                loopButtons()
+            }
         })
+    })
+    showInquiry()
+}
+
+$('.close').on('click', function() {
+    $('.modal').removeClass('modal-active')
+    modalContent.innerHTML = ''
 })
 
+
+// toggle to show inquiries
+function showInquiry() {
+    var inqButton = document.getElementsByClassName('go-to-inquiries');
+
+    for (let i = 0; i < inqButton.length; i++) {
+        inqButton[i].addEventListener('click', function() {
+            this.classList.toggle('active');
+
+            var content = this.closest('.rehome-pet-list').nextElementSibling;
+
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            } 
+        });
+    }
+}
+
+// function to set whic tab is active
 $('ul.nav-tabs li').click(function(){
-
-
     let section_id = $(this).attr('data-nav');
 
     $('ul.nav-tabs li').removeClass('current');
@@ -383,12 +562,17 @@ $('ul.nav-tabs li').click(function(){
 
     $(this).addClass('current');
     $("#"+section_id).addClass('current');
+});
 
-    // if(section_id == 'section-1'){
-    //   $('.specs .top').css('background', '#eff0f0');
-    // }
-    // else{
-    //    $('.specs .top').css('background', 'white');
-    // }
 
-  });
+// signout
+const logoutButton = document.querySelector('.logout')
+logoutButton.addEventListener('click', () => {
+    signOut(auth)
+        .then(() => {
+            window.location.href = './login.html'
+        })
+        .catch((err) => {
+            console.log(err.message)
+        })
+})

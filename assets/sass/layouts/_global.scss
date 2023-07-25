@@ -2,9 +2,24 @@
 @use '../abstracts/mixins/mixins' as mx;
 
 /* Global Styling ============================ */
-
 body, h1, h2, p {
     margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
 }
 
 img {
@@ -33,4 +48,8 @@ p, td, ul a {
 label, legend, tr {
     @include mx.raleway-typography(16);
     font-weight: 600;
+}
+
+.modal-content .close {
+    text-align: right;
 }
