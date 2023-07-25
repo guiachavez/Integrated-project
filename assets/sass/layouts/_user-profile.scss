@@ -145,6 +145,10 @@
             visibility: visible;
             max-height: 10rem;
         }
+
+        >div {
+            width: 90%;
+        }
     }
     button.decline[disabled=disabled]:hover {
         cursor: auto;
@@ -327,11 +331,16 @@
 }
 
 .nav-item.current {
-    border-bottom: 2px solid colors.$primary-color-main;
+    border-bottom: 4px solid colors.$primary-color-main;
 }
 
-.nav-item {
+.nav-item a {
     padding: 1rem;
+}
+
+.nav-item a:hover {
+    background-color: colors.$primary-color-main;
+    color: colors.$neutral-color-white;
 }
 
 .about {

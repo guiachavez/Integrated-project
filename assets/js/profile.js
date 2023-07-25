@@ -114,6 +114,15 @@ onAuthStateChanged(auth, (user) => {
             setTimeout(() => {
                 addButtonsv2(inquiries)
                 //addButtons(inquiries)
+
+                $('[data-count]').each(function() {
+                    if ($(this).data('count') > 0) {
+                        $(this).find('button').css('color', '#398C1C')
+                        $(this).find('button').css('font-weight', '900')
+                    } else {
+                        $(this).find('button').css('color', 'gray')
+                    }
+                })
                 
             }, 1000)
         }).catch(err => {

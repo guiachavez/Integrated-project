@@ -2041,9 +2041,10 @@ option {
   margin-top: 3rem;
 }
 .controls a {
-  color: #C5C5C5;
+  color: #6a6a6a;
   text-decoration: underline;
   margin-top: 1rem;
+  font-size: 14px;
 }
 
 .rehome-container .col-left {
@@ -2216,6 +2217,9 @@ option {
   visibility: visible;
   max-height: 10rem;
 }
+.user-profile-main .decline-confirmation > div {
+  width: 90%;
+}
 .user-profile-main button.decline[disabled=disabled]:hover {
   cursor: auto;
 }
@@ -2366,11 +2370,16 @@ option {
 }
 
 .nav-item.current {
-  border-bottom: 2px solid #0293A7;
+  border-bottom: 4px solid #0293A7;
 }
 
-.nav-item {
+.nav-item a {
   padding: 1rem;
+}
+
+.nav-item a:hover {
+  background-color: #0293A7;
+  color: #FFFFFF;
 }
 
 .about {
