@@ -806,6 +806,13 @@ footer h2 {
   height: 30px;
 }
 
+.error-msg {
+  display: none;
+  color: #DE3535;
+  font-weight: bold;
+  text-align: left;
+}
+
 #forgot-email {
   position: absolute;
   top: 0;

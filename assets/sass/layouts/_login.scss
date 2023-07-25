@@ -125,6 +125,13 @@
     height:30px;
 }
 
+.error-msg{
+    display: none;
+    color: color.$semantic-red-error;
+    font-weight: bold;
+    text-align: left;
+}
+
 #forgot-email {
     @include mx.position(absolute);
 }

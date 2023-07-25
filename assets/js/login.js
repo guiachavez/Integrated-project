@@ -7,6 +7,7 @@ const provider = new GoogleAuthProvider(app)
 
 //login method using email
 const loginButton = document.querySelector('.login')
+const errorMsg = document.querySelector('.error-msg')
 loginButton.addEventListener('submit', (e) => {
     e.preventDefault()
 
@@ -20,6 +21,8 @@ loginButton.addEventListener('submit', (e) => {
         })
         .catch((err) => {
             console.log(err.message)
+            errorMsg.style.display = 'block';
+            errorMsg.innerHTML = 'Incorrect username or password';
         })
 })
 
