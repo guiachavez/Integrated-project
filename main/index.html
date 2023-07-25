@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 
+    <link rel="manifest" href="./../assets/json/app.webmanifest">
+
     <!-- This link tag is required by the TomTom API -->
     <link
       rel="stylesheet"
@@ -427,9 +429,15 @@
             if ('serviceWorker' in navigator) {
                 // then register our service worker
               try {
-                const reg = await  navigator.serviceWorker.register('./../assets/js/service-worker.js', { scope: '/' });
+                const reg = await  navigator.serviceWorker.register('./../service-worker.js', { scope: '/' });
                 // display a success message
                 console.log(`Service Worker is Registered:`, reg);
+
+                navigator.serviceWorker.addEventListener("message", (event) => {
+                  // event is a MessageEvent object
+                  console.log(`The service worker sent me a message: ${event.data}`);
+                });
+
               } catch(error) {
                 // display an error message
                 console.log(`Service Worker Error (${error})`);

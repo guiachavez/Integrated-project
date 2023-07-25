@@ -18,8 +18,7 @@ workbox.routing.registerRoute(
 
 
 const cacheName = "v1";
-const urlsToCache = [ "/offline.html",
- ];
+const urlsToCache = [ "/main/index.html", "/assets/stylesheet/style.css"];
  // add offline.html to the cache only to show it when offline
 // NEVER cache service worker itself ( i.e. don't include sw.js in above array)
 // MAKE SURE THERE IS NO TYPO in the File names otherwise the cache.addAll fails in install
@@ -60,8 +59,18 @@ self.addEventListener('fetch', event => {
     // if the requested resource is in the local cache before going to the server to get it. 
     console.log(`[SW] Fetch event for ${event.request.url}`);
 
-    event.respondWith(NetworkFirstThenCacheStrategy(event) );
+    event.respondWith(
+      caches.match( event.request ).then( ( response ) => {
+        return response || fetch( event.request );
+      })
+    );
+});
 
+addEventListener("message", (event) => {
+  // event is an ExtendableMessageEvent object
+  console.log(`The client sent me a message: ${event.data}`);
+
+  event.source.postMessage("Hi client");
 });
 
 // CACHE FIRST, THEN NETWORK STRATEGY
