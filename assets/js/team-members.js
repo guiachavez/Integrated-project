@@ -1,4 +1,4 @@
-$('.image-container').slick({
+$('.team-image-container').slick({
     dots: true,
     infinite: true,
     speed: 300,
