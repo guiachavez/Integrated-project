@@ -226,6 +226,7 @@ function showAddressOnMap(address, organization) {
       goToOrg.title = "See the pets available in this shelter";
       goToOrg.target = "_blank";
       goToOrg.setAttribute("data-org", `${organization.id}`);
+      goToOrg.addEventListener('click', passOrg);
       orgInfo.append(goToOrg);
 
       //Display the list
