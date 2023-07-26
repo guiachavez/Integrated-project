@@ -110,8 +110,12 @@ function setupMap() {
     zoom: 15,
   });
 
+  let userMarker = document.createElement("div");
+  userMarker.className = "user-marker";
+
   const markerOptions = {
-    color: "purple",
+    // color: "purple",
+    element: userMarker,
   };
   userLocationMarker = new tt.Marker(markerOptions)
     .setLngLat(userLocation)
@@ -158,8 +162,15 @@ function showAddressOnMap(address, organization) {
           closeButton: false,
         }).setDOMContent(orgInfo);
 
+        let shelterMarker = document.createElement("div");
+        shelterMarker.className = "shelter-marker";
+
+        const markerOptions = {
+          element: shelterMarker,
+        };
+
         //Sets up marker with the pop up
-        const newMarker = new tt.Marker()
+        const newMarker = new tt.Marker(markerOptions)
           .setLngLat([longitude, latitude])
           .setPopup(popup)
           .addTo(map);
@@ -343,7 +354,7 @@ setRadius.addEventListener("input", () => {
   console.log(radius);
 });
 
-$("#setRadius").on("change", function() {
+$("#setRadius").on("change", function () {
   orgList.innerHTML = "";
   locationOfAnimalCenter = [];
   setupMap();
