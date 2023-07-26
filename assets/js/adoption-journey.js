@@ -69,6 +69,7 @@ onAuthStateChanged(auth, (adoptuser) => {
         addStoryBtn.addEventListener('click', (e) => {
             e.preventDefault()
             handleAdoptStory(userId, firstName, lastName, city, state)
+            vidOff()
         })
 
     }
@@ -84,11 +85,10 @@ async function handleAdoptStory(userId, firstName, lastName, city, state) {
     let storybody = document.getElementById("body");
     let posted_at = new serverTimestamp();
     let photo = myFile.files
-            console.log(photo.length)
+
     if (photo.length == 0) {
         const storageRef = ref(storage, "adoptionImages/" + docRef.id + "/" + `story_photo_${Date.now()}`);
-        imagesArr.push(uploadString(storageRef, cameraphoto, 'data_url').then((snapshot) => {
-                console.log('Uploaded a data_url string!');
+            imagesArr.push(uploadString(storageRef, cameraphoto, 'data_url').then((snapshot) => {
                 return getDownloadURL(snapshot.ref)
             })
         )
@@ -99,7 +99,7 @@ async function handleAdoptStory(userId, firstName, lastName, city, state) {
         // for saving photos to firestore
         uploadToStorage(photo, imagesArr, docRef)
         const photos = await Promise.all(imagesArr);
-        console.log(photos);  
+        updateDB(photos);  
     }
     
     function updateDB(photos) {
@@ -132,6 +132,7 @@ var canvas = null;
 var photo = null;
 var startbutton = null;
 var choosebutton = document.getElementById('choosebutton')
+var camera = document.querySelector('.camera')
 
 function startup() {
     video = document.getElementById('video');
@@ -178,9 +179,9 @@ function startup() {
 }
 
 choosebutton.addEventListener('click', function(ev) {
-        startup();
-        startbutton.style.display = 'block'
-        ev.preventDefault();
+    startup();
+    camera.style.display = 'block'
+    ev.preventDefault();
 })
 
 
@@ -192,7 +193,6 @@ function clearphoto() {
     var data = canvas.toDataURL('image/png');
     photo.setAttribute('src', data);
 }
-
 
 function takepicture() {
     var context = canvas.getContext('2d');
@@ -207,5 +207,18 @@ function takepicture() {
         clearphoto();
     }
 }
+
+function vidOff() {
+    photo.setAttribute('src', '')
+    const tracks = video.srcObject.getTracks();
+    tracks.forEach((track) => track.stop());
+    camera.style.display = 'none'
+}
+
+
+$('.camera .close').on('click', function() {
+    vidOff()
+    camera.style.display = 'none'
+})
 
         // window.addEventListener('load', startup, false);

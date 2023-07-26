@@ -63,13 +63,16 @@
 
                     <div class="upload-images">
                         <label for="filename">Photos</label>
-                        <input type="file" id="myFile" name="filename" multiple required>
+                        <input type="file" id="myFile" class="outline-next-btn font" name="filename" multiple required>
                         <output class="displayImages"></output>
                         <p>OR</p>                       
                         <div><button id="choosebutton">Take photo</button></div>
                         <div class="camera">
+                            <div class="close">
+                                <img src="../assets/icons/x.svg" alt="close-nav">
+                            </div>
                             <video id="video">Video stream not available.</video>
-                            <button id="startbutton">Choose photo</button>
+                            <button id="startbutton" class="">Capture photo</button>
                         </div>
                         <canvas id="canvas"></canvas>
                         <div class="camera-output output">
@@ -79,7 +82,7 @@
 
                     <div class="btn_a">
                         <a href="./adoption-journey-home.html" class="back">Cancel</a>
-                        <button type="submit" id="add-story" class="outline-next-btn font">Publish</button>
+                        <button type="submit" id="add-story" class="filled-mob-btn font">Publish</button>
                     </div>
                     
                 </div>

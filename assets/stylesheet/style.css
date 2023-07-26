@@ -3278,11 +3278,15 @@ dd.article-content p {
     justify-content: end;
   }
 }
-
-#startbutton,
+.camera,
 .camera-output {
-    display: none;
+  display: none;
 }
+
+.camera img {
+  width: 20px;
+}
+
 #canvas {
   visibility: hidden;
   position: absolute;

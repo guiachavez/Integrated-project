@@ -545,9 +545,13 @@ dd.article-content {
     }    
 }
 
-#startbutton,
+.camera,
 .camera-output {
     display: none;
+}
+
+.camera img {
+    width: 20px;
 }
 
 #canvas {

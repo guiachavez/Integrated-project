@@ -11,17 +11,18 @@ $("footer").load("footer.html");
 
 window.onload = function() {
     onAuthStateChanged(auth, (user) => {
+        console.log(user)
         let login = document.getElementById("login") 
         let profile = document.getElementById("login_profile")   
         if (user) {
             //$('#login').closest('li').css('display', 'none')
-            $('#profile').text('Profile')
-            $('#profile').attr('href', './profile.html')
+            $('.profile').text('Profile')
+            $('.profile').attr('href', './profile.html')
 
         } else {
             //$('#login').closest('li').css('display', 'block')
-            $('#profile').text('Log in')
-            $('#profile').attr('href', './login.html')
+            $('.profile').text('Log in')
+            $('.profile').attr('href', './login.html')
         }
     })
 }
