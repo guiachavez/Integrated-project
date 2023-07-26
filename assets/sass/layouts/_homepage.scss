@@ -75,7 +75,6 @@
         border-radius: 0.5rem 0rem 0 0rem;
       }
     }
-    
   }
 
   @media screen and (min-width: 1200px) {
@@ -241,12 +240,15 @@
 
 /* Map Section =============================== */
 .home_map-box {
-  padding: 0 5% 8%;
+  padding: 2%;
+  margin: 0 4% 6%;
+  // margin-bottom: 6%;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.144);
 
   h2 {
     font-size: 30px;
     text-align: center;
-    margin-bottom: 1rem;
+    margin: 0.7rem 0;
   }
 
   .home_map-controls {
@@ -264,7 +266,9 @@
     padding: 1rem 1rem 1rem 1rem;
     width: fit-content;
     margin-left: auto;
-    background-color: rgba(255,255,255, 0.8);
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1.5px solid colors.$primary-color-main;
+    border-radius: 8px;
     right: 2%;
 
     .home_radius-containder {
@@ -308,6 +312,22 @@
 
   .orgId {
     display: block;
+  }
+
+  .user-marker {
+    background-position: center;
+    background-size: 30px 35px;
+    background-image: url(/assets/images/custom-marker-blue.svg);
+    width: 30px;
+    height: 35px;
+  }
+
+  .shelter-marker {
+    background-position: center;
+    background-size: 30px 35px;
+    background-image: url(/assets/images/custom-marker-orange.svg);
+    width: 30px;
+    height: 35px;
   }
 
   @media screen and (min-width: query.$media-tablet-width) {
@@ -753,12 +773,11 @@ ul {
   }
 }
 .home_map-box {
-
   .tt-search-box {
     margin: 0;
     background-color: unset;
   }
-  
+
   .tt-search-box-input-container {
     height: 52px;
     padding: 0 8px;
@@ -767,8 +786,6 @@ ul {
     border-radius: 8px;
   }
 }
-
-
 
 .tt-search-box-input-container.-focused {
   border: 1.5px solid colors.$primary-color-main;
@@ -797,7 +814,7 @@ ul {
     .slick-prev {
       left: -2rem;
     }
-    
+
     .slick-next {
       right: -2.5rem;
     }
@@ -824,19 +841,17 @@ ul {
       border-radius: 0.5rem 0.5rem 0 0rem;
     }
   }
-  
 }
 
 .home_main {
   .stories-wrapper {
-
     .story {
       position: relative;
       display: flex;
       gap: 1rem;
       border-radius: 0.5rem;
       z-index: 99999;
-      border: 1px solid #0293A7;
+      border: 1px solid #0293a7;
     }
 
     .posted-date {
