@@ -118,6 +118,15 @@
     display: none;
 }
 
+.active-pet {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.active-pet.barn {
+    margin-bottom: 1.2rem;
+}
+
 label {
     display: grid;
     gap: 0.5rem;
@@ -241,9 +250,6 @@ input:checked + .radio-slider:before {
     margin: 1rem 0;
 }
 
-#tab-progress.active {
-    display: grid;
-}
 
 #tab-progress {
     grid-template-columns: repeat(3, 1fr);
@@ -253,8 +259,6 @@ input:checked + .radio-slider:before {
     align-items: end;
     padding: 2rem 0;
 }
-
-
 
 
 .progress-holder {
@@ -310,9 +314,10 @@ option{
     margin-top: 3rem;
 
     a {
-        color: colors.$neutral-color-grey-l;
+        color: colors.$neutral-color-grey-d;
         text-decoration: underline;
         margin-top: 1rem;
+        font-size: 14px;
     }
 }
 
@@ -338,7 +343,11 @@ option{
 #tab-2, #tab-3, #tab-progress.active{
     // max-width: 600px;
     margin: auto;
-    padding: 2%;
+    padding: 50px 0 10px 0;
+}
+
+#tab-progress {
+    display: none;
 }
 
 @media screen and (min-width: mq.$media-mobile-width){
@@ -359,6 +368,14 @@ option{
 
     .rehome-container .col-left{
         display: unset;
+    }
+
+    #tab-progress {
+        display: block;
+    }
+
+    #tab-progress.active {
+        display: grid;
     }
 }
 

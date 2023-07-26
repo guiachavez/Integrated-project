@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/pawfectmatch-icon" href="./../assets/logo/pawfectmatch-logo-no-text.svg">
 
     <link rel="stylesheet" href="./../assets/stylesheet/style.css">
 
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="https://kit.fontawesome.com/feb2276715.js" crossorigin="anonymous"></script>
     <script type="module" src="./../assets/js/login.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 
     <title>Login page</title>
 </head>
@@ -33,6 +35,7 @@
                         <input type="password" name="password" id="signin-pw" class="text-input" placeholder="Create Password">
                         <!-- <img src="/assets/images/eye-off.svg" alt="eyes off" class="eyes_off"> -->
                     <!-- </div> -->
+                    <p class="error-msg"></p>
                 
                     <a class="login-forgotpw">Forget Password?</a>
                 </div>
@@ -60,19 +63,20 @@
 
         <div id="forgot-email" class="modal">
             <div class="modal-content">
-                <h2>Forgot Password?</h2>
-                <p>No worries we'll send you reset instructions.</p>
-                <form action="" class="submit_forgot">
-                    <div class="submit_forgot">
-                        <label for="forgotemail" class="label">Enter your Email</label>
-                        <input type="email" name="forgotemail" id="forgotemail"  class="text-input"  placeholder="name@example.com">
-                        <button type="submit" class="filled-mob-btn font">Submit</button>
-                    </div>
-
-                    <div>
-                        <a class="filled-mob-btn font">Back to Login</a>
-                    </div>
-                </form>
+                <div>
+                    <h2 style="margin-bottom: 0.5rem;">Forgot Password?</h2>
+                    <p style="font-size: 14px;">Enter your registered email below to receive password reset instructions.</p>
+                    <form action="" class="submit_forgot">
+                        <div class="submit_forgot">
+                            <label for="forgotemail" class="label visually-hidden">Email</label>
+                            <input type="email" name="forgotemail" id="forgotemail"  class="text-input"  placeholder="name@example.com">
+                            <div>
+                                <span style="font-size: 12px;">Remember password? <a class="" href="./login.html">Login</a></span>
+                                <button type="submit" class="filled-mob-btn font">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </main>
