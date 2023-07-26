@@ -2807,9 +2807,15 @@ button.filled-default-next-mob {
   }
   .team-page-main h1 {
     text-align: center;
+    font-size: 28px;
+    line-height: 1;
+    margin: 2rem 0;
   }
   .team-page-main h2 {
-    margin: 0.5rem;
+    font-size: 16px;
+  }
+  .team-page-main .team-page-wrapper {
+    margin-bottom: 1rem;
   }
   .team-page-main .team-page-wrapper .team-group-1,
   .team-page-main .team-page-wrapper .team-group-2 {
@@ -2863,7 +2869,10 @@ button.filled-default-next-mob {
 @media screen and (min-width: 460px) {
   .team-page-main h1 {
     margin: 0.5rem;
-    font-size: 54px;
+    font-size: 29px;
+    line-height: 1.5;
+    padding: 2rem 0;
+    text-align: center;
   }
   .team-page-main .team-page-wrapper {
     margin: 1rem;
@@ -2961,6 +2970,7 @@ button.filled-default-next-mob {
     flex-flow: nowrap;
     box-sizing: border-box;
     width: 100%;
+    margin-top: 0 !important;
   }
   .team-page-main .team-page-wrapper .team-group-2 .team-page-short {
     box-sizing: border-box;
@@ -2982,7 +2992,7 @@ button.filled-default-next-mob {
     display: flex;
     flex-flow: column nowrap;
     flex-grow: 1;
-    margin-top: 2rem;
+    margin-top: 1rem;
   }
   .team-page-main .team-page-wrapper .team-page-section .ind-images .grp_img_p p span {
     display: block;
