@@ -3270,7 +3270,7 @@ dd.article-content p {
   }
   .adopted-story .content-container .upload-images {
     grid-column: 2/3;
-    grid-row: 1/2 !important;
+    grid-row: 1/4 !important;
   }
   .adopted-story .content-container .btn_a {
     flex-flow: row wrap;
@@ -3278,6 +3278,20 @@ dd.article-content p {
     justify-content: end;
   }
 }
+.camera,
+.camera-output {
+  display: none;
+}
+
+.camera img {
+  width: 20px;
+}
+
+#canvas {
+  visibility: hidden;
+  position: absolute;
+}
+
 @media screen and (min-width: 1200px) {
   .adoption-journey-content,
   .adoption-journey-header,
