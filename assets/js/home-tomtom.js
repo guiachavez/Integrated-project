@@ -493,20 +493,24 @@ function createCarousel(pets) {
 
 /* featured user story ======================= */
 
-const journeyArr = [];
-const adoptionJourneyCollection = collection(db, "adoptionJourney");
-const q = query(adoptionJourneyCollection, limit(4));
+window.onload = function() {
+  const journeyArr = [];
+  const adoptionJourneyCollection = collection(db, "adoptionJourney");
+  const q = query(adoptionJourneyCollection, limit(4));
 
-globalShowPosts(q);
+  globalShowPosts(q);
 
-setTimeout(function () {
-  $(".home_adopt-stories #stories").not(".slick-initialized").slick({
-    infinite: true,
-    arrows: true,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  });
-}, 1000);
+  setTimeout(function () {
+    $(".home_adopt-stories #stories").not(".slick-initialized").slick({
+      infinite: true,
+      arrows: true,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+    });
+  }, 1000);
+}
+
+
 
 /* To change location on map =================================== */
 
