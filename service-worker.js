@@ -1,25 +1,6 @@
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/6.0.2/workbox-sw.js')
-
-workbox.loadModule('workbox-strategies');
-
-workbox.routing.registerRoute(
-    ({request}) => {
-        if(request.destination === 'image'){
-        const url = new URL(request.url);
-        const path = url.pathname;
-        const isFinalIcon = path.includes('../logo/finalIcon');
-        return isFinalIcon;
-        }
-        return false;
-    },
-    new workbox.strategies.NetworkFirst()
-)
-
-
-
 const cacheName = "v1";
-const urlsToCache = [ "./main/offline.html", "./assets/stylesheet/style.css"];
- // add offline.html to the cache only to show it when offline
+const urlsToCache = [ "offline.html", "pawfectmatch-logo-colour.svg"
+ ];
 // NEVER cache service worker itself ( i.e. don't include sw.js in above array)
 // MAKE SURE THERE IS NO TYPO in the File names otherwise the cache.addAll fails in install
 
@@ -54,44 +35,21 @@ async function deleteOldCache() {
 }
 
 
+
 self.addEventListener('fetch', event => {
-    // Fires whenever the app requests a resource (file or data)  normally this is where the service worker would check to see
-    // if the requested resource is in the local cache before going to the server to get it. 
-    console.log(`[SW] Fetch event for ${event.request.url}`);
-
-    event.respondWith(NetworkFirstThenCacheStrategy(event) )
-
-    // event.respondWith(
-    //   caches.match( event.request ).then( ( response ) => {
-    //     return response || fetch( event.request );
-    //   })
-    // );
+     // do nothing here, just log all the network requests
+    console.log(`Fetching ${event.request.url}`);
+    // generally the service worker caching strategy is defeind here
+    event.respondWith(NetworkFirstOrDefaultPage(event) );
 });
-
-addEventListener("message", (event) => {
-  // event is an ExtendableMessageEvent object
-  console.log(`The client sent me a message: ${event.data}`);
-
-  event.source.postMessage("Hi client");
-});
-
-// CACHE FIRST, THEN NETWORK STRATEGY
-// async function CacheFirstThenNetworkStrategy(event) {
-//     const cachedResponse = await caches.match( event.request.url, {ignoreVary:true} ); // ignore vary header (useful for offline match)
-//     if (cachedResponse) {
-//       console.log("using catched "+event.request.url);
-//       return cachedResponse
-//     }
-//     //not found in cache try to return from server (would be successfull if we are online)
-//     return fetch( event.request );  // returns cachedResponse or server fetch  if no cachedResponse
-//   }
 
 
 // NETWORK FIRST, THEN CACHE STRATEGY
-async function NetworkFirstThenCacheStrategy(event) {
-  try {
-      return await fetch( event.request );  // returns server fetch
-  } catch(error) {
-      return caches.match( event.request.url + "offline.html" , {ignoreVary:true} ); // returns cached response if server fetch fails (e.g. user is offline)
+async function NetworkFirstOrDefaultPage(event) {
+    try {
+        return await fetch( event.request );  // returns server fetch
+    } catch(error) {
+        console.log(error);
+        return caches.match( './offline.html' , {ignoreVary:true} ); // returns default offline page)
+    }
   }
-}
