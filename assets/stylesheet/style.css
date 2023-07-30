@@ -1128,7 +1128,6 @@ footer h2 {
 }
 .home_map-box .orgId {
   display: block;
-
 }
 .home_map-box .user-marker {
   background-position: center;
@@ -1143,7 +1142,6 @@ footer h2 {
   background-image: url(/assets/images/custom-marker-orange.svg);
   width: 30px;
   height: 35px;
-
 }
 @media screen and (min-width: 820px) {
   .home_map-box {
@@ -3583,7 +3581,8 @@ button.filled-default-next-mob {
   .team-page-main h1 {
     margin: 2rem;
     text-align: center;
-    font-size: 54px;
+    font-size: 42px;
+    padding: 0;
   }
   /* indiviually images ======================== */
   .team-page-main .team-page-wrapper {
