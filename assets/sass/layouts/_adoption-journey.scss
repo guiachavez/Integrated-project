@@ -62,7 +62,7 @@
 }
 
 .stories-wrapper {
-    width: 60%;
+    width: 70%;
 }
 
 .story-details {
@@ -130,8 +130,13 @@ dt button {
 dt.article {
     display: flex;
     justify-content: space-between;
+    gap:1rem;
     padding: 1rem;
     cursor: pointer;
+}
+
+dt.article button{
+    flex: 1 0 5%;
 }
 
 .article-container {
@@ -400,7 +405,7 @@ dd.article-content {
 
     .adoption-journey-content
     aside{
-        width: 60%;
+        width: 70%;
         margin-bottom: calc(40px + 1rem);
         margin-top: 2rem;
     }
