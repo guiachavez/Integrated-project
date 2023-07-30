@@ -31,6 +31,10 @@
     position: relative;
 }
 
+.search-result{
+    flex-grow: 1;
+}
+
 .filter{
     display: flex;
     align-items: center;
@@ -177,10 +181,8 @@ fieldset {
 }
 
 .no-results {
-    position: absolute;
     text-align: center;
     margin-top: 5rem;
-    transform: translateX(50%);
 
     img {
         rotate: 270deg;
@@ -209,6 +211,10 @@ fieldset {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
         gap: 1rem;
+    }
+
+    .no-results{
+        grid-column: 1/-1;
     }
 }
 
@@ -247,6 +253,10 @@ fieldset {
     .animals-main {
         width: 1200px;
         margin: auto;
+    }
+
+    .no-results{
+        transform: translateX(10%);
     }
 
     .search-check {
