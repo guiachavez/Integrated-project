@@ -133,6 +133,10 @@ dt.article {
     gap:1rem;
     padding: 1rem;
     cursor: pointer;
+
+    p{
+        flex:2 0 90%;
+    }
 }
 
 dt.article button{

@@ -2739,6 +2739,9 @@ dt.article {
   padding: 1rem;
   cursor: pointer;
 }
+dt.article p {
+  flex: 2 0 90%;
+}
 
 dt.article button {
   flex: 1 0 5%;
