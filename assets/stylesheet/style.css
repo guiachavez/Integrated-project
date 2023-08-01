@@ -1088,12 +1088,13 @@ footer h2 {
 }
 .home_map-box .home_radius {
   z-index: 100;
-  padding: 1rem 1rem 1rem 1rem;
+  padding: 1rem 0.5rem;
   background-color: rgba(255, 255, 255, 0.8);
   border: 1.5px solid #0293A7;
   border-radius: 8px;
   width: 70%;
   margin: auto;
+  height: 59px;
 }
 .home_map-box .home_radius .home_radius-containder {
   text-align: center;
@@ -1520,7 +1521,6 @@ ul {
 
 /* TOMTOM SEARCH ============================= */
 .home_searchbox .tt-search-box {
-  height: 59px;
   padding: 0 8px;
   background-color: rgba(255, 255, 255, 0.8);
   border: 1.5px solid #0293A7;
@@ -1547,7 +1547,7 @@ ul {
   border-radius: 8px;
 }
 
-.tt-search-box-input-container.-focused {
+.filter-section .tt-search-box-input-container.-focused {
   border: 1.5px solid #0293A7;
 }
 
@@ -1619,6 +1619,19 @@ ul {
   .home_main .stories-wrapper .slick-next {
     right: -30px;
   }
+}
+
+.home_radius-containder {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.2rem;
+}
+.home_radius-containder label {
+  font-weight: normal;
+}
+.home_radius-containder #setRadius {
+  width: 70%;
 }
 
 .pet-profile {
