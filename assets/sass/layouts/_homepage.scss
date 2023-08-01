@@ -254,6 +254,7 @@
   .home_map-controls {
     // display: grid;
     position: relative;
+    margin-top: 2%;
   }
 
   .home_radius {
@@ -261,18 +262,20 @@
     // display: grid;
     // grid-template-columns: 1fr;
     // gap: 1rem;
-    z-index: 999;
-    position: relative;
+    z-index: 100;
+    // position: relative;
     padding: 1rem 1rem 1rem 1rem;
-    width: fit-content;
-    margin-left: auto;
+    // width: fit-content;
+    // margin-left: auto;
     background-color: rgba(255, 255, 255, 0.8);
     border: 1.5px solid colors.$primary-color-main;
     border-radius: 8px;
-    right: 2%;
+    // right: 2%;
+    width: 70%;
+    margin: auto;
 
     .home_radius-containder {
-      margin: auto;
+      text-align: center;
     }
 
     label {
@@ -341,16 +344,19 @@
     }
 
     .home_map-controls {
-      grid-column: span 2;
+      // grid-column: span 2;
 
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
 
+      margin: 2%;
+
       .home_radius {
         // margin: 0;
         // grid-template-columns: 2fr 1fr;
         // gap: 0.8rem;
+        width: 100%;
 
         .home_radius-containder {
           margin-right: 0;
@@ -363,11 +369,11 @@
     }
 
     .tt-search-box {
-      position: absolute;
-      right: 1%;
-      top: 120%;
+      // position: absolute;
+      // right: 1%;
+      // top: 120%;
       z-index: 100;
-      width: 300px;
+      // width: 300px;
     }
 
     #map {
@@ -417,11 +423,17 @@
     grid-template-columns: 1fr 3fr;
     row-gap: 2rem;
 
+    .home_radius {
+      width: 280px !important;
+      margin-right: 0;
+    }
+
     .tt-search-box {
       position: absolute;
-      right: 1%;
+      right: 0%;
       top: 120%;
       z-index: 100;
+      width: 280px;
     }
   }
 }
@@ -755,7 +767,7 @@ ul {
 
 .home_searchbox {
   .tt-search-box {
-    height: 52px;
+    height: 59px;
     padding: 0 8px;
     background-color: rgba(255, 255, 255, 0.8);
     border: 1.5px solid colors.$primary-color-main;
@@ -779,7 +791,7 @@ ul {
   }
 
   .tt-search-box-input-container {
-    height: 52px;
+    height: 59px;
     padding: 0 8px;
     background-color: rgba(255, 255, 255, 0.8);
     border: 1.5px solid colors.$primary-color-main;
@@ -830,9 +842,10 @@ ul {
     .tt-search-box {
       z-index: 9999;
       width: 70%;
-      margin-left: auto;
-      margin-right: 2%;
-      margin-bottom: 1rem;
+      // margin-left: auto;
+      // margin-right: 2%;
+      // margin-bottom: 1rem;
+      margin: auto;
     }
   }
 
