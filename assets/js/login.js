@@ -1,4 +1,4 @@
-import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, sendPasswordResetEmail } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js';
+import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithRedirect, getRedirectResult, sendPasswordResetEmail } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js';
 import { app } from './config.js'
 
 // Initialize Authentication
@@ -30,18 +30,27 @@ loginButton.addEventListener('submit', (e) => {
 const googleButton = document.querySelector('.google-btn')
 googleButton.addEventListener('click', (e) => {
     e.preventDefault();
- 
-    signInWithPopup(auth, provider)
-        .then((result) => {
 
-            const user = result.user;
-            console.log('user logged in: ', user.email)
-            window.location.href = './index.html'
-        })
-        .catch((err) => {
-            console.log(err.message)
-        })
+    signInWithRedirect(auth, provider)
 });
+
+window.onload = (event) => {
+    getRedirectResult(auth)
+    .then((result) => {
+
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        
+        const user = result.user;
+        console.log('user logged in: ', user.email)
+        window.location.href = './index.html'
+    })
+    .catch((err) => {
+        if (err.length > 0) {
+            console.log(err.message)   
+        }
+    })
+}
 
 //forgot pw function
 const forgotPw = document.querySelector('.login-forgotpw');

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="shortcut icon" href="./../assets/logo/pawfectmatch-logo-favicon.svg" type="image/svg+xml">
+
+    <link rel="manifest" href="./../assets/json/manifest.json">
+</head>
+<body>
+    <h1>PWA</h1>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+            navigator.serviceWorker.register('../assets/js/service-worker.js')
+            .then(registration => {
+                console.log('Service Worker registered:', registration);
+            })
+            .catch(error => {
+                console.log('Service Worker registration failed:', error);
+            });
+            });
+        }
+    </script>
+    
+    
+</body>
+</html>

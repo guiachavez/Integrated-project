@@ -226,6 +226,7 @@ function showAddressOnMap(address, organization) {
       goToOrg.title = "See the pets available in this shelter";
       goToOrg.target = "_blank";
       goToOrg.setAttribute("data-org", `${organization.id}`);
+      goToOrg.addEventListener('click', passOrg);
       orgInfo.append(goToOrg);
 
       //Display the list
@@ -280,7 +281,7 @@ function passOrg() {
         localStorage.setItem("position", JSON.stringify(position));
         localStorage.setItem("type", "");
 
-        window.location.href = "http://127.0.0.1:5500/main/pet.html";
+        window.location.href = "../../main/pet.html";
       })
       .catch((error) => {
         console.log(error);
@@ -492,20 +493,24 @@ function createCarousel(pets) {
 
 /* featured user story ======================= */
 
-const journeyArr = [];
-const adoptionJourneyCollection = collection(db, "adoptionJourney");
-const q = query(adoptionJourneyCollection, limit(4));
+document.addEventListener('DOMContentLoaded', function() {
+  const journeyArr = [];
+  const adoptionJourneyCollection = collection(db, "adoptionJourney");
+  const q = query(adoptionJourneyCollection, limit(4));
 
-globalShowPosts(q);
+  globalShowPosts(q);
 
-setTimeout(function () {
-  $(".home_adopt-stories #stories").not(".slick-initialized").slick({
-    infinite: true,
-    arrows: true,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  });
-}, 1000);
+  setTimeout(function () {
+    $(".home_adopt-stories #stories").not(".slick-initialized").slick({
+      infinite: true,
+      arrows: true,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+    });
+  }, 1000);
+})
+
+
 
 /* To change location on map =================================== */
 
