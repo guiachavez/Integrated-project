@@ -19,7 +19,7 @@ const search = (e) => {
     if(type && source) {
         // redirect to animals page
         setTimeout(function() {
-            window.location.href = '../../main/pet.html';
+            window.location.href = 'http://127.0.0.1:5500/main/pet.html';
         }, 1000)
     } else {
         alert.style.display = 'block'

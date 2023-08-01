@@ -44,6 +44,8 @@ var ttSearchBox = new tt.plugins.SearchBox(tt.services, searchBoxOptions)
 document.querySelector('.search-location').appendChild(ttSearchBox.getSearchBoxHTML());
 
 ttSearchBox.on('tomtom.searchbox.resultselected', function(event) {
+    console.log(event.data.result.address)
+    console.log(event.data.result.position)
     localStorage.setItem('location-query', JSON.stringify(event.data.result.address))
     localStorage.setItem('position', JSON.stringify(event.data.result.position))
 
@@ -91,6 +93,7 @@ const homeSearch = () => {
             ownerDropdown()
             $('.organization').css('display', 'none')
         } else {
+            console.log(orgId)
             searchPetFinder(type, breed, age, gender, size, color, goodWithChildren, houseTrained, orgId, latlong)
             changeAttr(latlong)
             $('.organization').css('display', 'block')
@@ -153,13 +156,6 @@ const loadFilter = ()=> {
 
     // settingup local storage
     localStorage.setItem('searchParams', JSON.stringify(searchParamsObj));
-
-    if($('.filter').is(':visible') == true) {
-        searchFilters.style.display = 'none';
-        closeFilter.style.display = 'none';
-        searchResult.style.display = 'block'
-        filterClicked = false;
-    }
 }
 
 const reLoadFilter = ()=> {
@@ -234,7 +230,7 @@ async function searchOwner(color, breed, type, ageArr, sizeArr, genderArr, goodW
         let location = JSON.parse(localStorage.getItem('location-query'))
         let city = location.municipality
         let country = location.country
-
+        //console.log(userId)
         const q = query(aniRef,
             where("type", "==", type), 
             where("age", "in", ageArr), 
@@ -348,6 +344,7 @@ var searchPetFinder = (type, breed, age, gender, size, color, goodWithChildren, 
         for(const pet in data) {
             if(pet == 'animals') {
                 petObj = data[pet];
+                //console.log(petObj)
                 for(const i in petObj) {
                     $('#filtered-pets').append([
                         $('<div />', {'class': `pet pet-${i}`}).append([
@@ -466,32 +463,30 @@ $(document).ready(function() {
 const filters = document.querySelector('.filter-icon');
 const searchFilters = document.querySelector('.search-filter');
 const closeFilter = document.querySelector('.close-icon');
-const searchResult = document.querySelector('.search-result')
 let filterClicked = false;
 
 filters.addEventListener("click", function(){
     searchFilters.style.display = 'block';
     closeFilter.style.display = 'block';
-    searchResult.style.display = 'none'
     filterClicked = true;
 });
 
 closeFilter.addEventListener("click", function(){
     searchFilters.style.display = 'none';
     closeFilter.style.display = 'none';
-    searchResult.style.display = 'block'
     filterClicked = false;
+    console.log("close")
 });
 
 window.addEventListener('resize', function() {
     let screenWidth = this.window.innerWidth;
+
     if(screenWidth < 820 && !filterClicked){
         searchFilters.style.display = 'none';
         closeFilter.style.display = 'none';
     }
     else if(screenWidth > 820 && filterClicked){
         filterClicked = false;
-        searchResult.style.display = 'block'
     }
     else{
         searchFilters.style.display = 'block';

@@ -28,7 +28,6 @@ if(localStorage.getItem('source') == 'owner') {
     getDoc(petRef).then(docSnap => {
 
         let data = docSnap.data();
-        console.log(data)
         let photo = data.photo;
         photoArr = data.photo;
         let owner_id = data.owner_id;
@@ -41,7 +40,7 @@ if(localStorage.getItem('source') == 'owner') {
 
             document.querySelector('.pet-name').innerHTML = `${data.name}`
             document.querySelector('.pet-description').innerHTML = `${data.desc}`
-            document.querySelector('.pet-location').innerHTML = `<img src="../assets/icons/pin-orange.svg" alt="paw icon"> ${data.location.city}, ${data.location.state}`
+            //document.querySelector('.pet-location').innerHTML = `${el.contact.address.city}, ${el.contact.address.state}`
             document.querySelector('.pet-age').innerHTML = `<img src="../assets/icons/paw-orange.svg" alt="paw icon"> ${data.age}`
             document.querySelector('.pet-size').innerHTML = `<img src="../assets/icons/paw-orange.svg" alt="paw icon"> ${data.size}`
             document.querySelector('.pet-organization').innerHTML = `<img src="../assets/icons/house-orange.svg" alt="paw icon"> ${ofname}, ${olname}`

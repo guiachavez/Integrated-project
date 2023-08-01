@@ -4,11 +4,7 @@
 /* Pet Application =========================== */
 
 .animals-main {
-    padding: 3rem 1.5rem;
-
-    .pet-details {
-        padding: 0;
-    }
+    padding: 3rem;
 }
 
 #filtered-pets {
@@ -27,12 +23,8 @@
 .search-container {
     display: flex;
     flex-flow: column nowrap;
-    gap: 2rem;
+    gap: 1rem;
     position: relative;
-}
-
-.search-result{
-    flex-grow: 1;
 }
 
 .filter{
@@ -44,6 +36,7 @@
     cursor: pointer;
     width: 100%;
     z-index: 10;
+    padding: 0 1%;
 }
 
 .filter label{
@@ -67,15 +60,16 @@
     flex: 1 0 auto;
     flex-grow: 0;
     width: 100%;
+    padding: 1rem;
 
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
 
     display: none;
+    position: absolute;
     background-color: white;
     border-radius: 0.5rem;
-    margin-top: 1.5rem;
 }
 .gap-search{
     padding-top: 1rem;
@@ -116,7 +110,6 @@ fieldset {
 
     > div {
         display: flex;
-        gap: 0.2rem;
     }
 }
 
@@ -144,6 +137,7 @@ fieldset {
 
 .search-filter{
     display: none;
+    position: absolute;
     background-color: white;
     border-radius: 0.5rem;
 }
@@ -181,8 +175,10 @@ fieldset {
 }
 
 .no-results {
+    position: absolute;
     text-align: center;
     margin-top: 5rem;
+    transform: translateX(50%);
 
     img {
         rotate: 270deg;
@@ -200,10 +196,6 @@ fieldset {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
-    
-    legend {
-        margin-bottom: 0.2rem;
-    }
 }
 
 @media screen and (min-width: mq.$media-mobile-width) {
@@ -211,18 +203,6 @@ fieldset {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
         gap: 1rem;
-    }
-
-    .no-results{
-        grid-column: 1/-1;
-    }
-}
-
-@media screen and (max-width: 459px) {
-    .animals-main {
-        .pet {
-            margin-bottom: 2rem;
-        }
     }
 }
 
@@ -232,7 +212,6 @@ fieldset {
         position: relative;
         padding-top: 0;
         width: 280px;
-        margin-top: 0;
     }
 
     .filter{
@@ -253,10 +232,6 @@ fieldset {
     .animals-main {
         width: 1200px;
         margin: auto;
-    }
-
-    .no-results{
-        transform: translateX(10%);
     }
 
     .search-check {
