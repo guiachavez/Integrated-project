@@ -4,7 +4,7 @@ button, a {
 }
 
 button.google-btn {
-  width: 235px;
+  width: 260px;
   height: 56px;
   border-radius: 3rem;
   background-color: #FFFFFF;
@@ -1385,7 +1385,7 @@ footer h2 {
   width: 100%;
 }
 .home_adopt-stories .story-content {
-  text-align: center;
+  text-align: left;
 }
 .home_adopt-stories .owner-location {
   font-size: 14px;
@@ -1420,7 +1420,7 @@ footer h2 {
     width: 40%;
   }
   .home_adopt-stories .story-content {
-    text-align: right;
+    text-align: left;
   }
 }
 
