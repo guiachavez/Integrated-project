@@ -1084,20 +1084,20 @@ footer h2 {
 }
 .home_map-box .home_map-controls {
   position: relative;
+  margin-top: 2%;
 }
 .home_map-box .home_radius {
-  z-index: 999;
-  position: relative;
-  padding: 1rem 1rem 1rem 1rem;
-  width: fit-content;
-  margin-left: auto;
+  z-index: 100;
+  padding: 1rem 0.5rem;
   background-color: rgba(255, 255, 255, 0.8);
   border: 1.5px solid #0293A7;
   border-radius: 8px;
-  right: 2%;
+  width: 70%;
+  margin: auto;
+  height: 59px;
 }
 .home_map-box .home_radius .home_radius-containder {
-  margin: auto;
+  text-align: center;
 }
 .home_map-box .home_radius label {
   display: inline;
@@ -1154,10 +1154,13 @@ footer h2 {
     grid-column: span 2;
   }
   .home_map-box .home_map-controls {
-    grid-column: span 2;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
+    margin: 2%;
+  }
+  .home_map-box .home_map-controls .home_radius {
+    width: 100%;
   }
   .home_map-box .home_map-controls .home_radius .home_radius-containder {
     margin-right: 0;
@@ -1166,11 +1169,7 @@ footer h2 {
     margin: 0;
   }
   .home_map-box .tt-search-box {
-    position: absolute;
-    right: 1%;
-    top: 120%;
     z-index: 100;
-    width: 300px;
   }
   .home_map-box #map {
     height: 80vh;
@@ -1214,11 +1213,16 @@ footer h2 {
     grid-template-columns: 1fr 3fr;
     row-gap: 2rem;
   }
+  .home_map-box .home_radius {
+    width: 280px !important;
+    margin-right: 0;
+  }
   .home_map-box .tt-search-box {
     position: absolute;
-    right: 1%;
+    right: 0%;
     top: 120%;
     z-index: 100;
+    width: 280px;
   }
 }
 
@@ -1517,7 +1521,6 @@ ul {
 
 /* TOMTOM SEARCH ============================= */
 .home_searchbox .tt-search-box {
-  height: 52px;
   padding: 0 8px;
   background-color: rgba(255, 255, 255, 0.8);
   border: 1.5px solid #0293A7;
@@ -1537,14 +1540,14 @@ ul {
   background-color: unset;
 }
 .home_map-box .tt-search-box-input-container {
-  height: 52px;
+  height: 59px;
   padding: 0 8px;
   background-color: rgba(255, 255, 255, 0.8);
   border: 1.5px solid #0293A7;
   border-radius: 8px;
 }
 
-.tt-search-box-input-container.-focused {
+.filter-section .tt-search-box-input-container.-focused {
   border: 1.5px solid #0293A7;
 }
 
@@ -1584,9 +1587,7 @@ ul {
   .home_map-controls .tt-search-box {
     z-index: 9999;
     width: 70%;
-    margin-left: auto;
-    margin-right: 2%;
-    margin-bottom: 1rem;
+    margin: auto;
   }
   .home_adopt-stories .story-photos img {
     border-radius: 0.5rem 0.5rem 0 0rem;
@@ -1618,6 +1619,19 @@ ul {
   .home_main .stories-wrapper .slick-next {
     right: -30px;
   }
+}
+
+.home_radius-containder {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.2rem;
+}
+.home_radius-containder label {
+  font-weight: normal;
+}
+.home_radius-containder #setRadius {
+  width: 70%;
 }
 
 .pet-profile {
