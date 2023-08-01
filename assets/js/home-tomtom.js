@@ -507,7 +507,7 @@ document.addEventListener('DOMContentLoaded', function() {
       slidesToShow: 1,
       slidesToScroll: 1,
     });
-  }, 1000);
+  }, 2000);
 })
 
 
