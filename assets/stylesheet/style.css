@@ -4,7 +4,7 @@ button, a {
 }
 
 button.google-btn {
-  width: 235px;
+  width: 260px;
   height: 56px;
   border-radius: 3rem;
   background-color: #FFFFFF;
@@ -1389,7 +1389,7 @@ footer h2 {
   width: 100%;
 }
 .home_adopt-stories .story-content {
-  text-align: center;
+  text-align: left;
 }
 .home_adopt-stories .owner-location {
   font-size: 14px;
@@ -1424,7 +1424,7 @@ footer h2 {
     width: 40%;
   }
   .home_adopt-stories .story-content {
-    text-align: right;
+    text-align: left;
   }
 }
 
@@ -2567,6 +2567,10 @@ option {
   position: relative;
 }
 
+.search-result {
+  flex-grow: 1;
+}
+
 .filter {
   display: flex;
   align-items: center;
@@ -2707,10 +2711,8 @@ fieldset > div {
 }
 
 .no-results {
-  position: absolute;
   text-align: center;
   margin-top: 5rem;
-  transform: translateX(50%);
 }
 .no-results img {
   rotate: 270deg;
@@ -2737,6 +2739,9 @@ fieldset > div {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 1rem;
+  }
+  .no-results {
+    grid-column: 1/-1;
   }
 }
 @media screen and (max-width: 459px) {
@@ -2767,6 +2772,9 @@ fieldset > div {
   .animals-main {
     width: 1200px;
     margin: auto;
+  }
+  .no-results {
+    transform: translateX(10%);
   }
   .search-check .modal-content {
     max-width: fit-content;
