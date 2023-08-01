@@ -2895,9 +2895,9 @@ dd.article-content p {
   .sort-wrapper {
     position: absolute;
     z-index: 2;
-    top: 0;
+    top: -30px;
     right: 0;
-    margin: 0.5rem;
+    margin-bottom: 0.5rem;
   }
   #stories {
     margin-top: 3rem;
@@ -2963,7 +2963,7 @@ dd.article-content p {
   .sort-wrapper {
     position: absolute;
     z-index: 2;
-    top: 0;
+    top: -30px;
     right: 0;
     margin: 0.5rem;
   }
@@ -3099,6 +3099,7 @@ dd.article-content p {
     justify-content: center;
   }
   .stories-wrapper {
+    position: relative;
     width: 90%;
   }
   #stories {
@@ -3108,16 +3109,6 @@ dd.article-content p {
   .story {
     flex-direction: column;
     width: calc(50% - 1.15rem);
-  }
-}
-@media screen and (min-width: 1200px) {
-  .adoption-journey-content,
-  .adoption-journey-header,
-  .adoption-journey-form {
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-    width: 1200px;
   }
 }
 /* Style Guide BUTTONS --------------- */

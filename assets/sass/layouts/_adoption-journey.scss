@@ -316,9 +316,9 @@ dd.article-content {
     .sort-wrapper{
         position: absolute;
         z-index: 2;
-        top:0;
+        top:-30px;
         right: 0;
-        margin:.5rem;
+        margin-bottom: .5rem;
     }
 
     #stories{
@@ -393,7 +393,7 @@ dd.article-content {
     .sort-wrapper{
         position: absolute;
         z-index: 2;
-        top:0;
+        top:-30px;
         right: 0;
         margin:.5rem;
     }
@@ -556,6 +556,7 @@ dd.article-content {
         justify-content: center;
     }
     .stories-wrapper {
+        position: relative;
         width: 90%;
     }
     #stories {
@@ -568,12 +569,12 @@ dd.article-content {
     }
 }
 
-@media screen and (min-width: 1200px) {
-    .adoption-journey-content,
-    .adoption-journey-header,
-    .adoption-journey-form {
-        @include mx.maxwidth;
-    }
+// @media screen and (min-width: 1200px) {
+//     .adoption-journey-content,
+//     .adoption-journey-header,
+//     .adoption-journey-form {
+//         @include mx.maxwidth;
+//     }
 
     
-}
+// }
