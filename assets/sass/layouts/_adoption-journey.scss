@@ -62,7 +62,7 @@
 }
 
 .stories-wrapper {
-    width: 70%;
+    width: 60%;
 }
 
 .story-details {
@@ -110,9 +110,18 @@ aside > div:last-of-type {
     gap: 1rem;
     border: 1px solid colors.$primary-color-main;
     border-radius: 0.5rem;
-    z-index: 9999;
+    z-index: 9999;    
 }
 
+@media screen and (max-width: 450px) {
+    .story {
+        width: 100% !important;
+    }
+
+    #stories {
+        flex-direction: column !important;
+    }
+}
 dt button {
     background: transparent;
     border: none;
@@ -296,6 +305,7 @@ dd.article-content {
         justify-items: center;
         align-items: center;
         position: relative;
+        row-gap: 2.5rem;
     }
 
     .stories-wrapper{
@@ -314,15 +324,11 @@ dd.article-content {
     #stories{
         margin-top: 3rem;
     }
-    .story{
-        flex-direction: column;
-    
-    }
 
     .adoption-journey-content
     aside{
-        width: 60%;
-        margin-top: 2rem;
+        width: 90%;
+        margin: 2rem auto;
     }
     .adoption-journey-content aside h2{
         text-align: center;
@@ -368,9 +374,6 @@ dd.article-content {
     }
 }
 
-
-
-
 @media screen and (min-width: mq.$media-mobile-width){
     .adoption-journey-header {
         flex-flow: column nowrap;
@@ -385,6 +388,7 @@ dd.article-content {
         justify-items: center;
         align-items: center;
         position: relative;
+        row-gap: 2.5rem;
     }
     .sort-wrapper{
         position: absolute;
@@ -409,9 +413,8 @@ dd.article-content {
 
     .adoption-journey-content
     aside{
-        width: 70%;
-        margin-bottom: calc(40px + 1rem);
-        margin-top: 2rem;
+        width: 90%;
+        margin: 2rem auto calc(40px + 1rem) auto;
     }
     .adoption-journey-content aside h2{
         text-align: center;
@@ -476,7 +479,6 @@ dd.article-content {
         text-align: left;
     }
     .stories-wrapper{
-        padding-right: 1rem;
         position: relative;
         margin: 0;
     }
@@ -484,7 +486,7 @@ dd.article-content {
         position: absolute;
         top:0;
         margin-top: 0 !important;
-        margin-right: 1rem !important;
+        margin-right: 0 !important;
     }
 
     .story{
@@ -553,10 +555,18 @@ dd.article-content {
         align-items: center;
         justify-content: center;
     }
+    .stories-wrapper {
+        width: 90%;
+    }
+    #stories {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }    
+    .story {
+        flex-direction: column;
+        width: calc(100%/2 - 1.15rem);
+    }
 }
-
-
-
 
 @media screen and (min-width: 1200px) {
     .adoption-journey-content,

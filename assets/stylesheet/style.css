@@ -2670,7 +2670,7 @@ fieldset > div {
 }
 
 .stories-wrapper {
-  width: 70%;
+  width: 60%;
 }
 
 .story-details {
@@ -2719,6 +2719,14 @@ aside > div:last-of-type {
   z-index: 9999;
 }
 
+@media screen and (max-width: 450px) {
+  .story {
+    width: 100% !important;
+  }
+  #stories {
+    flex-direction: column !important;
+  }
+}
 dt button {
   background: transparent;
   border: none;
@@ -2877,6 +2885,7 @@ dd.article-content p {
     justify-items: center;
     align-items: center;
     position: relative;
+    row-gap: 2.5rem;
   }
   .stories-wrapper {
     align-items: center;
@@ -2893,12 +2902,9 @@ dd.article-content p {
   #stories {
     margin-top: 3rem;
   }
-  .story {
-    flex-direction: column;
-  }
   .adoption-journey-content aside {
-    width: 60%;
-    margin-top: 2rem;
+    width: 90%;
+    margin: 2rem auto;
   }
   .adoption-journey-content aside h2 {
     text-align: center;
@@ -2952,6 +2958,7 @@ dd.article-content p {
     justify-items: center;
     align-items: center;
     position: relative;
+    row-gap: 2.5rem;
   }
   .sort-wrapper {
     position: absolute;
@@ -2972,9 +2979,8 @@ dd.article-content p {
     flex-direction: column;
   }
   .adoption-journey-content aside {
-    width: 70%;
-    margin-bottom: calc(40px + 1rem);
-    margin-top: 2rem;
+    width: 90%;
+    margin: 2rem auto calc(40px + 1rem) auto;
   }
   .adoption-journey-content aside h2 {
     text-align: center;
@@ -3027,7 +3033,6 @@ dd.article-content p {
     text-align: left;
   }
   .stories-wrapper {
-    padding-right: 1rem;
     position: relative;
     margin: 0;
   }
@@ -3035,7 +3040,7 @@ dd.article-content p {
     position: absolute;
     top: 0;
     margin-top: 0 !important;
-    margin-right: 1rem !important;
+    margin-right: 0 !important;
   }
   .story {
     flex-flow: row !important;
@@ -3092,6 +3097,17 @@ dd.article-content p {
     flex-flow: row wrap;
     align-items: center;
     justify-content: center;
+  }
+  .stories-wrapper {
+    width: 90%;
+  }
+  #stories {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .story {
+    flex-direction: column;
+    width: calc(50% - 1.15rem);
   }
 }
 @media screen and (min-width: 1200px) {
