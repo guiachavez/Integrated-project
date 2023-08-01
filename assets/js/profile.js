@@ -33,11 +33,11 @@ onAuthStateChanged(auth, (user) => {
             document.querySelector('.owner-name').innerHTML = `${data.firstName} ${data.lastName}`
 
             document.querySelector('.fName').innerHTML = `: ${data.firstName}`
-            document.querySelector('.lName').innerHTML = `: ${data.lastName}`
-            document.querySelector('.email').innerHTML = `: ${data.email}`
             document.querySelector('.number').innerHTML = `: ${data.phone}`
             document.querySelector('.country').innerHTML = `: ${data.address.country}`
             document.querySelector('.city').innerHTML = `: ${data.address.city}`
+            document.querySelector('.lName').innerHTML = `: ${data.lastName}`
+            document.querySelector('.email').innerHTML = `: ${data.email}`
             document.querySelector('.postal').innerHTML = `: ${data.address.postcode}`
             document.querySelector('.address').innerHTML = `: ${data.address.street}, ${data.address.city}`
         })
@@ -114,15 +114,6 @@ onAuthStateChanged(auth, (user) => {
             setTimeout(() => {
                 addButtonsv2(inquiries)
                 //addButtons(inquiries)
-
-                $('[data-count]').each(function() {
-                    if ($(this).data('count') > 0) {
-                        $(this).find('button').css('color', '#398C1C')
-                        $(this).find('button').css('font-weight', '900')
-                    } else {
-                        $(this).find('button').css('color', 'gray')
-                    }
-                })
                 
             }, 1000)
         }).catch(err => {
@@ -217,7 +208,7 @@ function changingAcceptToClose(id) {
     $('button.accept').each(function() {
         if($(this).data('accept') == id) {
             $(this).closest('.response-buttons').append([
-                $('<button />', {'text': 'Finalize', 'class': 'close outline-btn font', 'data-close': `${id}`})
+                $('<button />', {'text': 'Close', 'class': 'close outline-btn font', 'data-close': `${id}`})
             ])
             $(this).closest('.response-buttons').find('.decline').remove();
             $(this).remove();
@@ -520,7 +511,7 @@ function addButtonsv2(inquiries) {
                                                 ])
                                             ]),
                                             $('<div />', {'class': 'response-buttons'}).append([
-                                                $('<button />', {'text': 'Finalize', 'id': `Close-${inquiries[el].inquiryId}`, 'class': 'close outline-btn font', 'data-close': `${inquiries[el].inquiryId}`})
+                                                $('<button />', {'text': 'Close', 'id': `Close-${inquiries[el].inquiryId}`, 'class': 'close outline-btn font', 'data-close': `${inquiries[el].inquiryId}`})
                                             ])
                                         ])
                                     ])

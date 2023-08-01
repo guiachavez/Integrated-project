@@ -27,7 +27,7 @@
     width: 100%;
     height: 100px;
     object-fit: cover;
-    border-radius: 0.5rem;
+    border-radius: 1rem;
 }
         
 .slider-for img {
@@ -58,7 +58,6 @@
 
 .slider-nav .slick-slide.slick-current {
     border: 1px solid colors.$primary-color-main;
-    border-radius: 0.5rem;
 }
 
 .gallery .draggable .slick-track{
@@ -68,14 +67,14 @@
 .other-details {
     display: flex;
     justify-content: space-between;
-    margin: 2rem 0 1.5rem 0;
+    margin: 1rem 0;
 
     > div {
         display: grid;
         gap: 1rem;
     }
 
-    p {
+    p{
         display: flex;
         align-items: center;
         gap: 1rem;
@@ -101,7 +100,7 @@
 
 .adopt-btn{
     display: flex;
-    justify-content: start;
+    justify-content: center;
 }
 
 .pet-img-size img{

@@ -1,4 +1,4 @@
-import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithRedirect, getRedirectResult, sendPasswordResetEmail } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js';
+import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, sendPasswordResetEmail } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js';
 import { app } from './config.js'
 
 // Initialize Authentication
@@ -7,7 +7,6 @@ const provider = new GoogleAuthProvider(app)
 
 //login method using email
 const loginButton = document.querySelector('.login')
-const errorMsg = document.querySelector('.error-msg')
 loginButton.addEventListener('submit', (e) => {
     e.preventDefault()
 
@@ -21,8 +20,6 @@ loginButton.addEventListener('submit', (e) => {
         })
         .catch((err) => {
             console.log(err.message)
-            errorMsg.style.display = 'block';
-            errorMsg.innerHTML = 'Incorrect username or password';
         })
 })
 
@@ -30,27 +27,18 @@ loginButton.addEventListener('submit', (e) => {
 const googleButton = document.querySelector('.google-btn')
 googleButton.addEventListener('click', (e) => {
     e.preventDefault();
+ 
+    signInWithPopup(auth, provider)
+        .then((result) => {
 
-    signInWithRedirect(auth, provider)
+            const user = result.user;
+            console.log('user logged in: ', user.email)
+            window.location.href = './index.html'
+        })
+        .catch((err) => {
+            console.log(err.message)
+        })
 });
-
-window.onload = (event) => {
-    getRedirectResult(auth)
-    .then((result) => {
-
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        
-        const user = result.user;
-        console.log('user logged in: ', user.email)
-        window.location.href = './index.html'
-    })
-    .catch((err) => {
-        if (err.length > 0) {
-            console.log(err.message)   
-        }
-    })
-}
 
 //forgot pw function
 const forgotPw = document.querySelector('.login-forgotpw');
@@ -73,15 +61,9 @@ submitForgot.addEventListener('submit', (e) => {
     
     sendPasswordResetEmail(auth, email)
         .then(() => {
-            setTimeout(function() {
-                alert("Password reset email sent!")
-            }, 200)
-            
-            $('.modal').removeClass('modal-active')
+            alert("Password reset email sent!")
         })
         .catch((err) => {
             console.log(err.message)
         });
-
-        
 })

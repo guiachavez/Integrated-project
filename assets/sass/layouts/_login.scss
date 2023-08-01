@@ -125,41 +125,10 @@
     height:30px;
 }
 
-.error-msg{
-    display: none;
-    color: #991F1F;
-    font-size: 12px;
-    font-style: italic;
-    text-align: left;
-}
-
 #forgot-email {
     @include mx.position(absolute);
-
-    p {
-        padding: 0 3rem;
-    }
 }
 
-.submit_forgot {
-    margin-top: 2rem;
-
-    input {
-        width: 50%;
-    }
-
-    span {
-        @include mx.raleway-typography(12);
-        display: flex;
-        justify-content: center;
-        gap: 0.2rem;
-        margin: 1rem;
-
-        a {
-            color: #991F1F;
-        }
-    }
-}
 @media screen and (min-width:820px) {
     .login-main,
     .signup_main {
@@ -189,18 +158,12 @@
     }
 }
 
-@media screen and (max-width: 460px) {
+// @media screen and (min-width: 460px) {
     
-    #forgot-email {
-        p {
-            padding: 0;
-        }
+// }
 
-        input {
-            width: 100%;
-            position: relative;
-            transform: translateX(-50%);
-            left: 50%;
-        }
-    }
-}
+// @media screen and (min-width: 1200px) {
+//     .signup_main {
+//         @include mx.maxwidth;
+//     }
+// }
