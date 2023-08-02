@@ -1,5 +1,5 @@
 const cacheName = "v1";
-const urlsToCache = [ "offline.html", "pawfectmatch-logo-colour.svg"
+const urlsToCache = [ "./offline.html", "pawfectmatch-logo-colour.svg"
  ];
 // NEVER cache service worker itself ( i.e. don't include sw.js in above array)
 // MAKE SURE THERE IS NO TYPO in the File names otherwise the cache.addAll fails in install

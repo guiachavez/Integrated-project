@@ -338,6 +338,8 @@ a {
   text-decoration: none;
   color: #000000;
   display: block;
+  font-family: "Raleway";
+  font-size: 16px;
 }
 
 h2 {
@@ -1395,6 +1397,12 @@ footer h2 {
   font-size: 14px;
   color: #026E7D;
 }
+.home_adopt-stories .story.slick-slide {
+  margin: 0 15px;
+}
+.home_adopt-stories #stories > div.slick-list:first-of-type {
+  margin: 0 -15px;
+}
 @media screen and (min-width: 820px) {
   .home_adopt-stories {
     flex-flow: row;
@@ -1591,6 +1599,12 @@ ul {
   }
   .home_adopt-stories .story-photos img {
     border-radius: 0.5rem 0.5rem 0 0rem;
+  }
+  .home_featured {
+    padding-top: 4rem;
+  }
+  .home_prepare-to-adopt {
+    padding-top: 3rem;
   }
 }
 .home_main .stories-wrapper .story {
