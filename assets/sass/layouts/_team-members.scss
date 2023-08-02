@@ -276,7 +276,7 @@
 /* the tablet ====================================================== */
 
 
-@media screen and (min-width:mq.$media-tablet-width) {
+@media screen and (min-width:1111px) {
     
     .team-page-main{
         h1{
@@ -361,11 +361,15 @@
                     .grp_img_p{
                         display: flex;
                         flex-flow: column;
-                        align-items: end;
+                        
 
                         span img{
                             margin-top: 1rem;
-                            display: block;
+                            display: block;      
+                        }
+
+                        span{
+                            align-self: end;
                         }
                         p{
                             text-align: left;
@@ -399,161 +403,28 @@
 }
     
 
-    /* indiviually images ======================== */
-    
-
-    /* .team-page-main{
-        .team-page-wrapper{
-            max-width: 70% !important;
-            margin: auto;
-            margin-top: 5rem;
-            margin-bottom: 5rem;
-            display: flex;
-            gap: 3rem;
-
-            .team-group-1{
-                display: flex;
-                flex-flow: column wrap;  
-                justify-content: space-between;
-                align-items: center;
-                margin-top: 0 !important;
-                margin-bottom: 0 !important;
-                gap:2rem;
-                
-                .ind-images{
-                    box-sizing: border-box;
-                    
-                    img[alt *= picture]{
-                        box-sizing: border-box;
-                        width: 100%;
-                    }
-                }
-            }
-
-
-            .team-group-2{
-                margin-top: 10rem !important;
-                margin-bottom: 10rem;
-                display: flex;
-                flex-flow: column wrap;
-                gap:6rem;
-                justify-content: space-around;
-                margin-top:0;
-
-                .ind-images{
-                    flex-flow: nowrap;
-                    box-sizing: border-box;
-                    // width: 100%;
-                    margin-top: 0 !important;
-                }
-
-                .team-page-short{
-                    box-sizing: border-box;
-                    width: 100%;
-                    margin: 0;
-                }
-
-                img[alt *= picture]{
-                    // align-self: start !important;
-                    box-sizing: border-box;
-                    width: 100%;
-                }
-
-                .grp_img_p{
-                    span{
-                        box-sizing: border-box;
-                        width: 100%;
-                    }
-                }
-            }
-
-
-            .team-page-section .ind-images{
-                // flex-grow: 1;
-                display: flex;
-                flex-direction: row;
-                gap:1rem;
-
-                img[alt*=picture]
-                {
-                    border-radius: 5%;
-                }
-
-                .grp_img_p{
-                    display: flex;
-                    flex-flow: column nowrap; 
-                    flex-grow: 1; 
-                    margin-top: 1rem;
-                    
-                    p span{
-                        display: block;
-                        color: c.$accent-color-main;
-                    }
-                    p{
-                        text-align:left !important;
-                        font-weight: 600;
-                        padding-top: 0 !important;
-                    }
-                    span img{
-                        display: block !important;
-                    }
-                }    
-                    
-
-
-                    .team-page-first-part{
-                        span img{
-                            display: block;
-                            float: left;
-                        }
-
-                        p{
-                            margin-left: 3rem;
-                            margin-top: 1rem;
-                        }
-
-                        .solveGuia{
-                            padding-left: 0;
-                            padding-right: 3rem;
-                        }
-
-                        .solveSim{
-                            padding-left: 0;
-                            padding-right: 2rem;
-                        }
-                    }
-
-                    .team-page-second-part{
-                        gap:1rem;
-                        margin-top: 1rem;
-
-                        .mar3{
-                            // margin-top: 1rem;
-                            padding-right: 2rem;
-                        }
-
-                        span{
-                            /*display: block; */
-                            /*  float: right;
-                            align-self: end;
-                        }
-                        
-                    }
-                
-            }
-        }
-
-        
-    }*/
 
  
 
 
 
-@media screen and (min-width:1200) {
+@media screen and (min-width:1200px) {
     .team-page-wrapper{
         @include m.maxwidth;
     }  
+
+    .team-page-wrapper{
+        .team-group-2{
+        .ind-images{
+            .grp_img_p{
+                p{
+                    padding-left: 4rem;
+                }
+            }
+        }
+    }
+    
+    }
     
 }
 
