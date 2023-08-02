@@ -642,6 +642,14 @@
     color: colors.$primary-color-75;
   }
 
+  .story.slick-slide {
+    margin: 0 15px;
+  }
+  
+  #stories > div.slick-list:first-of-type {
+    margin: 0 -15px;
+  }
+
   @media screen and (min-width: query.$media-tablet-width) {
     flex-flow: row;
     justify-content: space-around;
@@ -854,6 +862,14 @@ ul {
     .story-photos img {
       border-radius: 0.5rem 0.5rem 0 0rem;
     }
+  }
+
+  .home_featured {
+    padding-top: 4rem;
+  }
+
+  .home_prepare-to-adopt {
+    padding-top: 3rem;
   }
 }
 
