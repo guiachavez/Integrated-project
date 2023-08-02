@@ -151,86 +151,122 @@
 @media screen and (min-width:mq.$media-mobile-width) {
     
 
-
     .team-page-main{
         h1{
-            margin:.5rem;
-            font-size: 29px;
-            line-height: 1.5;
-            padding: 2rem 0;
+            font-size: 25px;
             text-align: center;
+            margin:1rem 0;
         }
-        .team-page-wrapper{
-            margin: 1rem;
-        }
+    }
 
-        .team-page-wrapper .team-group-2,
-        .team-page-wrapper .team-group-1{
-            display: grid;
-            grid-template-columns: repeat(2,1fr);
-            margin: auto;
-            justify-content: center;
-            align-items: center;
-            gap:1.5rem;
-        }
+    .team-page-wrapper{
+        box-sizing: border-box;
+        width: 100%;
+        padding: 1rem;
 
-        .team-page-wrapper {
+    
 
-            .team-page-section{
+            .team-group-1{
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+                gap:1rem;
+
+                box-sizing: border-box;
+                width: 100%;
+
+                
+
                 .ind-images{
+                    flex:1 0 45%;
                     display: flex;
-                    flex-direction: column;
-                     
+                    flex-flow: column wrap;
+                    justify-content: center;
+                    align-items: center;
+
+                    box-sizing: border-box;
+                    width: 100%;
+
                     img{
-                        align-self: center;
-                    }
-                    img[alt*=picture]
-                    {
-                        border-radius: 5%;
+                        border-radius: 10px;
                     }
 
                     .grp_img_p{
-                        text-align: center;
-                    }
-                    .grp_img_p span img{
-                        display: none;
-                    }
-                    .grp_img_p p{
-                        text-align: center;
-                        font-weight: 600;
-                        padding-top: .5rem;
-                    }
-                    .grp_img_p p span{
-                        display: block;
-                        color: c.$accent-color-main;
-                    }
+                        flex: 1;
 
-                    .team-page-second-part p{
-                        align-self: center;
+                        span img{
+                            display: none;
+                        }
+                        p{
+                            text-align: center;
+                            font-family: t.$font-raleway;
+                            font-weight: 600;
+                            padding-top: .5rem;
+
+                            span{
+                                display: block;
+                                color: c.$accent-color-main;
+                            }
+                        }
+                        
                     }
                 }
             }
-            
-            .team-group-2 {
+
+            .team-group-2{
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+                gap:1rem;
+                margin-top: 1rem;
+
+
                 .ind-images{
-                        flex-direction: column-reverse;
-                        margin-top: 1rem;
+                    flex: 1 0 45%;
+                    display: flex;
+                    flex-direction: column-reverse;
+                    justify-content: center;
+                    align-items: center;
+
+                    img{
+                        border-radius: 10px;
+                    }
+
+                    .grp_img_p{
+                        flex: 1;
+
+                        span img{
+                            display: none;
+                        }
+                        p{
+                            text-align: center;
+                            font-family: t.$font-raleway;
+                            font-weight: 600;
+                            padding-top: .5rem;
+
+                            span{
+                                display: block;
+                                color: c.$accent-color-main;
+                            }
+                        }
+                    }
                 }
 
-                .team-page-short .ind-images{
-                    margin-top: 0;
-                }
                 .team-page-short{
-                    grid-column: span 2;
-                    width:50%;
-                    margin: auto;
+                    flex:0 0 45%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin: 0 auto;
                 }
-                
-            
+
             }
-        }
+        
     }
-   
+
+
     
 }
 
@@ -250,12 +286,123 @@
             padding: 0;
         }
     }
+
+
+    .team-page-wrapper{
+        display: flex;
+        flex-flow:row nowrap;
+        gap:1rem;
+        align-items: center;
+        justify-content: space-between;
+
+        width:90%;
+        margin:  0 auto;
+
+
+            .team-group-1{
+                display: flex;
+                flex-flow: column wrap;
+                align-items: center; /* Center children horizontally */
+                justify-content: center;
+                gap:2rem;
+
+                box-sizing: border-box;
+                width: 100%;
+                
+                .ind-images{
+                    display: flex !important;
+                    flex-flow: row nowrap;
+                    align-items: start;
+                    justify-content: center;
+                    gap:1rem;
+                    flex: unset;
+
+                    box-sizing: border-box;
+                    width: 100%;
+
+                    .grp_img_p{
+                        display: flex;
+                        flex-flow: column wrap;
+                        align-items: start;
+                        span img{
+                            margin-top: 1rem;
+                            display: block;
+                        }
+
+                        p{
+                            padding-left: 4rem;
+                            text-align: left;
+                        }
+                    }
+                }
+            }
+
+            .team-group-2{
+                display: flex;
+                flex-flow: column wrap;
+                align-items: center; /* Center children horizontally */
+                justify-content: center;
+                gap:2rem;
+
+                box-sizing: border-box;
+                width: 100%;
+
+                .ind-images{
+                    display: flex !important;
+                    flex-direction: row;
+                    align-items: start;
+                    justify-content: center;
+                    gap:1rem;
+                    flex: unset;
+
+                    box-sizing: border-box;
+                    width: 100%;
+
+                    .grp_img_p{
+                        display: flex;
+                        flex-flow: column;
+                        align-items: end;
+
+                        span img{
+                            margin-top: 1rem;
+                            display: block;
+                        }
+                        p{
+                            text-align: left;
+                        }
+                    }
+                }
+
+                .team-member-mid{
+                    .team-page-second-part{
+                        p{
+                            padding-right: 2.5rem;
+                        }
+                    }
+                }
+                .team-page-short{
+                    flex: 1 0 100%;
+                    display: block;
+                    margin: unset;
+
+                    box-sizing: border-box;
+                    width: 100%;
+
+                    .team-page-second-part{
+                        p{
+                            padding-right: 2.5rem;
+                        }
+                    }
+                }
+            }
+    }
+}
     
 
     /* indiviually images ======================== */
     
 
-    .team-page-main{
+    /* .team-page-main{
         .team-page-wrapper{
             max-width: 70% !important;
             margin: auto;
@@ -266,21 +413,20 @@
 
             .team-group-1{
                 display: flex;
-                flex-flow: column wrap;
-                gap:6rem;
-                justify-content: space-between;   
-                flex-grow: 1;
-                box-sizing: border-box;
-
-                .ind-images {
-                    justify-self: right;
-                    align-self: center;
-                    // margin-bottom: 5rem;
-                    // text-align: left;
-
+                flex-flow: column wrap;  
+                justify-content: space-between;
+                align-items: center;
+                margin-top: 0 !important;
+                margin-bottom: 0 !important;
+                gap:2rem;
+                
+                .ind-images{
                     box-sizing: border-box;
-                    width: 100%;
                     
+                    img[alt *= picture]{
+                        box-sizing: border-box;
+                        width: 100%;
+                    }
                 }
             }
 
@@ -297,7 +443,7 @@
                 .ind-images{
                     flex-flow: nowrap;
                     box-sizing: border-box;
-                    width: 100%;
+                    // width: 100%;
                     margin-top: 0 !important;
                 }
 
@@ -307,8 +453,17 @@
                     margin: 0;
                 }
 
-                img{
-                    align-self: start !important;
+                img[alt *= picture]{
+                    // align-self: start !important;
+                    box-sizing: border-box;
+                    width: 100%;
+                }
+
+                .grp_img_p{
+                    span{
+                        box-sizing: border-box;
+                        width: 100%;
+                    }
                 }
             }
 
@@ -379,7 +534,7 @@
 
                         span{
                             /*display: block; */
-                            /*  float: right;*/
+                            /*  float: right;
                             align-self: end;
                         }
                         
@@ -389,10 +544,10 @@
         }
 
         
-    }
+    }*/
 
  
-}
+
 
 
 @media screen and (min-width:1200) {

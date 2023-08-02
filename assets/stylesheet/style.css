@@ -3517,63 +3517,92 @@ button.filled-default-next-mob {
 }
 @media screen and (min-width: 460px) {
   .team-page-main h1 {
-    margin: 0.5rem;
-    font-size: 29px;
-    line-height: 1.5;
-    padding: 2rem 0;
+    font-size: 25px;
     text-align: center;
+    margin: 1rem 0;
   }
-  .team-page-main .team-page-wrapper {
-    margin: 1rem;
+  .team-page-wrapper {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 1rem;
   }
-  .team-page-main .team-page-wrapper .team-group-2,
-  .team-page-main .team-page-wrapper .team-group-1 {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    margin: auto;
+  .team-page-wrapper .team-group-1 {
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1rem;
+    box-sizing: border-box;
+    width: 100%;
   }
-  .team-page-main .team-page-wrapper .team-page-section .ind-images {
+  .team-page-wrapper .team-group-1 .ind-images {
+    flex: 1 0 45%;
     display: flex;
-    flex-direction: column;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
   }
-  .team-page-main .team-page-wrapper .team-page-section .ind-images img {
-    align-self: center;
+  .team-page-wrapper .team-group-1 .ind-images img {
+    border-radius: 10px;
   }
-  .team-page-main .team-page-wrapper .team-page-section .ind-images img[alt*=picture] {
-    border-radius: 5%;
+  .team-page-wrapper .team-group-1 .ind-images .grp_img_p {
+    flex: 1;
   }
-  .team-page-main .team-page-wrapper .team-page-section .ind-images .grp_img_p {
-    text-align: center;
-  }
-  .team-page-main .team-page-wrapper .team-page-section .ind-images .grp_img_p span img {
+  .team-page-wrapper .team-group-1 .ind-images .grp_img_p span img {
     display: none;
   }
-  .team-page-main .team-page-wrapper .team-page-section .ind-images .grp_img_p p {
+  .team-page-wrapper .team-group-1 .ind-images .grp_img_p p {
     text-align: center;
+    font-family: "Raleway";
     font-weight: 600;
     padding-top: 0.5rem;
   }
-  .team-page-main .team-page-wrapper .team-page-section .ind-images .grp_img_p p span {
+  .team-page-wrapper .team-group-1 .ind-images .grp_img_p p span {
     display: block;
     color: #DE6B35;
   }
-  .team-page-main .team-page-wrapper .team-page-section .ind-images .team-page-second-part p {
-    align-self: center;
-  }
-  .team-page-main .team-page-wrapper .team-group-2 .ind-images {
-    flex-direction: column-reverse;
+  .team-page-wrapper .team-group-2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
     margin-top: 1rem;
   }
-  .team-page-main .team-page-wrapper .team-group-2 .team-page-short .ind-images {
-    margin-top: 0;
+  .team-page-wrapper .team-group-2 .ind-images {
+    flex: 1 0 45%;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
   }
-  .team-page-main .team-page-wrapper .team-group-2 .team-page-short {
-    grid-column: span 2;
-    width: 50%;
-    margin: auto;
+  .team-page-wrapper .team-group-2 .ind-images img {
+    border-radius: 10px;
+  }
+  .team-page-wrapper .team-group-2 .ind-images .grp_img_p {
+    flex: 1;
+  }
+  .team-page-wrapper .team-group-2 .ind-images .grp_img_p span img {
+    display: none;
+  }
+  .team-page-wrapper .team-group-2 .ind-images .grp_img_p p {
+    text-align: center;
+    font-family: "Raleway";
+    font-weight: 600;
+    padding-top: 0.5rem;
+  }
+  .team-page-wrapper .team-group-2 .ind-images .grp_img_p p span {
+    display: block;
+    color: #DE6B35;
+  }
+  .team-page-wrapper .team-group-2 .team-page-short {
+    flex: 0 0 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
   }
 }
 /* the tablet ====================================================== */
@@ -3584,107 +3613,236 @@ button.filled-default-next-mob {
     font-size: 42px;
     padding: 0;
   }
-  /* indiviually images ======================== */
-  .team-page-main .team-page-wrapper {
-    max-width: 70% !important;
-    margin: auto;
-    margin-top: 5rem;
-    margin-bottom: 5rem;
+  .team-page-wrapper {
     display: flex;
-    gap: 3rem;
-  }
-  .team-page-main .team-page-wrapper .team-group-1 {
-    display: flex;
-    flex-flow: column wrap;
-    gap: 6rem;
+    flex-flow: row nowrap;
+    gap: 1rem;
+    align-items: center;
     justify-content: space-between;
-    flex-grow: 1;
-    box-sizing: border-box;
+    width: 90%;
+    margin: 0 auto;
   }
-  .team-page-main .team-page-wrapper .team-group-1 .ind-images {
-    justify-self: right;
-    align-self: center;
-    box-sizing: border-box;
-    width: 100%;
-  }
-  .team-page-main .team-page-wrapper .team-group-2 {
-    margin-top: 10rem !important;
-    margin-bottom: 10rem;
+  .team-page-wrapper .team-group-1 {
     display: flex;
     flex-flow: column wrap;
-    gap: 6rem;
-    justify-content: space-around;
-    margin-top: 0;
-  }
-  .team-page-main .team-page-wrapper .team-group-2 .ind-images {
-    flex-flow: nowrap;
+    align-items: center; /* Center children horizontally */
+    justify-content: center;
+    gap: 2rem;
     box-sizing: border-box;
     width: 100%;
-    margin-top: 0 !important;
   }
-  .team-page-main .team-page-wrapper .team-group-2 .team-page-short {
+  .team-page-wrapper .team-group-1 .ind-images {
+    display: flex !important;
+    flex-flow: row nowrap;
+    align-items: start;
+    justify-content: center;
+    gap: 1rem;
+    flex: unset;
     box-sizing: border-box;
     width: 100%;
-    margin: 0;
   }
-  .team-page-main .team-page-wrapper .team-group-2 img {
-    align-self: start !important;
-  }
-  .team-page-main .team-page-wrapper .team-page-section .ind-images {
+  .team-page-wrapper .team-group-1 .ind-images .grp_img_p {
     display: flex;
+    flex-flow: column wrap;
+    align-items: start;
+  }
+  .team-page-wrapper .team-group-1 .ind-images .grp_img_p span img {
+    margin-top: 1rem;
+    display: block;
+  }
+  .team-page-wrapper .team-group-1 .ind-images .grp_img_p p {
+    padding-left: 4rem;
+    text-align: left;
+  }
+  .team-page-wrapper .team-group-2 {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center; /* Center children horizontally */
+    justify-content: center;
+    gap: 2rem;
+    box-sizing: border-box;
+    width: 100%;
+  }
+  .team-page-wrapper .team-group-2 .ind-images {
+    display: flex !important;
     flex-direction: row;
+    align-items: start;
+    justify-content: center;
     gap: 1rem;
+    flex: unset;
+    box-sizing: border-box;
+    width: 100%;
   }
-  .team-page-main .team-page-wrapper .team-page-section .ind-images img[alt*=picture] {
-    border-radius: 5%;
-  }
-  .team-page-main .team-page-wrapper .team-page-section .ind-images .grp_img_p {
+  .team-page-wrapper .team-group-2 .ind-images .grp_img_p {
     display: flex;
-    flex-flow: column nowrap;
-    flex-grow: 1;
-    margin-top: 1rem;
+    flex-flow: column;
+    align-items: end;
   }
-  .team-page-main .team-page-wrapper .team-page-section .ind-images .grp_img_p p span {
+  .team-page-wrapper .team-group-2 .ind-images .grp_img_p span img {
+    margin-top: 1rem;
     display: block;
-    color: #DE6B35;
   }
-  .team-page-main .team-page-wrapper .team-page-section .ind-images .grp_img_p p {
-    text-align: left !important;
-    font-weight: 600;
-    padding-top: 0 !important;
+  .team-page-wrapper .team-group-2 .ind-images .grp_img_p p {
+    text-align: left;
   }
-  .team-page-main .team-page-wrapper .team-page-section .ind-images .grp_img_p span img {
-    display: block !important;
+  .team-page-wrapper .team-group-2 .team-member-mid .team-page-second-part p {
+    padding-right: 2.5rem;
   }
-  .team-page-main .team-page-wrapper .team-page-section .ind-images .team-page-first-part span img {
+  .team-page-wrapper .team-group-2 .team-page-short {
+    flex: 1 0 100%;
     display: block;
-    float: left;
+    margin: unset;
+    box-sizing: border-box;
+    width: 100%;
   }
-  .team-page-main .team-page-wrapper .team-page-section .ind-images .team-page-first-part p {
-    margin-left: 3rem;
-    margin-top: 1rem;
-  }
-  .team-page-main .team-page-wrapper .team-page-section .ind-images .team-page-first-part .solveGuia {
-    padding-left: 0;
-    padding-right: 3rem;
-  }
-  .team-page-main .team-page-wrapper .team-page-section .ind-images .team-page-first-part .solveSim {
-    padding-left: 0;
-    padding-right: 2rem;
-  }
-  .team-page-main .team-page-wrapper .team-page-section .ind-images .team-page-second-part {
-    gap: 1rem;
-    margin-top: 1rem;
-  }
-  .team-page-main .team-page-wrapper .team-page-section .ind-images .team-page-second-part .mar3 {
-    padding-right: 2rem;
-  }
-  .team-page-main .team-page-wrapper .team-page-section .ind-images .team-page-second-part span {
-    /*display: block; */
-    /*  float: right;*/
-    align-self: end;
+  .team-page-wrapper .team-group-2 .team-page-short .team-page-second-part p {
+    padding-right: 2.5rem;
   }
 }
+/* indiviually images ======================== */
+/* .team-page-main{
+    .team-page-wrapper{
+        max-width: 70% !important;
+        margin: auto;
+        margin-top: 5rem;
+        margin-bottom: 5rem;
+        display: flex;
+        gap: 3rem;
+
+        .team-group-1{
+            display: flex;
+            flex-flow: column wrap;  
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+            gap:2rem;
+
+            .ind-images{
+                box-sizing: border-box;
+
+                img[alt *= picture]{
+                    box-sizing: border-box;
+                    width: 100%;
+                }
+            }
+        }
+
+
+        .team-group-2{
+            margin-top: 10rem !important;
+            margin-bottom: 10rem;
+            display: flex;
+            flex-flow: column wrap;
+            gap:6rem;
+            justify-content: space-around;
+            margin-top:0;
+
+            .ind-images{
+                flex-flow: nowrap;
+                box-sizing: border-box;
+                // width: 100%;
+                margin-top: 0 !important;
+            }
+
+            .team-page-short{
+                box-sizing: border-box;
+                width: 100%;
+                margin: 0;
+            }
+
+            img[alt *= picture]{
+                // align-self: start !important;
+                box-sizing: border-box;
+                width: 100%;
+            }
+
+            .grp_img_p{
+                span{
+                    box-sizing: border-box;
+                    width: 100%;
+                }
+            }
+        }
+
+
+        .team-page-section .ind-images{
+            // flex-grow: 1;
+            display: flex;
+            flex-direction: row;
+            gap:1rem;
+
+            img[alt*=picture]
+            {
+                border-radius: 5%;
+            }
+
+            .grp_img_p{
+                display: flex;
+                flex-flow: column nowrap; 
+                flex-grow: 1; 
+                margin-top: 1rem;
+
+                p span{
+                    display: block;
+                    color: c.$accent-color-main;
+                }
+                p{
+                    text-align:left !important;
+                    font-weight: 600;
+                    padding-top: 0 !important;
+                }
+                span img{
+                    display: block !important;
+                }
+            }    
+
+
+
+                .team-page-first-part{
+                    span img{
+                        display: block;
+                        float: left;
+                    }
+
+                    p{
+                        margin-left: 3rem;
+                        margin-top: 1rem;
+                    }
+
+                    .solveGuia{
+                        padding-left: 0;
+                        padding-right: 3rem;
+                    }
+
+                    .solveSim{
+                        padding-left: 0;
+                        padding-right: 2rem;
+                    }
+                }
+
+                .team-page-second-part{
+                    gap:1rem;
+                    margin-top: 1rem;
+
+                    .mar3{
+                        // margin-top: 1rem;
+                        padding-right: 2rem;
+                    }
+
+                    span{
+                        /*display: block; */
+/*  float: right;
+                        align-self: end;
+                    }
+
+                }
+
+        }
+    }
+
+
+}*/
 @media screen and (min-width: 1200) {
   .team-page-wrapper {
     margin-left: auto;
