@@ -17,6 +17,10 @@ button.google-btn:hover {
   color: #FFFFFF;
 }
 
+button.google-btn:hover > p {
+  font-weight: 900;
+}
+
 button.filled-btn,
 button.filled-next-btn,
 button.filled-mob-btn,

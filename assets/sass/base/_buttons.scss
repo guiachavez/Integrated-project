@@ -21,6 +21,10 @@ button.google-btn:hover {
     color: colors.$neutral-color-white;
 }
 
+button.google-btn:hover > p {
+    font-weight: 900;
+}
+
 
 // Filled button
 button.filled-btn,
