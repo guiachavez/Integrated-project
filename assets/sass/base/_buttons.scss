@@ -8,7 +8,7 @@ button, a  {
     cursor: pointer;
 }
 button.google-btn {
-    width:235px;
+    width:260px;
     height:56px;
     border-radius: 3rem;
     background-color: colors.$neutral-color-white;
@@ -19,6 +19,10 @@ button.google-btn {
 button.google-btn:hover {
     background-color: colors.$neutral-color-grey-l;
     color: colors.$neutral-color-white;
+}
+
+button.google-btn:hover > p {
+    font-weight: 900;
 }
 
 

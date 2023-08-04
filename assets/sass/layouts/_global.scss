@@ -30,6 +30,7 @@ a {
     text-decoration: none;
     color: colors.$neutral-color-black;
     display: block;
+    @include mx.raleway-typography(16);
 }
 
 h2 {
