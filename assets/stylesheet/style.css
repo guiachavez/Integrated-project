@@ -1063,6 +1063,9 @@ footer h2 {
 .home_featured .carousel-container button::after {
   color: #000000;
 }
+.home_featured .carousel-container .carousel-item {
+  margin: 0 0.5rem;
+}
 .home_featured .carousel-container .slick-slide img {
   width: 100%;
   height: 300px;
@@ -1093,7 +1096,7 @@ footer h2 {
 }
 @media screen and (max-width: 685px) {
   .home_featured .carousel {
-    margin: 0 12%;
+    margin: 0 auto;
   }
 }
 
@@ -1609,7 +1612,7 @@ ul {
 
 @media screen and (max-width: 820px) {
   .home_featured .carousel-container .slick-prev {
-    left: -2rem;
+    left: -2.5rem;
   }
   .home_featured .carousel-container .slick-next {
     right: -2.5rem;
@@ -1657,10 +1660,10 @@ ul {
 }
 @media screen and (max-width: 460px) {
   .home_main .stories-wrapper .slick-prev {
-    left: -40px;
+    left: -2.5rem;
   }
   .home_main .stories-wrapper .slick-next {
-    right: -30px;
+    right: -2.5rem;
   }
 }
 
@@ -1690,50 +1693,51 @@ ul {
   width: 100%;
 }
 
-.js .slider-for > div:nth-child(1n+2) {
+.pet-profile-main .js .slider-for > div:nth-child(1n+2) {
   display: none;
 }
-
-.js .slider-for > div:nth-child(1n+2) {
+.pet-profile-main .js .slider-for > div:nth-child(1n+2) {
   display: block;
 }
-
-.slider-nav img {
+.pet-profile-main .slider-nav img {
   width: 100%;
   height: 100px;
   object-fit: cover;
   border-radius: 0.5rem;
 }
-
-.slider-for img {
+.pet-profile-main .slider-for img {
   width: 100%;
   height: 400px;
   object-fit: cover;
   border-radius: 2%;
 }
-
-.slider-for .slick-prev {
-  left: 25px;
+.pet-profile-main .slider-for .slick-prev {
+  left: 10px;
   z-index: 999;
 }
-
-.slider-for .slick-next {
-  right: 35px;
+.pet-profile-main .slider-for .slick-next {
+  right: 10px;
 }
-
-.slider-nav .slick-arrow {
+.pet-profile-main .slider-nav .slick-arrow {
   display: none;
 }
-
-.slick-track {
+.pet-profile-main .slick-track {
   left: unset !important;
   display: flex;
   justify-content: space-between;
 }
-
-.slider-nav .slick-slide.slick-current {
+.pet-profile-main .slider-nav .slick-slide.slick-current {
   border: 1px solid #0293A7;
   border-radius: 0.5rem;
+}
+
+.slick-prev:before, .slick-next:before {
+  font-size: 30px;
+}
+
+button.slick-arrow {
+  width: auto;
+  height: auto;
 }
 
 .gallery .draggable .slick-track {
@@ -1757,10 +1761,6 @@ ul {
 
 .pet-details {
   padding: 0 2rem;
-}
-
-.slick-prev:before, .slick-next:before {
-  font-size: 30px;
 }
 
 .pet-profile-main {
@@ -2451,8 +2451,11 @@ option {
   padding: 1rem;
 }
 
-.nav-item a:hover {
+.nav-item:has(a:hover) {
   background-color: #0293A7;
+}
+
+.nav-item a:hover {
   color: #FFFFFF;
 }
 
@@ -3543,12 +3546,11 @@ button.filled-default-next-mob {
   position: relative;
 }
 
-.slick-prev {
+.team-image-container .slick-prev {
   left: 25px;
   z-index: 1;
 }
-
-.slick-next {
+.team-image-container .slick-next {
   right: 30px;
   z-index: 1;
 }
