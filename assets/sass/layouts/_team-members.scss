@@ -32,17 +32,18 @@
     position: relative;
 }
 
-.slick-prev{
-    left:25px;
-    z-index: 1;
+.team-image-container {
+    .slick-prev{
+        left:25px;
+        z-index: 1;
+    }
+    
+    .slick-next{
+        right: 30px;
+        z-index: 1;
+    }
+    
 }
-
-.slick-next{
-    right: 30px;
-    z-index: 1;
-}
-
-
 
 /* the mobile screen of the team page ===================================== */
 @media screen and (max-width:mq.$media-mobile-width) {

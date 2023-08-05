@@ -199,6 +199,9 @@
   }
 
   .carousel-container {
+    .carousel-item {
+      margin: 0 0.5rem;
+    }
     .slick-slide img {
       width: 100%;
       height: 300px;
@@ -237,7 +240,7 @@
 
   @media screen and (max-width: 685px) {
     .carousel {
-      margin: 0 12%;
+      margin: 0 auto;
     }
   }
 }
@@ -823,7 +826,7 @@ ul {
 @media screen and (max-width: query.$media-tablet-width) {
   .home_featured .carousel-container {
     .slick-prev {
-      left: -2rem;
+      left: -2.5rem;
     }
 
     .slick-next {
@@ -885,11 +888,11 @@ ul {
 
     @media screen and (max-width: 460px) {
       .slick-prev {
-        left: -40px;
+        left: -2.5rem;
       }
 
       .slick-next {
-        right: -30px;
+        right: -2.5rem;
       }
     }
   }

@@ -339,8 +339,10 @@
     padding: 1rem;
 }
 
-.nav-item a:hover {
+.nav-item:has(a:hover)  {
     background-color: colors.$primary-color-main;
+}
+.nav-item a:hover {
     color: colors.$neutral-color-white;
 }
 

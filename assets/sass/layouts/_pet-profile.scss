@@ -15,51 +15,63 @@
     width: 100%;
 }
 
-.js .slider-for > div:nth-child(1n + 2) {
-    display: none;
+.pet-profile-main {
+    .js .slider-for > div:nth-child(1n + 2) {
+        display: none;
+    }
+    
+    .js .slider-for > div:nth-child(1n + 2) {
+        display: block;
+    }
+    
+    .slider-nav img {
+        width: 100%;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 0.5rem;
+    }
+            
+    .slider-for img {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+        border-radius: 2%;
+    }
+    
+    .slider-for .slick-prev {
+        left: 10px;
+        z-index: 999;
+    }
+    
+    .slider-for .slick-next {
+        right: 10px;
+    }
+    
+    .slider-nav .slick-arrow {
+        display: none;
+    }
+    
+    .slick-track {
+        left: unset !important;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .slider-nav .slick-slide.slick-current {
+        border: 1px solid colors.$primary-color-main;
+        border-radius: 0.5rem;
+    }
 }
 
-.js .slider-for > div:nth-child(1n + 2) {
-    display: block;
+.slick-prev:before, .slick-next:before {
+    font-size: 30px;
 }
 
-.slider-nav img {
-    width: 100%;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 0.5rem;
-}
-        
-.slider-for img {
-    width: 100%;
-    height: 400px;
-    object-fit: cover;
-    border-radius: 2%;
+button.slick-arrow {
+    width: auto;
+    height: auto;
 }
 
-.slider-for .slick-prev {
-    left: 25px;
-    z-index: 999;
-}
-
-.slider-for .slick-next {
-    right: 35px;
-}
-
-.slider-nav .slick-arrow {
-    display: none;
-}
-
-.slick-track {
-    left: unset !important;
-    display: flex;
-    justify-content: space-between;
-}
-
-.slider-nav .slick-slide.slick-current {
-    border: 1px solid colors.$primary-color-main;
-    border-radius: 0.5rem;
-}
 
 .gallery .draggable .slick-track{
     gap: 1%;
@@ -86,9 +98,6 @@
     padding: 0 2rem;
 }
 
-.slick-prev:before, .slick-next:before {
-    font-size: 30px;
-}
 
 .pet-profile-main {
     padding: 2rem 2%;
