@@ -1,95 +1,92 @@
-@use '../variables/colors' as colors;
-@use '../variables/typography' as typo;
-
+@use "../variables/colors" as colors;
+@use "../variables/typography" as typo;
 
 @mixin button-style($bc, $tc, $c, $h: 48) {
-    background-color: $bc;
-    color: $tc;
-    border: 2px solid $c;
-    width: 172px;
-    height: $h * 1px;
-    border-radius: 3rem;
+  background-color: $bc;
+  color: $tc;
+  border: 2px solid $c;
+  width: 172px;
+  height: $h * 1px;
+  border-radius: 3rem;
+}
+
+@mixin button-shadow {
+  box-shadow: 0px 4px 6px #c5c5c5;
 }
 
 @mixin baloo-typography($f) {
-    font-family: typo.$font-baloo2;
-    font-size: $f * 1px;
+  font-family: typo.$font-baloo2;
+  font-size: $f * 1px;
 }
 
-@mixin raleway-typography($f){
-    font-family: typo.$font-raleway;
-    font-size: $f * 1px;
+@mixin raleway-typography($f) {
+  font-family: typo.$font-raleway;
+  font-size: $f * 1px;
 }
 
-@mixin maxwidth{
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-    width: 1200px;
+@mixin maxwidth {
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  width: 1200px;
 }
-
 
 @mixin flex-center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @mixin grid($rows: 1fr, $columns: 1fr, $qty: 1) {
-    display: grid;
-    grid-template-rows: $rows;
-    grid-template-columns: repeat($qty, $columns);
+  display: grid;
+  grid-template-rows: $rows;
+  grid-template-columns: repeat($qty, $columns);
 }
 
 @mixin autoGridColumn($px) {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax($px, 1fr));
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax($px, 1fr));
 }
-
 
 @mixin position($position) {
-    position: absolute;
-    
-    @if $position == 'top-horizontally-center' {
-        top: 0;
-        left: 50%;
-        transform: translate(-50%);
-    }
-    @else if $position == 'bottom-horizontally-center' {
-        bottom: 0;
-        left: 50%;
-        transform: translate(-50%);
-    }
-    @else if $position == 'vertically-center' {
-        top: 50%;
-        left: 0;
-        transform: translateY(-50%);
-    } 
-    @else if $position == 'both-center' {
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-    @else if $position == 'absolute' {
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-    }
-}
+  position: absolute;
 
-@mixin modalBackground {
-    transition: 0.75s all cubic-bezier(0.23, 1, 0.32, 1);
-    position: fixed;
+  @if $position == "top-horizontally-center" {
+    top: 0;
+    left: 50%;
+    transform: translate(-50%);
+  } @else if $position == "bottom-horizontally-center" {
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%);
+  } @else if $position == "vertically-center" {
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+  } @else if $position == "both-center" {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  } @else if $position == "absolute" {
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    height: 100%;
-    width: 100%;
-    z-index: 10000;
-    opacity: 0;
-    visibility: hidden;
-    overflow: auto;
-    background: rgba(0, 0, 0, 0.5);
+  }
+}
+
+@mixin modalBackground {
+  transition: 0.75s all cubic-bezier(0.23, 1, 0.32, 1);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 10000;
+  opacity: 0;
+  visibility: hidden;
+  overflow: auto;
+  background: rgba(0, 0, 0, 0.5);
 }

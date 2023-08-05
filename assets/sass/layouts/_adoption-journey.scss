@@ -273,6 +273,10 @@ dd.article-content {
     }
 }
 
+.adoption-journey-content aside img{
+    border-radius: 0.5rem;
+}
+
 @media screen and (max-width: mq.$media-mobile-width){
     .adoption-journey-main {
         .adoption-journey-header {

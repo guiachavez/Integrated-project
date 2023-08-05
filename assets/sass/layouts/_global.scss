@@ -30,6 +30,7 @@ a {
     text-decoration: none;
     color: colors.$neutral-color-black;
     display: block;
+    @include mx.raleway-typography(16);
 }
 
 h2 {
@@ -43,6 +44,11 @@ h3 {
 p, td, ul a {
     @include mx.raleway-typography(16);
     font-weight: 300
+}
+
+li {
+    @include mx.raleway-typography(14);
+    font-weight: 600
 }
 
 label, legend, tr {
