@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@300;700&family=Raleway:wght@300;700&display=swap");
-button, a {
+button,
+a {
   cursor: pointer;
 }
 
@@ -34,6 +35,7 @@ button.filled-next-mob-btn {
   width: 172px;
   height: 48px;
   border-radius: 3rem;
+  box-shadow: 0px 4px 6px #c5c5c5;
 }
 
 button.filled-btn:hover,
@@ -44,6 +46,7 @@ button.filled-next-btn:hover {
   width: 172px;
   height: 48px;
   border-radius: 3rem;
+  box-shadow: 0px 4px 6px #c5c5c5;
 }
 
 button.filled-btn:active,
@@ -56,6 +59,7 @@ button.filled-next-mob-btn:active {
   width: 172px;
   height: 48px;
   border-radius: 3rem;
+  box-shadow: 0px 4px 6px #c5c5c5;
 }
 
 button.filled-btn:disabled,
@@ -66,6 +70,7 @@ button.filled-next-btn:disabled {
   width: 172px;
   height: 48px;
   border-radius: 3rem;
+  box-shadow: 0px 4px 6px #c5c5c5;
 }
 
 button.grayscale-outline-btn {
@@ -144,6 +149,7 @@ button.filled-mob-btn:hover {
   width: 172px;
   height: 48px;
   border-radius: 3rem;
+  box-shadow: 0px 4px 6px #c5c5c5;
 }
 
 button.outline-btn:active,
@@ -1083,6 +1089,11 @@ footer h2 {
 @media screen and (min-width: 820px) {
   .home_featured h2 {
     font-size: 36px;
+  }
+}
+@media screen and (max-width: 685px) {
+  .home_featured .carousel {
+    margin: 0 12%;
   }
 }
 
