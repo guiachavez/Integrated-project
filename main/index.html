@@ -11,7 +11,7 @@
       href="./../assets/logo/pawfectmatch-logo-no-text.svg"
     />
 
-    <link rel="manifest" href="./../assets/json/app.webmanifest">
+    <link rel="manifest" href="./../assets/json/app.webmanifest" />
 
     <!-- This link tag is required by the TomTom API -->
     <link
@@ -148,18 +148,10 @@
                 <label for="setRadius">Range: </label>
                 <input type="range" id="setRadius" min="1" max="20" value="5" />
                 <div>
-                  <span class="radius-value" id="radiusValue">5</span><span>km</span>
+                  <span class="radius-value" id="radiusValue">5</span
+                  ><span>km</span>
                 </div>
-               
               </div>
-              <!-- <button
-                type="submit"
-                value="Apply"
-                id="home_apply-radius"
-                class="filled-mob-btn font"
-              >
-                Apply Radius
-              </button> -->
             </div>
           </div>
         </div>
@@ -258,43 +250,44 @@
 
     <footer></footer>
 
-
     <script defer>
-      ;(async () => {
-            // does the browser support service workers?
-            if ('serviceWorker' in navigator) {
-                // then register our service worker
-              try {
-                const reg = await  navigator.serviceWorker.register('./../service-worker.js', { scope: '/' });
-                // display a success message
-                console.log(`Service Worker is Registered:`, reg);
+      (async () => {
+        // does the browser support service workers?
+        if ("serviceWorker" in navigator) {
+          // then register our service worker
+          try {
+            const reg = await navigator.serviceWorker.register(
+              "./../service-worker.js",
+              { scope: "/" }
+            );
+            // display a success message
+            console.log(`Service Worker is Registered:`, reg);
 
-                navigator.serviceWorker.addEventListener("message", (event) => {
-                  // event is a MessageEvent object
-                  console.log(`The service worker sent me a message: ${event.data}`);
-                });
+            navigator.serviceWorker.addEventListener("message", (event) => {
+              // event is a MessageEvent object
+              console.log(
+                `The service worker sent me a message: ${event.data}`
+              );
+            });
+          } catch (error) {
+            // display an error message
+            console.log(`Service Worker Error (${error})`);
+          }
 
-              } catch(error) {
-                // display an error message
-                console.log(`Service Worker Error (${error})`);
-              };
-
-              // ready is a Promise that never rejects and resolved when the service worker is active. 
-              const active = await navigator.serviceWorker.ready;
-              // we have an active service worker working for us
-              console.log(`Service Worker is Active:`, active);
-              // At this point, you can call methods that require an active service worker,
-              // like registration.pushManager.subscribe() for push notification
-            } else {
-              // happens when the app isn't served over a TLS connection (HTTPS)
-              console.warn('Service Worker not available');
-            }
-        })();//async IIFE
+          // ready is a Promise that never rejects and resolved when the service worker is active.
+          const active = await navigator.serviceWorker.ready;
+          // we have an active service worker working for us
+          console.log(`Service Worker is Active:`, active);
+          // At this point, you can call methods that require an active service worker,
+          // like registration.pushManager.subscribe() for push notification
+        } else {
+          // happens when the app isn't served over a TLS connection (HTTPS)
+          console.warn("Service Worker not available");
+        }
+      })(); //async IIFE
     </script>
   </body>
 </html>
 
 <script type="module" src="./../assets/js/global-functions.js" defer></script>
 <script type="module" src="./../assets/js/index.js" defer></script>
-
-

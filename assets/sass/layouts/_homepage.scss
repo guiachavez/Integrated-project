@@ -122,7 +122,6 @@
 
   .home_search-btn {
     grid-column: span 2;
-    // width: 50%;
     justify-self: center;
 
     button {
@@ -174,7 +173,6 @@
 
   .carousel {
     width: 100%;
-    // height: 50vh;
     margin: auto;
   }
 
@@ -248,7 +246,6 @@
 .home_map-box {
   padding: 2%;
   margin: 0 4% 6%;
-  // margin-bottom: 6%;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.144);
 
   h2 {
@@ -258,28 +255,20 @@
   }
 
   .home_map-controls {
-    // display: grid;
     position: relative;
     margin-top: 2%;
+    gap: 0.5rem;
   }
 
   .home_radius {
-    // margin: 2.5rem 0;
-    // display: grid;
-    // grid-template-columns: 1fr;
-    // gap: 1rem;
     z-index: 100;
-    // position: relative;
     padding: 1rem 0.5rem;
-    // width: fit-content;
-    // margin-left: auto;
     background-color: rgba(255, 255, 255, 0.8);
     border: 1.5px solid colors.$primary-color-main;
     border-radius: 8px;
-    // right: 2%;
     width: 70%;
     margin: auto;
-    height: 59px;
+    height: 50px;
 
     .home_radius-containder {
       text-align: center;
@@ -351,8 +340,6 @@
     }
 
     .home_map-controls {
-      // grid-column: span 2;
-
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
@@ -360,10 +347,8 @@
       margin: 2%;
 
       .home_radius {
-        // margin: 0;
-        // grid-template-columns: 2fr 1fr;
-        // gap: 0.8rem;
         width: 100%;
+        height: 59px;
 
         .home_radius-containder {
           margin-right: 0;
@@ -376,11 +361,11 @@
     }
 
     .tt-search-box {
-      // position: absolute;
-      // right: 1%;
-      // top: 120%;
       z-index: 100;
-      // width: 300px;
+    }
+
+    .tt-search-box-input-container {
+      height: 59px !important;
     }
 
     #map {
@@ -782,7 +767,6 @@ ul {
 
 .home_searchbox {
   .tt-search-box {
-    // height: 59px;
     padding: 0 8px;
     background-color: rgba(255, 255, 255, 0.8);
     border: 1.5px solid colors.$primary-color-main;
@@ -806,7 +790,7 @@ ul {
   }
 
   .tt-search-box-input-container {
-    height: 59px;
+    height: 50px;
     padding: 0 8px;
     background-color: rgba(255, 255, 255, 0.8);
     border: 1.5px solid colors.$primary-color-main;
@@ -857,9 +841,6 @@ ul {
     .tt-search-box {
       z-index: 9999;
       width: 70%;
-      // margin-left: auto;
-      // margin-right: 2%;
-      // margin-bottom: 1rem;
       margin: auto;
     }
   }

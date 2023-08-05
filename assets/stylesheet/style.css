@@ -1111,6 +1111,7 @@ footer h2 {
 .home_map-box .home_map-controls {
   position: relative;
   margin-top: 2%;
+  gap: 0.5rem;
 }
 .home_map-box .home_radius {
   z-index: 100;
@@ -1120,7 +1121,7 @@ footer h2 {
   border-radius: 8px;
   width: 70%;
   margin: auto;
-  height: 59px;
+  height: 50px;
 }
 .home_map-box .home_radius .home_radius-containder {
   text-align: center;
@@ -1187,6 +1188,7 @@ footer h2 {
   }
   .home_map-box .home_map-controls .home_radius {
     width: 100%;
+    height: 59px;
   }
   .home_map-box .home_map-controls .home_radius .home_radius-containder {
     margin-right: 0;
@@ -1196,6 +1198,9 @@ footer h2 {
   }
   .home_map-box .tt-search-box {
     z-index: 100;
+  }
+  .home_map-box .tt-search-box-input-container {
+    height: 59px !important;
   }
   .home_map-box #map {
     height: 80vh;
@@ -1572,7 +1577,7 @@ ul {
   background-color: unset;
 }
 .home_map-box .tt-search-box-input-container {
-  height: 59px;
+  height: 50px;
   padding: 0 8px;
   background-color: rgba(255, 255, 255, 0.8);
   border: 1.5px solid #0293A7;
