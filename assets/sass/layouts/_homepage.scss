@@ -236,6 +236,12 @@
       font-size: 36px;
     }
   }
+
+  @media screen and (max-width: 685px) {
+    .carousel {
+      margin: 0 12%;
+    }
+  }
 }
 
 /* Map Section =============================== */
@@ -645,7 +651,7 @@
   .story.slick-slide {
     margin: 0 15px;
   }
-  
+
   #stories > div.slick-list:first-of-type {
     margin: 0 -15px;
   }
