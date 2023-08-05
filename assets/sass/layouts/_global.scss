@@ -46,6 +46,11 @@ p, td, ul a {
     font-weight: 300
 }
 
+li {
+    @include mx.raleway-typography(14);
+    font-weight: 600
+}
+
 label, legend, tr {
     @include mx.raleway-typography(16);
     font-weight: 600;
