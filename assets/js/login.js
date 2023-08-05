@@ -1,13 +1,17 @@
-import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithRedirect, getRedirectResult, signInWithPopup, sendPasswordResetEmail } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js';
+import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithRedirect, getRedirectResult, signInWithPopup, sendPasswordResetEmail, deleteUser } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js';
+import { getFirestore, collection, query, where, getDocs } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js'
 import { app } from './config.js'
 
 // Initialize Authentication
 const auth = getAuth(app)
 const provider = new GoogleAuthProvider(app)
+const db = getFirestore(app)
+const accRef = collection(db, 'accounts')
 
 //login method using email
 const loginButton = document.querySelector('.login')
 const errorMsg = document.querySelector('.error-msg')
+
 loginButton.addEventListener('submit', (e) => {
     e.preventDefault()
 
@@ -48,8 +52,21 @@ googleButton.addEventListener('click', (e) => {
         .then((result) => {
 
             const user = result.user;
-            console.log('user logged in: ', user.email)
-            window.location.href = './index.html'
+            const currentUser = auth.currentUser;
+
+            const accountCheck = query(accRef, where("email", "==", user.email));
+            getDocs(accountCheck)
+                .then((snapshot) => {
+                    if (snapshot.empty) {
+                        deleteUser(currentUser)
+                        .then(() => {
+                            alert('Your account does not exist!');
+                        })
+                    } else {
+                        alert('Login successful!')
+                        window.location.href = './index.html'
+                    }
+                })          
         })
     }
 });
@@ -67,8 +84,21 @@ function redirect() {
             const token = credential.accessToken;
             
             const user = result.user;
-            console.log('user logged in: ', user.email)
-            window.location.href = './index.html'
+            const currentUser = auth.currentUser;
+
+            const accountCheck = query(accRef, where("email", "==", user.email));
+            getDocs(accountCheck)
+                .then((snapshot) => {
+                    if (snapshot.empty) {
+                        deleteUser(currentUser)
+                        .then(() => {
+                            alert('Your account does not exist!');
+                        })
+                    } else {
+                        alert('Login successful!')
+                        window.location.href = './index.html'
+                    }
+                }) 
         })
         .catch((err) => {
             if (err.length > 0) {
