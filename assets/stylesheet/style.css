@@ -2480,6 +2480,10 @@ option {
   font-weight: 500;
 }
 
+#result_inq img {
+  border-radius: 0.5rem;
+}
+
 @media screen and (min-width: 1200px) {
   .user-profile-main {
     margin-left: auto;
@@ -3110,6 +3114,10 @@ dd.article-content p {
   font-style: italic;
   padding-bottom: 1rem;
   padding-right: 2rem;
+}
+
+.adoption-journey-content aside img {
+  border-radius: 0.5rem;
 }
 
 @media screen and (max-width: 460px) {
