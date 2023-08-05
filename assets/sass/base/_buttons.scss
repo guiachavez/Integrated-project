@@ -1,11 +1,11 @@
-@use '../abstracts/variables/colors' as colors;
-@use '../abstracts/mixins/mixins' as mx;
-@use '../abstracts/variables/typography' as typo;
-
+@use "../abstracts/variables/colors" as colors;
+@use "../abstracts/mixins/mixins" as mx;
+@use "../abstracts/variables/typography" as typo;
 
 // google sign in button : google button (filled start)
-button, a  {
-    cursor: pointer;
+button,
+a {
+  cursor: pointer;
 }
 button.google-btn {
     width:260px;
@@ -14,96 +14,159 @@ button.google-btn {
     background-color: colors.$neutral-color-white;
     border:1px solid colors.$neutral-color-grey-l;
     font-size:18px;
+    color: black;
+    -webkit-appearance: none;
+    -webkit-text-fill-color: black;
 }
 
 button.google-btn:hover {
-    background-color: colors.$neutral-color-grey-l;
-    color: colors.$neutral-color-white;
+  background-color: colors.$neutral-color-grey-l;
+  color: colors.$neutral-color-white;
 }
 
 button.google-btn:hover > p {
-    font-weight: 900;
+  font-weight: 900;
 }
-
 
 // Filled button
 button.filled-btn,
 button.filled-next-btn,
 button.filled-mob-btn,
-button.filled-next-mob-btn{
-    @include mx.button-style(colors.$primary-color-main, colors.$neutral-color-white, colors.$primary-color-main);
+button.filled-next-mob-btn {
+  @include mx.button-style(
+    colors.$primary-color-main,
+    colors.$neutral-color-white,
+    colors.$primary-color-main
+  );
+  @include mx.button-shadow;
 }
 
 button.filled-btn:hover,
 button.filled-next-btn:hover {
-    @include mx.button-style(colors.$primary-color-100, colors.$neutral-color-white, colors.$primary-color-100);
+  @include mx.button-style(
+    colors.$primary-color-100,
+    colors.$neutral-color-white,
+    colors.$primary-color-100
+  );
+  @include mx.button-shadow;
 }
 
 button.filled-btn:active,
 button.filled-next-btn:active,
 button.filled-mob-btn:active,
-button.filled-next-mob-btn:active{
-    @include mx.button-style(colors.$primary-color-25, colors.$primary-color-100, colors.$primary-color-100);
+button.filled-next-mob-btn:active {
+  @include mx.button-style(
+    colors.$primary-color-25,
+    colors.$primary-color-100,
+    colors.$primary-color-100
+  );
+  @include mx.button-shadow;
 }
 
 button.filled-btn:disabled,
-button.filled-next-btn:disabled{
-    @include mx.button-style(colors.$neutral-color-grey-l, colors.$neutral-color-grey, colors.$neutral-color-grey-l);
+button.filled-next-btn:disabled {
+  @include mx.button-style(
+    colors.$neutral-color-grey-l,
+    colors.$neutral-color-grey,
+    colors.$neutral-color-grey-l
+  );
+  @include mx.button-shadow;
 }
 
 button.grayscale-outline-btn {
-    @include mx.button-style(colors.$neutral-color-white, colors.$neutral-color-grey-d, colors.$neutral-color-grey-d);
+  @include mx.button-style(
+    colors.$neutral-color-white,
+    colors.$neutral-color-grey-d,
+    colors.$neutral-color-grey-d
+  );
 }
 
 button.grayscale-outline-btn:hover {
-    @include mx.button-style(colors.$neutral-color-grey-d, colors.$neutral-color-white, colors.$neutral-color-grey-d);
+  @include mx.button-style(
+    colors.$neutral-color-grey-d,
+    colors.$neutral-color-white,
+    colors.$neutral-color-grey-d
+  );
 }
 
 // Outline button
 button.outline-btn,
 button.outline-next-btn,
 button.outline-mob-btn,
-button.outline-next-mob-btn{
-    @include mx.button-style(colors.$neutral-color-white, colors.$primary-color-main, colors.$primary-color-main);
+button.outline-next-mob-btn {
+  @include mx.button-style(
+    colors.$neutral-color-white,
+    colors.$primary-color-main,
+    colors.$primary-color-main
+  );
 }
 
 button.outline-btn:hover,
 button.outline-next-btn:hover {
-    @include mx.button-style(colors.$primary-color-main, colors.$neutral-color-white, colors.$primary-color-main);
+  @include mx.button-style(
+    colors.$primary-color-main,
+    colors.$neutral-color-white,
+    colors.$primary-color-main
+  );
 }
 
 button.outline-btn-gray {
-    @include mx.button-style(colors.$neutral-color-white, colors.$neutral-color-grey-l, colors.$neutral-color-grey-l);
+  @include mx.button-style(
+    colors.$neutral-color-white,
+    colors.$neutral-color-grey-l,
+    colors.$neutral-color-grey-l
+  );
 }
 
 button.outline-btn-gray:disabled,
 button.outline-btn:disabled {
-    @include mx.button-style(colors.$neutral-color-grey-l, colors.$neutral-color-grey, colors.$neutral-color-grey-l);
-    cursor: default;
+  @include mx.button-style(
+    colors.$neutral-color-grey-l,
+    colors.$neutral-color-grey,
+    colors.$neutral-color-grey-l
+  );
+  cursor: default;
 }
 
 button.outline-btn-gray:hover {
-    @include mx.button-style(colors.$neutral-color-grey-l, colors.$neutral-color-grey, colors.$neutral-color-grey-l);
+  @include mx.button-style(
+    colors.$neutral-color-grey-l,
+    colors.$neutral-color-grey,
+    colors.$neutral-color-grey-l
+  );
 }
 
 button.filled-mob-btn:hover {
-    @include mx.button-style(colors.$primary-color-75, colors.$neutral-color-white, colors.$primary-color-75);
+  @include mx.button-style(
+    colors.$primary-color-75,
+    colors.$neutral-color-white,
+    colors.$primary-color-75
+  );
+  @include mx.button-shadow;
 }
 
 button.outline-btn:active,
 button.outline-next-btn:active,
 button.outline-mob-btn:active,
-button.outline-next-mob-btn:active{
-    @include mx.button-style(colors.$primary-color-25, colors.$primary-color-100, colors.$primary-color-100);
+button.outline-next-mob-btn:active {
+  @include mx.button-style(
+    colors.$primary-color-25,
+    colors.$primary-color-100,
+    colors.$primary-color-100
+  );
 }
 
 button.outline-btn:disabled,
-button.outline-next-btn:disabled{
-    @include mx.button-style(colors.$neutral-color-white, colors.$neutral-color-grey-l, colors.$neutral-color-grey-l);
+button.outline-next-btn:disabled {
+  @include mx.button-style(
+    colors.$neutral-color-white,
+    colors.$neutral-color-grey-l,
+    colors.$neutral-color-grey-l
+  );
 }
 
 // Font used for button
-button.font{
-    @include mx.raleway-typography(16);
-    font-weight: bold;
+button.font {
+  @include mx.raleway-typography(16);
+  font-weight: bold;
 }
