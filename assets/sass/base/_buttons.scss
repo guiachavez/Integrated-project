@@ -14,6 +14,9 @@ button.google-btn {
     background-color: colors.$neutral-color-white;
     border:1px solid colors.$neutral-color-grey-l;
     font-size:18px;
+    color: black;
+    -webkit-appearance: none;
+    -webkit-text-fill-color: black
 }
 
 button.google-btn:hover {
