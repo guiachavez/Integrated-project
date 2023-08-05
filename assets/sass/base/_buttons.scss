@@ -8,12 +8,15 @@ a {
   cursor: pointer;
 }
 button.google-btn {
-  width: 260px;
-  height: 56px;
-  border-radius: 3rem;
-  background-color: colors.$neutral-color-white;
-  border: 1px solid colors.$neutral-color-grey-l;
-  font-size: 18px;
+    width:260px;
+    height:56px;
+    border-radius: 3rem;
+    background-color: colors.$neutral-color-white;
+    border:1px solid colors.$neutral-color-grey-l;
+    font-size:18px;
+    color: black;
+    -webkit-appearance: none;
+    -webkit-text-fill-color: black;
 }
 
 button.google-btn:hover {
